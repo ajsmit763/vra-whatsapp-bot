@@ -13,174 +13,139 @@ const userLanguages = {};
 const languages = {
   "1": "en",
   "2": "af",
-  "3": "zu",
-  "4": "xh",
-  "5": "fr",
-  "6": "pt",
-  "7": "es",
-  "8": "ar",
-  "9": "zh",
+  "3": "fr",
+  "4": "pt",
+  "5": "es",
+  "6": "zh"
 };
 
 function languageMenu() {
-  return `🌍 Please choose your language:
+  return `🌍 Welcome to VRA Support
+
+Please select your language:
 
 1️⃣ English
 2️⃣ Afrikaans
-3️⃣ isiZulu
-4️⃣ isiXhosa
-5️⃣ French
-6️⃣ Portuguese
-7️⃣ Spanish
-8️⃣ Arabic
-9️⃣ Chinese`;
+3️⃣ French
+4️⃣ Portuguese
+5️⃣ Spanish
+6️⃣ Chinese`;
 }
 
-const menus = {
-  en: `👋 Welcome to VRA WhatsApp Support
+function mainMenu(lang) {
+  const menus = {
+    en: `👋 Welcome to VRA Support
 
-1️⃣ VAT Refund Information
-2️⃣ Track My Refund
-3️⃣ Required Documents
-4️⃣ Speak To Agent
-5️⃣ Office Information
-6️⃣ Finance Department
+Please select one of the options below:
 
-Type 0 to change language.`,
+1️⃣ Status of your claim
+2️⃣ Update banking details
+3️⃣ Frequently Asked Questions
+4️⃣ Chat with an Agent
 
-  af: `👋 Welkom by VRA WhatsApp Ondersteuning
+Type 0 at any time to change language.`,
 
-1️⃣ BTW-terugbetaling inligting
-2️⃣ Volg my terugbetaling
-3️⃣ Vereiste dokumente
-4️⃣ Praat met ’n agent
-5️⃣ Kantoor inligting
-6️⃣ Finansies afdeling
+    af: `👋 Welkom by VRA Ondersteuning
+
+Kies asseblief een van die volgende opsies:
+
+1️⃣ Status van u eis
+2️⃣ Werk bankbesonderhede op
+3️⃣ Gereelde Vrae
+4️⃣ Praat met 'n Agent
 
 Tik 0 om taal te verander.`,
 
-  zu: `👋 Siyakwamukela ku-VRA WhatsApp Support
+    fr: `👋 Bienvenue au support VRA
 
-1️⃣ Ulwazi lwe-VAT Refund
-2️⃣ Landela imali yami
-3️⃣ Amadokhumenti adingekayo
-4️⃣ Khuluma no-agent
-5️⃣ Ulwazi lwehhovisi
-6️⃣ Umnyango wezezimali
+Veuillez sélectionner une option:
 
-Thumela 0 ukushintsha ulimi.`,
-
-  xh: `👋 Wamkelekile kwi-VRA WhatsApp Support
-
-1️⃣ Ulwazi lwe-VAT Refund
-2️⃣ Landela imbuyekezo yam
-3️⃣ Amaxwebhu afunekayo
-4️⃣ Thetha ne-agent
-5️⃣ Ulwazi lweofisi
-6️⃣ Icandelo lezemali
-
-Thumela 0 ukutshintsha ulwimi.`,
-
-  fr: `👋 Bienvenue au support WhatsApp VRA
-
-1️⃣ Informations sur le remboursement TVA
-2️⃣ Suivre mon remboursement
-3️⃣ Documents requis
+1️⃣ Statut de votre réclamation
+2️⃣ Mettre à jour les coordonnées bancaires
+3️⃣ Questions fréquentes
 4️⃣ Parler à un agent
-5️⃣ Informations du bureau
-6️⃣ Département finance
 
 Tapez 0 pour changer de langue.`,
 
-  pt: `👋 Bem-vindo ao Suporte WhatsApp VRA
+    pt: `👋 Bem-vindo ao suporte VRA
 
-1️⃣ Informação de reembolso de IVA
-2️⃣ Acompanhar o meu reembolso
-3️⃣ Documentos necessários
+Selecione uma opção:
+
+1️⃣ Estado da reclamação
+2️⃣ Atualizar dados bancários
+3️⃣ Perguntas frequentes
 4️⃣ Falar com um agente
-5️⃣ Informação do escritório
-6️⃣ Departamento financeiro
 
-Digite 0 para mudar o idioma.`,
+Digite 0 para mudar idioma.`,
 
-  es: `👋 Bienvenido al soporte WhatsApp de VRA
+    es: `👋 Bienvenido al soporte VRA
 
-1️⃣ Información de reembolso de IVA
-2️⃣ Rastrear mi reembolso
-3️⃣ Documentos requeridos
+Seleccione una opción:
+
+1️⃣ Estado de su reclamo
+2️⃣ Actualizar datos bancarios
+3️⃣ Preguntas frecuentes
 4️⃣ Hablar con un agente
-5️⃣ Información de oficina
-6️⃣ Departamento financiero
 
 Escriba 0 para cambiar idioma.`,
 
-  ar: `👋 مرحباً بك في دعم VRA عبر واتساب
+    zh: `👋 欢迎使用 VRA 支持
 
-1️⃣ معلومات استرداد ضريبة القيمة المضافة
-2️⃣ تتبع الاسترداد
-3️⃣ المستندات المطلوبة
-4️⃣ التحدث مع موظف
-5️⃣ معلومات المكتب
-6️⃣ قسم المالية
+请选择以下选项：
 
-اكتب 0 لتغيير اللغة.`,
-
-  zh: `👋 欢迎使用 VRA WhatsApp 支持
-
-1️⃣ 增值税退税信息
-2️⃣ 查询我的退款
-3️⃣ 所需文件
+1️⃣ 查询退款状态
+2️⃣ 更新银行资料
+3️⃣ 常见问题
 4️⃣ 联系客服
-5️⃣ 办公室信息
-6️⃣ 财务部门
 
-输入 0 更改语言。`,
-};
-
-function getReply(lang, option) {
-  const replies = {
-    en: {
-      "1": `💰 VAT Refund Information
-
-VRA assists international travelers with VAT refunds on qualifying purchases made in South Africa.
-
-You normally need:
-✅ Tax Invoice
-✅ Passport
-✅ Purchased Goods
-✅ Proof of Departure`,
-      "2": `📦 To track your refund, email:
-
-info@vatrefundagency.co.za
-
-Include:
-• Passport Number
-• Invoice Number
-• Date of Travel`,
-      "3": `📄 Required Documents
-
-✅ Original Tax Invoice
-✅ Passport
-✅ Flight Ticket / Boarding Pass
-✅ Purchased Goods`,
-      "4": `👨‍💼 A VRA support agent will assist you.
-
-Please email:
-info@vatrefundagency.co.za`,
-      "5": `🏢 VAT Refund Agency
-
-South Africa
-
-📧 info@vatrefundagency.co.za`,
-      "6": `💳 Finance Department
-
-Please contact:
-finance@vatrefundagency.co.za`,
-    },
+输入 0 更改语言。`
   };
 
-  const base = replies.en;
-  return base[option] || menus[lang] || menus.en;
+  return menus[lang] || menus.en;
+}
+
+function faqMenu() {
+  return `❓ Frequently Asked Questions
+
+1️⃣ How long do refunds take?
+2️⃣ What documents are required?
+3️⃣ Why is my refund delayed?
+4️⃣ How do I update banking details?
+
+Type menu to return to the main menu.`;
+}
+
+function faqReply(option) {
+  switch(option) {
+    case "1":
+      return `⏳ Refund processing times may vary depending on verification and banking processes.`;
+
+    case "2":
+      return `📄 Required documents usually include:
+
+✅ Passport
+✅ Tax Invoice
+✅ Proof of Export
+✅ Boarding Pass`;
+
+    case "3":
+      return `⚠️ Refund delays may occur due to:
+
+• Missing documents
+• Banking verification
+• Incomplete information
+• Customs verification`;
+
+    case "4":
+      return `🏦 Banking details can be updated here:
+
+https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere
+
+Facial recognition verification is required.`;
+
+    default:
+      return faqMenu();
+  }
 }
 
 async function sendMessage(to, body) {
@@ -223,18 +188,87 @@ app.post("/webhook", async (req, res) => {
 
     let reply = "";
 
-    if (["hi", "hello", "hey", "start", "menu", "0"].includes(text)) {
+    if (
+      text === "hi" ||
+      text === "hello" ||
+      text === "start" ||
+      text === "0"
+    ) {
       reply = languageMenu();
-    } else if (languages[text]) {
+    }
+
+    else if (languages[text]) {
       userLanguages[from] = languages[text];
-      reply = menus[userLanguages[from]];
-    } else {
+      reply = mainMenu(userLanguages[from]);
+    }
+
+    else {
       const lang = userLanguages[from] || "en";
-      reply = getReply(lang, text);
+
+      switch(text) {
+
+        case "1":
+          reply = `🔎 Claim Status
+
+Please use the secure VRA portal below to track your claim:
+
+https://register.vatrefundagency.co.za/check-refund-progress/
+
+Enter your VRA reference number to continue.`;
+          break;
+
+        case "2":
+          reply = `🏦 Update Banking Details
+
+Please use the secure banking portal below:
+
+https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere
+
+✅ Facial recognition verification is required.
+
+📧 Once completed, VRA Finance will automatically receive notification at:
+finance@vatrefundsa.co.za`;
+          break;
+
+        case "3":
+          reply = faqMenu();
+          break;
+
+        case "4":
+          reply = `👨‍💼 You are being connected to a VRA support agent.
+
+📧 Email:
+info@vatrefundagency.co.za
+
+Please include:
+• Your VRA Number
+• Passport Number
+• Description of your issue`;
+          break;
+
+        default:
+
+          if (
+            text === "faq1" ||
+            text === "faq2" ||
+            text === "faq3" ||
+            text === "faq4"
+          ) {
+            reply = faqReply(text.replace("faq", ""));
+          }
+
+          else {
+            reply = `❓ Please select a valid option.
+
+${mainMenu(lang)}`;
+          }
+      }
     }
 
     await sendMessage(from, reply);
+
     res.sendStatus(200);
+
   } catch (error) {
     console.log(error.response?.data || error.message);
     res.sendStatus(500);
@@ -246,4 +280,7 @@ app.get("/", (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
