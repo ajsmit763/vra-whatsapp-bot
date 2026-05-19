@@ -8,7 +8,7 @@ const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 const WHATSAPP_TOKEN = process.env.WHATSAPP_TOKEN;
 const PHONE_NUMBER_ID = process.env.PHONE_NUMBER_ID;
 
-const userLanguages = {};
+const users = {};
 
 const languages = {
   "1": "en",
@@ -43,16 +43,16 @@ Please select one of the options below:
 3️⃣ Frequently Asked Questions
 4️⃣ Chat with an Agent
 
-Type 0 at any time to change language.`,
+Type 0 to change language.`,
 
     af: `👋 Welkom by VRA Ondersteuning
 
-Kies asseblief een van die volgende opsies:
+Kies asseblief een van die opsies:
 
 1️⃣ Status van u eis
 2️⃣ Werk bankbesonderhede op
-3️⃣ Gereelde Vrae
-4️⃣ Praat met 'n Agent
+3️⃣ Gereelde vrae
+4️⃣ Praat met 'n agent
 
 Tik 0 om taal te verander.`,
 
@@ -104,47 +104,57 @@ Escriba 0 para cambiar idioma.`,
   return menus[lang] || menus.en;
 }
 
-function faqMenu() {
-  return `❓ Frequently Asked Questions
-
-1️⃣ How long do refunds take?
-2️⃣ What documents are required?
-3️⃣ Why is my refund delayed?
-4️⃣ How do I update banking details?
-
-Type menu to return to the main menu.`;
-}
-
-function faqReply(option) {
-  switch(option) {
+function optionReply(option) {
+  switch (option) {
     case "1":
-      return `⏳ Refund processing times may vary depending on verification and banking processes.`;
+      return `🔎 Status of your claim
+
+Please use the secure VRA portal below to check your claim status:
+
+https://register.vatrefundagency.co.za/check-refund-progress/
+
+Please enter your VRA number on the portal.`;
 
     case "2":
-      return `📄 Required documents usually include:
+      return `🏦 Update banking details
 
-✅ Passport
-✅ Tax Invoice
-✅ Proof of Export
-✅ Boarding Pass`;
-
-    case "3":
-      return `⚠️ Refund delays may occur due to:
-
-• Missing documents
-• Banking verification
-• Incomplete information
-• Customs verification`;
-
-    case "4":
-      return `🏦 Banking details can be updated here:
+Please use the secure online portal below to update your banking details:
 
 https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere
 
-Facial recognition verification is required.`;
+Facial recognition verification is required to confirm that the correct person is logging in.
+
+Once banking details are updated, Finance must be notified at:
+finance@vatrefundagency.co.za`;
+
+    case "3":
+      return `❓ Frequently Asked Questions
+
+Please type your question and VRA Support will assist.
+
+Examples:
+• How long does my refund take?
+• What documents are required?
+• Why is my claim delayed?
+• How do I update my banking details?
+
+If your question cannot be answered, you will be referred to an agent.`;
+
+    case "4":
+      return `👨‍💼 Chat with an Agent
+
+A VRA support agent will assist you.
+
+Please email:
+info@vatrefundagency.co.za
+
+Please include:
+• Your VRA number
+• Passport number
+• Short description of your issue`;
 
     default:
-      return faqMenu();
+      return null;
   }
 }
 
@@ -154,13 +164,13 @@ async function sendMessage(to, body) {
     {
       messaging_product: "whatsapp",
       to,
-      text: { body },
+      text: { body }
     },
     {
       headers: {
         Authorization: `Bearer ${WHATSAPP_TOKEN}`,
-        "Content-Type": "application/json",
-      },
+        "Content-Type": "application/json"
+      }
     }
   );
 }
@@ -186,87 +196,48 @@ app.post("/webhook", async (req, res) => {
     const from = message.from;
     const text = message.text?.body?.trim().toLowerCase() || "";
 
+    if (!users[from]) {
+      users[from] = {
+        language: null,
+        waitingForLanguage: true
+      };
+    }
+
     let reply = "";
 
-    if (
-      text === "hi" ||
-      text === "hello" ||
-      text === "start" ||
-      text === "0"
-    ) {
+    if (["hi", "hello", "start", "menu"].includes(text)) {
+      users[from].waitingForLanguage = true;
       reply = languageMenu();
     }
 
-    else if (languages[text]) {
-      userLanguages[from] = languages[text];
-      reply = mainMenu(userLanguages[from]);
+    else if (text === "0") {
+      users[from].waitingForLanguage = true;
+      reply = languageMenu();
+    }
+
+    else if (users[from].waitingForLanguage === true) {
+      if (languages[text]) {
+        users[from].language = languages[text];
+        users[from].waitingForLanguage = false;
+        reply = mainMenu(users[from].language);
+      } else {
+        reply = languageMenu();
+      }
     }
 
     else {
-      const lang = userLanguages[from] || "en";
+      const menuReply = optionReply(text);
 
-      switch(text) {
+      if (menuReply) {
+        reply = menuReply;
+      } else {
+        reply = `❓ Sorry, I did not understand that.
 
-        case "1":
-          reply = `🔎 Claim Status
-
-Please use the secure VRA portal below to track your claim:
-
-https://register.vatrefundagency.co.za/check-refund-progress/
-
-Enter your VRA reference number to continue.`;
-          break;
-
-        case "2":
-          reply = `🏦 Update Banking Details
-
-Please use the secure banking portal below:
-
-https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere
-
-✅ Facial recognition verification is required.
-
-📧 Once completed, VRA Finance will automatically receive notification at:
-finance@vatrefundsa.co.za`;
-          break;
-
-        case "3":
-          reply = faqMenu();
-          break;
-
-        case "4":
-          reply = `👨‍💼 You are being connected to a VRA support agent.
-
-📧 Email:
-info@vatrefundagency.co.za
-
-Please include:
-• Your VRA Number
-• Passport Number
-• Description of your issue`;
-          break;
-
-        default:
-
-          if (
-            text === "faq1" ||
-            text === "faq2" ||
-            text === "faq3" ||
-            text === "faq4"
-          ) {
-            reply = faqReply(text.replace("faq", ""));
-          }
-
-          else {
-            reply = `❓ Please select a valid option.
-
-${mainMenu(lang)}`;
-          }
+${mainMenu(users[from].language || "en")}`;
       }
     }
 
     await sendMessage(from, reply);
-
     res.sendStatus(200);
 
   } catch (error) {
@@ -280,7 +251,4 @@ app.get("/", (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
