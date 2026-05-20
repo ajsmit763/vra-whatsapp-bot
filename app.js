@@ -17,190 +17,366 @@ const STATES = {
 const sessions = new Map();
 
 const languages = {
-  "1": { name: "English", code: "en" },
-  "2": { name: "Arabic", code: "ar" },
-  "3": { name: "Chinese Simplified", code: "zh" },
-  "4": { name: "Dutch", code: "nl" },
-  "5": { name: "French", code: "fr" },
-  "6": { name: "German", code: "de" },
-  "7": { name: "Italian", code: "it" },
-  "8": { name: "Portuguese", code: "pt" },
-  "9": { name: "Russian", code: "ru" },
-  "10": { name: "Spanish", code: "es" },
+  "1": { languageName: "English", languageCode: "en" },
+  "2": { languageName: "Arabic", languageCode: "ar" },
+  "3": { languageName: "Chinese Simplified", languageCode: "zh" },
+  "4": { languageName: "Dutch", languageCode: "nl" },
+  "5": { languageName: "French", languageCode: "fr" },
+  "6": { languageName: "German", languageCode: "de" },
+  "7": { languageName: "Italian", languageCode: "it" },
+  "8": { languageName: "Portuguese", languageCode: "pt" },
+  "9": { languageName: "Russian", languageCode: "ru" },
+  "10": { languageName: "Spanish", languageCode: "es" },
 };
 
-const menuText = {
+const translations = {
   en: {
+    welcome: "Hello, welcome to VRA Support Bot.",
+    chooseLanguage: "Please choose your language:",
     mainTitle: "VRA Main Menu:",
-    status: "Status of claim",
-    banking: "Update banking details",
-    faq: "Frequently Asked Questions",
-    agent: "Chat with an Agent",
-    changeLanguage: "Change language",
+    statusOption: "Status of claim",
+    bankingOption: "Update banking details",
+    faqOption: "Frequently Asked Questions",
+    agentOption: "Chat with an Agent",
+    changeLanguageOption: "Change language",
+    statusReply:
+      "Please use the link below to check the status of your claim. You will need your VRA number.",
+    bankingReply: "Please use the link below to update your banking details.",
+    facialRequired: "Facial recognition is required.",
+    financeNotified:
+      "Once banking details are updated, Finance will be notified at:",
     faqTitle: "Frequently Asked Questions:",
+    faqLinkLabel: "FAQ link:",
     faq1: "How do I check my claim status?",
     faq2: "How do I update my banking details?",
     faq3: "How do I contact VRA?",
     faq4: "Why is my claim delayed?",
-    back: "Reply B or Back to return to the main menu.",
-    reset: "Reply 0 to change language.",
+    faqAnswer1:
+      "You can check your claim status using the status link below. You will need your VRA number.",
+    faqAnswer2:
+      "You can update your banking details using the banking update link below. Facial recognition is required.",
+    faqAnswer3: "You can contact VRA at:",
+    faqAnswer4:
+      "Delays may happen while claims are being reviewed or awaiting processing.",
+    agentReply: "A VRA support agent will assist you.",
+    emailLabel: "Email:",
+    backInstruction: "Reply B or Back to return to the main menu.",
+    changeInstruction: "Reply 0 to change language.",
   },
   ar: {
-    mainTitle: "قائمة VRA الرئيسية:",
-    status: "حالة المطالبة",
-    banking: "تحديث التفاصيل البنكية",
-    faq: "الأسئلة الشائعة",
-    agent: "الدردشة مع وكيل",
-    changeLanguage: "تغيير اللغة",
+    welcome: "مرحباً، أهلاً بك في روبوت دعم VRA.",
+    chooseLanguage: "يرجى اختيار لغتك:",
+    mainTitle: "القائمة الرئيسية لـ VRA:",
+    statusOption: "حالة المطالبة",
+    bankingOption: "تحديث التفاصيل البنكية",
+    faqOption: "الأسئلة الشائعة",
+    agentOption: "التحدث مع وكيل",
+    changeLanguageOption: "تغيير اللغة",
+    statusReply:
+      "يرجى استخدام الرابط أدناه للتحقق من حالة مطالبتك. ستحتاج إلى رقم VRA الخاص بك.",
+    bankingReply: "يرجى استخدام الرابط أدناه لتحديث التفاصيل البنكية الخاصة بك.",
+    facialRequired: "التعرف على الوجه مطلوب.",
+    financeNotified: "بعد تحديث التفاصيل البنكية، سيتم إخطار قسم المالية على:",
     faqTitle: "الأسئلة الشائعة:",
+    faqLinkLabel: "رابط الأسئلة الشائعة:",
     faq1: "كيف أتحقق من حالة مطالبتي؟",
-    faq2: "كيف أحدث التفاصيل البنكية؟",
+    faq2: "كيف أحدث التفاصيل البنكية الخاصة بي؟",
     faq3: "كيف أتواصل مع VRA؟",
     faq4: "لماذا تأخرت مطالبتي؟",
-    back: "أرسل B أو Back للعودة إلى القائمة الرئيسية.",
-    reset: "أرسل 0 لتغيير اللغة.",
+    faqAnswer1:
+      "يمكنك التحقق من حالة مطالبتك باستخدام رابط الحالة أدناه. ستحتاج إلى رقم VRA الخاص بك.",
+    faqAnswer2:
+      "يمكنك تحديث التفاصيل البنكية الخاصة بك باستخدام رابط تحديث البيانات البنكية أدناه. التعرف على الوجه مطلوب.",
+    faqAnswer3: "يمكنك التواصل مع VRA على:",
+    faqAnswer4:
+      "قد تحدث التأخيرات أثناء مراجعة المطالبات أو أثناء انتظار المعالجة.",
+    agentReply: "سيساعدك وكيل دعم VRA.",
+    emailLabel: "البريد الإلكتروني:",
+    backInstruction: "أرسل B أو Back للعودة إلى القائمة الرئيسية.",
+    changeInstruction: "أرسل 0 لتغيير اللغة.",
   },
   zh: {
-    mainTitle: "VRA 主菜单:",
-    status: "索赔状态",
-    banking: "更新银行资料",
-    faq: "常见问题",
-    agent: "与客服人员聊天",
-    changeLanguage: "更改语言",
-    faqTitle: "常见问题:",
+    welcome: "您好，欢迎使用 VRA 支持机器人。",
+    chooseLanguage: "请选择您的语言：",
+    mainTitle: "VRA 主菜单：",
+    statusOption: "索赔状态",
+    bankingOption: "更新银行资料",
+    faqOption: "常见问题",
+    agentOption: "与客服人员聊天",
+    changeLanguageOption: "更改语言",
+    statusReply: "请使用下面的链接查询您的索赔状态。您需要您的 VRA 编号。",
+    bankingReply: "请使用下面的链接更新您的银行资料。",
+    facialRequired: "需要进行面部识别。",
+    financeNotified: "银行资料更新后，财务部门将收到通知：",
+    faqTitle: "常见问题：",
+    faqLinkLabel: "常见问题链接：",
     faq1: "如何查询我的索赔状态？",
     faq2: "如何更新我的银行资料？",
     faq3: "如何联系 VRA？",
     faq4: "为什么我的索赔延迟？",
-    back: "回复 B 或 Back 返回主菜单。",
-    reset: "回复 0 更改语言。",
+    faqAnswer1: "您可以使用下面的状态链接查询索赔状态。您需要您的 VRA 编号。",
+    faqAnswer2: "您可以使用下面的银行资料更新链接更新银行资料。需要进行面部识别。",
+    faqAnswer3: "您可以通过以下方式联系 VRA：",
+    faqAnswer4: "索赔在审核或等待处理期间可能会出现延迟。",
+    agentReply: "VRA 支持人员将协助您。",
+    emailLabel: "电子邮件：",
+    backInstruction: "回复 B 或 Back 返回主菜单。",
+    changeInstruction: "回复 0 更改语言。",
   },
   nl: {
+    welcome: "Hallo, welkom bij de VRA Support Bot.",
+    chooseLanguage: "Kies uw taal:",
     mainTitle: "VRA Hoofdmenu:",
-    status: "Status van claim",
-    banking: "Bankgegevens bijwerken",
-    faq: "Veelgestelde vragen",
-    agent: "Chat met een agent",
-    changeLanguage: "Taal wijzigen",
+    statusOption: "Status van claim",
+    bankingOption: "Bankgegevens bijwerken",
+    faqOption: "Veelgestelde vragen",
+    agentOption: "Chat met een agent",
+    changeLanguageOption: "Taal wijzigen",
+    statusReply:
+      "Gebruik de onderstaande link om de status van uw claim te controleren. U heeft uw VRA-nummer nodig.",
+    bankingReply: "Gebruik de onderstaande link om uw bankgegevens bij te werken.",
+    facialRequired: "Gezichtsherkenning is vereist.",
+    financeNotified:
+      "Zodra de bankgegevens zijn bijgewerkt, wordt Finance op de hoogte gesteld via:",
     faqTitle: "Veelgestelde vragen:",
+    faqLinkLabel: "FAQ-link:",
     faq1: "Hoe controleer ik de status van mijn claim?",
     faq2: "Hoe werk ik mijn bankgegevens bij?",
     faq3: "Hoe neem ik contact op met VRA?",
     faq4: "Waarom is mijn claim vertraagd?",
-    back: "Antwoord B of Back om terug te keren naar het hoofdmenu.",
-    reset: "Antwoord 0 om de taal te wijzigen.",
+    faqAnswer1:
+      "U kunt de status van uw claim controleren via de onderstaande statuslink. U heeft uw VRA-nummer nodig.",
+    faqAnswer2:
+      "U kunt uw bankgegevens bijwerken via de onderstaande link voor bankgegevens. Gezichtsherkenning is vereist.",
+    faqAnswer3: "U kunt contact opnemen met VRA via:",
+    faqAnswer4:
+      "Vertragingen kunnen optreden terwijl claims worden beoordeeld of wachten op verwerking.",
+    agentReply: "Een VRA-supportagent zal u helpen.",
+    emailLabel: "E-mail:",
+    backInstruction: "Antwoord B of Back om terug te keren naar het hoofdmenu.",
+    changeInstruction: "Antwoord 0 om de taal te wijzigen.",
   },
   fr: {
-    mainTitle: "Menu principal VRA:",
-    status: "Statut de la demande",
-    banking: "Mettre à jour les coordonnées bancaires",
-    faq: "Questions fréquemment posées",
-    agent: "Discuter avec un agent",
-    changeLanguage: "Changer de langue",
-    faqTitle: "Questions fréquemment posées:",
-    faq1: "Comment vérifier le statut de ma demande?",
-    faq2: "Comment mettre à jour mes coordonnées bancaires?",
-    faq3: "Comment contacter VRA?",
-    faq4: "Pourquoi ma demande est-elle retardée?",
-    back: "Répondez B ou Back pour revenir au menu principal.",
-    reset: "Répondez 0 pour changer de langue.",
+    welcome: "Bonjour, bienvenue sur le bot d'assistance VRA.",
+    chooseLanguage: "Veuillez choisir votre langue :",
+    mainTitle: "Menu principal VRA :",
+    statusOption: "Statut de la demande",
+    bankingOption: "Mettre à jour les coordonnées bancaires",
+    faqOption: "Questions fréquemment posées",
+    agentOption: "Discuter avec un agent",
+    changeLanguageOption: "Changer de langue",
+    statusReply:
+      "Veuillez utiliser le lien ci-dessous pour vérifier le statut de votre demande. Vous aurez besoin de votre numéro VRA.",
+    bankingReply:
+      "Veuillez utiliser le lien ci-dessous pour mettre à jour vos coordonnées bancaires.",
+    facialRequired: "La reconnaissance faciale est requise.",
+    financeNotified:
+      "Une fois les coordonnées bancaires mises à jour, le service Finance sera informé à :",
+    faqTitle: "Questions fréquemment posées :",
+    faqLinkLabel: "Lien FAQ :",
+    faq1: "Comment vérifier le statut de ma demande ?",
+    faq2: "Comment mettre à jour mes coordonnées bancaires ?",
+    faq3: "Comment contacter VRA ?",
+    faq4: "Pourquoi ma demande est-elle retardée ?",
+    faqAnswer1:
+      "Vous pouvez vérifier le statut de votre demande en utilisant le lien ci-dessous. Vous aurez besoin de votre numéro VRA.",
+    faqAnswer2:
+      "Vous pouvez mettre à jour vos coordonnées bancaires en utilisant le lien ci-dessous. La reconnaissance faciale est requise.",
+    faqAnswer3: "Vous pouvez contacter VRA à :",
+    faqAnswer4:
+      "Des retards peuvent survenir pendant l'examen des demandes ou en attente de traitement.",
+    agentReply: "Un agent d'assistance VRA vous aidera.",
+    emailLabel: "E-mail :",
+    backInstruction: "Répondez B ou Back pour revenir au menu principal.",
+    changeInstruction: "Répondez 0 pour changer de langue.",
   },
   de: {
+    welcome: "Hallo, willkommen beim VRA Support Bot.",
+    chooseLanguage: "Bitte wählen Sie Ihre Sprache:",
     mainTitle: "VRA Hauptmenü:",
-    status: "Status des Anspruchs",
-    banking: "Bankdaten aktualisieren",
-    faq: "Häufig gestellte Fragen",
-    agent: "Mit einem Agenten chatten",
-    changeLanguage: "Sprache ändern",
+    statusOption: "Status des Anspruchs",
+    bankingOption: "Bankdaten aktualisieren",
+    faqOption: "Häufig gestellte Fragen",
+    agentOption: "Mit einem Agenten chatten",
+    changeLanguageOption: "Sprache ändern",
+    statusReply:
+      "Bitte verwenden Sie den untenstehenden Link, um den Status Ihres Anspruchs zu prüfen. Sie benötigen Ihre VRA-Nummer.",
+    bankingReply:
+      "Bitte verwenden Sie den untenstehenden Link, um Ihre Bankdaten zu aktualisieren.",
+    facialRequired: "Gesichtserkennung ist erforderlich.",
+    financeNotified:
+      "Sobald die Bankdaten aktualisiert wurden, wird die Finanzabteilung benachrichtigt unter:",
     faqTitle: "Häufig gestellte Fragen:",
+    faqLinkLabel: "FAQ-Link:",
     faq1: "Wie überprüfe ich den Status meines Anspruchs?",
     faq2: "Wie aktualisiere ich meine Bankdaten?",
     faq3: "Wie kontaktiere ich VRA?",
     faq4: "Warum verzögert sich mein Anspruch?",
-    back: "Antworten Sie mit B oder Back, um zum Hauptmenü zurückzukehren.",
-    reset: "Antworten Sie mit 0, um die Sprache zu ändern.",
+    faqAnswer1:
+      "Sie können den Status Ihres Anspruchs über den untenstehenden Statuslink prüfen. Sie benötigen Ihre VRA-Nummer.",
+    faqAnswer2:
+      "Sie können Ihre Bankdaten über den untenstehenden Link aktualisieren. Gesichtserkennung ist erforderlich.",
+    faqAnswer3: "Sie können VRA kontaktieren unter:",
+    faqAnswer4:
+      "Verzögerungen können auftreten, während Ansprüche geprüft werden oder auf die Bearbeitung warten.",
+    agentReply: "Ein VRA-Supportagent wird Ihnen helfen.",
+    emailLabel: "E-Mail:",
+    backInstruction:
+      "Antworten Sie mit B oder Back, um zum Hauptmenü zurückzukehren.",
+    changeInstruction: "Antworten Sie mit 0, um die Sprache zu ändern.",
   },
   it: {
+    welcome: "Ciao, benvenuto nel bot di supporto VRA.",
+    chooseLanguage: "Seleziona la tua lingua:",
     mainTitle: "Menu principale VRA:",
-    status: "Stato della richiesta",
-    banking: "Aggiorna dettagli bancari",
-    faq: "Domande frequenti",
-    agent: "Chatta con un agente",
-    changeLanguage: "Cambia lingua",
+    statusOption: "Stato della richiesta",
+    bankingOption: "Aggiorna dettagli bancari",
+    faqOption: "Domande frequenti",
+    agentOption: "Chatta con un agente",
+    changeLanguageOption: "Cambia lingua",
+    statusReply:
+      "Utilizza il link qui sotto per controllare lo stato della tua richiesta. Avrai bisogno del tuo numero VRA.",
+    bankingReply:
+      "Utilizza il link qui sotto per aggiornare i tuoi dettagli bancari.",
+    facialRequired: "Il riconoscimento facciale è richiesto.",
+    financeNotified:
+      "Una volta aggiornati i dettagli bancari, il reparto Finance sarà informato a:",
     faqTitle: "Domande frequenti:",
+    faqLinkLabel: "Link FAQ:",
     faq1: "Come controllo lo stato della mia richiesta?",
     faq2: "Come aggiorno i miei dettagli bancari?",
     faq3: "Come contatto VRA?",
     faq4: "Perché la mia richiesta è in ritardo?",
-    back: "Rispondi B o Back per tornare al menu principale.",
-    reset: "Rispondi 0 per cambiare lingua.",
+    faqAnswer1:
+      "Puoi controllare lo stato della tua richiesta usando il link qui sotto. Avrai bisogno del tuo numero VRA.",
+    faqAnswer2:
+      "Puoi aggiornare i tuoi dettagli bancari usando il link qui sotto. Il riconoscimento facciale è richiesto.",
+    faqAnswer3: "Puoi contattare VRA a:",
+    faqAnswer4:
+      "I ritardi possono verificarsi mentre le richieste vengono esaminate o sono in attesa di elaborazione.",
+    agentReply: "Un agente di supporto VRA ti assisterà.",
+    emailLabel: "Email:",
+    backInstruction: "Rispondi B o Back per tornare al menu principale.",
+    changeInstruction: "Rispondi 0 per cambiare lingua.",
   },
   pt: {
+    welcome: "Olá, bem-vindo ao Bot de Suporte VRA.",
+    chooseLanguage: "Escolha o seu idioma:",
     mainTitle: "Menu principal VRA:",
-    status: "Estado da reclamação",
-    banking: "Atualizar dados bancários",
-    faq: "Perguntas frequentes",
-    agent: "Falar com um agente",
-    changeLanguage: "Alterar idioma",
+    statusOption: "Estado da reclamação",
+    bankingOption: "Atualizar dados bancários",
+    faqOption: "Perguntas frequentes",
+    agentOption: "Falar com um agente",
+    changeLanguageOption: "Alterar idioma",
+    statusReply:
+      "Use o link abaixo para verificar o estado da sua reclamação. Irá precisar do seu número VRA.",
+    bankingReply: "Use o link abaixo para atualizar os seus dados bancários.",
+    facialRequired: "O reconhecimento facial é obrigatório.",
+    financeNotified:
+      "Assim que os dados bancários forem atualizados, o Finance será notificado em:",
     faqTitle: "Perguntas frequentes:",
+    faqLinkLabel: "Link das FAQ:",
     faq1: "Como verifico o estado da minha reclamação?",
     faq2: "Como atualizo os meus dados bancários?",
     faq3: "Como contacto a VRA?",
-    faq4: "Por que a minha reclamação está atrasada?",
-    back: "Responda B ou Back para voltar ao menu principal.",
-    reset: "Responda 0 para alterar o idioma.",
+    faq4: "Porque a minha reclamação está atrasada?",
+    faqAnswer1:
+      "Pode verificar o estado da sua reclamação usando o link abaixo. Irá precisar do seu número VRA.",
+    faqAnswer2:
+      "Pode atualizar os seus dados bancários usando o link abaixo. O reconhecimento facial é obrigatório.",
+    faqAnswer3: "Pode contactar a VRA em:",
+    faqAnswer4:
+      "Podem ocorrer atrasos enquanto as reclamações estão a ser analisadas ou aguardam processamento.",
+    agentReply: "Um agente de suporte VRA irá ajudá-lo.",
+    emailLabel: "Email:",
+    backInstruction: "Responda B ou Back para voltar ao menu principal.",
+    changeInstruction: "Responda 0 para alterar o idioma.",
   },
   ru: {
+    welcome: "Здравствуйте, добро пожаловать в бот поддержки VRA.",
+    chooseLanguage: "Пожалуйста, выберите язык:",
     mainTitle: "Главное меню VRA:",
-    status: "Статус заявки",
-    banking: "Обновить банковские данные",
-    faq: "Часто задаваемые вопросы",
-    agent: "Связаться с агентом",
-    changeLanguage: "Изменить язык",
+    statusOption: "Статус заявки",
+    bankingOption: "Обновить банковские данные",
+    faqOption: "Часто задаваемые вопросы",
+    agentOption: "Связаться с агентом",
+    changeLanguageOption: "Изменить язык",
+    statusReply:
+      "Пожалуйста, используйте ссылку ниже, чтобы проверить статус вашей заявки. Вам понадобится ваш номер VRA.",
+    bankingReply:
+      "Пожалуйста, используйте ссылку ниже, чтобы обновить банковские данные.",
+    facialRequired: "Требуется распознавание лица.",
+    financeNotified:
+      "После обновления банковских данных финансовый отдел будет уведомлен по адресу:",
     faqTitle: "Часто задаваемые вопросы:",
+    faqLinkLabel: "Ссылка на FAQ:",
     faq1: "Как проверить статус моей заявки?",
     faq2: "Как обновить банковские данные?",
     faq3: "Как связаться с VRA?",
     faq4: "Почему моя заявка задерживается?",
-    back: "Ответьте B или Back, чтобы вернуться в главное меню.",
-    reset: "Ответьте 0, чтобы изменить язык.",
+    faqAnswer1:
+      "Вы можете проверить статус вашей заявки, используя ссылку ниже. Вам понадобится ваш номер VRA.",
+    faqAnswer2:
+      "Вы можете обновить банковские данные, используя ссылку ниже. Требуется распознавание лица.",
+    faqAnswer3: "Вы можете связаться с VRA по адресу:",
+    faqAnswer4:
+      "Задержки могут возникать, пока заявки рассматриваются или ожидают обработки.",
+    agentReply: "Агент поддержки VRA поможет вам.",
+    emailLabel: "Эл. почта:",
+    backInstruction:
+      "Ответьте B или Back, чтобы вернуться в главное меню.",
+    changeInstruction: "Ответьте 0, чтобы изменить язык.",
   },
   es: {
+    welcome: "Hola, bienvenido al Bot de Soporte de VRA.",
+    chooseLanguage: "Por favor elija su idioma:",
     mainTitle: "Menú principal de VRA:",
-    status: "Estado de la reclamación",
-    banking: "Actualizar datos bancarios",
-    faq: "Preguntas frecuentes",
-    agent: "Chatear con un agente",
-    changeLanguage: "Cambiar idioma",
+    statusOption: "Estado de la reclamación",
+    bankingOption: "Actualizar datos bancarios",
+    faqOption: "Preguntas frecuentes",
+    agentOption: "Chatear con un agente",
+    changeLanguageOption: "Cambiar idioma",
+    statusReply:
+      "Utilice el enlace de abajo para verificar el estado de su reclamación. Necesitará su número VRA.",
+    bankingReply:
+      "Utilice el enlace de abajo para actualizar sus datos bancarios.",
+    facialRequired: "Se requiere reconocimiento facial.",
+    financeNotified:
+      "Una vez actualizados los datos bancarios, Finanzas será notificado en:",
     faqTitle: "Preguntas frecuentes:",
+    faqLinkLabel: "Enlace de FAQ:",
     faq1: "¿Cómo verifico el estado de mi reclamación?",
     faq2: "¿Cómo actualizo mis datos bancarios?",
     faq3: "¿Cómo contacto con VRA?",
     faq4: "¿Por qué se retrasa mi reclamación?",
-    back: "Responda B o Back para volver al menú principal.",
-    reset: "Responda 0 para cambiar el idioma.",
+    faqAnswer1:
+      "Puede verificar el estado de su reclamación usando el enlace de abajo. Necesitará su número VRA.",
+    faqAnswer2:
+      "Puede actualizar sus datos bancarios usando el enlace de abajo. Se requiere reconocimiento facial.",
+    faqAnswer3: "Puede contactar con VRA en:",
+    faqAnswer4:
+      "Pueden ocurrir retrasos mientras las reclamaciones se revisan o esperan procesamiento.",
+    agentReply: "Un agente de soporte de VRA le ayudará.",
+    emailLabel: "Correo electrónico:",
+    backInstruction: "Responda B o Back para volver al menú principal.",
+    changeInstruction: "Responda 0 para cambiar el idioma.",
   },
 };
 
-function getSession(userId) {
-  if (!sessions.has(userId)) {
-    sessions.set(userId, {
-      language: null,
+function getSession(phoneNumber) {
+  if (!sessions.has(phoneNumber)) {
+    sessions.set(phoneNumber, {
+      languageCode: null,
+      languageName: null,
       state: STATES.LANGUAGE,
-      previousState: null,
     });
   }
 
-  return sessions.get(userId);
-}
-
-function setState(session, nextState) {
-  session.previousState = session.state;
-  session.state = nextState;
+  return sessions.get(phoneNumber);
 }
 
 function isGreeting(input) {
-  return ["hi", "hello", "start"].includes(input.trim().toLowerCase());
+  return ["hi", "hello", "start", "menu"].includes(input.trim().toLowerCase());
 }
 
 function isBack(input) {
@@ -208,18 +384,14 @@ function isBack(input) {
   return value === "b" || value === "back";
 }
 
-function getLanguageCode(session) {
-  return session.language?.code || "en";
-}
-
-function copy(session) {
-  return menuText[getLanguageCode(session)] || menuText.en;
+function getCopy(session) {
+  return translations[session.languageCode] || translations.en;
 }
 
 function languageMenu() {
-  return `Hello, welcome to VRA Support Bot.
+  return `${translations.en.welcome}
 
-Please choose your language:
+${translations.en.chooseLanguage}
 
 1 English
 2 Arabic
@@ -234,43 +406,43 @@ Please choose your language:
 }
 
 function mainMenu(session) {
-  const c = copy(session);
+  const t = getCopy(session);
 
-  return `${c.mainTitle}
+  return `${t.mainTitle}
 
-1 ${c.status}
-2 ${c.banking}
-3 ${c.faq}
-4 ${c.agent}
-5 ${c.changeLanguage}
+1 ${t.statusOption}
+2 ${t.bankingOption}
+3 ${t.faqOption}
+4 ${t.agentOption}
+5 ${t.changeLanguageOption}
 
-${c.reset}`;
+${t.changeInstruction}`;
 }
 
 function faqMenu(session) {
-  const c = copy(session);
-  const faqUrl = `https://vatrefundagency.co.za/faq/?lang=${getLanguageCode(session)}`;
+  const t = getCopy(session);
+  const faqUrl = `https://vatrefundagency.co.za/faq/?lang=${session.languageCode}`;
 
-  return `${c.faqTitle}
+  return `${t.faqTitle}
 
-1 ${c.faq1}
-2 ${c.faq2}
-3 ${c.faq3}
-4 ${c.faq4}
+1 ${t.faq1}
+2 ${t.faq2}
+3 ${t.faq3}
+4 ${t.faq4}
 
-FAQ link:
+${t.faqLinkLabel}
 ${faqUrl}
 
-${c.back}
-${c.reset}`;
+${t.backInstruction}
+${t.changeInstruction}`;
 }
 
 function statusUrl(session) {
-  return `https://vatrefundagency.co.za/check-refund-progress/?lang=${getLanguageCode(session)}`;
+  return `https://vatrefundagency.co.za/check-refund-progress/?lang=${session.languageCode}`;
 }
 
 function bankingUrl(session) {
-  return `https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere&lang=${getLanguageCode(session)}`;
+  return `https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere&lang=${session.languageCode}`;
 }
 
 async function sendWhatsAppMessage(to, body) {
@@ -304,151 +476,147 @@ async function sendWhatsAppMessage(to, body) {
   }
 }
 
-async function showLanguageMenu(from, session) {
-  session.language = null;
-  setState(session, STATES.LANGUAGE);
-  await sendWhatsAppMessage(from, languageMenu());
+async function showLanguageMenu(to, session) {
+  session.state = STATES.LANGUAGE;
+  await sendWhatsAppMessage(to, languageMenu());
 }
 
-async function showMainMenu(from, session) {
-  setState(session, STATES.MAIN);
-  await sendWhatsAppMessage(from, mainMenu(session));
+async function showMainMenu(to, session) {
+  session.state = STATES.MAIN;
+  await sendWhatsAppMessage(to, mainMenu(session));
 }
 
-async function handleLanguageState(from, input, session) {
+async function handleLanguageState(to, input, session) {
   const selectedLanguage = languages[input];
 
   if (!selectedLanguage) {
-    await sendWhatsAppMessage(from, languageMenu());
+    await sendWhatsAppMessage(to, languageMenu());
     return;
   }
 
-  session.language = selectedLanguage;
-  setState(session, STATES.MAIN);
-  await sendWhatsAppMessage(from, mainMenu(session));
+  session.languageCode = selectedLanguage.languageCode;
+  session.languageName = selectedLanguage.languageName;
+  session.state = STATES.MAIN;
+
+  await sendWhatsAppMessage(to, mainMenu(session));
 }
 
-async function handleMainState(from, input, session) {
-  const c = copy(session);
+async function handleMainState(to, input, session) {
+  const t = getCopy(session);
 
   switch (input) {
     case "1":
       await sendWhatsAppMessage(
-        from,
-        `Please use the link below to check the status of your claim. You will need your VRA number.
+        to,
+        `${t.statusReply}
 
 ${statusUrl(session)}
 
-${c.back}
-${c.reset}`
+${t.backInstruction}
+${t.changeInstruction}`
       );
       return;
 
     case "2":
       await sendWhatsAppMessage(
-        from,
-        `Please use the link below to update your banking details.
+        to,
+        `${t.bankingReply}
 
 ${bankingUrl(session)}
 
-Facial recognition is required.
+${t.facialRequired}
 
-Once banking details are updated, Finance will be notified at:
+${t.financeNotified}
 finance@vatrefundsa.co.za
 
-${c.back}
-${c.reset}`
+${t.backInstruction}
+${t.changeInstruction}`
       );
       return;
 
     case "3":
-      setState(session, STATES.FAQ);
-      await sendWhatsAppMessage(from, faqMenu(session));
+      session.state = STATES.FAQ;
+      await sendWhatsAppMessage(to, faqMenu(session));
       return;
 
     case "4":
       await sendWhatsAppMessage(
-        from,
-        `A VRA support agent will assist you.
+        to,
+        `${t.agentReply}
 
-Email:
+${t.emailLabel}
 info@vatrefundagency.co.za
 
-${c.back}
-${c.reset}`
+${t.backInstruction}
+${t.changeInstruction}`
       );
       return;
 
     case "5":
-      await showLanguageMenu(from, session);
+      await showLanguageMenu(to, session);
       return;
 
     default:
-      await sendWhatsAppMessage(from, mainMenu(session));
+      await sendWhatsAppMessage(to, mainMenu(session));
       return;
   }
 }
 
-async function handleFaqState(from, input, session) {
-  const c = copy(session);
+async function handleFaqState(to, input, session) {
+  const t = getCopy(session);
 
   switch (input) {
     case "1":
       await sendWhatsAppMessage(
-        from,
-        `You can check your claim status using the status link below. You will need your VRA number.
+        to,
+        `${t.faqAnswer1}
 
 ${statusUrl(session)}
 
-${c.back}
-${c.reset}`
+${t.backInstruction}
+${t.changeInstruction}`
       );
       return;
 
     case "2":
       await sendWhatsAppMessage(
-        from,
-        `You can update your banking details using the banking update link below.
+        to,
+        `${t.faqAnswer2}
 
 ${bankingUrl(session)}
 
-Facial recognition is required.
-
-Once banking details are updated, Finance will be notified at:
+${t.financeNotified}
 finance@vatrefundsa.co.za
 
-${c.back}
-${c.reset}`
+${t.backInstruction}
+${t.changeInstruction}`
       );
       return;
 
     case "3":
       await sendWhatsAppMessage(
-        from,
-        `You can contact VRA at:
+        to,
+        `${t.faqAnswer3}
 
 info@vatrefundagency.co.za
 
-${c.back}
-${c.reset}`
+${t.backInstruction}
+${t.changeInstruction}`
       );
       return;
 
     case "4":
       await sendWhatsAppMessage(
-        from,
-        `Delays may happen while claims are being reviewed or awaiting processing.
+        to,
+        `${t.faqAnswer4}
 
-Please check your claim status here:
-${statusUrl(session)}
-
-${c.back}
-${c.reset}`
+${t.backInstruction}
+${t.changeInstruction}`
       );
       return;
 
     default:
-      await sendWhatsAppMessage(from, faqMenu(session));
+      await sendWhatsAppMessage(to, faqMenu(session));
       return;
   }
 }
@@ -490,20 +658,24 @@ app.post("/webhook", async (req, res) => {
     }
 
     if (isGreeting(input)) {
-      await sendWhatsAppMessage(from, languageMenu());
-      return;
-    }
-
-    if (isBack(input)) {
-      if (session.language) {
+      if (session.languageCode) {
         await showMainMenu(from, session);
       } else {
-        await sendWhatsAppMessage(from, languageMenu());
+        await showLanguageMenu(from, session);
       }
       return;
     }
 
-    if (!session.language || session.state === STATES.LANGUAGE) {
+    if (isBack(input)) {
+      if (session.languageCode) {
+        await showMainMenu(from, session);
+      } else {
+        await showLanguageMenu(from, session);
+      }
+      return;
+    }
+
+    if (session.state === STATES.LANGUAGE || !session.languageCode) {
       await handleLanguageState(from, input, session);
       return;
     }
