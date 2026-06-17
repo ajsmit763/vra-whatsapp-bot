@@ -6,6 +6,7 @@ app.use(express.json());
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 const WHATSAPP_TOKEN = process.env.WHATSAPP_TOKEN;
 const PHONE_NUMBER_ID = process.env.PHONE_NUMBER_ID;
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const PORT = process.env.PORT || 3000;
 
 const STATES = {
@@ -14,7 +15,8 @@ const STATES = {
   FAQ: "faq",
 };
 
-const sessions = new Map();
+const whatsappSessions = new Map();
+const telegramSessions = new Map();
 
 const languages = {
   "1": { languageName: "English", languageCode: "en" },
@@ -27,6 +29,13 @@ const languages = {
   "8": { languageName: "Portuguese", languageCode: "pt" },
   "9": { languageName: "Russian", languageCode: "ru" },
   "10": { languageName: "Spanish", languageCode: "es" },
+};
+
+const FAQ_ITEMS = {
+  "1": { answerKey: "faqAnswer1", linkType: "status" },
+  "2": { answerKey: "faqAnswer2", linkType: "banking", includeFinance: true },
+  "3": { answerKey: "faqAnswer3", includeInfoEmail: true },
+  "4": { answerKey: "faqAnswer4" },
 };
 
 const translations = {
@@ -363,20 +372,57 @@ const translations = {
   },
 };
 
-function getSession(phoneNumber) {
-  if (!sessions.has(phoneNumber)) {
-    sessions.set(phoneNumber, {
+const telegramText = {
+  mainMenu: `Welcome to VRA Support 👋
+
+1. Status of your claim
+
+2. Update banking details
+
+3. Frequently Asked Questions
+
+4. Chat with an Agent`,
+  faqTitle: "Frequently Asked Questions:",
+  statusReply:
+    "Please use the link below to check the status of your claim. You will need your VRA number.",
+  bankingReply:
+    "Please use the link below to update your banking details.\n\nFacial recognition is required.\n\nOnce banking details are updated, Finance will be notified at:\nfinance@vatrefundsa.co.za",
+  agentReply:
+    "A VRA support agent will assist you.\n\nEmail:\ninfo@vatrefundagency.co.za",
+  liveAgent:
+    "I could not find an FAQ answer for that. A VRA support agent will assist you.\n\nEmail:\ninfo@vatrefundagency.co.za",
+};
+
+function getWhatsAppSession(phoneNumber) {
+  if (!whatsappSessions.has(phoneNumber)) {
+    whatsappSessions.set(phoneNumber, {
       languageCode: null,
       languageName: null,
       state: STATES.LANGUAGE,
     });
   }
 
-  return sessions.get(phoneNumber);
+  return whatsappSessions.get(phoneNumber);
 }
 
-function isGreeting(input) {
+function getTelegramSession(chatId) {
+  if (!telegramSessions.has(chatId)) {
+    telegramSessions.set(chatId, {
+      state: STATES.MAIN,
+    });
+  }
+
+  return telegramSessions.get(chatId);
+}
+
+function isWhatsAppGreeting(input) {
   return ["hi", "hello", "start", "menu"].includes(input.trim().toLowerCase());
+}
+
+function isTelegramGreeting(input) {
+  return ["hi", "hello", "start", "/start", "menu", "/menu"].includes(
+    input.trim().toLowerCase()
+  );
 }
 
 function isBack(input) {
@@ -405,7 +451,7 @@ ${translations.en.chooseLanguage}
 10 Spanish`;
 }
 
-function mainMenu(session) {
+function whatsappMainMenu(session) {
   const t = getCopy(session);
 
   return `${t.mainTitle}
@@ -419,9 +465,20 @@ function mainMenu(session) {
 ${t.changeInstruction}`;
 }
 
-function faqMenu(session) {
+function statusUrl(session) {
+  return `https://vatrefundagency.co.za/check-refund-progress/?lang=${session.languageCode}`;
+}
+
+function bankingUrl(session) {
+  return `https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere&lang=${session.languageCode}`;
+}
+
+function faqUrl(session) {
+  return `https://vatrefundagency.co.za/faq/?lang=${session.languageCode}`;
+}
+
+function whatsappFaqMenu(session) {
   const t = getCopy(session);
-  const faqUrl = `https://vatrefundagency.co.za/faq/?lang=${session.languageCode}`;
 
   return `${t.faqTitle}
 
@@ -431,18 +488,89 @@ function faqMenu(session) {
 4 ${t.faq4}
 
 ${t.faqLinkLabel}
-${faqUrl}
+${faqUrl(session)}
 
 ${t.backInstruction}
 ${t.changeInstruction}`;
 }
 
-function statusUrl(session) {
-  return `https://vatrefundagency.co.za/check-refund-progress/?lang=${session.languageCode}`;
+function telegramFaqMenu() {
+  return `${telegramText.faqTitle}
+
+1 How do I check my claim status?
+2 How do I update my banking details?
+3 How do I contact VRA?
+4 Why is my claim delayed?
+
+FAQ link:
+https://vatrefundagency.co.za/faq/`;
 }
 
-function bankingUrl(session) {
-  return `https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere&lang=${session.languageCode}`;
+function buildWhatsAppFaqAnswer(input, session) {
+  const item = FAQ_ITEMS[input];
+  const t = getCopy(session);
+
+  if (!item) {
+    return null;
+  }
+
+  const parts = [t[item.answerKey]];
+
+  if (item.linkType === "status") {
+    parts.push(statusUrl(session));
+  }
+
+  if (item.linkType === "banking") {
+    parts.push(bankingUrl(session));
+  }
+
+  if (item.includeFinance) {
+    parts.push(`${t.financeNotified}\nfinance@vatrefundsa.co.za`);
+  }
+
+  if (item.includeInfoEmail) {
+    parts.push("info@vatrefundagency.co.za");
+  }
+
+  parts.push(t.backInstruction);
+  parts.push(t.changeInstruction);
+
+  return parts.join("\n\n");
+}
+
+function buildTelegramFaqAnswer(input) {
+  const item = FAQ_ITEMS[input];
+
+  if (!item) {
+    return null;
+  }
+
+  if (item.answerKey === "faqAnswer1") {
+    return `${translations.en.faqAnswer1}
+
+https://register.vatrefundagency.co.za/check-refund-progress/`;
+  }
+
+  if (item.answerKey === "faqAnswer2") {
+    return `${translations.en.faqAnswer2}
+
+https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere
+
+${translations.en.financeNotified}
+finance@vatrefundsa.co.za`;
+  }
+
+  if (item.answerKey === "faqAnswer3") {
+    return `${translations.en.faqAnswer3}
+
+info@vatrefundagency.co.za`;
+  }
+
+  if (item.answerKey === "faqAnswer4") {
+    return translations.en.faqAnswer4;
+  }
+
+  return null;
 }
 
 async function sendWhatsAppMessage(to, body) {
@@ -476,17 +604,44 @@ async function sendWhatsAppMessage(to, body) {
   }
 }
 
+async function sendTelegramMessage(chatId, message) {
+  if (!TELEGRAM_BOT_TOKEN) {
+    console.error("Missing TELEGRAM_BOT_TOKEN");
+    return;
+  }
+
+  const response = await fetch(
+    `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message,
+        disable_web_page_preview: false,
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error("Telegram API error:", response.status, errorText);
+  }
+}
+
 async function showLanguageMenu(to, session) {
   session.state = STATES.LANGUAGE;
   await sendWhatsAppMessage(to, languageMenu());
 }
 
-async function showMainMenu(to, session) {
+async function showWhatsAppMainMenu(to, session) {
   session.state = STATES.MAIN;
-  await sendWhatsAppMessage(to, mainMenu(session));
+  await sendWhatsAppMessage(to, whatsappMainMenu(session));
 }
 
-async function handleLanguageState(to, input, session) {
+async function handleWhatsAppLanguageState(to, input, session) {
   const selectedLanguage = languages[input];
 
   if (!selectedLanguage) {
@@ -498,10 +653,10 @@ async function handleLanguageState(to, input, session) {
   session.languageName = selectedLanguage.languageName;
   session.state = STATES.MAIN;
 
-  await sendWhatsAppMessage(to, mainMenu(session));
+  await sendWhatsAppMessage(to, whatsappMainMenu(session));
 }
 
-async function handleMainState(to, input, session) {
+async function handleWhatsAppMainState(to, input, session) {
   const t = getCopy(session);
 
   switch (input) {
@@ -536,7 +691,7 @@ ${t.changeInstruction}`
 
     case "3":
       session.state = STATES.FAQ;
-      await sendWhatsAppMessage(to, faqMenu(session));
+      await sendWhatsAppMessage(to, whatsappFaqMenu(session));
       return;
 
     case "4":
@@ -557,68 +712,72 @@ ${t.changeInstruction}`
       return;
 
     default:
-      await sendWhatsAppMessage(to, mainMenu(session));
+      await sendWhatsAppMessage(to, whatsappMainMenu(session));
       return;
   }
 }
 
-async function handleFaqState(to, input, session) {
-  const t = getCopy(session);
+async function handleWhatsAppFaqState(to, input, session) {
+  const answer = buildWhatsAppFaqAnswer(input, session);
 
+  if (!answer) {
+    await sendWhatsAppMessage(to, whatsappFaqMenu(session));
+    return;
+  }
+
+  await sendWhatsAppMessage(to, answer);
+}
+
+async function showTelegramMainMenu(chatId, session) {
+  session.state = STATES.MAIN;
+  await sendTelegramMessage(chatId, telegramText.mainMenu);
+}
+
+async function handleTelegramMainState(chatId, input, session) {
   switch (input) {
     case "1":
-      await sendWhatsAppMessage(
-        to,
-        `${t.faqAnswer1}
+      await sendTelegramMessage(
+        chatId,
+        `${telegramText.statusReply}
 
-${statusUrl(session)}
-
-${t.backInstruction}
-${t.changeInstruction}`
+https://register.vatrefundagency.co.za/check-refund-progress/`
       );
       return;
 
     case "2":
-      await sendWhatsAppMessage(
-        to,
-        `${t.faqAnswer2}
+      await sendTelegramMessage(
+        chatId,
+        `${telegramText.bankingReply}
 
-${bankingUrl(session)}
-
-${t.financeNotified}
-finance@vatrefundsa.co.za
-
-${t.backInstruction}
-${t.changeInstruction}`
+https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere`
       );
       return;
 
     case "3":
-      await sendWhatsAppMessage(
-        to,
-        `${t.faqAnswer3}
-
-info@vatrefundagency.co.za
-
-${t.backInstruction}
-${t.changeInstruction}`
-      );
+      session.state = STATES.FAQ;
+      await sendTelegramMessage(chatId, telegramFaqMenu());
       return;
 
     case "4":
-      await sendWhatsAppMessage(
-        to,
-        `${t.faqAnswer4}
-
-${t.backInstruction}
-${t.changeInstruction}`
-      );
+      await sendTelegramMessage(chatId, telegramText.agentReply);
       return;
 
     default:
-      await sendWhatsAppMessage(to, faqMenu(session));
+      await sendTelegramMessage(chatId, telegramText.liveAgent);
       return;
   }
+}
+
+async function handleTelegramFaqState(chatId, input, session) {
+  const answer = buildTelegramFaqAnswer(input);
+
+  if (!answer) {
+    session.state = STATES.MAIN;
+    await sendTelegramMessage(chatId, telegramText.liveAgent);
+    return;
+  }
+
+  await sendTelegramMessage(chatId, answer);
 }
 
 app.get("/webhook", (req, res) => {
@@ -650,16 +809,16 @@ app.post("/webhook", async (req, res) => {
       return;
     }
 
-    const session = getSession(from);
+    const session = getWhatsAppSession(from);
 
     if (input === "0") {
       await showLanguageMenu(from, session);
       return;
     }
 
-    if (isGreeting(input)) {
+    if (isWhatsAppGreeting(input)) {
       if (session.languageCode) {
-        await showMainMenu(from, session);
+        await showWhatsAppMainMenu(from, session);
       } else {
         await showLanguageMenu(from, session);
       }
@@ -668,7 +827,7 @@ app.post("/webhook", async (req, res) => {
 
     if (isBack(input)) {
       if (session.languageCode) {
-        await showMainMenu(from, session);
+        await showWhatsAppMainMenu(from, session);
       } else {
         await showLanguageMenu(from, session);
       }
@@ -676,18 +835,53 @@ app.post("/webhook", async (req, res) => {
     }
 
     if (session.state === STATES.LANGUAGE || !session.languageCode) {
-      await handleLanguageState(from, input, session);
+      await handleWhatsAppLanguageState(from, input, session);
       return;
     }
 
     if (session.state === STATES.FAQ) {
-      await handleFaqState(from, input, session);
+      await handleWhatsAppFaqState(from, input, session);
       return;
     }
 
-    await handleMainState(from, input, session);
+    await handleWhatsAppMainState(from, input, session);
   } catch (error) {
     console.error("Webhook processing error:", error);
+  }
+});
+
+app.post("/telegram-webhook", async (req, res) => {
+  res.sendStatus(200);
+
+  try {
+    const message = req.body.message;
+    const chatId = message?.chat?.id;
+    const input = message?.text?.trim();
+
+    if (!chatId || !input) {
+      return;
+    }
+
+    const session = getTelegramSession(chatId);
+
+    if (isTelegramGreeting(input)) {
+      await showTelegramMainMenu(chatId, session);
+      return;
+    }
+
+    if (isBack(input)) {
+      await showTelegramMainMenu(chatId, session);
+      return;
+    }
+
+    if (session.state === STATES.FAQ) {
+      await handleTelegramFaqState(chatId, input, session);
+      return;
+    }
+
+    await handleTelegramMainState(chatId, input, session);
+  } catch (error) {
+    console.error("Telegram webhook processing error:", error);
   }
 });
 
