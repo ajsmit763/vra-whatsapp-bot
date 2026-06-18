@@ -14,6 +14,8 @@ const STATES = {
   MAIN: "main",
   FAQ: "faq",
   FEEDBACK: "feedback",
+  REVIEW: "review",
+  COMPLETE: "complete",
 };
 
 const whatsappSessions = new Map();
@@ -97,9 +99,22 @@ ${SUPPORT_EMAIL}`,
       "Your feedback is important to us. We welcome any suggestions or comments that may help us improve our services and enhance your overall experience with VRA. Please feel free to share your feedback with us at any time.",
     feedbackPrompt: "Please type your feedback below.",
     feedbackReceived: "Thank you. Your feedback has been received.",
+    reviewTitle: "Client Review / Ratings",
+    reviewIntro:
+      "We value your opinion and would appreciate your review of our services. Your ratings and comments help us maintain high service standards and assist other clients in making informed decisions.",
+    reviewPrompt: "Please rate your experience with VRA:",
+    ratingLabels: {
+      "1": "Very Poor",
+      "2": "Poor",
+      "3": "Average",
+      "4": "Good",
+      "5": "Excellent",
+    },
+    invalidRating: "Please select a rating from 1 to 5.",
+    reviewReceived: "Thank you for your response. Your review has been received.",
     backInstruction: "Reply B or Back to return to the main menu.",
     changeInstruction: "Reply 0 to change language.",
-    backToMain: "Back to Main Menu",
+    doneInstruction: "Reply D or Done to review our service.",
     noFaqAnswer: `I could not find an FAQ answer for that. A VRA support agent will assist you.
 
 Email:
@@ -160,9 +175,22 @@ ${SUPPORT_EMAIL}`,
       "ملاحظاتك مهمة بالنسبة لنا. نرحب بأي اقتراحات أو تعليقات قد تساعدنا على تحسين خدماتنا وتعزيز تجربتك العامة مع VRA. لا تتردد في مشاركة ملاحظاتك معنا في أي وقت.",
     feedbackPrompt: "يرجى كتابة ملاحظاتك أدناه.",
     feedbackReceived: "شكراً لك. تم استلام ملاحظاتك.",
+    reviewTitle: "مراجعة العميل / التقييمات",
+    reviewIntro:
+      "نقدّر رأيك ونرحب بتقييمك لخدماتنا. تساعدنا تقييماتك وتعليقاتك في الحفاظ على معايير خدمة عالية وتساعد العملاء الآخرين على اتخاذ قرارات مستنيرة.",
+    reviewPrompt: "يرجى تقييم تجربتك مع VRA:",
+    ratingLabels: {
+      "1": "سيئ جداً",
+      "2": "سيئ",
+      "3": "متوسط",
+      "4": "جيد",
+      "5": "ممتاز",
+    },
+    invalidRating: "يرجى اختيار تقييم من 1 إلى 5.",
+    reviewReceived: "شكراً على ردك. تم استلام تقييمك.",
     backInstruction: "أرسل B أو Back للعودة إلى القائمة الرئيسية.",
     changeInstruction: "أرسل 0 لتغيير اللغة.",
-    backToMain: "العودة إلى القائمة الرئيسية",
+    doneInstruction: "أرسل D أو Done لتقييم خدمتنا.",
     noFaqAnswer: `لم أتمكن من العثور على إجابة لهذا السؤال. سيساعدك وكيل دعم VRA.
 
 البريد الإلكتروني:
@@ -221,9 +249,22 @@ ${SUPPORT_EMAIL}`,
       "您的反馈对我们很重要。我们欢迎任何有助于改进服务并提升您在 VRA 整体体验的建议或意见。欢迎您随时与我们分享反馈。",
     feedbackPrompt: "请在下面输入您的反馈。",
     feedbackReceived: "谢谢。您的反馈已收到。",
+    reviewTitle: "客户评价 / 评分",
+    reviewIntro:
+      "我们重视您的意见，并希望您评价我们的服务。您的评分和评论有助于我们保持高服务标准，并帮助其他客户做出明智决定。",
+    reviewPrompt: "请评价您对 VRA 的体验：",
+    ratingLabels: {
+      "1": "非常差",
+      "2": "差",
+      "3": "一般",
+      "4": "好",
+      "5": "非常好",
+    },
+    invalidRating: "请选择 1 到 5 的评分。",
+    reviewReceived: "感谢您的回复。您的评价已收到。",
     backInstruction: "回复 B 或 Back 返回主菜单。",
     changeInstruction: "回复 0 更改语言。",
-    backToMain: "返回主菜单",
+    doneInstruction: "回复 D 或 Done 评价我们的服务。",
     noFaqAnswer: `我找不到该问题的 FAQ 答案。VRA 支持人员将协助您。
 
 电子邮件：
@@ -284,9 +325,22 @@ ${SUPPORT_EMAIL}`,
       "Uw feedback is belangrijk voor ons. Wij verwelkomen alle suggesties of opmerkingen die ons kunnen helpen onze diensten te verbeteren en uw algemene ervaring met VRA te versterken. U kunt uw feedback op elk moment met ons delen.",
     feedbackPrompt: "Typ hieronder uw feedback.",
     feedbackReceived: "Dank u. Uw feedback is ontvangen.",
+    reviewTitle: "Klantbeoordeling / Ratings",
+    reviewIntro:
+      "Wij waarderen uw mening en stellen uw beoordeling van onze diensten op prijs. Uw ratings en opmerkingen helpen ons hoge servicenormen te handhaven en andere klanten weloverwogen beslissingen te nemen.",
+    reviewPrompt: "Beoordeel uw ervaring met VRA:",
+    ratingLabels: {
+      "1": "Zeer slecht",
+      "2": "Slecht",
+      "3": "Gemiddeld",
+      "4": "Goed",
+      "5": "Uitstekend",
+    },
+    invalidRating: "Selecteer een rating van 1 tot 5.",
+    reviewReceived: "Dank u voor uw reactie. Uw beoordeling is ontvangen.",
     backInstruction: "Antwoord B of Back om terug te keren naar het hoofdmenu.",
     changeInstruction: "Antwoord 0 om de taal te wijzigen.",
-    backToMain: "Terug naar hoofdmenu",
+    doneInstruction: "Antwoord D of Done om onze service te beoordelen.",
     noFaqAnswer: `Ik kon geen FAQ-antwoord daarvoor vinden. Een VRA-supportagent zal u helpen.
 
 E-mail:
@@ -347,9 +401,22 @@ ${SUPPORT_EMAIL}`,
       "Vos commentaires sont importants pour nous. Nous accueillons toutes les suggestions ou remarques qui peuvent nous aider à améliorer nos services et à renforcer votre expérience globale avec VRA. N'hésitez pas à nous faire part de vos commentaires à tout moment.",
     feedbackPrompt: "Veuillez saisir vos commentaires ci-dessous.",
     feedbackReceived: "Merci. Vos commentaires ont été reçus.",
+    reviewTitle: "Avis client / Notes",
+    reviewIntro:
+      "Votre avis est important pour nous et nous apprécierions votre évaluation de nos services. Vos notes et commentaires nous aident à maintenir des normes de service élevées et aident d'autres clients à prendre des décisions éclairées.",
+    reviewPrompt: "Veuillez noter votre expérience avec VRA :",
+    ratingLabels: {
+      "1": "Très mauvais",
+      "2": "Mauvais",
+      "3": "Moyen",
+      "4": "Bon",
+      "5": "Excellent",
+    },
+    invalidRating: "Veuillez sélectionner une note de 1 à 5.",
+    reviewReceived: "Merci pour votre réponse. Votre avis a été reçu.",
     backInstruction: "Répondez B ou Back pour revenir au menu principal.",
     changeInstruction: "Répondez 0 pour changer de langue.",
-    backToMain: "Retour au menu principal",
+    doneInstruction: "Répondez D ou Done pour évaluer notre service.",
     noFaqAnswer: `Je n'ai pas trouvé de réponse FAQ pour cela. Un agent du support VRA vous aidera.
 
 E-mail :
@@ -410,9 +477,22 @@ ${SUPPORT_EMAIL}`,
       "Ihr Feedback ist uns wichtig. Wir freuen uns über alle Vorschläge oder Kommentare, die uns helfen können, unsere Dienstleistungen zu verbessern und Ihre gesamte Erfahrung mit VRA zu optimieren. Sie können uns Ihr Feedback jederzeit mitteilen.",
     feedbackPrompt: "Bitte geben Sie unten Ihr Feedback ein.",
     feedbackReceived: "Vielen Dank. Ihr Feedback wurde erhalten.",
+    reviewTitle: "Kundenbewertung / Ratings",
+    reviewIntro:
+      "Ihre Meinung ist uns wichtig und wir würden uns über Ihre Bewertung unserer Dienstleistungen freuen. Ihre Bewertungen und Kommentare helfen uns, hohe Servicestandards einzuhalten und anderen Kunden fundierte Entscheidungen zu ermöglichen.",
+    reviewPrompt: "Bitte bewerten Sie Ihre Erfahrung mit VRA:",
+    ratingLabels: {
+      "1": "Sehr schlecht",
+      "2": "Schlecht",
+      "3": "Durchschnittlich",
+      "4": "Gut",
+      "5": "Ausgezeichnet",
+    },
+    invalidRating: "Bitte wählen Sie eine Bewertung von 1 bis 5.",
+    reviewReceived: "Vielen Dank für Ihre Antwort. Ihre Bewertung wurde erhalten.",
     backInstruction: "Antworten Sie mit B oder Back, um zum Hauptmenü zurückzukehren.",
     changeInstruction: "Antworten Sie mit 0, um die Sprache zu ändern.",
-    backToMain: "Zurück zum Hauptmenü",
+    doneInstruction: "Antworten Sie mit D oder Done, um unseren Service zu bewerten.",
     noFaqAnswer: `Ich konnte keine FAQ-Antwort dafür finden. Ein VRA-Supportagent wird Ihnen helfen.
 
 E-Mail:
@@ -473,9 +553,22 @@ ${SUPPORT_EMAIL}`,
       "Il tuo feedback è importante per noi. Accogliamo con piacere qualsiasi suggerimento o commento che possa aiutarci a migliorare i nostri servizi e la tua esperienza complessiva con VRA. Sentiti libero di condividere il tuo feedback con noi in qualsiasi momento.",
     feedbackPrompt: "Digita il tuo feedback qui sotto.",
     feedbackReceived: "Grazie. Il tuo feedback è stato ricevuto.",
+    reviewTitle: "Recensione cliente / Valutazioni",
+    reviewIntro:
+      "La tua opinione è importante per noi e apprezzeremmo una recensione dei nostri servizi. Le tue valutazioni e i tuoi commenti ci aiutano a mantenere standard di servizio elevati e aiutano altri clienti a prendere decisioni informate.",
+    reviewPrompt: "Valuta la tua esperienza con VRA:",
+    ratingLabels: {
+      "1": "Molto scarso",
+      "2": "Scarso",
+      "3": "Nella media",
+      "4": "Buono",
+      "5": "Eccellente",
+    },
+    invalidRating: "Seleziona una valutazione da 1 a 5.",
+    reviewReceived: "Grazie per la tua risposta. La tua recensione è stata ricevuta.",
     backInstruction: "Rispondi B o Back per tornare al menu principale.",
     changeInstruction: "Rispondi 0 per cambiare lingua.",
-    backToMain: "Torna al menu principale",
+    doneInstruction: "Rispondi D o Done per recensire il nostro servizio.",
     noFaqAnswer: `Non ho trovato una risposta FAQ per questo. Un agente di supporto VRA ti assisterà.
 
 Email:
@@ -536,9 +629,22 @@ ${SUPPORT_EMAIL}`,
       "O seu feedback é importante para nós. Acolhemos quaisquer sugestões ou comentários que possam ajudar-nos a melhorar os nossos serviços e a melhorar a sua experiência geral com a VRA. Sinta-se à vontade para partilhar o seu feedback connosco a qualquer momento.",
     feedbackPrompt: "Digite o seu feedback abaixo.",
     feedbackReceived: "Obrigado. O seu feedback foi recebido.",
+    reviewTitle: "Avaliação do cliente / Classificações",
+    reviewIntro:
+      "A sua opinião é importante para nós e gostaríamos de receber a sua avaliação dos nossos serviços. As suas classificações e comentários ajudam-nos a manter elevados padrões de serviço e ajudam outros clientes a tomar decisões informadas.",
+    reviewPrompt: "Avalie a sua experiência com a VRA:",
+    ratingLabels: {
+      "1": "Muito fraco",
+      "2": "Fraco",
+      "3": "Médio",
+      "4": "Bom",
+      "5": "Excelente",
+    },
+    invalidRating: "Selecione uma classificação de 1 a 5.",
+    reviewReceived: "Obrigado pela sua resposta. A sua avaliação foi recebida.",
     backInstruction: "Responda B ou Back para voltar ao menu principal.",
     changeInstruction: "Responda 0 para alterar o idioma.",
-    backToMain: "Voltar ao menu principal",
+    doneInstruction: "Responda D ou Done para avaliar o nosso serviço.",
     noFaqAnswer: `Não encontrei uma resposta nas FAQ para isso. Um agente de suporte VRA irá ajudá-lo.
 
 Email:
@@ -599,9 +705,22 @@ ${SUPPORT_EMAIL}`,
       "Ваш отзыв важен для нас. Мы приветствуем любые предложения или комментарии, которые помогут нам улучшить наши услуги и ваш общий опыт работы с VRA. Пожалуйста, делитесь своим отзывом с нами в любое время.",
     feedbackPrompt: "Пожалуйста, введите ваш отзыв ниже.",
     feedbackReceived: "Спасибо. Ваш отзыв получен.",
+    reviewTitle: "Отзыв клиента / Оценки",
+    reviewIntro:
+      "Ваше мнение важно для нас, и мы будем благодарны за ваш отзыв о наших услугах. Ваши оценки и комментарии помогают нам поддерживать высокие стандарты обслуживания и помогают другим клиентам принимать обоснованные решения.",
+    reviewPrompt: "Пожалуйста, оцените ваш опыт работы с VRA:",
+    ratingLabels: {
+      "1": "Очень плохо",
+      "2": "Плохо",
+      "3": "Средне",
+      "4": "Хорошо",
+      "5": "Отлично",
+    },
+    invalidRating: "Пожалуйста, выберите оценку от 1 до 5.",
+    reviewReceived: "Спасибо за ваш ответ. Ваш отзыв получен.",
     backInstruction: "Ответьте B или Back, чтобы вернуться в главное меню.",
     changeInstruction: "Ответьте 0, чтобы изменить язык.",
-    backToMain: "Вернуться в главное меню",
+    doneInstruction: "Ответьте D или Done, чтобы оценить наш сервис.",
     noFaqAnswer: `Я не смог найти ответ в FAQ на этот вопрос. Агент поддержки VRA поможет вам.
 
 Эл. почта:
@@ -662,15 +781,93 @@ ${SUPPORT_EMAIL}`,
       "Sus comentarios son importantes para nosotros. Agradecemos cualquier sugerencia o comentario que pueda ayudarnos a mejorar nuestros servicios y su experiencia general con VRA. No dude en compartir sus comentarios con nosotros en cualquier momento.",
     feedbackPrompt: "Por favor escriba sus comentarios abajo.",
     feedbackReceived: "Gracias. Sus comentarios han sido recibidos.",
+    reviewTitle: "Reseña del cliente / Calificaciones",
+    reviewIntro:
+      "Valoramos su opinión y agradeceríamos su reseña de nuestros servicios. Sus calificaciones y comentarios nos ayudan a mantener altos estándares de servicio y ayudan a otros clientes a tomar decisiones informadas.",
+    reviewPrompt: "Por favor califique su experiencia con VRA:",
+    ratingLabels: {
+      "1": "Muy malo",
+      "2": "Malo",
+      "3": "Promedio",
+      "4": "Bueno",
+      "5": "Excelente",
+    },
+    invalidRating: "Por favor seleccione una calificación del 1 al 5.",
+    reviewReceived: "Gracias por su respuesta. Su reseña ha sido recibida.",
     backInstruction: "Responda B o Back para volver al menú principal.",
     changeInstruction: "Responda 0 para cambiar el idioma.",
-    backToMain: "Volver al menú principal",
+    doneInstruction: "Responda D o Done para evaluar nuestro servicio.",
     noFaqAnswer: `No encontré una respuesta de FAQ para eso. Un agente de soporte de VRA le ayudará.
 
 Correo electrónico:
 ${SUPPORT_EMAIL}`,
   },
 };
+
+const faqPatterns = [
+  {
+    id: "vatPayment",
+    phrases: [
+      "when am i receiving the vat payment",
+      "when will i receive my vat payment",
+      "when will i receive my vat refund",
+      "متى سأستلم دفعة ضريبة القيمة المضافة",
+      "我什么时候收到增值税退款",
+      "wanneer ontvang ik de btw betaling",
+      "quand vais je recevoir le paiement de la tva",
+      "quand vais-je recevoir le paiement de la tva",
+      "wann erhalte ich die mehrwertsteuerzahlung",
+      "quando ricevero il pagamento iva",
+      "quando vou receber o pagamento do iva",
+      "когда я получу выплату ндс",
+      "cuando recibire el pago del iva",
+    ],
+  },
+  {
+    id: "vatAmount",
+    phrases: [
+      "what is my vat amount",
+      "ما هو مبلغ ضريبة القيمة المضافة",
+      "我的增值税金额是多少",
+      "wat is mijn btw bedrag",
+      "quel est mon montant de tva",
+      "wie hoch ist mein mehrwertsteuerbetrag",
+      "qual e il mio importo iva",
+      "qual e o meu valor de iva",
+      "qual é o meu valor de iva",
+      "какова моя сумма ндс",
+      "cual es mi monto de iva",
+      "cuál es mi monto de iva",
+    ],
+  },
+  {
+    id: "claimProcess",
+    phrases: [
+      "how do i claim",
+      "what is the process",
+      "كيف أقدم مطالبة",
+      "我如何申请",
+      "流程是什么",
+      "hoe dien ik een claim in",
+      "comment puis je faire une demande",
+      "comment puis-je faire une demande",
+      "quel est le processus",
+      "wie stelle ich einen antrag",
+      "wie ist der prozess",
+      "come posso richiedere il rimborso",
+      "qual e il processo",
+      "como faco a reclamacao",
+      "como faço a reclamação",
+      "qual e o processo",
+      "qual é o processo",
+      "как подать заявку",
+      "каков процесс",
+      "como reclamo",
+      "cual es el proceso",
+      "cuál es el proceso",
+    ],
+  },
+];
 
 function normalizeText(value) {
   return String(value || "")
@@ -709,6 +906,10 @@ function isBackToMain(input) {
     "вернуться в главное меню",
     "volver al menu principal",
   ].includes(value);
+}
+
+function isDoneRequest(input) {
+  return ["d", "done", "complete", "finished"].includes(normalizeText(input));
 }
 
 function isFaqRequest(input) {
@@ -763,6 +964,14 @@ function mainMenu(languageCode) {
 7 ${copy.changeLanguageOption}`;
 }
 
+function navigationText(languageCode) {
+  const copy = t(languageCode);
+
+  return `${copy.backInstruction}
+${copy.changeInstruction}
+${copy.doneInstruction}`;
+}
+
 function faqMenu(languageCode) {
   const copy = t(languageCode);
 
@@ -795,8 +1004,7 @@ function newClaimMessage(languageCode) {
 
   return `${copy.newClaimReply}
 
-${copy.backInstruction}
-${copy.changeInstruction}`;
+${navigationText(languageCode)}`;
 }
 
 function agentMessage(languageCode) {
@@ -816,8 +1024,27 @@ function feedbackReceivedMessage(languageCode) {
 
   return `${copy.feedbackReceived}
 
-${copy.backInstruction}
-${copy.changeInstruction}`;
+${navigationText(languageCode)}`;
+}
+
+function reviewPromptMessage(languageCode) {
+  const copy = t(languageCode);
+
+  return `${copy.reviewTitle}
+
+${copy.reviewIntro}
+
+${copy.reviewPrompt}
+
+1 ${copy.ratingLabels["1"]}
+2 ${copy.ratingLabels["2"]}
+3 ${copy.ratingLabels["3"]}
+4 ${copy.ratingLabels["4"]}
+5 ${copy.ratingLabels["5"]}`;
+}
+
+function reviewReceivedMessage(languageCode) {
+  return t(languageCode).reviewReceived;
 }
 
 function matchFaq(input) {
@@ -827,7 +1054,11 @@ function matchFaq(input) {
   if (value === "2") return "vatAmount";
   if (value === "3") return "claimProcess";
 
-  return null;
+  const match = faqPatterns.find((item) =>
+    item.phrases.some((phrase) => value.includes(normalizeText(phrase)))
+  );
+
+  return match?.id || null;
 }
 
 function faqAnswer(input, languageCode) {
@@ -837,19 +1068,19 @@ function faqAnswer(input, languageCode) {
   if (faqId === "vatPayment") {
     return `${copy.vatPaymentAnswer}
 
-${copy.backToMain}`;
+${navigationText(languageCode)}`;
   }
 
   if (faqId === "vatAmount") {
     return `${copy.vatAmountAnswer}
 
-${copy.backToMain}`;
+${navigationText(languageCode)}`;
   }
 
   if (faqId === "claimProcess") {
     return `${copy.claimProcessAnswer}
 
-${copy.backToMain}`;
+${navigationText(languageCode)}`;
   }
 
   return null;
@@ -885,6 +1116,17 @@ function logFeedback(platform, userId, session, feedbackMessage) {
     userId,
     selectedLanguage: session.languageName || session.languageCode || "Unknown",
     feedbackMessage,
+    timestamp: new Date().toISOString(),
+  });
+}
+
+function logReview(platform, userId, session, ratingNumber, ratingLabel) {
+  console.log({
+    platform,
+    userId,
+    selectedLanguage: session.languageName || session.languageCode || "Unknown",
+    ratingNumber,
+    ratingLabel,
     timestamp: new Date().toISOString(),
   });
 }
@@ -958,6 +1200,33 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
     return;
   }
 
+  if (session.state === STATES.REVIEW) {
+    if (isBackToMain(input)) {
+      session.state = STATES.MAIN;
+      await sendReply(mainMenu(session.languageCode));
+      return;
+    }
+
+    const copy = t(session.languageCode);
+
+    if (["1", "2", "3", "4", "5"].includes(normalizedInput)) {
+      logReview(
+        platform,
+        userId,
+        session,
+        normalizedInput,
+        copy.ratingLabels[normalizedInput]
+      );
+
+      session.state = STATES.COMPLETE;
+      await sendReply(reviewReceivedMessage(session.languageCode));
+      return;
+    }
+
+    await sendReply(copy.invalidRating);
+    return;
+  }
+
   if (session.state === STATES.FEEDBACK) {
     if (isBackToMain(input)) {
       session.state = STATES.MAIN;
@@ -968,6 +1237,12 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
     logFeedback(platform, userId, session, input);
     session.state = STATES.MAIN;
     await sendReply(feedbackReceivedMessage(session.languageCode));
+    return;
+  }
+
+  if (isDoneRequest(input) && session.languageCode && session.state !== STATES.COMPLETE) {
+    session.state = STATES.REVIEW;
+    await sendReply(reviewPromptMessage(session.languageCode));
     return;
   }
 
@@ -997,6 +1272,15 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
   }
 
   const languageCode = session.languageCode;
+
+  if (session.state === STATES.COMPLETE) {
+    if (isBackToMain(input)) {
+      session.state = STATES.MAIN;
+      await sendReply(mainMenu(languageCode));
+    }
+
+    return;
+  }
 
   if (session.state === STATES.FAQ) {
     if (normalizedInput === "4" || isBackToMain(input)) {
@@ -1056,6 +1340,13 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
 
   if (normalizedInput === "7") {
     await showLanguageMenu(session, sendReply);
+    return;
+  }
+
+  const directFaqAnswer = faqAnswer(input, languageCode);
+
+  if (directFaqAnswer) {
+    await sendReply(directFaqAnswer);
     return;
   }
 
