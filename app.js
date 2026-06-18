@@ -18,556 +18,568 @@ const STATES = {
 const whatsappSessions = new Map();
 const telegramSessions = new Map();
 
-const languages = {
-  "1": { languageName: "English", languageCode: "en" },
-  "2": { languageName: "Arabic", languageCode: "ar" },
-  "3": { languageName: "Chinese Simplified", languageCode: "zh" },
-  "4": { languageName: "Dutch", languageCode: "nl" },
-  "5": { languageName: "French", languageCode: "fr" },
-  "6": { languageName: "German", languageCode: "de" },
-  "7": { languageName: "Italian", languageCode: "it" },
-  "8": { languageName: "Portuguese", languageCode: "pt" },
-  "9": { languageName: "Russian", languageCode: "ru" },
-  "10": { languageName: "Spanish", languageCode: "es" },
-};
+const STATUS_LINK = "https://register.vatrefundagency.co.za/check-refund-progress/";
+const BANKING_LINK =
+  "https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere";
+const WEBSITE_LINK = "https://vatrefundagency.co.za/";
+const SUPPORT_EMAIL = "info@vatrefundagency.co.za";
+const FINANCE_EMAIL = "finance@vatrefundagency.co.za";
 
-const FAQ_ITEMS = {
-  "1": { answerKey: "faqAnswer1", linkType: "status" },
-  "2": { answerKey: "faqAnswer2", linkType: "banking", includeFinance: true },
-  "3": { answerKey: "faqAnswer3", includeInfoEmail: true },
-  "4": { answerKey: "faqAnswer4" },
+const languageChoices = {
+  "1": { code: "en", name: "English" },
+  "2": { code: "af", name: "Afrikaans" },
+  "3": { code: "fr", name: "French" },
+  "4": { code: "de", name: "German" },
+  "5": { code: "pt", name: "Portuguese" },
+  "6": { code: "es", name: "Spanish" },
+  "7": { code: "zh", name: "Chinese Simplified" },
 };
 
 const translations = {
   en: {
-    welcome: "Hello, welcome to VRA Support Bot.",
+    welcome: "Welcome to VRA Support 👋",
     chooseLanguage: "Please choose your language:",
-    mainTitle: "VRA Main Menu:",
-    statusOption: "Status of claim",
-    bankingOption: "Update banking details",
-    faqOption: "Frequently Asked Questions",
-    agentOption: "Chat with an Agent",
-    changeLanguageOption: "Change language",
+    mainOptions: [
+      "Status of your claim",
+      "Update banking details",
+      "Frequently Asked Questions",
+      "Chat with an Agent",
+    ],
     statusReply:
       "Please use the link below to check the status of your claim. You will need your VRA number.",
-    bankingReply: "Please use the link below to update your banking details.",
-    facialRequired: "Facial recognition is required.",
-    financeNotified:
-      "Once banking details are updated, Finance will be notified at:",
-    faqTitle: "Frequently Asked Questions:",
-    faqLinkLabel: "FAQ link:",
-    faq1: "How do I check my claim status?",
-    faq2: "How do I update my banking details?",
-    faq3: "How do I contact VRA?",
-    faq4: "Why is my claim delayed?",
-    faqAnswer1:
-      "You can check your claim status using the status link below. You will need your VRA number.",
-    faqAnswer2:
-      "You can update your banking details using the banking update link below. Facial recognition is required.",
-    faqAnswer3: "You can contact VRA at:",
-    faqAnswer4:
-      "Delays may happen while claims are being reviewed or awaiting processing.",
-    agentReply: "A VRA support agent will assist you.",
-    emailLabel: "Email:",
-    backInstruction: "Reply B or Back to return to the main menu.",
-    changeInstruction: "Reply 0 to change language.",
+    bankingReply:
+      "Please use the link below to update your banking details.\n\nFacial recognition is required.",
+    faqTitle: "Frequently Asked Questions",
+    faqOptions: [
+      "When am I receiving the VAT payment?",
+      "What is my VAT amount?",
+      "How do I claim?",
+      "Back to Main Menu",
+    ],
+    vatPaymentAnswer: `Please contact our finance department at:
+${FINANCE_EMAIL}`,
+    vatAmountAnswer: `Please contact our support team at:
+${SUPPORT_EMAIL}
+
+or our finance team at:
+${FINANCE_EMAIL}
+
+They will provide the necessary information regarding your VAT amount.`,
+    claimProcessAnswer: `Please visit our website for the full claiming process and required documentation:
+
+${WEBSITE_LINK}`,
+    agentReply: `A VRA support agent will assist you.
+
+Email:
+${SUPPORT_EMAIL}`,
+    financeNotice: `Once banking details are updated, Finance will be notified at:
+${FINANCE_EMAIL}`,
+    backToMain: "Back to Main Menu",
+    noFaqAnswer: `I could not find an FAQ answer for that. A VRA support agent will assist you.
+
+Email:
+${SUPPORT_EMAIL}`,
   },
-  ar: {
-    welcome: "مرحباً، أهلاً بك في روبوت دعم VRA.",
-    chooseLanguage: "يرجى اختيار لغتك:",
-    mainTitle: "القائمة الرئيسية لـ VRA:",
-    statusOption: "حالة المطالبة",
-    bankingOption: "تحديث التفاصيل البنكية",
-    faqOption: "الأسئلة الشائعة",
-    agentOption: "التحدث مع وكيل",
-    changeLanguageOption: "تغيير اللغة",
+  af: {
+    welcome: "Welkom by VRA Ondersteuning 👋",
+    chooseLanguage: "Kies asseblief jou taal:",
+    mainOptions: [
+      "Status van jou eis",
+      "Dateer bankbesonderhede op",
+      "Gereelde vrae",
+      "Gesels met 'n agent",
+    ],
     statusReply:
-      "يرجى استخدام الرابط أدناه للتحقق من حالة مطالبتك. ستحتاج إلى رقم VRA الخاص بك.",
-    bankingReply: "يرجى استخدام الرابط أدناه لتحديث التفاصيل البنكية الخاصة بك.",
-    facialRequired: "التعرف على الوجه مطلوب.",
-    financeNotified: "بعد تحديث التفاصيل البنكية، سيتم إخطار قسم المالية على:",
-    faqTitle: "الأسئلة الشائعة:",
-    faqLinkLabel: "رابط الأسئلة الشائعة:",
-    faq1: "كيف أتحقق من حالة مطالبتي؟",
-    faq2: "كيف أحدث التفاصيل البنكية الخاصة بي؟",
-    faq3: "كيف أتواصل مع VRA؟",
-    faq4: "لماذا تأخرت مطالبتي؟",
-    faqAnswer1:
-      "يمكنك التحقق من حالة مطالبتك باستخدام رابط الحالة أدناه. ستحتاج إلى رقم VRA الخاص بك.",
-    faqAnswer2:
-      "يمكنك تحديث التفاصيل البنكية الخاصة بك باستخدام رابط تحديث البيانات البنكية أدناه. التعرف على الوجه مطلوب.",
-    faqAnswer3: "يمكنك التواصل مع VRA على:",
-    faqAnswer4:
-      "قد تحدث التأخيرات أثناء مراجعة المطالبات أو أثناء انتظار المعالجة.",
-    agentReply: "سيساعدك وكيل دعم VRA.",
-    emailLabel: "البريد الإلكتروني:",
-    backInstruction: "أرسل B أو Back للعودة إلى القائمة الرئيسية.",
-    changeInstruction: "أرسل 0 لتغيير اللغة.",
-  },
-  zh: {
-    welcome: "您好，欢迎使用 VRA 支持机器人。",
-    chooseLanguage: "请选择您的语言：",
-    mainTitle: "VRA 主菜单：",
-    statusOption: "索赔状态",
-    bankingOption: "更新银行资料",
-    faqOption: "常见问题",
-    agentOption: "与客服人员聊天",
-    changeLanguageOption: "更改语言",
-    statusReply: "请使用下面的链接查询您的索赔状态。您需要您的 VRA 编号。",
-    bankingReply: "请使用下面的链接更新您的银行资料。",
-    facialRequired: "需要进行面部识别。",
-    financeNotified: "银行资料更新后，财务部门将收到通知：",
-    faqTitle: "常见问题：",
-    faqLinkLabel: "常见问题链接：",
-    faq1: "如何查询我的索赔状态？",
-    faq2: "如何更新我的银行资料？",
-    faq3: "如何联系 VRA？",
-    faq4: "为什么我的索赔延迟？",
-    faqAnswer1: "您可以使用下面的状态链接查询索赔状态。您需要您的 VRA 编号。",
-    faqAnswer2: "您可以使用下面的银行资料更新链接更新银行资料。需要进行面部识别。",
-    faqAnswer3: "您可以通过以下方式联系 VRA：",
-    faqAnswer4: "索赔在审核或等待处理期间可能会出现延迟。",
-    agentReply: "VRA 支持人员将协助您。",
-    emailLabel: "电子邮件：",
-    backInstruction: "回复 B 或 Back 返回主菜单。",
-    changeInstruction: "回复 0 更改语言。",
-  },
-  nl: {
-    welcome: "Hallo, welkom bij de VRA Support Bot.",
-    chooseLanguage: "Kies uw taal:",
-    mainTitle: "VRA Hoofdmenu:",
-    statusOption: "Status van claim",
-    bankingOption: "Bankgegevens bijwerken",
-    faqOption: "Veelgestelde vragen",
-    agentOption: "Chat met een agent",
-    changeLanguageOption: "Taal wijzigen",
-    statusReply:
-      "Gebruik de onderstaande link om de status van uw claim te controleren. U heeft uw VRA-nummer nodig.",
-    bankingReply: "Gebruik de onderstaande link om uw bankgegevens bij te werken.",
-    facialRequired: "Gezichtsherkenning is vereist.",
-    financeNotified:
-      "Zodra de bankgegevens zijn bijgewerkt, wordt Finance op de hoogte gesteld via:",
-    faqTitle: "Veelgestelde vragen:",
-    faqLinkLabel: "FAQ-link:",
-    faq1: "Hoe controleer ik de status van mijn claim?",
-    faq2: "Hoe werk ik mijn bankgegevens bij?",
-    faq3: "Hoe neem ik contact op met VRA?",
-    faq4: "Waarom is mijn claim vertraagd?",
-    faqAnswer1:
-      "U kunt de status van uw claim controleren via de onderstaande statuslink. U heeft uw VRA-nummer nodig.",
-    faqAnswer2:
-      "U kunt uw bankgegevens bijwerken via de onderstaande link voor bankgegevens. Gezichtsherkenning is vereist.",
-    faqAnswer3: "U kunt contact opnemen met VRA via:",
-    faqAnswer4:
-      "Vertragingen kunnen optreden terwijl claims worden beoordeeld of wachten op verwerking.",
-    agentReply: "Een VRA-supportagent zal u helpen.",
-    emailLabel: "E-mail:",
-    backInstruction: "Antwoord B of Back om terug te keren naar het hoofdmenu.",
-    changeInstruction: "Antwoord 0 om de taal te wijzigen.",
+      "Gebruik asseblief die skakel hieronder om die status van jou eis na te gaan. Jy sal jou VRA-nommer benodig.",
+    bankingReply:
+      "Gebruik asseblief die skakel hieronder om jou bankbesonderhede op te dateer.\n\nGesigsherkenning is nodig.",
+    faqTitle: "Gereelde vrae",
+    faqOptions: [
+      "Wanneer ontvang ek my BTW terugbetaling?",
+      "Wat is my BTW-bedrag?",
+      "Hoe eis ek?",
+      "Terug na hoofkieslys",
+    ],
+    vatPaymentAnswer: `Kontak asseblief ons finansiële afdeling by:
+${FINANCE_EMAIL}`,
+    vatAmountAnswer: `Kontak asseblief ons ondersteuningspan by:
+${SUPPORT_EMAIL}
+
+of ons finansiële span by:
+${FINANCE_EMAIL}
+
+Hulle sal die nodige inligting oor jou BTW-bedrag verskaf.`,
+    claimProcessAnswer: `Besoek asseblief ons webwerf vir die volledige eisproses en vereiste dokumentasie:
+
+${WEBSITE_LINK}`,
+    agentReply: `’n VRA-ondersteuningsagent sal jou help.
+
+E-pos:
+${SUPPORT_EMAIL}`,
+    financeNotice: `Sodra bankbesonderhede opgedateer is, sal Finansies in kennis gestel word by:
+${FINANCE_EMAIL}`,
+    backToMain: "Terug na hoofkieslys",
+    noFaqAnswer: `Ek kon nie 'n FAQ-antwoord daarvoor vind nie. 'n VRA-ondersteuningsagent sal jou help.
+
+E-pos:
+${SUPPORT_EMAIL}`,
   },
   fr: {
-    welcome: "Bonjour, bienvenue sur le bot d'assistance VRA.",
+    welcome: "Bienvenue au support VRA 👋",
     chooseLanguage: "Veuillez choisir votre langue :",
-    mainTitle: "Menu principal VRA :",
-    statusOption: "Statut de la demande",
-    bankingOption: "Mettre à jour les coordonnées bancaires",
-    faqOption: "Questions fréquemment posées",
-    agentOption: "Discuter avec un agent",
-    changeLanguageOption: "Changer de langue",
+    mainOptions: [
+      "Statut de votre demande",
+      "Mettre à jour les coordonnées bancaires",
+      "Questions fréquemment posées",
+      "Discuter avec un agent",
+    ],
     statusReply:
       "Veuillez utiliser le lien ci-dessous pour vérifier le statut de votre demande. Vous aurez besoin de votre numéro VRA.",
     bankingReply:
-      "Veuillez utiliser le lien ci-dessous pour mettre à jour vos coordonnées bancaires.",
-    facialRequired: "La reconnaissance faciale est requise.",
-    financeNotified:
-      "Une fois les coordonnées bancaires mises à jour, le service Finance sera informé à :",
-    faqTitle: "Questions fréquemment posées :",
-    faqLinkLabel: "Lien FAQ :",
-    faq1: "Comment vérifier le statut de ma demande ?",
-    faq2: "Comment mettre à jour mes coordonnées bancaires ?",
-    faq3: "Comment contacter VRA ?",
-    faq4: "Pourquoi ma demande est-elle retardée ?",
-    faqAnswer1:
-      "Vous pouvez vérifier le statut de votre demande en utilisant le lien ci-dessous. Vous aurez besoin de votre numéro VRA.",
-    faqAnswer2:
-      "Vous pouvez mettre à jour vos coordonnées bancaires en utilisant le lien ci-dessous. La reconnaissance faciale est requise.",
-    faqAnswer3: "Vous pouvez contacter VRA à :",
-    faqAnswer4:
-      "Des retards peuvent survenir pendant l'examen des demandes ou en attente de traitement.",
-    agentReply: "Un agent d'assistance VRA vous aidera.",
-    emailLabel: "E-mail :",
-    backInstruction: "Répondez B ou Back pour revenir au menu principal.",
-    changeInstruction: "Répondez 0 pour changer de langue.",
+      "Veuillez utiliser le lien ci-dessous pour mettre à jour vos coordonnées bancaires.\n\nLa reconnaissance faciale est requise.",
+    faqTitle: "Questions fréquemment posées",
+    faqOptions: [
+      "Quand vais-je recevoir mon remboursement de TVA ?",
+      "Quel est mon montant de TVA ?",
+      "Comment puis-je faire une demande ?",
+      "Retour au menu principal",
+    ],
+    vatPaymentAnswer: `Veuillez contacter notre service financier à :
+${FINANCE_EMAIL}`,
+    vatAmountAnswer: `Veuillez contacter notre équipe d'assistance à :
+${SUPPORT_EMAIL}
+
+ou notre équipe financière à :
+${FINANCE_EMAIL}
+
+Ils vous fourniront les informations nécessaires concernant votre montant de TVA.`,
+    claimProcessAnswer: `Veuillez visiter notre site Web pour connaître le processus complet de demande et les documents requis :
+
+${WEBSITE_LINK}`,
+    agentReply: `Un agent du support VRA vous aidera.
+
+E-mail :
+${SUPPORT_EMAIL}`,
+    financeNotice: `Une fois les coordonnées bancaires mises à jour, le service financier sera informé à :
+${FINANCE_EMAIL}`,
+    backToMain: "Retour au menu principal",
+    noFaqAnswer: `Je n'ai pas trouvé de réponse FAQ pour cela. Un agent du support VRA vous aidera.
+
+E-mail :
+${SUPPORT_EMAIL}`,
   },
   de: {
-    welcome: "Hallo, willkommen beim VRA Support Bot.",
+    welcome: "Willkommen beim VRA Support 👋",
     chooseLanguage: "Bitte wählen Sie Ihre Sprache:",
-    mainTitle: "VRA Hauptmenü:",
-    statusOption: "Status des Anspruchs",
-    bankingOption: "Bankdaten aktualisieren",
-    faqOption: "Häufig gestellte Fragen",
-    agentOption: "Mit einem Agenten chatten",
-    changeLanguageOption: "Sprache ändern",
+    mainOptions: [
+      "Status Ihres Anspruchs",
+      "Bankdaten aktualisieren",
+      "Häufig gestellte Fragen",
+      "Mit einem Agenten chatten",
+    ],
     statusReply:
       "Bitte verwenden Sie den untenstehenden Link, um den Status Ihres Anspruchs zu prüfen. Sie benötigen Ihre VRA-Nummer.",
     bankingReply:
-      "Bitte verwenden Sie den untenstehenden Link, um Ihre Bankdaten zu aktualisieren.",
-    facialRequired: "Gesichtserkennung ist erforderlich.",
-    financeNotified:
-      "Sobald die Bankdaten aktualisiert wurden, wird die Finanzabteilung benachrichtigt unter:",
-    faqTitle: "Häufig gestellte Fragen:",
-    faqLinkLabel: "FAQ-Link:",
-    faq1: "Wie überprüfe ich den Status meines Anspruchs?",
-    faq2: "Wie aktualisiere ich meine Bankdaten?",
-    faq3: "Wie kontaktiere ich VRA?",
-    faq4: "Warum verzögert sich mein Anspruch?",
-    faqAnswer1:
-      "Sie können den Status Ihres Anspruchs über den untenstehenden Statuslink prüfen. Sie benötigen Ihre VRA-Nummer.",
-    faqAnswer2:
-      "Sie können Ihre Bankdaten über den untenstehenden Link aktualisieren. Gesichtserkennung ist erforderlich.",
-    faqAnswer3: "Sie können VRA kontaktieren unter:",
-    faqAnswer4:
-      "Verzögerungen können auftreten, während Ansprüche geprüft werden oder auf die Bearbeitung warten.",
-    agentReply: "Ein VRA-Supportagent wird Ihnen helfen.",
-    emailLabel: "E-Mail:",
-    backInstruction:
-      "Antworten Sie mit B oder Back, um zum Hauptmenü zurückzukehren.",
-    changeInstruction: "Antworten Sie mit 0, um die Sprache zu ändern.",
-  },
-  it: {
-    welcome: "Ciao, benvenuto nel bot di supporto VRA.",
-    chooseLanguage: "Seleziona la tua lingua:",
-    mainTitle: "Menu principale VRA:",
-    statusOption: "Stato della richiesta",
-    bankingOption: "Aggiorna dettagli bancari",
-    faqOption: "Domande frequenti",
-    agentOption: "Chatta con un agente",
-    changeLanguageOption: "Cambia lingua",
-    statusReply:
-      "Utilizza il link qui sotto per controllare lo stato della tua richiesta. Avrai bisogno del tuo numero VRA.",
-    bankingReply:
-      "Utilizza il link qui sotto per aggiornare i tuoi dettagli bancari.",
-    facialRequired: "Il riconoscimento facciale è richiesto.",
-    financeNotified:
-      "Una volta aggiornati i dettagli bancari, il reparto Finance sarà informato a:",
-    faqTitle: "Domande frequenti:",
-    faqLinkLabel: "Link FAQ:",
-    faq1: "Come controllo lo stato della mia richiesta?",
-    faq2: "Come aggiorno i miei dettagli bancari?",
-    faq3: "Come contatto VRA?",
-    faq4: "Perché la mia richiesta è in ritardo?",
-    faqAnswer1:
-      "Puoi controllare lo stato della tua richiesta usando il link qui sotto. Avrai bisogno del tuo numero VRA.",
-    faqAnswer2:
-      "Puoi aggiornare i tuoi dettagli bancari usando il link qui sotto. Il riconoscimento facciale è richiesto.",
-    faqAnswer3: "Puoi contattare VRA a:",
-    faqAnswer4:
-      "I ritardi possono verificarsi mentre le richieste vengono esaminate o sono in attesa di elaborazione.",
-    agentReply: "Un agente di supporto VRA ti assisterà.",
-    emailLabel: "Email:",
-    backInstruction: "Rispondi B o Back per tornare al menu principale.",
-    changeInstruction: "Rispondi 0 per cambiare lingua.",
+      "Bitte verwenden Sie den untenstehenden Link, um Ihre Bankdaten zu aktualisieren.\n\nGesichtserkennung ist erforderlich.",
+    faqTitle: "Häufig gestellte Fragen",
+    faqOptions: [
+      "Wann erhalte ich meine Mehrwertsteuererstattung?",
+      "Wie hoch ist mein Mehrwertsteuerbetrag?",
+      "Wie stelle ich einen Antrag?",
+      "Zurück zum Hauptmenü",
+    ],
+    vatPaymentAnswer: `Bitte kontaktieren Sie unsere Finanzabteilung unter:
+${FINANCE_EMAIL}`,
+    vatAmountAnswer: `Bitte kontaktieren Sie unser Support-Team unter:
+${SUPPORT_EMAIL}
+
+oder unser Finanzteam unter:
+${FINANCE_EMAIL}
+
+Sie erhalten dort die notwendigen Informationen zu Ihrem Mehrwertsteuerbetrag.`,
+    claimProcessAnswer: `Bitte besuchen Sie unsere Website für den vollständigen Antragsprozess und die erforderlichen Unterlagen:
+
+${WEBSITE_LINK}`,
+    agentReply: `Ein VRA-Supportagent wird Ihnen helfen.
+
+E-Mail:
+${SUPPORT_EMAIL}`,
+    financeNotice: `Sobald die Bankdaten aktualisiert wurden, wird die Finanzabteilung benachrichtigt unter:
+${FINANCE_EMAIL}`,
+    backToMain: "Zurück zum Hauptmenü",
+    noFaqAnswer: `Ich konnte keine FAQ-Antwort dafür finden. Ein VRA-Supportagent wird Ihnen helfen.
+
+E-Mail:
+${SUPPORT_EMAIL}`,
   },
   pt: {
-    welcome: "Olá, bem-vindo ao Bot de Suporte VRA.",
+    welcome: "Bem-vindo ao Suporte VRA 👋",
     chooseLanguage: "Escolha o seu idioma:",
-    mainTitle: "Menu principal VRA:",
-    statusOption: "Estado da reclamação",
-    bankingOption: "Atualizar dados bancários",
-    faqOption: "Perguntas frequentes",
-    agentOption: "Falar com um agente",
-    changeLanguageOption: "Alterar idioma",
+    mainOptions: [
+      "Estado da sua reclamação",
+      "Atualizar dados bancários",
+      "Perguntas frequentes",
+      "Falar com um agente",
+    ],
     statusReply:
       "Use o link abaixo para verificar o estado da sua reclamação. Irá precisar do seu número VRA.",
-    bankingReply: "Use o link abaixo para atualizar os seus dados bancários.",
-    facialRequired: "O reconhecimento facial é obrigatório.",
-    financeNotified:
-      "Assim que os dados bancários forem atualizados, o Finance será notificado em:",
-    faqTitle: "Perguntas frequentes:",
-    faqLinkLabel: "Link das FAQ:",
-    faq1: "Como verifico o estado da minha reclamação?",
-    faq2: "Como atualizo os meus dados bancários?",
-    faq3: "Como contacto a VRA?",
-    faq4: "Porque a minha reclamação está atrasada?",
-    faqAnswer1:
-      "Pode verificar o estado da sua reclamação usando o link abaixo. Irá precisar do seu número VRA.",
-    faqAnswer2:
-      "Pode atualizar os seus dados bancários usando o link abaixo. O reconhecimento facial é obrigatório.",
-    faqAnswer3: "Pode contactar a VRA em:",
-    faqAnswer4:
-      "Podem ocorrer atrasos enquanto as reclamações estão a ser analisadas ou aguardam processamento.",
-    agentReply: "Um agente de suporte VRA irá ajudá-lo.",
-    emailLabel: "Email:",
-    backInstruction: "Responda B ou Back para voltar ao menu principal.",
-    changeInstruction: "Responda 0 para alterar o idioma.",
-  },
-  ru: {
-    welcome: "Здравствуйте, добро пожаловать в бот поддержки VRA.",
-    chooseLanguage: "Пожалуйста, выберите язык:",
-    mainTitle: "Главное меню VRA:",
-    statusOption: "Статус заявки",
-    bankingOption: "Обновить банковские данные",
-    faqOption: "Часто задаваемые вопросы",
-    agentOption: "Связаться с агентом",
-    changeLanguageOption: "Изменить язык",
-    statusReply:
-      "Пожалуйста, используйте ссылку ниже, чтобы проверить статус вашей заявки. Вам понадобится ваш номер VRA.",
     bankingReply:
-      "Пожалуйста, используйте ссылку ниже, чтобы обновить банковские данные.",
-    facialRequired: "Требуется распознавание лица.",
-    financeNotified:
-      "После обновления банковских данных финансовый отдел будет уведомлен по адресу:",
-    faqTitle: "Часто задаваемые вопросы:",
-    faqLinkLabel: "Ссылка на FAQ:",
-    faq1: "Как проверить статус моей заявки?",
-    faq2: "Как обновить банковские данные?",
-    faq3: "Как связаться с VRA?",
-    faq4: "Почему моя заявка задерживается?",
-    faqAnswer1:
-      "Вы можете проверить статус вашей заявки, используя ссылку ниже. Вам понадобится ваш номер VRA.",
-    faqAnswer2:
-      "Вы можете обновить банковские данные, используя ссылку ниже. Требуется распознавание лица.",
-    faqAnswer3: "Вы можете связаться с VRA по адресу:",
-    faqAnswer4:
-      "Задержки могут возникать, пока заявки рассматриваются или ожидают обработки.",
-    agentReply: "Агент поддержки VRA поможет вам.",
-    emailLabel: "Эл. почта:",
-    backInstruction:
-      "Ответьте B или Back, чтобы вернуться в главное меню.",
-    changeInstruction: "Ответьте 0, чтобы изменить язык.",
+      "Use o link abaixo para atualizar os seus dados bancários.\n\nO reconhecimento facial é obrigatório.",
+    faqTitle: "Perguntas frequentes",
+    faqOptions: [
+      "Quando vou receber o reembolso do IVA?",
+      "Qual é o meu valor de IVA?",
+      "Como faço a reclamação?",
+      "Voltar ao menu principal",
+    ],
+    vatPaymentAnswer: `Contacte o nosso departamento financeiro em:
+${FINANCE_EMAIL}`,
+    vatAmountAnswer: `Contacte a nossa equipa de apoio em:
+${SUPPORT_EMAIL}
+
+ou a nossa equipa financeira em:
+${FINANCE_EMAIL}
+
+Eles fornecerão as informações necessárias sobre o seu valor de IVA.`,
+    claimProcessAnswer: `Visite o nosso website para ver o processo completo de reclamação e a documentação necessária:
+
+${WEBSITE_LINK}`,
+    agentReply: `Um agente de suporte VRA irá ajudá-lo.
+
+Email:
+${SUPPORT_EMAIL}`,
+    financeNotice: `Assim que os dados bancários forem atualizados, o departamento financeiro será notificado em:
+${FINANCE_EMAIL}`,
+    backToMain: "Voltar ao menu principal",
+    noFaqAnswer: `Não encontrei uma resposta nas FAQ para isso. Um agente de suporte VRA irá ajudá-lo.
+
+Email:
+${SUPPORT_EMAIL}`,
   },
   es: {
-    welcome: "Hola, bienvenido al Bot de Soporte de VRA.",
+    welcome: "Bienvenido al Soporte VRA 👋",
     chooseLanguage: "Por favor elija su idioma:",
-    mainTitle: "Menú principal de VRA:",
-    statusOption: "Estado de la reclamación",
-    bankingOption: "Actualizar datos bancarios",
-    faqOption: "Preguntas frecuentes",
-    agentOption: "Chatear con un agente",
-    changeLanguageOption: "Cambiar idioma",
+    mainOptions: [
+      "Estado de su reclamación",
+      "Actualizar datos bancarios",
+      "Preguntas frecuentes",
+      "Chatear con un agente",
+    ],
     statusReply:
       "Utilice el enlace de abajo para verificar el estado de su reclamación. Necesitará su número VRA.",
     bankingReply:
-      "Utilice el enlace de abajo para actualizar sus datos bancarios.",
-    facialRequired: "Se requiere reconocimiento facial.",
-    financeNotified:
-      "Una vez actualizados los datos bancarios, Finanzas será notificado en:",
-    faqTitle: "Preguntas frecuentes:",
-    faqLinkLabel: "Enlace de FAQ:",
-    faq1: "¿Cómo verifico el estado de mi reclamación?",
-    faq2: "¿Cómo actualizo mis datos bancarios?",
-    faq3: "¿Cómo contacto con VRA?",
-    faq4: "¿Por qué se retrasa mi reclamación?",
-    faqAnswer1:
-      "Puede verificar el estado de su reclamación usando el enlace de abajo. Necesitará su número VRA.",
-    faqAnswer2:
-      "Puede actualizar sus datos bancarios usando el enlace de abajo. Se requiere reconocimiento facial.",
-    faqAnswer3: "Puede contactar con VRA en:",
-    faqAnswer4:
-      "Pueden ocurrir retrasos mientras las reclamaciones se revisan o esperan procesamiento.",
-    agentReply: "Un agente de soporte de VRA le ayudará.",
-    emailLabel: "Correo electrónico:",
-    backInstruction: "Responda B o Back para volver al menú principal.",
-    changeInstruction: "Responda 0 para cambiar el idioma.",
+      "Utilice el enlace de abajo para actualizar sus datos bancarios.\n\nSe requiere reconocimiento facial.",
+    faqTitle: "Preguntas frecuentes",
+    faqOptions: [
+      "¿Cuándo recibiré mi reembolso del IVA?",
+      "¿Cuál es mi monto de IVA?",
+      "¿Cómo reclamo?",
+      "Volver al menú principal",
+    ],
+    vatPaymentAnswer: `Por favor contacte a nuestro departamento financiero en:
+${FINANCE_EMAIL}`,
+    vatAmountAnswer: `Por favor contacte a nuestro equipo de soporte en:
+${SUPPORT_EMAIL}
+
+o a nuestro equipo financiero en:
+${FINANCE_EMAIL}
+
+Ellos le proporcionarán la información necesaria sobre su monto de IVA.`,
+    claimProcessAnswer: `Visite nuestro sitio web para ver el proceso completo de reclamación y la documentación requerida:
+
+${WEBSITE_LINK}`,
+    agentReply: `Un agente de soporte de VRA le ayudará.
+
+Correo electrónico:
+${SUPPORT_EMAIL}`,
+    financeNotice: `Una vez actualizados los datos bancarios, Finanzas será notificado en:
+${FINANCE_EMAIL}`,
+    backToMain: "Volver al menú principal",
+    noFaqAnswer: `No encontré una respuesta de FAQ para eso. Un agente de soporte de VRA le ayudará.
+
+Correo electrónico:
+${SUPPORT_EMAIL}`,
+  },
+  zh: {
+    welcome: "欢迎使用 VRA 支持 👋",
+    chooseLanguage: "请选择您的语言：",
+    mainOptions: [
+      "查询您的索赔状态",
+      "更新银行资料",
+      "常见问题",
+      "与客服人员聊天",
+    ],
+    statusReply: "请使用下面的链接查询您的索赔状态。您需要您的 VRA 编号。",
+    bankingReply: "请使用下面的链接更新您的银行资料。\n\n需要进行面部识别。",
+    faqTitle: "常见问题",
+    faqOptions: [
+      "我什么时候收到增值税退款？",
+      "我的增值税金额是多少？",
+      "我如何申请？",
+      "返回主菜单",
+    ],
+    vatPaymentAnswer: `请联系我们的财务部门：
+${FINANCE_EMAIL}`,
+    vatAmountAnswer: `请联系我们的支持团队：
+${SUPPORT_EMAIL}
+
+或我们的财务团队：
+${FINANCE_EMAIL}
+
+他们会提供有关您增值税金额的必要信息。`,
+    claimProcessAnswer: `请访问我们的网站，查看完整的申请流程和所需文件：
+
+${WEBSITE_LINK}`,
+    agentReply: `VRA 支持人员将协助您。
+
+电子邮件：
+${SUPPORT_EMAIL}`,
+    financeNotice: `银行资料更新后，财务部门将收到通知：
+${FINANCE_EMAIL}`,
+    backToMain: "返回主菜单",
+    noFaqAnswer: `我找不到该问题的 FAQ 答案。VRA 支持人员将协助您。
+
+电子邮件：
+${SUPPORT_EMAIL}`,
   },
 };
 
-const telegramText = {
-  mainMenu: `Welcome to VRA Support 👋
+const faqPatterns = [
+  {
+    id: "vatPayment",
+    phrases: [
+      "when am i receiving the vat payment",
+      "when will i receive my vat payment",
+      "when will i receive my vat refund",
+      "wanneer ontvang ek my btw terugbetaling",
+      "quand vais je recevoir mon remboursement de tva",
+      "quand vais-je recevoir mon remboursement de tva",
+      "wann erhalte ich meine mehrwertsteuererstattung",
+      "quando vou receber o reembolso do iva",
+      "cuando recibire mi reembolso del iva",
+      "cuándo recibiré mi reembolso del iva",
+      "我什么时候收到增值税退款",
+    ],
+  },
+  {
+    id: "vatAmount",
+    phrases: [
+      "what is my vat amount",
+      "wat is my btw bedrag",
+      "quel est mon montant de tva",
+      "wie hoch ist mein mehrwertsteuerbetrag",
+      "qual e o meu valor de iva",
+      "qual é o meu valor de iva",
+      "cual es mi monto de iva",
+      "cuál es mi monto de iva",
+      "我的增值税金额是多少",
+    ],
+  },
+  {
+    id: "claimProcess",
+    phrases: [
+      "how do i claim",
+      "what is the process",
+      "hoe eis ek",
+      "wat is die proses",
+      "comment puis je faire une demande",
+      "comment puis-je faire une demande",
+      "quel est le processus",
+      "wie stelle ich einen antrag",
+      "wie ist der prozess",
+      "como faco a reclamacao",
+      "como faço a reclamação",
+      "qual e o processo",
+      "qual é o processo",
+      "como reclamo",
+      "cual es el proceso",
+      "cuál es el proceso",
+      "我如何申请",
+      "流程是什么",
+    ],
+  },
+];
 
-1. Status of your claim
+function normalizeText(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[?!.,;:()[\]{}'"¿¡]/g, "")
+    .replace(/\s+/g, " ");
+}
 
-2. Update banking details
+function detectLanguage(input, fallback = "en") {
+  const raw = String(input || "").trim();
+  const value = normalizeText(raw);
 
-3. Frequently Asked Questions
-
-4. Chat with an Agent`,
-  faqTitle: "Frequently Asked Questions:",
-  statusReply:
-    "Please use the link below to check the status of your claim. You will need your VRA number.",
-  bankingReply:
-    "Please use the link below to update your banking details.\n\nFacial recognition is required.\n\nOnce banking details are updated, Finance will be notified at:\nfinance@vatrefundsa.co.za",
-  agentReply:
-    "A VRA support agent will assist you.\n\nEmail:\ninfo@vatrefundagency.co.za",
-  liveAgent:
-    "I could not find an FAQ answer for that. A VRA support agent will assist you.\n\nEmail:\ninfo@vatrefundagency.co.za",
-};
-
-function getWhatsAppSession(phoneNumber) {
-  if (!whatsappSessions.has(phoneNumber)) {
-    whatsappSessions.set(phoneNumber, {
-      languageCode: null,
-      languageName: null,
-      state: STATES.LANGUAGE,
-    });
+  if (/[\u4e00-\u9fff]/.test(raw)) return "zh";
+  if (/\b(btw|wanneer|ontvang|terugbetaling|hoe eis|wat is)\b/.test(value)) {
+    return "af";
+  }
+  if (/\b(quand|remboursement|tva|veuillez|comment puis|demande)\b/.test(value)) {
+    return "fr";
+  }
+  if (/\b(wann|mehrwertsteuer|erhalte|anspruch|antrag|prozess)\b/.test(value)) {
+    return "de";
+  }
+  if (/\b(quando|reembolso|iva|faco|reclamacao|processo)\b/.test(value)) {
+    return "pt";
+  }
+  if (/\b(cuando|recibire|reembolso|iva|reclamo|proceso|monto)\b/.test(value)) {
+    return "es";
   }
 
-  return whatsappSessions.get(phoneNumber);
+  return fallback;
 }
 
-function getTelegramSession(chatId) {
-  if (!telegramSessions.has(chatId)) {
-    telegramSessions.set(chatId, {
-      state: STATES.MAIN,
-    });
-  }
-
-  return telegramSessions.get(chatId);
+function t(languageCode) {
+  return translations[languageCode] || translations.en;
 }
 
-function isWhatsAppGreeting(input) {
-  return ["hi", "hello", "start", "menu"].includes(input.trim().toLowerCase());
+function getSessionLanguage(session, input) {
+  const detected = detectLanguage(input, session.languageCode || "en");
+
+  session.languageCode = detected;
+  session.languageName =
+    Object.values(languageChoices).find((language) => language.code === detected)
+      ?.name || "English";
+
+  return detected;
 }
 
-function isTelegramGreeting(input) {
+function isGreeting(input) {
   return ["hi", "hello", "start", "/start", "menu", "/menu"].includes(
-    input.trim().toLowerCase()
+    normalizeText(input)
   );
 }
 
-function isBack(input) {
-  const value = input.trim().toLowerCase();
-  return value === "b" || value === "back";
+function isFaqRequest(input) {
+  const value = normalizeText(input);
+
+  return [
+    "3",
+    "faq",
+    "frequently asked questions",
+    "frequently asked questions menu",
+    "gereelde vrae",
+    "questions frequemment posees",
+    "häufig gestellte fragen",
+    "haufig gestellte fragen",
+    "perguntas frequentes",
+    "preguntas frecuentes",
+    "常见问题",
+  ].includes(value);
 }
 
-function getCopy(session) {
-  return translations[session.languageCode] || translations.en;
+function isBackToMain(input) {
+  const value = normalizeText(input);
+
+  return [
+    "4",
+    "b",
+    "back",
+    "main menu",
+    "back to main menu",
+    "terug na hoofkieslys",
+    "retour au menu principal",
+    "zuruck zum hauptmenu",
+    "zurück zum hauptmenü",
+    "voltar ao menu principal",
+    "volver al menu principal",
+    "返回主菜单",
+  ].includes(value);
+}
+
+function mainMenu(languageCode = "en") {
+  const copy = t(languageCode);
+
+  return `${copy.welcome}
+
+1. ${copy.mainOptions[0]}
+2. ${copy.mainOptions[1]}
+3. ${copy.mainOptions[2]}
+4. ${copy.mainOptions[3]}`;
 }
 
 function languageMenu() {
-  return `${translations.en.welcome}
+  return `${translations.en.chooseLanguage}
 
-${translations.en.chooseLanguage}
-
-1 English
-2 Arabic
-3 Chinese Simplified
-4 Dutch
-5 French
-6 German
-7 Italian
-8 Portuguese
-9 Russian
-10 Spanish`;
+1. English
+2. Afrikaans
+3. French
+4. German
+5. Portuguese
+6. Spanish
+7. Chinese Simplified`;
 }
 
-function whatsappMainMenu(session) {
-  const t = getCopy(session);
+function faqMenu(languageCode = "en") {
+  const copy = t(languageCode);
 
-  return `${t.mainTitle}
+  return `${copy.faqTitle}
 
-1 ${t.statusOption}
-2 ${t.bankingOption}
-3 ${t.faqOption}
-4 ${t.agentOption}
-5 ${t.changeLanguageOption}
-
-${t.changeInstruction}`;
+1. ${copy.faqOptions[0]}
+2. ${copy.faqOptions[1]}
+3. ${copy.faqOptions[2]}
+4. ${copy.faqOptions[3]}`;
 }
 
-function statusUrl(session) {
-  return `https://vatrefundagency.co.za/check-refund-progress/?lang=${session.languageCode}`;
+function statusMessage(languageCode = "en") {
+  return `${t(languageCode).statusReply}
+
+${STATUS_LINK}`;
 }
 
-function bankingUrl(session) {
-  return `https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere&lang=${session.languageCode}`;
+function bankingMessage(languageCode = "en") {
+  const copy = t(languageCode);
+
+  return `${copy.bankingReply}
+
+${BANKING_LINK}
+
+${copy.financeNotice}`;
 }
 
-function faqUrl(session) {
-  return `https://vatrefundagency.co.za/faq/?lang=${session.languageCode}`;
+function agentMessage(languageCode = "en") {
+  return t(languageCode).agentReply;
 }
 
-function whatsappFaqMenu(session) {
-  const t = getCopy(session);
+function matchFaq(input) {
+  const value = normalizeText(input);
 
-  return `${t.faqTitle}
+  if (value === "1") return "vatPayment";
+  if (value === "2") return "vatAmount";
+  if (value === "3") return "claimProcess";
 
-1 ${t.faq1}
-2 ${t.faq2}
-3 ${t.faq3}
-4 ${t.faq4}
+  const match = faqPatterns.find((item) =>
+    item.phrases.some((phrase) => value.includes(normalizeText(phrase)))
+  );
 
-${t.faqLinkLabel}
-${faqUrl(session)}
-
-${t.backInstruction}
-${t.changeInstruction}`;
+  return match?.id || null;
 }
 
-function telegramFaqMenu() {
-  return `${telegramText.faqTitle}
+function faqAnswer(input, languageCode = "en") {
+  const copy = t(languageCode);
+  const faqId = matchFaq(input);
 
-1 How do I check my claim status?
-2 How do I update my banking details?
-3 How do I contact VRA?
-4 Why is my claim delayed?
+  if (faqId === "vatPayment") {
+    return `${copy.vatPaymentAnswer}
 
-FAQ link:
-https://vatrefundagency.co.za/faq/`;
-}
-
-function buildWhatsAppFaqAnswer(input, session) {
-  const item = FAQ_ITEMS[input];
-  const t = getCopy(session);
-
-  if (!item) {
-    return null;
+${copy.backToMain}`;
   }
 
-  const parts = [t[item.answerKey]];
+  if (faqId === "vatAmount") {
+    return `${copy.vatAmountAnswer}
 
-  if (item.linkType === "status") {
-    parts.push(statusUrl(session));
+${copy.backToMain}`;
   }
 
-  if (item.linkType === "banking") {
-    parts.push(bankingUrl(session));
-  }
+  if (faqId === "claimProcess") {
+    return `${copy.claimProcessAnswer}
 
-  if (item.includeFinance) {
-    parts.push(`${t.financeNotified}\nfinance@vatrefundsa.co.za`);
-  }
-
-  if (item.includeInfoEmail) {
-    parts.push("info@vatrefundagency.co.za");
-  }
-
-  parts.push(t.backInstruction);
-  parts.push(t.changeInstruction);
-
-  return parts.join("\n\n");
-}
-
-function buildTelegramFaqAnswer(input) {
-  const item = FAQ_ITEMS[input];
-
-  if (!item) {
-    return null;
-  }
-
-  if (item.answerKey === "faqAnswer1") {
-    return `${translations.en.faqAnswer1}
-
-https://register.vatrefundagency.co.za/check-refund-progress/`;
-  }
-
-  if (item.answerKey === "faqAnswer2") {
-    return `${translations.en.faqAnswer2}
-
-https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere
-
-${translations.en.financeNotified}
-finance@vatrefundsa.co.za`;
-  }
-
-  if (item.answerKey === "faqAnswer3") {
-    return `${translations.en.faqAnswer3}
-
-info@vatrefundagency.co.za`;
-  }
-
-  if (item.answerKey === "faqAnswer4") {
-    return translations.en.faqAnswer4;
+${copy.backToMain}`;
   }
 
   return null;
@@ -591,16 +603,13 @@ async function sendWhatsAppMessage(to, body) {
         messaging_product: "whatsapp",
         to,
         type: "text",
-        text: {
-          body,
-        },
+        text: { body },
       }),
     }
   );
 
   if (!response.ok) {
-    const errorText = await response.text();
-    console.error("WhatsApp API error:", response.status, errorText);
+    console.error("WhatsApp API error:", response.status, await response.text());
   }
 }
 
@@ -626,158 +635,106 @@ async function sendTelegramMessage(chatId, message) {
   );
 
   if (!response.ok) {
-    const errorText = await response.text();
-    console.error("Telegram API error:", response.status, errorText);
+    console.error("Telegram API error:", response.status, await response.text());
   }
 }
 
-async function showLanguageMenu(to, session) {
-  session.state = STATES.LANGUAGE;
-  await sendWhatsAppMessage(to, languageMenu());
+function getWhatsAppSession(phoneNumber) {
+  if (!whatsappSessions.has(phoneNumber)) {
+    whatsappSessions.set(phoneNumber, {
+      languageCode: "en",
+      languageName: "English",
+      state: STATES.MAIN,
+    });
+  }
+
+  return whatsappSessions.get(phoneNumber);
 }
 
-async function showWhatsAppMainMenu(to, session) {
-  session.state = STATES.MAIN;
-  await sendWhatsAppMessage(to, whatsappMainMenu(session));
+function getTelegramSession(chatId) {
+  if (!telegramSessions.has(chatId)) {
+    telegramSessions.set(chatId, {
+      languageCode: "en",
+      languageName: "English",
+      state: STATES.MAIN,
+    });
+  }
+
+  return telegramSessions.get(chatId);
 }
 
-async function handleWhatsAppLanguageState(to, input, session) {
-  const selectedLanguage = languages[input];
+async function handleSupportInput(input, session, sendReply) {
+  const languageCode = getSessionLanguage(session, input);
 
-  if (!selectedLanguage) {
-    await sendWhatsAppMessage(to, languageMenu());
+  if (input === "0" || normalizeText(input) === "change language") {
+    session.state = STATES.LANGUAGE;
+    await sendReply(languageMenu());
     return;
   }
 
-  session.languageCode = selectedLanguage.languageCode;
-  session.languageName = selectedLanguage.languageName;
-  session.state = STATES.MAIN;
+  if (session.state === STATES.LANGUAGE) {
+    const selectedLanguage = languageChoices[normalizeText(input)];
 
-  await sendWhatsAppMessage(to, whatsappMainMenu(session));
-}
-
-async function handleWhatsAppMainState(to, input, session) {
-  const t = getCopy(session);
-
-  switch (input) {
-    case "1":
-      await sendWhatsAppMessage(
-        to,
-        `${t.statusReply}
-
-${statusUrl(session)}
-
-${t.backInstruction}
-${t.changeInstruction}`
-      );
+    if (selectedLanguage) {
+      session.languageCode = selectedLanguage.code;
+      session.languageName = selectedLanguage.name;
+      session.state = STATES.MAIN;
+      await sendReply(mainMenu(session.languageCode));
       return;
+    }
 
-    case "2":
-      await sendWhatsAppMessage(
-        to,
-        `${t.bankingReply}
-
-${bankingUrl(session)}
-
-${t.facialRequired}
-
-${t.financeNotified}
-finance@vatrefundsa.co.za
-
-${t.backInstruction}
-${t.changeInstruction}`
-      );
-      return;
-
-    case "3":
-      session.state = STATES.FAQ;
-      await sendWhatsAppMessage(to, whatsappFaqMenu(session));
-      return;
-
-    case "4":
-      await sendWhatsAppMessage(
-        to,
-        `${t.agentReply}
-
-${t.emailLabel}
-info@vatrefundagency.co.za
-
-${t.backInstruction}
-${t.changeInstruction}`
-      );
-      return;
-
-    case "5":
-      await showLanguageMenu(to, session);
-      return;
-
-    default:
-      await sendWhatsAppMessage(to, whatsappMainMenu(session));
-      return;
-  }
-}
-
-async function handleWhatsAppFaqState(to, input, session) {
-  const answer = buildWhatsAppFaqAnswer(input, session);
-
-  if (!answer) {
-    await sendWhatsAppMessage(to, whatsappFaqMenu(session));
+    await sendReply(languageMenu());
     return;
   }
 
-  await sendWhatsAppMessage(to, answer);
-}
-
-async function showTelegramMainMenu(chatId, session) {
-  session.state = STATES.MAIN;
-  await sendTelegramMessage(chatId, telegramText.mainMenu);
-}
-
-async function handleTelegramMainState(chatId, input, session) {
-  switch (input) {
-    case "1":
-      await sendTelegramMessage(
-        chatId,
-        `${telegramText.statusReply}
-
-https://register.vatrefundagency.co.za/check-refund-progress/`
-      );
-      return;
-
-    case "2":
-      await sendTelegramMessage(
-        chatId,
-        `${telegramText.bankingReply}
-
-https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere`
-      );
-      return;
-
-    case "3":
-      session.state = STATES.FAQ;
-      await sendTelegramMessage(chatId, telegramFaqMenu());
-      return;
-
-    case "4":
-      await sendTelegramMessage(chatId, telegramText.agentReply);
-      return;
-
-    default:
-      await sendTelegramMessage(chatId, telegramText.liveAgent);
-      return;
-  }
-}
-
-async function handleTelegramFaqState(chatId, input, session) {
-  const answer = buildTelegramFaqAnswer(input);
-
-  if (!answer) {
+  if (isGreeting(input) || isBackToMain(input)) {
     session.state = STATES.MAIN;
-    await sendTelegramMessage(chatId, telegramText.liveAgent);
+    await sendReply(mainMenu(languageCode));
     return;
   }
 
-  await sendTelegramMessage(chatId, answer);
+  if (isFaqRequest(input)) {
+    session.state = STATES.FAQ;
+    await sendReply(faqMenu(languageCode));
+    return;
+  }
+
+  if (session.state === STATES.FAQ) {
+    const answer = faqAnswer(input, languageCode);
+
+    if (answer) {
+      await sendReply(answer);
+      return;
+    }
+
+    session.state = STATES.MAIN;
+    await sendReply(t(languageCode).noFaqAnswer);
+    return;
+  }
+
+  if (normalizeText(input) === "1") {
+    await sendReply(statusMessage(languageCode));
+    return;
+  }
+
+  if (normalizeText(input) === "2") {
+    await sendReply(bankingMessage(languageCode));
+    return;
+  }
+
+  if (normalizeText(input) === "4") {
+    await sendReply(agentMessage(languageCode));
+    return;
+  }
+
+  const directFaqAnswer = faqAnswer(input, languageCode);
+
+  if (directFaqAnswer) {
+    await sendReply(directFaqAnswer);
+    return;
+  }
+
+  await sendReply(mainMenu(languageCode));
 }
 
 app.get("/webhook", (req, res) => {
@@ -811,42 +768,11 @@ app.post("/webhook", async (req, res) => {
 
     const session = getWhatsAppSession(from);
 
-    if (input === "0") {
-      await showLanguageMenu(from, session);
-      return;
-    }
-
-    if (isWhatsAppGreeting(input)) {
-      if (session.languageCode) {
-        await showWhatsAppMainMenu(from, session);
-      } else {
-        await showLanguageMenu(from, session);
-      }
-      return;
-    }
-
-    if (isBack(input)) {
-      if (session.languageCode) {
-        await showWhatsAppMainMenu(from, session);
-      } else {
-        await showLanguageMenu(from, session);
-      }
-      return;
-    }
-
-    if (session.state === STATES.LANGUAGE || !session.languageCode) {
-      await handleWhatsAppLanguageState(from, input, session);
-      return;
-    }
-
-    if (session.state === STATES.FAQ) {
-      await handleWhatsAppFaqState(from, input, session);
-      return;
-    }
-
-    await handleWhatsAppMainState(from, input, session);
+    await handleSupportInput(input, session, (reply) =>
+      sendWhatsAppMessage(from, reply)
+    );
   } catch (error) {
-    console.error("Webhook processing error:", error);
+    console.error("WhatsApp webhook processing error:", error);
   }
 });
 
@@ -864,22 +790,9 @@ app.post("/telegram-webhook", async (req, res) => {
 
     const session = getTelegramSession(chatId);
 
-    if (isTelegramGreeting(input)) {
-      await showTelegramMainMenu(chatId, session);
-      return;
-    }
-
-    if (isBack(input)) {
-      await showTelegramMainMenu(chatId, session);
-      return;
-    }
-
-    if (session.state === STATES.FAQ) {
-      await handleTelegramFaqState(chatId, input, session);
-      return;
-    }
-
-    await handleTelegramMainState(chatId, input, session);
+    await handleSupportInput(input, session, (reply) =>
+      sendTelegramMessage(chatId, reply)
+    );
   } catch (error) {
     console.error("Telegram webhook processing error:", error);
   }
