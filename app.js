@@ -21,6 +21,9 @@ const telegramSessions = new Map();
 const STATUS_LINK = "https://register.vatrefundagency.co.za/check-refund-progress/";
 const BANKING_LINK =
   "https://vatrefundagency.co.za/forms/views/view.login.php?referral=thinksphere";
+const NEW_CLAIM_PORTAL_LINK =
+  "https://vatrefundagency.co.za/forms/views/view.login.php";
+const NEW_CLAIM_VIDEO_LINK = "https://youtu.be/zatxMKDCNL4";
 const WEBSITE_LINK = "https://vatrefundagency.co.za/";
 const SUPPORT_EMAIL = "info@vatrefundagency.co.za";
 const FINANCE_EMAIL = "finance@vatrefundagency.co.za";
@@ -43,6 +46,7 @@ const translations = {
     mainTitle: "VRA Main Menu:",
     statusOption: "Status of claim",
     bankingOption: "Update banking details",
+    newClaimOption: "New Claimant / Submit a New Claim",
     faqOption: "Frequently Asked Questions",
     agentOption: "Chat with an Agent",
     changeLanguageOption: "Change language",
@@ -50,6 +54,18 @@ const translations = {
       "Please use the link below to check the status of your claim. You will need your VRA number.",
     bankingReply:
       "Please use the link below to update your banking details.\n\nFacial recognition is required.",
+    newClaimReply: `If you are a new claimant or would like to submit a VAT refund claim, please log in to our online portal and follow the step-by-step video guide provided below:
+
+Online Portal App:
+${NEW_CLAIM_PORTAL_LINK}
+
+Step-by-Step Video:
+${NEW_CLAIM_VIDEO_LINK}
+
+We also recommend visiting our website to familiarise yourself with the claim requirements and supporting documents needed to ensure that your claim is eligible for processing.
+
+Website:
+${WEBSITE_LINK}`,
     financeNotice: `Once banking details are updated, Finance will be notified at:
 ${FINANCE_EMAIL}`,
     faqTitle: "Frequently Asked Questions:",
@@ -75,6 +91,8 @@ ${WEBSITE_LINK}`,
 
 Email:
 ${SUPPORT_EMAIL}`,
+    backInstruction: "Reply B or Back to return to the main menu.",
+    changeInstruction: "Reply 0 to change language.",
     backToMain: "Back to Main Menu",
     noFaqAnswer: `I could not find an FAQ answer for that. A VRA support agent will assist you.
 
@@ -86,6 +104,7 @@ ${SUPPORT_EMAIL}`,
     mainTitle: "القائمة الرئيسية لـ VRA:",
     statusOption: "حالة المطالبة",
     bankingOption: "تحديث التفاصيل البنكية",
+    newClaimOption: "مطالب جديد / تقديم مطالبة جديدة",
     faqOption: "الأسئلة الشائعة",
     agentOption: "التحدث مع وكيل",
     changeLanguageOption: "تغيير اللغة",
@@ -93,6 +112,18 @@ ${SUPPORT_EMAIL}`,
       "يرجى استخدام الرابط أدناه للتحقق من حالة مطالبتك. ستحتاج إلى رقم VRA الخاص بك.",
     bankingReply:
       "يرجى استخدام الرابط أدناه لتحديث التفاصيل البنكية الخاصة بك.\n\nالتعرف على الوجه مطلوب.",
+    newClaimReply: `إذا كنت مطالباً جديداً أو ترغب في تقديم مطالبة استرداد ضريبة القيمة المضافة، يرجى تسجيل الدخول إلى بوابتنا الإلكترونية واتباع دليل الفيديو خطوة بخطوة أدناه:
+
+تطبيق البوابة الإلكترونية:
+${NEW_CLAIM_PORTAL_LINK}
+
+فيديو خطوة بخطوة:
+${NEW_CLAIM_VIDEO_LINK}
+
+نوصي أيضاً بزيارة موقعنا الإلكتروني للتعرف على متطلبات المطالبة والمستندات الداعمة المطلوبة لضمان أن مطالبتك مؤهلة للمعالجة.
+
+الموقع الإلكتروني:
+${WEBSITE_LINK}`,
     financeNotice: `بعد تحديث التفاصيل البنكية، سيتم إخطار قسم المالية على:
 ${FINANCE_EMAIL}`,
     faqTitle: "الأسئلة الشائعة:",
@@ -118,6 +149,8 @@ ${WEBSITE_LINK}`,
 
 البريد الإلكتروني:
 ${SUPPORT_EMAIL}`,
+    backInstruction: "أرسل B أو Back للعودة إلى القائمة الرئيسية.",
+    changeInstruction: "أرسل 0 لتغيير اللغة.",
     backToMain: "العودة إلى القائمة الرئيسية",
     noFaqAnswer: `لم أتمكن من العثور على إجابة لهذا السؤال. سيساعدك وكيل دعم VRA.
 
@@ -129,11 +162,24 @@ ${SUPPORT_EMAIL}`,
     mainTitle: "VRA 主菜单：",
     statusOption: "索赔状态",
     bankingOption: "更新银行资料",
+    newClaimOption: "新申请人 / 提交新申请",
     faqOption: "常见问题",
     agentOption: "与客服人员聊天",
     changeLanguageOption: "更改语言",
     statusReply: "请使用下面的链接查询您的索赔状态。您需要您的 VRA 编号。",
     bankingReply: "请使用下面的链接更新您的银行资料。\n\n需要进行面部识别。",
+    newClaimReply: `如果您是新申请人，或想提交增值税退款申请，请登录我们的在线门户，并按照下面提供的分步视频指南操作：
+
+在线门户应用：
+${NEW_CLAIM_PORTAL_LINK}
+
+分步视频：
+${NEW_CLAIM_VIDEO_LINK}
+
+我们还建议您访问我们的网站，熟悉申请要求和所需支持文件，以确保您的申请符合处理条件。
+
+网站：
+${WEBSITE_LINK}`,
     financeNotice: `银行资料更新后，财务部门将收到通知：
 ${FINANCE_EMAIL}`,
     faqTitle: "常见问题：",
@@ -159,6 +205,8 @@ ${WEBSITE_LINK}`,
 
 电子邮件：
 ${SUPPORT_EMAIL}`,
+    backInstruction: "回复 B 或 Back 返回主菜单。",
+    changeInstruction: "回复 0 更改语言。",
     backToMain: "返回主菜单",
     noFaqAnswer: `我找不到该问题的 FAQ 答案。VRA 支持人员将协助您。
 
@@ -170,6 +218,7 @@ ${SUPPORT_EMAIL}`,
     mainTitle: "VRA Hoofdmenu:",
     statusOption: "Status van claim",
     bankingOption: "Bankgegevens bijwerken",
+    newClaimOption: "Nieuwe claimant / Nieuwe claim indienen",
     faqOption: "Veelgestelde vragen",
     agentOption: "Chat met een agent",
     changeLanguageOption: "Taal wijzigen",
@@ -177,6 +226,18 @@ ${SUPPORT_EMAIL}`,
       "Gebruik de onderstaande link om de status van uw claim te controleren. U heeft uw VRA-nummer nodig.",
     bankingReply:
       "Gebruik de onderstaande link om uw bankgegevens bij te werken.\n\nGezichtsherkenning is vereist.",
+    newClaimReply: `Als u een nieuwe claimant bent of een btw-teruggaafclaim wilt indienen, log dan in op ons online portaal en volg de stapsgewijze videogids hieronder:
+
+Online portaal-app:
+${NEW_CLAIM_PORTAL_LINK}
+
+Stapsgewijze video:
+${NEW_CLAIM_VIDEO_LINK}
+
+Wij raden u ook aan onze website te bezoeken om vertrouwd te raken met de claimvereisten en ondersteunende documenten die nodig zijn om ervoor te zorgen dat uw claim in aanmerking komt voor verwerking.
+
+Website:
+${WEBSITE_LINK}`,
     financeNotice: `Zodra de bankgegevens zijn bijgewerkt, wordt Finance op de hoogte gesteld via:
 ${FINANCE_EMAIL}`,
     faqTitle: "Veelgestelde vragen:",
@@ -202,6 +263,8 @@ ${WEBSITE_LINK}`,
 
 E-mail:
 ${SUPPORT_EMAIL}`,
+    backInstruction: "Antwoord B of Back om terug te keren naar het hoofdmenu.",
+    changeInstruction: "Antwoord 0 om de taal te wijzigen.",
     backToMain: "Terug naar hoofdmenu",
     noFaqAnswer: `Ik kon geen FAQ-antwoord daarvoor vinden. Een VRA-supportagent zal u helpen.
 
@@ -213,6 +276,7 @@ ${SUPPORT_EMAIL}`,
     mainTitle: "Menu principal VRA :",
     statusOption: "Statut de la demande",
     bankingOption: "Mettre à jour les coordonnées bancaires",
+    newClaimOption: "Nouveau demandeur / Soumettre une nouvelle demande",
     faqOption: "Questions fréquemment posées",
     agentOption: "Discuter avec un agent",
     changeLanguageOption: "Changer de langue",
@@ -220,6 +284,18 @@ ${SUPPORT_EMAIL}`,
       "Veuillez utiliser le lien ci-dessous pour vérifier le statut de votre demande. Vous aurez besoin de votre numéro VRA.",
     bankingReply:
       "Veuillez utiliser le lien ci-dessous pour mettre à jour vos coordonnées bancaires.\n\nLa reconnaissance faciale est requise.",
+    newClaimReply: `Si vous êtes un nouveau demandeur ou souhaitez soumettre une demande de remboursement de TVA, veuillez vous connecter à notre portail en ligne et suivre le guide vidéo étape par étape fourni ci-dessous :
+
+Application du portail en ligne :
+${NEW_CLAIM_PORTAL_LINK}
+
+Vidéo étape par étape :
+${NEW_CLAIM_VIDEO_LINK}
+
+Nous vous recommandons également de visiter notre site Web afin de vous familiariser avec les exigences de la demande et les documents justificatifs nécessaires pour garantir que votre demande est admissible au traitement.
+
+Site Web :
+${WEBSITE_LINK}`,
     financeNotice: `Une fois les coordonnées bancaires mises à jour, le service Finance sera informé à :
 ${FINANCE_EMAIL}`,
     faqTitle: "Questions fréquemment posées :",
@@ -245,6 +321,8 @@ ${WEBSITE_LINK}`,
 
 E-mail :
 ${SUPPORT_EMAIL}`,
+    backInstruction: "Répondez B ou Back pour revenir au menu principal.",
+    changeInstruction: "Répondez 0 pour changer de langue.",
     backToMain: "Retour au menu principal",
     noFaqAnswer: `Je n'ai pas trouvé de réponse FAQ pour cela. Un agent du support VRA vous aidera.
 
@@ -256,6 +334,7 @@ ${SUPPORT_EMAIL}`,
     mainTitle: "VRA Hauptmenü:",
     statusOption: "Status des Anspruchs",
     bankingOption: "Bankdaten aktualisieren",
+    newClaimOption: "Neuer Antragsteller / Neuen Antrag einreichen",
     faqOption: "Häufig gestellte Fragen",
     agentOption: "Mit einem Agenten chatten",
     changeLanguageOption: "Sprache ändern",
@@ -263,6 +342,18 @@ ${SUPPORT_EMAIL}`,
       "Bitte verwenden Sie den untenstehenden Link, um den Status Ihres Anspruchs zu prüfen. Sie benötigen Ihre VRA-Nummer.",
     bankingReply:
       "Bitte verwenden Sie den untenstehenden Link, um Ihre Bankdaten zu aktualisieren.\n\nGesichtserkennung ist erforderlich.",
+    newClaimReply: `Wenn Sie ein neuer Antragsteller sind oder einen Antrag auf Mehrwertsteuerrückerstattung einreichen möchten, melden Sie sich bitte in unserem Online-Portal an und folgen Sie der unten bereitgestellten Schritt-für-Schritt-Videoanleitung:
+
+Online-Portal-App:
+${NEW_CLAIM_PORTAL_LINK}
+
+Schritt-für-Schritt-Video:
+${NEW_CLAIM_VIDEO_LINK}
+
+Wir empfehlen Ihnen außerdem, unsere Website zu besuchen, um sich mit den Antragsanforderungen und den erforderlichen Nachweisdokumenten vertraut zu machen, damit Ihr Antrag für die Bearbeitung geeignet ist.
+
+Website:
+${WEBSITE_LINK}`,
     financeNotice: `Sobald die Bankdaten aktualisiert wurden, wird die Finanzabteilung benachrichtigt unter:
 ${FINANCE_EMAIL}`,
     faqTitle: "Häufig gestellte Fragen:",
@@ -288,6 +379,8 @@ ${WEBSITE_LINK}`,
 
 E-Mail:
 ${SUPPORT_EMAIL}`,
+    backInstruction: "Antworten Sie mit B oder Back, um zum Hauptmenü zurückzukehren.",
+    changeInstruction: "Antworten Sie mit 0, um die Sprache zu ändern.",
     backToMain: "Zurück zum Hauptmenü",
     noFaqAnswer: `Ich konnte keine FAQ-Antwort dafür finden. Ein VRA-Supportagent wird Ihnen helfen.
 
@@ -299,6 +392,7 @@ ${SUPPORT_EMAIL}`,
     mainTitle: "Menu principale VRA:",
     statusOption: "Stato della richiesta",
     bankingOption: "Aggiorna dettagli bancari",
+    newClaimOption: "Nuovo richiedente / Invia una nuova richiesta",
     faqOption: "Domande frequenti",
     agentOption: "Chatta con un agente",
     changeLanguageOption: "Cambia lingua",
@@ -306,6 +400,18 @@ ${SUPPORT_EMAIL}`,
       "Utilizza il link qui sotto per controllare lo stato della tua richiesta. Avrai bisogno del tuo numero VRA.",
     bankingReply:
       "Utilizza il link qui sotto per aggiornare i tuoi dettagli bancari.\n\nIl riconoscimento facciale è richiesto.",
+    newClaimReply: `Se sei un nuovo richiedente o desideri inviare una richiesta di rimborso IVA, accedi al nostro portale online e segui la guida video passo dopo passo fornita di seguito:
+
+App del portale online:
+${NEW_CLAIM_PORTAL_LINK}
+
+Video passo dopo passo:
+${NEW_CLAIM_VIDEO_LINK}
+
+Ti consigliamo inoltre di visitare il nostro sito web per familiarizzare con i requisiti della richiesta e i documenti di supporto necessari per garantire che la tua richiesta sia idonea all'elaborazione.
+
+Sito web:
+${WEBSITE_LINK}`,
     financeNotice: `Una volta aggiornati i dettagli bancari, il reparto Finance sarà informato a:
 ${FINANCE_EMAIL}`,
     faqTitle: "Domande frequenti:",
@@ -331,6 +437,8 @@ ${WEBSITE_LINK}`,
 
 Email:
 ${SUPPORT_EMAIL}`,
+    backInstruction: "Rispondi B o Back per tornare al menu principale.",
+    changeInstruction: "Rispondi 0 per cambiare lingua.",
     backToMain: "Torna al menu principale",
     noFaqAnswer: `Non ho trovato una risposta FAQ per questo. Un agente di supporto VRA ti assisterà.
 
@@ -342,6 +450,7 @@ ${SUPPORT_EMAIL}`,
     mainTitle: "Menu principal VRA:",
     statusOption: "Estado da reclamação",
     bankingOption: "Atualizar dados bancários",
+    newClaimOption: "Novo reclamante / Submeter uma nova reclamação",
     faqOption: "Perguntas frequentes",
     agentOption: "Falar com um agente",
     changeLanguageOption: "Alterar idioma",
@@ -349,6 +458,18 @@ ${SUPPORT_EMAIL}`,
       "Use o link abaixo para verificar o estado da sua reclamação. Irá precisar do seu número VRA.",
     bankingReply:
       "Use o link abaixo para atualizar os seus dados bancários.\n\nO reconhecimento facial é obrigatório.",
+    newClaimReply: `Se é um novo reclamante ou pretende submeter uma reclamação de reembolso de IVA, inicie sessão no nosso portal online e siga o guia em vídeo passo a passo fornecido abaixo:
+
+Aplicação do portal online:
+${NEW_CLAIM_PORTAL_LINK}
+
+Vídeo passo a passo:
+${NEW_CLAIM_VIDEO_LINK}
+
+Também recomendamos que visite o nosso website para se familiarizar com os requisitos da reclamação e os documentos de apoio necessários para garantir que a sua reclamação é elegível para processamento.
+
+Website:
+${WEBSITE_LINK}`,
     financeNotice: `Assim que os dados bancários forem atualizados, o departamento financeiro será notificado em:
 ${FINANCE_EMAIL}`,
     faqTitle: "Perguntas frequentes:",
@@ -374,6 +495,8 @@ ${WEBSITE_LINK}`,
 
 Email:
 ${SUPPORT_EMAIL}`,
+    backInstruction: "Responda B ou Back para voltar ao menu principal.",
+    changeInstruction: "Responda 0 para alterar o idioma.",
     backToMain: "Voltar ao menu principal",
     noFaqAnswer: `Não encontrei uma resposta nas FAQ para isso. Um agente de suporte VRA irá ajudá-lo.
 
@@ -385,6 +508,7 @@ ${SUPPORT_EMAIL}`,
     mainTitle: "Главное меню VRA:",
     statusOption: "Статус заявки",
     bankingOption: "Обновить банковские данные",
+    newClaimOption: "Новый заявитель / Подать новую заявку",
     faqOption: "Часто задаваемые вопросы",
     agentOption: "Связаться с агентом",
     changeLanguageOption: "Изменить язык",
@@ -392,6 +516,18 @@ ${SUPPORT_EMAIL}`,
       "Пожалуйста, используйте ссылку ниже, чтобы проверить статус вашей заявки. Вам понадобится ваш номер VRA.",
     bankingReply:
       "Пожалуйста, используйте ссылку ниже, чтобы обновить банковские данные.\n\nТребуется распознавание лица.",
+    newClaimReply: `Если вы новый заявитель или хотите подать заявку на возврат НДС, пожалуйста, войдите в наш онлайн-портал и следуйте пошаговому видео-руководству ниже:
+
+Приложение онлайн-портала:
+${NEW_CLAIM_PORTAL_LINK}
+
+Пошаговое видео:
+${NEW_CLAIM_VIDEO_LINK}
+
+Мы также рекомендуем посетить наш сайт, чтобы ознакомиться с требованиями к заявке и необходимыми подтверждающими документами, чтобы ваша заявка соответствовала условиям обработки.
+
+Сайт:
+${WEBSITE_LINK}`,
     financeNotice: `После обновления банковских данных финансовый отдел будет уведомлен по адресу:
 ${FINANCE_EMAIL}`,
     faqTitle: "Часто задаваемые вопросы:",
@@ -417,6 +553,8 @@ ${WEBSITE_LINK}`,
 
 Эл. почта:
 ${SUPPORT_EMAIL}`,
+    backInstruction: "Ответьте B или Back, чтобы вернуться в главное меню.",
+    changeInstruction: "Ответьте 0, чтобы изменить язык.",
     backToMain: "Вернуться в главное меню",
     noFaqAnswer: `Я не смог найти ответ в FAQ на этот вопрос. Агент поддержки VRA поможет вам.
 
@@ -428,6 +566,7 @@ ${SUPPORT_EMAIL}`,
     mainTitle: "Menú principal de VRA:",
     statusOption: "Estado de la reclamación",
     bankingOption: "Actualizar datos bancarios",
+    newClaimOption: "Nuevo reclamante / Enviar una nueva reclamación",
     faqOption: "Preguntas frecuentes",
     agentOption: "Chatear con un agente",
     changeLanguageOption: "Cambiar idioma",
@@ -435,6 +574,18 @@ ${SUPPORT_EMAIL}`,
       "Utilice el enlace de abajo para verificar el estado de su reclamación. Necesitará su número VRA.",
     bankingReply:
       "Utilice el enlace de abajo para actualizar sus datos bancarios.\n\nSe requiere reconocimiento facial.",
+    newClaimReply: `Si es un nuevo reclamante o desea presentar una reclamación de reembolso del IVA, inicie sesión en nuestro portal en línea y siga la guía de video paso a paso que se proporciona a continuación:
+
+Aplicación del portal en línea:
+${NEW_CLAIM_PORTAL_LINK}
+
+Video paso a paso:
+${NEW_CLAIM_VIDEO_LINK}
+
+También recomendamos visitar nuestro sitio web para familiarizarse con los requisitos de la reclamación y los documentos de respaldo necesarios para garantizar que su reclamación sea elegible para procesamiento.
+
+Sitio web:
+${WEBSITE_LINK}`,
     financeNotice: `Una vez actualizados los datos bancarios, Finanzas será notificado en:
 ${FINANCE_EMAIL}`,
     faqTitle: "Preguntas frecuentes:",
@@ -460,6 +611,8 @@ ${WEBSITE_LINK}`,
 
 Correo electrónico:
 ${SUPPORT_EMAIL}`,
+    backInstruction: "Responda B o Back para volver al menú principal.",
+    changeInstruction: "Responda 0 para cambiar el idioma.",
     backToMain: "Volver al menú principal",
     noFaqAnswer: `No encontré una respuesta de FAQ para eso. Un agente de soporte de VRA le ayudará.
 
@@ -467,71 +620,6 @@ Correo electrónico:
 ${SUPPORT_EMAIL}`,
   },
 };
-
-const faqPatterns = [
-  {
-    id: "vatPayment",
-    phrases: [
-      "when am i receiving the vat payment",
-      "when will i receive my vat payment",
-      "when will i receive my vat refund",
-      "متى سأستلم دفعة ضريبة القيمة المضافة",
-      "我什么时候收到增值税退款",
-      "wanneer ontvang ik de btw betaling",
-      "quand vais je recevoir le paiement de la tva",
-      "quand vais-je recevoir le paiement de la tva",
-      "wann erhalte ich die mehrwertsteuerzahlung",
-      "quando ricevero il pagamento iva",
-      "quando vou receber o pagamento do iva",
-      "когда я получу выплату ндс",
-      "cuando recibire el pago del iva",
-    ],
-  },
-  {
-    id: "vatAmount",
-    phrases: [
-      "what is my vat amount",
-      "ما هو مبلغ ضريبة القيمة المضافة",
-      "我的增值税金额是多少",
-      "wat is mijn btw bedrag",
-      "quel est mon montant de tva",
-      "wie hoch ist mein mehrwertsteuerbetrag",
-      "qual e il mio importo iva",
-      "qual e o meu valor de iva",
-      "qual é o meu valor de iva",
-      "какова моя сумма ндс",
-      "cual es mi monto de iva",
-      "cuál es mi monto de iva",
-    ],
-  },
-  {
-    id: "claimProcess",
-    phrases: [
-      "how do i claim",
-      "what is the process",
-      "كيف أقدم مطالبة",
-      "我如何申请",
-      "流程是什么",
-      "hoe dien ik een claim in",
-      "comment puis je faire une demande",
-      "comment puis-je faire une demande",
-      "quel est le processus",
-      "wie stelle ich einen antrag",
-      "wie ist der prozess",
-      "come posso richiedere il rimborso",
-      "qual e il processo",
-      "como faco a reclamacao",
-      "como faço a reclamação",
-      "qual e o processo",
-      "qual é o processo",
-      "как подать заявку",
-      "каков процесс",
-      "como reclamo",
-      "cual es el proceso",
-      "cuál es el proceso",
-    ],
-  },
-];
 
 function normalizeText(value) {
   return String(value || "")
@@ -576,7 +664,7 @@ function isFaqRequest(input) {
   const value = normalizeText(input);
 
   return [
-    "3",
+    "4",
     "faq",
     "frequently asked questions",
     "frequently asked questions menu",
@@ -617,9 +705,10 @@ function mainMenu(languageCode) {
 
 1 ${copy.statusOption}
 2 ${copy.bankingOption}
-3 ${copy.faqOption}
-4 ${copy.agentOption}
-5 ${copy.changeLanguageOption}`;
+3 ${copy.newClaimOption}
+4 ${copy.faqOption}
+5 ${copy.agentOption}
+6 ${copy.changeLanguageOption}`;
 }
 
 function faqMenu(languageCode) {
@@ -649,6 +738,15 @@ ${BANKING_LINK}
 ${copy.financeNotice}`;
 }
 
+function newClaimMessage(languageCode) {
+  const copy = t(languageCode);
+
+  return `${copy.newClaimReply}
+
+${copy.backInstruction}
+${copy.changeInstruction}`;
+}
+
 function agentMessage(languageCode) {
   return t(languageCode).agentReply;
 }
@@ -660,11 +758,7 @@ function matchFaq(input) {
   if (value === "2") return "vatAmount";
   if (value === "3") return "claimProcess";
 
-  const match = faqPatterns.find((item) =>
-    item.phrases.some((phrase) => value.includes(normalizeText(phrase)))
-  );
-
-  return match?.id || null;
+  return null;
 }
 
 function faqAnswer(input, languageCode) {
@@ -852,20 +946,18 @@ async function handleSupportInput(input, session, sendReply) {
     return;
   }
 
-  if (normalizedInput === "4") {
-    await sendReply(agentMessage(languageCode));
+  if (normalizedInput === "3") {
+    await sendReply(newClaimMessage(languageCode));
     return;
   }
 
   if (normalizedInput === "5") {
-    await showLanguageMenu(session, sendReply);
+    await sendReply(agentMessage(languageCode));
     return;
   }
 
-  const directFaqAnswer = faqAnswer(input, languageCode);
-
-  if (directFaqAnswer) {
-    await sendReply(directFaqAnswer);
+  if (normalizedInput === "6") {
+    await showLanguageMenu(session, sendReply);
     return;
   }
 
