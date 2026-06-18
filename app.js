@@ -80,6 +80,7 @@ ${FINANCE_EMAIL}`,
 Email:
 ${SUPPORT_EMAIL}`,
   },
+
   af: {
     welcome: "Welkom by VRA Ondersteuning 👋",
     chooseLanguage: "Kies asseblief jou taal:",
@@ -124,6 +125,7 @@ ${FINANCE_EMAIL}`,
 E-pos:
 ${SUPPORT_EMAIL}`,
   },
+
   fr: {
     welcome: "Bienvenue au support VRA 👋",
     chooseLanguage: "Veuillez choisir votre langue :",
@@ -168,6 +170,7 @@ ${FINANCE_EMAIL}`,
 E-mail :
 ${SUPPORT_EMAIL}`,
   },
+
   de: {
     welcome: "Willkommen beim VRA Support 👋",
     chooseLanguage: "Bitte wählen Sie Ihre Sprache:",
@@ -212,6 +215,7 @@ ${FINANCE_EMAIL}`,
 E-Mail:
 ${SUPPORT_EMAIL}`,
   },
+
   pt: {
     welcome: "Bem-vindo ao Suporte VRA 👋",
     chooseLanguage: "Escolha o seu idioma:",
@@ -256,6 +260,7 @@ ${FINANCE_EMAIL}`,
 Email:
 ${SUPPORT_EMAIL}`,
   },
+
   es: {
     welcome: "Bienvenido al Soporte VRA 👋",
     chooseLanguage: "Por favor elija su idioma:",
@@ -300,6 +305,7 @@ ${FINANCE_EMAIL}`,
 Correo electrónico:
 ${SUPPORT_EMAIL}`,
   },
+
   zh: {
     welcome: "欢迎使用 VRA 支持 👋",
     chooseLanguage: "请选择您的语言：",
@@ -415,18 +421,23 @@ function detectLanguage(input, fallback = "en") {
   const value = normalizeText(raw);
 
   if (/[\u4e00-\u9fff]/.test(raw)) return "zh";
+
   if (/\b(btw|wanneer|ontvang|terugbetaling|hoe eis|wat is)\b/.test(value)) {
     return "af";
   }
+
   if (/\b(quand|remboursement|tva|veuillez|comment puis|demande)\b/.test(value)) {
     return "fr";
   }
+
   if (/\b(wann|mehrwertsteuer|erhalte|anspruch|antrag|prozess)\b/.test(value)) {
     return "de";
   }
+
   if (/\b(quando|reembolso|iva|faco|reclamacao|processo)\b/.test(value)) {
     return "pt";
   }
+
   if (/\b(cuando|recibire|reembolso|iva|reclamo|proceso|monto)\b/.test(value)) {
     return "es";
   }
@@ -477,7 +488,6 @@ function isBackToMain(input) {
   const value = normalizeText(input);
 
   return [
-    "4",
     "b",
     "back",
     "main menu",
@@ -665,15 +675,16 @@ function getTelegramSession(chatId) {
 
 async function handleSupportInput(input, session, sendReply) {
   const languageCode = getSessionLanguage(session, input);
+  const normalizedInput = normalizeText(input);
 
-  if (input === "0" || normalizeText(input) === "change language") {
+  if (input === "0" || normalizedInput === "change language") {
     session.state = STATES.LANGUAGE;
     await sendReply(languageMenu());
     return;
   }
 
   if (session.state === STATES.LANGUAGE) {
-    const selectedLanguage = languageChoices[normalizeText(input)];
+    const selectedLanguage = languageChoices[normalizedInput];
 
     if (selectedLanguage) {
       session.languageCode = selectedLanguage.code;
@@ -687,19 +698,19 @@ async function handleSupportInput(input, session, sendReply) {
     return;
   }
 
-  if (isGreeting(input) || isBackToMain(input)) {
+  if (isGreeting(input)) {
     session.state = STATES.MAIN;
     await sendReply(mainMenu(languageCode));
     return;
   }
 
-  if (isFaqRequest(input)) {
-    session.state = STATES.FAQ;
-    await sendReply(faqMenu(languageCode));
-    return;
-  }
-
   if (session.state === STATES.FAQ) {
+    if (normalizedInput === "4" || isBackToMain(input)) {
+      session.state = STATES.MAIN;
+      await sendReply(mainMenu(languageCode));
+      return;
+    }
+
     const answer = faqAnswer(input, languageCode);
 
     if (answer) {
@@ -712,17 +723,29 @@ async function handleSupportInput(input, session, sendReply) {
     return;
   }
 
-  if (normalizeText(input) === "1") {
+  if (isBackToMain(input)) {
+    session.state = STATES.MAIN;
+    await sendReply(mainMenu(languageCode));
+    return;
+  }
+
+  if (isFaqRequest(input)) {
+    session.state = STATES.FAQ;
+    await sendReply(faqMenu(languageCode));
+    return;
+  }
+
+  if (normalizedInput === "1") {
     await sendReply(statusMessage(languageCode));
     return;
   }
 
-  if (normalizeText(input) === "2") {
+  if (normalizedInput === "2") {
     await sendReply(bankingMessage(languageCode));
     return;
   }
 
-  if (normalizeText(input) === "4") {
+  if (normalizedInput === "4") {
     await sendReply(agentMessage(languageCode));
     return;
   }
