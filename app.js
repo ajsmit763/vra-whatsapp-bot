@@ -13,6 +13,7 @@ const STATES = {
   LANGUAGE: "language",
   MAIN: "main",
   FAQ: "faq",
+  FEEDBACK: "feedback",
 };
 
 const whatsappSessions = new Map();
@@ -49,11 +50,14 @@ const translations = {
     newClaimOption: "New Claimant / Submit a New Claim",
     faqOption: "Frequently Asked Questions",
     agentOption: "Chat with an Agent",
+    feedbackOption: "Client Suggestions / Feedback",
     changeLanguageOption: "Change language",
     statusReply:
       "Please use the link below to check the status of your claim. You will need your VRA number.",
     bankingReply:
       "Please use the link below to update your banking details.\n\nFacial recognition is required.",
+    financeNotice: `Once banking details are updated, Finance will be notified at:
+${FINANCE_EMAIL}`,
     newClaimReply: `If you are a new claimant or would like to submit a VAT refund claim, please log in to our online portal and follow the step-by-step video guide provided below:
 
 Online Portal App:
@@ -66,8 +70,6 @@ We also recommend visiting our website to familiarise yourself with the claim re
 
 Website:
 ${WEBSITE_LINK}`,
-    financeNotice: `Once banking details are updated, Finance will be notified at:
-${FINANCE_EMAIL}`,
     faqTitle: "Frequently Asked Questions:",
     faqOptions: [
       "When am I receiving the VAT payment?",
@@ -91,6 +93,10 @@ ${WEBSITE_LINK}`,
 
 Email:
 ${SUPPORT_EMAIL}`,
+    feedbackIntro:
+      "Your feedback is important to us. We welcome any suggestions or comments that may help us improve our services and enhance your overall experience with VRA. Please feel free to share your feedback with us at any time.",
+    feedbackPrompt: "Please type your feedback below.",
+    feedbackReceived: "Thank you. Your feedback has been received.",
     backInstruction: "Reply B or Back to return to the main menu.",
     changeInstruction: "Reply 0 to change language.",
     backToMain: "Back to Main Menu",
@@ -107,11 +113,14 @@ ${SUPPORT_EMAIL}`,
     newClaimOption: "مطالب جديد / تقديم مطالبة جديدة",
     faqOption: "الأسئلة الشائعة",
     agentOption: "التحدث مع وكيل",
+    feedbackOption: "اقتراحات العملاء / الملاحظات",
     changeLanguageOption: "تغيير اللغة",
     statusReply:
       "يرجى استخدام الرابط أدناه للتحقق من حالة مطالبتك. ستحتاج إلى رقم VRA الخاص بك.",
     bankingReply:
       "يرجى استخدام الرابط أدناه لتحديث التفاصيل البنكية الخاصة بك.\n\nالتعرف على الوجه مطلوب.",
+    financeNotice: `بعد تحديث التفاصيل البنكية، سيتم إخطار قسم المالية على:
+${FINANCE_EMAIL}`,
     newClaimReply: `إذا كنت مطالباً جديداً أو ترغب في تقديم مطالبة استرداد ضريبة القيمة المضافة، يرجى تسجيل الدخول إلى بوابتنا الإلكترونية واتباع دليل الفيديو خطوة بخطوة أدناه:
 
 تطبيق البوابة الإلكترونية:
@@ -124,8 +133,6 @@ ${NEW_CLAIM_VIDEO_LINK}
 
 الموقع الإلكتروني:
 ${WEBSITE_LINK}`,
-    financeNotice: `بعد تحديث التفاصيل البنكية، سيتم إخطار قسم المالية على:
-${FINANCE_EMAIL}`,
     faqTitle: "الأسئلة الشائعة:",
     faqOptions: [
       "متى سأستلم دفعة ضريبة القيمة المضافة؟",
@@ -149,6 +156,10 @@ ${WEBSITE_LINK}`,
 
 البريد الإلكتروني:
 ${SUPPORT_EMAIL}`,
+    feedbackIntro:
+      "ملاحظاتك مهمة بالنسبة لنا. نرحب بأي اقتراحات أو تعليقات قد تساعدنا على تحسين خدماتنا وتعزيز تجربتك العامة مع VRA. لا تتردد في مشاركة ملاحظاتك معنا في أي وقت.",
+    feedbackPrompt: "يرجى كتابة ملاحظاتك أدناه.",
+    feedbackReceived: "شكراً لك. تم استلام ملاحظاتك.",
     backInstruction: "أرسل B أو Back للعودة إلى القائمة الرئيسية.",
     changeInstruction: "أرسل 0 لتغيير اللغة.",
     backToMain: "العودة إلى القائمة الرئيسية",
@@ -165,9 +176,12 @@ ${SUPPORT_EMAIL}`,
     newClaimOption: "新申请人 / 提交新申请",
     faqOption: "常见问题",
     agentOption: "与客服人员聊天",
+    feedbackOption: "客户建议 / 反馈",
     changeLanguageOption: "更改语言",
     statusReply: "请使用下面的链接查询您的索赔状态。您需要您的 VRA 编号。",
     bankingReply: "请使用下面的链接更新您的银行资料。\n\n需要进行面部识别。",
+    financeNotice: `银行资料更新后，财务部门将收到通知：
+${FINANCE_EMAIL}`,
     newClaimReply: `如果您是新申请人，或想提交增值税退款申请，请登录我们的在线门户，并按照下面提供的分步视频指南操作：
 
 在线门户应用：
@@ -180,8 +194,6 @@ ${NEW_CLAIM_VIDEO_LINK}
 
 网站：
 ${WEBSITE_LINK}`,
-    financeNotice: `银行资料更新后，财务部门将收到通知：
-${FINANCE_EMAIL}`,
     faqTitle: "常见问题：",
     faqOptions: [
       "我什么时候收到增值税退款？",
@@ -205,6 +217,10 @@ ${WEBSITE_LINK}`,
 
 电子邮件：
 ${SUPPORT_EMAIL}`,
+    feedbackIntro:
+      "您的反馈对我们很重要。我们欢迎任何有助于改进服务并提升您在 VRA 整体体验的建议或意见。欢迎您随时与我们分享反馈。",
+    feedbackPrompt: "请在下面输入您的反馈。",
+    feedbackReceived: "谢谢。您的反馈已收到。",
     backInstruction: "回复 B 或 Back 返回主菜单。",
     changeInstruction: "回复 0 更改语言。",
     backToMain: "返回主菜单",
@@ -221,11 +237,14 @@ ${SUPPORT_EMAIL}`,
     newClaimOption: "Nieuwe claimant / Nieuwe claim indienen",
     faqOption: "Veelgestelde vragen",
     agentOption: "Chat met een agent",
+    feedbackOption: "Suggesties / feedback van klanten",
     changeLanguageOption: "Taal wijzigen",
     statusReply:
       "Gebruik de onderstaande link om de status van uw claim te controleren. U heeft uw VRA-nummer nodig.",
     bankingReply:
       "Gebruik de onderstaande link om uw bankgegevens bij te werken.\n\nGezichtsherkenning is vereist.",
+    financeNotice: `Zodra de bankgegevens zijn bijgewerkt, wordt Finance op de hoogte gesteld via:
+${FINANCE_EMAIL}`,
     newClaimReply: `Als u een nieuwe claimant bent of een btw-teruggaafclaim wilt indienen, log dan in op ons online portaal en volg de stapsgewijze videogids hieronder:
 
 Online portaal-app:
@@ -238,8 +257,6 @@ Wij raden u ook aan onze website te bezoeken om vertrouwd te raken met de claimv
 
 Website:
 ${WEBSITE_LINK}`,
-    financeNotice: `Zodra de bankgegevens zijn bijgewerkt, wordt Finance op de hoogte gesteld via:
-${FINANCE_EMAIL}`,
     faqTitle: "Veelgestelde vragen:",
     faqOptions: [
       "Wanneer ontvang ik de btw-betaling?",
@@ -263,6 +280,10 @@ ${WEBSITE_LINK}`,
 
 E-mail:
 ${SUPPORT_EMAIL}`,
+    feedbackIntro:
+      "Uw feedback is belangrijk voor ons. Wij verwelkomen alle suggesties of opmerkingen die ons kunnen helpen onze diensten te verbeteren en uw algemene ervaring met VRA te versterken. U kunt uw feedback op elk moment met ons delen.",
+    feedbackPrompt: "Typ hieronder uw feedback.",
+    feedbackReceived: "Dank u. Uw feedback is ontvangen.",
     backInstruction: "Antwoord B of Back om terug te keren naar het hoofdmenu.",
     changeInstruction: "Antwoord 0 om de taal te wijzigen.",
     backToMain: "Terug naar hoofdmenu",
@@ -279,11 +300,14 @@ ${SUPPORT_EMAIL}`,
     newClaimOption: "Nouveau demandeur / Soumettre une nouvelle demande",
     faqOption: "Questions fréquemment posées",
     agentOption: "Discuter avec un agent",
+    feedbackOption: "Suggestions / commentaires des clients",
     changeLanguageOption: "Changer de langue",
     statusReply:
       "Veuillez utiliser le lien ci-dessous pour vérifier le statut de votre demande. Vous aurez besoin de votre numéro VRA.",
     bankingReply:
       "Veuillez utiliser le lien ci-dessous pour mettre à jour vos coordonnées bancaires.\n\nLa reconnaissance faciale est requise.",
+    financeNotice: `Une fois les coordonnées bancaires mises à jour, le service Finance sera informé à :
+${FINANCE_EMAIL}`,
     newClaimReply: `Si vous êtes un nouveau demandeur ou souhaitez soumettre une demande de remboursement de TVA, veuillez vous connecter à notre portail en ligne et suivre le guide vidéo étape par étape fourni ci-dessous :
 
 Application du portail en ligne :
@@ -296,8 +320,6 @@ Nous vous recommandons également de visiter notre site Web afin de vous familia
 
 Site Web :
 ${WEBSITE_LINK}`,
-    financeNotice: `Une fois les coordonnées bancaires mises à jour, le service Finance sera informé à :
-${FINANCE_EMAIL}`,
     faqTitle: "Questions fréquemment posées :",
     faqOptions: [
       "Quand vais-je recevoir le paiement de la TVA ?",
@@ -321,6 +343,10 @@ ${WEBSITE_LINK}`,
 
 E-mail :
 ${SUPPORT_EMAIL}`,
+    feedbackIntro:
+      "Vos commentaires sont importants pour nous. Nous accueillons toutes les suggestions ou remarques qui peuvent nous aider à améliorer nos services et à renforcer votre expérience globale avec VRA. N'hésitez pas à nous faire part de vos commentaires à tout moment.",
+    feedbackPrompt: "Veuillez saisir vos commentaires ci-dessous.",
+    feedbackReceived: "Merci. Vos commentaires ont été reçus.",
     backInstruction: "Répondez B ou Back pour revenir au menu principal.",
     changeInstruction: "Répondez 0 pour changer de langue.",
     backToMain: "Retour au menu principal",
@@ -337,11 +363,14 @@ ${SUPPORT_EMAIL}`,
     newClaimOption: "Neuer Antragsteller / Neuen Antrag einreichen",
     faqOption: "Häufig gestellte Fragen",
     agentOption: "Mit einem Agenten chatten",
+    feedbackOption: "Kundenvorschläge / Feedback",
     changeLanguageOption: "Sprache ändern",
     statusReply:
       "Bitte verwenden Sie den untenstehenden Link, um den Status Ihres Anspruchs zu prüfen. Sie benötigen Ihre VRA-Nummer.",
     bankingReply:
       "Bitte verwenden Sie den untenstehenden Link, um Ihre Bankdaten zu aktualisieren.\n\nGesichtserkennung ist erforderlich.",
+    financeNotice: `Sobald die Bankdaten aktualisiert wurden, wird die Finanzabteilung benachrichtigt unter:
+${FINANCE_EMAIL}`,
     newClaimReply: `Wenn Sie ein neuer Antragsteller sind oder einen Antrag auf Mehrwertsteuerrückerstattung einreichen möchten, melden Sie sich bitte in unserem Online-Portal an und folgen Sie der unten bereitgestellten Schritt-für-Schritt-Videoanleitung:
 
 Online-Portal-App:
@@ -354,8 +383,6 @@ Wir empfehlen Ihnen außerdem, unsere Website zu besuchen, um sich mit den Antra
 
 Website:
 ${WEBSITE_LINK}`,
-    financeNotice: `Sobald die Bankdaten aktualisiert wurden, wird die Finanzabteilung benachrichtigt unter:
-${FINANCE_EMAIL}`,
     faqTitle: "Häufig gestellte Fragen:",
     faqOptions: [
       "Wann erhalte ich die Mehrwertsteuerzahlung?",
@@ -379,6 +406,10 @@ ${WEBSITE_LINK}`,
 
 E-Mail:
 ${SUPPORT_EMAIL}`,
+    feedbackIntro:
+      "Ihr Feedback ist uns wichtig. Wir freuen uns über alle Vorschläge oder Kommentare, die uns helfen können, unsere Dienstleistungen zu verbessern und Ihre gesamte Erfahrung mit VRA zu optimieren. Sie können uns Ihr Feedback jederzeit mitteilen.",
+    feedbackPrompt: "Bitte geben Sie unten Ihr Feedback ein.",
+    feedbackReceived: "Vielen Dank. Ihr Feedback wurde erhalten.",
     backInstruction: "Antworten Sie mit B oder Back, um zum Hauptmenü zurückzukehren.",
     changeInstruction: "Antworten Sie mit 0, um die Sprache zu ändern.",
     backToMain: "Zurück zum Hauptmenü",
@@ -395,11 +426,14 @@ ${SUPPORT_EMAIL}`,
     newClaimOption: "Nuovo richiedente / Invia una nuova richiesta",
     faqOption: "Domande frequenti",
     agentOption: "Chatta con un agente",
+    feedbackOption: "Suggerimenti / feedback dei clienti",
     changeLanguageOption: "Cambia lingua",
     statusReply:
       "Utilizza il link qui sotto per controllare lo stato della tua richiesta. Avrai bisogno del tuo numero VRA.",
     bankingReply:
       "Utilizza il link qui sotto per aggiornare i tuoi dettagli bancari.\n\nIl riconoscimento facciale è richiesto.",
+    financeNotice: `Una volta aggiornati i dettagli bancari, il reparto Finance sarà informato a:
+${FINANCE_EMAIL}`,
     newClaimReply: `Se sei un nuovo richiedente o desideri inviare una richiesta di rimborso IVA, accedi al nostro portale online e segui la guida video passo dopo passo fornita di seguito:
 
 App del portale online:
@@ -412,8 +446,6 @@ Ti consigliamo inoltre di visitare il nostro sito web per familiarizzare con i r
 
 Sito web:
 ${WEBSITE_LINK}`,
-    financeNotice: `Una volta aggiornati i dettagli bancari, il reparto Finance sarà informato a:
-${FINANCE_EMAIL}`,
     faqTitle: "Domande frequenti:",
     faqOptions: [
       "Quando riceverò il pagamento IVA?",
@@ -437,6 +469,10 @@ ${WEBSITE_LINK}`,
 
 Email:
 ${SUPPORT_EMAIL}`,
+    feedbackIntro:
+      "Il tuo feedback è importante per noi. Accogliamo con piacere qualsiasi suggerimento o commento che possa aiutarci a migliorare i nostri servizi e la tua esperienza complessiva con VRA. Sentiti libero di condividere il tuo feedback con noi in qualsiasi momento.",
+    feedbackPrompt: "Digita il tuo feedback qui sotto.",
+    feedbackReceived: "Grazie. Il tuo feedback è stato ricevuto.",
     backInstruction: "Rispondi B o Back per tornare al menu principale.",
     changeInstruction: "Rispondi 0 per cambiare lingua.",
     backToMain: "Torna al menu principale",
@@ -453,11 +489,14 @@ ${SUPPORT_EMAIL}`,
     newClaimOption: "Novo reclamante / Submeter uma nova reclamação",
     faqOption: "Perguntas frequentes",
     agentOption: "Falar com um agente",
+    feedbackOption: "Sugestões / feedback do cliente",
     changeLanguageOption: "Alterar idioma",
     statusReply:
       "Use o link abaixo para verificar o estado da sua reclamação. Irá precisar do seu número VRA.",
     bankingReply:
       "Use o link abaixo para atualizar os seus dados bancários.\n\nO reconhecimento facial é obrigatório.",
+    financeNotice: `Assim que os dados bancários forem atualizados, o departamento financeiro será notificado em:
+${FINANCE_EMAIL}`,
     newClaimReply: `Se é um novo reclamante ou pretende submeter uma reclamação de reembolso de IVA, inicie sessão no nosso portal online e siga o guia em vídeo passo a passo fornecido abaixo:
 
 Aplicação do portal online:
@@ -470,8 +509,6 @@ Também recomendamos que visite o nosso website para se familiarizar com os requ
 
 Website:
 ${WEBSITE_LINK}`,
-    financeNotice: `Assim que os dados bancários forem atualizados, o departamento financeiro será notificado em:
-${FINANCE_EMAIL}`,
     faqTitle: "Perguntas frequentes:",
     faqOptions: [
       "Quando vou receber o pagamento do IVA?",
@@ -495,6 +532,10 @@ ${WEBSITE_LINK}`,
 
 Email:
 ${SUPPORT_EMAIL}`,
+    feedbackIntro:
+      "O seu feedback é importante para nós. Acolhemos quaisquer sugestões ou comentários que possam ajudar-nos a melhorar os nossos serviços e a melhorar a sua experiência geral com a VRA. Sinta-se à vontade para partilhar o seu feedback connosco a qualquer momento.",
+    feedbackPrompt: "Digite o seu feedback abaixo.",
+    feedbackReceived: "Obrigado. O seu feedback foi recebido.",
     backInstruction: "Responda B ou Back para voltar ao menu principal.",
     changeInstruction: "Responda 0 para alterar o idioma.",
     backToMain: "Voltar ao menu principal",
@@ -511,11 +552,14 @@ ${SUPPORT_EMAIL}`,
     newClaimOption: "Новый заявитель / Подать новую заявку",
     faqOption: "Часто задаваемые вопросы",
     agentOption: "Связаться с агентом",
+    feedbackOption: "Предложения / отзывы клиентов",
     changeLanguageOption: "Изменить язык",
     statusReply:
       "Пожалуйста, используйте ссылку ниже, чтобы проверить статус вашей заявки. Вам понадобится ваш номер VRA.",
     bankingReply:
       "Пожалуйста, используйте ссылку ниже, чтобы обновить банковские данные.\n\nТребуется распознавание лица.",
+    financeNotice: `После обновления банковских данных финансовый отдел будет уведомлен по адресу:
+${FINANCE_EMAIL}`,
     newClaimReply: `Если вы новый заявитель или хотите подать заявку на возврат НДС, пожалуйста, войдите в наш онлайн-портал и следуйте пошаговому видео-руководству ниже:
 
 Приложение онлайн-портала:
@@ -528,8 +572,6 @@ ${NEW_CLAIM_VIDEO_LINK}
 
 Сайт:
 ${WEBSITE_LINK}`,
-    financeNotice: `После обновления банковских данных финансовый отдел будет уведомлен по адресу:
-${FINANCE_EMAIL}`,
     faqTitle: "Часто задаваемые вопросы:",
     faqOptions: [
       "Когда я получу выплату НДС?",
@@ -553,6 +595,10 @@ ${WEBSITE_LINK}`,
 
 Эл. почта:
 ${SUPPORT_EMAIL}`,
+    feedbackIntro:
+      "Ваш отзыв важен для нас. Мы приветствуем любые предложения или комментарии, которые помогут нам улучшить наши услуги и ваш общий опыт работы с VRA. Пожалуйста, делитесь своим отзывом с нами в любое время.",
+    feedbackPrompt: "Пожалуйста, введите ваш отзыв ниже.",
+    feedbackReceived: "Спасибо. Ваш отзыв получен.",
     backInstruction: "Ответьте B или Back, чтобы вернуться в главное меню.",
     changeInstruction: "Ответьте 0, чтобы изменить язык.",
     backToMain: "Вернуться в главное меню",
@@ -569,11 +615,14 @@ ${SUPPORT_EMAIL}`,
     newClaimOption: "Nuevo reclamante / Enviar una nueva reclamación",
     faqOption: "Preguntas frecuentes",
     agentOption: "Chatear con un agente",
+    feedbackOption: "Sugerencias / comentarios del cliente",
     changeLanguageOption: "Cambiar idioma",
     statusReply:
       "Utilice el enlace de abajo para verificar el estado de su reclamación. Necesitará su número VRA.",
     bankingReply:
       "Utilice el enlace de abajo para actualizar sus datos bancarios.\n\nSe requiere reconocimiento facial.",
+    financeNotice: `Una vez actualizados los datos bancarios, Finanzas será notificado en:
+${FINANCE_EMAIL}`,
     newClaimReply: `Si es un nuevo reclamante o desea presentar una reclamación de reembolso del IVA, inicie sesión en nuestro portal en línea y siga la guía de video paso a paso que se proporciona a continuación:
 
 Aplicación del portal en línea:
@@ -586,8 +635,6 @@ También recomendamos visitar nuestro sitio web para familiarizarse con los requ
 
 Sitio web:
 ${WEBSITE_LINK}`,
-    financeNotice: `Una vez actualizados los datos bancarios, Finanzas será notificado en:
-${FINANCE_EMAIL}`,
     faqTitle: "Preguntas frecuentes:",
     faqOptions: [
       "¿Cuándo recibiré el pago del IVA?",
@@ -611,6 +658,10 @@ ${WEBSITE_LINK}`,
 
 Correo electrónico:
 ${SUPPORT_EMAIL}`,
+    feedbackIntro:
+      "Sus comentarios son importantes para nosotros. Agradecemos cualquier sugerencia o comentario que pueda ayudarnos a mejorar nuestros servicios y su experiencia general con VRA. No dude en compartir sus comentarios con nosotros en cualquier momento.",
+    feedbackPrompt: "Por favor escriba sus comentarios abajo.",
+    feedbackReceived: "Gracias. Sus comentarios han sido recibidos.",
     backInstruction: "Responda B o Back para volver al menú principal.",
     changeInstruction: "Responda 0 para cambiar el idioma.",
     backToMain: "Volver al menú principal",
@@ -708,7 +759,8 @@ function mainMenu(languageCode) {
 3 ${copy.newClaimOption}
 4 ${copy.faqOption}
 5 ${copy.agentOption}
-6 ${copy.changeLanguageOption}`;
+6 ${copy.feedbackOption}
+7 ${copy.changeLanguageOption}`;
 }
 
 function faqMenu(languageCode) {
@@ -749,6 +801,23 @@ ${copy.changeInstruction}`;
 
 function agentMessage(languageCode) {
   return t(languageCode).agentReply;
+}
+
+function feedbackPromptMessage(languageCode) {
+  const copy = t(languageCode);
+
+  return `${copy.feedbackIntro}
+
+${copy.feedbackPrompt}`;
+}
+
+function feedbackReceivedMessage(languageCode) {
+  const copy = t(languageCode);
+
+  return `${copy.feedbackReceived}
+
+${copy.backInstruction}
+${copy.changeInstruction}`;
 }
 
 function matchFaq(input) {
@@ -808,6 +877,16 @@ function getTelegramSession(chatId) {
   }
 
   return telegramSessions.get(chatId);
+}
+
+function logFeedback(platform, userId, session, feedbackMessage) {
+  console.log({
+    platform,
+    userId,
+    selectedLanguage: session.languageName || session.languageCode || "Unknown",
+    feedbackMessage,
+    timestamp: new Date().toISOString(),
+  });
 }
 
 async function sendWhatsAppMessage(to, body) {
@@ -871,11 +950,24 @@ async function showLanguageMenu(session, sendReply) {
   await sendReply(languageMenu());
 }
 
-async function handleSupportInput(input, session, sendReply) {
+async function handleSupportInput(input, session, sendReply, platform, userId) {
   const normalizedInput = normalizeText(input);
 
   if (normalizedInput === "0" || normalizedInput === "change language") {
     await showLanguageMenu(session, sendReply);
+    return;
+  }
+
+  if (session.state === STATES.FEEDBACK) {
+    if (isBackToMain(input)) {
+      session.state = STATES.MAIN;
+      await sendReply(mainMenu(session.languageCode));
+      return;
+    }
+
+    logFeedback(platform, userId, session, input);
+    session.state = STATES.MAIN;
+    await sendReply(feedbackReceivedMessage(session.languageCode));
     return;
   }
 
@@ -957,6 +1049,12 @@ async function handleSupportInput(input, session, sendReply) {
   }
 
   if (normalizedInput === "6") {
+    session.state = STATES.FEEDBACK;
+    await sendReply(feedbackPromptMessage(languageCode));
+    return;
+  }
+
+  if (normalizedInput === "7") {
     await showLanguageMenu(session, sendReply);
     return;
   }
@@ -995,8 +1093,12 @@ app.post("/webhook", async (req, res) => {
 
     const session = getWhatsAppSession(from);
 
-    await handleSupportInput(input, session, (reply) =>
-      sendWhatsAppMessage(from, reply)
+    await handleSupportInput(
+      input,
+      session,
+      (reply) => sendWhatsAppMessage(from, reply),
+      "WhatsApp",
+      from
     );
   } catch (error) {
     console.error("WhatsApp webhook processing error:", error);
@@ -1017,8 +1119,12 @@ app.post("/telegram-webhook", async (req, res) => {
 
     const session = getTelegramSession(chatId);
 
-    await handleSupportInput(input, session, (reply) =>
-      sendTelegramMessage(chatId, reply)
+    await handleSupportInput(
+      input,
+      session,
+      (reply) => sendTelegramMessage(chatId, reply),
+      "Telegram",
+      chatId
     );
   } catch (error) {
     console.error("Telegram webhook processing error:", error);
