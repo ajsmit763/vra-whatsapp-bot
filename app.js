@@ -113,10 +113,10 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "Please select a rating from 1 to 5.",
     reviewReceived: "Thank you for your response. Your review has been received.",
     invalidInput: "Please select a valid option from the menu.",
+    noFaqAnswer: "I could not find an FAQ answer for that.",
     backInstruction: "Reply B or Back to return to the main menu.",
     doneInstruction: "Reply D or Done to review our service.",
     changeInstruction: "Reply 0 to change language.",
-    noFaqAnswer: "I could not find an FAQ answer for that.",
   },
 
   ar: {
@@ -187,10 +187,10 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "يرجى اختيار تقييم من 1 إلى 5.",
     reviewReceived: "شكراً على ردك. تم استلام تقييمك.",
     invalidInput: "يرجى اختيار خيار صحيح من القائمة.",
+    noFaqAnswer: "لم أتمكن من العثور على إجابة لهذا السؤال.",
     backInstruction: "أرسل B أو Back للعودة إلى القائمة الرئيسية.",
     doneInstruction: "أرسل D أو Done لتقييم خدمتنا.",
     changeInstruction: "أرسل 0 لتغيير اللغة.",
-    noFaqAnswer: "لم أتمكن من العثور على إجابة لهذا السؤال.",
   },
 
   zh: {
@@ -259,10 +259,10 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "请选择 1 到 5 的评分。",
     reviewReceived: "感谢您的回复。您的评价已收到。",
     invalidInput: "请从菜单中选择有效选项。",
+    noFaqAnswer: "我找不到该问题的 FAQ 答案。",
     backInstruction: "回复 B 或 Back 返回主菜单。",
     doneInstruction: "回复 D 或 Done 评价我们的服务。",
     changeInstruction: "回复 0 更改语言。",
-    noFaqAnswer: "我找不到该问题的 FAQ 答案。",
   },
 
   nl: {
@@ -333,10 +333,10 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "Selecteer een rating van 1 tot 5.",
     reviewReceived: "Dank u voor uw reactie. Uw beoordeling is ontvangen.",
     invalidInput: "Selecteer een geldige optie uit het menu.",
+    noFaqAnswer: "Ik kon geen FAQ-antwoord daarvoor vinden.",
     backInstruction: "Antwoord B of Back om terug te keren naar het hoofdmenu.",
     doneInstruction: "Antwoord D of Done om onze service te beoordelen.",
     changeInstruction: "Antwoord 0 om de taal te wijzigen.",
-    noFaqAnswer: "Ik kon geen FAQ-antwoord daarvoor vinden.",
   },
 
   fr: {
@@ -407,10 +407,10 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "Veuillez sélectionner une note de 1 à 5.",
     reviewReceived: "Merci pour votre réponse. Votre avis a été reçu.",
     invalidInput: "Veuillez sélectionner une option valide dans le menu.",
+    noFaqAnswer: "Je n'ai pas trouvé de réponse FAQ pour cela.",
     backInstruction: "Répondez B ou Back pour revenir au menu principal.",
     doneInstruction: "Répondez D ou Done pour évaluer notre service.",
     changeInstruction: "Répondez 0 pour changer de langue.",
-    noFaqAnswer: "Je n'ai pas trouvé de réponse FAQ pour cela.",
   },
 
   de: {
@@ -481,10 +481,10 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "Bitte wählen Sie eine Bewertung von 1 bis 5.",
     reviewReceived: "Vielen Dank für Ihre Antwort. Ihre Bewertung wurde erhalten.",
     invalidInput: "Bitte wählen Sie eine gültige Option aus dem Menü.",
+    noFaqAnswer: "Ich konnte keine FAQ-Antwort dafür finden.",
     backInstruction: "Antworten Sie mit B oder Back, um zum Hauptmenü zurückzukehren.",
     doneInstruction: "Antworten Sie mit D oder Done, um unseren Service zu bewerten.",
     changeInstruction: "Antworten Sie mit 0, um die Sprache zu ändern.",
-    noFaqAnswer: "Ich konnte keine FAQ-Antwort dafür finden.",
   },
 
   it: {
@@ -555,10 +555,10 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "Seleziona una valutazione da 1 a 5.",
     reviewReceived: "Grazie per la tua risposta. La tua recensione è stata ricevuta.",
     invalidInput: "Seleziona un'opzione valida dal menu.",
+    noFaqAnswer: "Non ho trovato una risposta FAQ per questo.",
     backInstruction: "Rispondi B o Back per tornare al menu principale.",
     doneInstruction: "Rispondi D o Done per recensire il nostro servizio.",
     changeInstruction: "Rispondi 0 per cambiare lingua.",
-    noFaqAnswer: "Non ho trovato una risposta FAQ per questo.",
   },
 
   pt: {
@@ -629,10 +629,10 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "Selecione uma classificação de 1 a 5.",
     reviewReceived: "Obrigado pela sua resposta. A sua avaliação foi recebida.",
     invalidInput: "Selecione uma opção válida no menu.",
+    noFaqAnswer: "Não encontrei uma resposta nas FAQ para isso.",
     backInstruction: "Responda B ou Back para voltar ao menu principal.",
     doneInstruction: "Responda D ou Done para avaliar o nosso serviço.",
     changeInstruction: "Responda 0 para alterar o idioma.",
-    noFaqAnswer: "Não encontrei uma resposta nas FAQ para isso.",
   },
 
   ru: {
@@ -703,10 +703,10 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "Пожалуйста, выберите оценку от 1 до 5.",
     reviewReceived: "Спасибо за ваш ответ. Ваш отзыв получен.",
     invalidInput: "Пожалуйста, выберите правильный пункт меню.",
+    noFaqAnswer: "Я не смог найти ответ в FAQ на этот вопрос.",
     backInstruction: "Ответьте B или Back, чтобы вернуться в главное меню.",
     doneInstruction: "Ответьте D или Done, чтобы оценить наш сервис.",
     changeInstruction: "Ответьте 0, чтобы изменить язык.",
-    noFaqAnswer: "Я не смог найти ответ в FAQ на этот вопрос.",
   },
 
   es: {
@@ -777,10 +777,10 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "Por favor seleccione una calificación del 1 al 5.",
     reviewReceived: "Gracias por su respuesta. Su reseña ha sido recibida.",
     invalidInput: "Por favor seleccione una opción válida del menú.",
+    noFaqAnswer: "No encontré una respuesta de FAQ para eso.",
     backInstruction: "Responda B o Back para volver al menú principal.",
     doneInstruction: "Responda D o Done para evaluar nuestro servicio.",
     changeInstruction: "Responda 0 para cambiar el idioma.",
-    noFaqAnswer: "No encontré una respuesta de FAQ para eso.",
   },
 };
 
@@ -1143,9 +1143,36 @@ function logReview(platform, userId, session, ratingNumber, ratingLabel) {
   });
 }
 
+function formatWhatsAppRecipient(number) {
+  if (!number) {
+    return "";
+  }
+
+  let formatted = String(number).trim().replace(/\s+/g, "");
+
+  if (formatted.startsWith("+")) {
+    formatted = formatted.slice(1);
+  }
+
+  formatted = formatted.replace(/\D/g, "");
+
+  if (formatted.startsWith("0")) {
+    formatted = `27${formatted.slice(1)}`;
+  }
+
+  return formatted;
+}
+
 async function sendWhatsAppMessage(to, body) {
   if (!WHATSAPP_TOKEN || !PHONE_NUMBER_ID) {
     console.error("Missing WHATSAPP_TOKEN or PHONE_NUMBER_ID");
+    return;
+  }
+
+  const recipient = formatWhatsAppRecipient(to);
+
+  if (!recipient) {
+    console.error("Missing WhatsApp recipient");
     return;
   }
 
@@ -1159,7 +1186,7 @@ async function sendWhatsAppMessage(to, body) {
       },
       body: JSON.stringify({
         messaging_product: "whatsapp",
-        to,
+        to: recipient,
         type: "text",
         text: { body },
       }),
@@ -1204,11 +1231,6 @@ async function showLanguageMenu(session, sendReply) {
   await sendReply(languageMenu());
 }
 
-async function startReview(session, sendReply) {
-  session.state = STATES.REVIEW;
-  await sendReply(reviewPromptMessage(session.languageCode || "en"));
-}
-
 async function handleSupportInput(input, session, sendReply, platform, userId) {
   const normalizedInput = normalizeText(input);
 
@@ -1234,7 +1256,8 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
   }
 
   if (isDoneRequest(input) && session.languageCode && session.state !== STATES.COMPLETE) {
-    await startReview(session, sendReply);
+    session.state = STATES.REVIEW;
+    await sendReply(reviewPromptMessage(session.languageCode));
     return;
   }
 
@@ -1370,13 +1393,15 @@ app.post("/webhook", async (req, res) => {
   res.sendStatus(200);
 
   try {
-    const message = req.body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
+    const value = req.body.entry?.[0]?.changes?.[0]?.value;
+    const message = value?.messages?.[0];
 
     if (!message || message.type !== "text") {
       return;
     }
 
-    const from = message.from;
+    const rawFrom = value?.contacts?.[0]?.wa_id || message.from;
+    const from = formatWhatsAppRecipient(rawFrom);
     const input = message.text?.body?.trim();
 
     if (!from || !input) {
