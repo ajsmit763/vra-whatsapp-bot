@@ -47,6 +47,8 @@ const languageChoices = {
 const translations = {
   en: {
     mainTitle: "VRA Main Menu:",
+    supportHours:
+      "Please note: Our support team is available from 07:00 to 21:00, Monday to Sunday. The support bot remains available 24/7.",
     statusOption: "Status of claim",
     bankingOption: "Update banking details",
     newClaimOption: "New Claimant / Submit a New Claim",
@@ -113,28 +115,32 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "Please select a rating from 1 to 5.",
     reviewReceived: "Thank you for your response. Your review has been received.",
     invalidInput: "Please select a valid option from the menu.",
-    noFaqAnswer: "I could not find an FAQ answer for that.",
+    noFaqAnswer: `I could not find an FAQ answer for that. A VRA support agent will assist you.
+
+Email:
+${SUPPORT_EMAIL}`,
     backInstruction: "Reply B or Back to return to the main menu.",
     doneInstruction: "Reply D or Done to review our service.",
     changeInstruction: "Reply 0 to change language.",
   },
-
   ar: {
     mainTitle: "القائمة الرئيسية لـ VRA:",
+    supportHours:
+      "يرجى الملاحظة: فريق الدعم لدينا متاح من 07:00 إلى 21:00، من الاثنين إلى الأحد. يظل بوت الدعم متاحًا على مدار الساعة طوال أيام الأسبوع.",
     statusOption: "حالة المطالبة",
     bankingOption: "تحديث التفاصيل البنكية",
     newClaimOption: "مطالب جديد / تقديم مطالبة جديدة",
     faqOption: "الأسئلة الشائعة",
     agentOption: "التحدث مع وكيل",
-    feedbackOption: "اقتراحات العملاء / الملاحظات",
+    feedbackOption: "اقتراحات / ملاحظات العملاء",
     changeLanguageOption: "تغيير اللغة",
     statusReply:
       "يرجى استخدام الرابط أدناه للتحقق من حالة مطالبتك. ستحتاج إلى رقم VRA الخاص بك.",
     bankingReply:
-      "يرجى استخدام الرابط أدناه لتحديث التفاصيل البنكية الخاصة بك.\n\nالتعرف على الوجه مطلوب.",
+      "يرجى استخدام الرابط أدناه لتحديث تفاصيلك البنكية.\n\nالتعرف على الوجه مطلوب.",
     financeNotice: `بعد تحديث التفاصيل البنكية، سيتم إخطار قسم المالية على:
 ${FINANCE_EMAIL}`,
-    newClaimReply: `إذا كنت مطالباً جديداً أو ترغب في تقديم مطالبة استرداد ضريبة القيمة المضافة، يرجى تسجيل الدخول إلى بوابتنا الإلكترونية واتباع دليل الفيديو خطوة بخطوة أدناه:
+    newClaimReply: `إذا كنت مطالبًا جديدًا أو ترغب في تقديم مطالبة استرداد ضريبة القيمة المضافة، يرجى تسجيل الدخول إلى بوابتنا الإلكترونية واتباع دليل الفيديو خطوة بخطوة أدناه:
 
 تطبيق البوابة الإلكترونية:
 ${NEW_CLAIM_PORTAL_LINK}
@@ -142,7 +148,7 @@ ${NEW_CLAIM_PORTAL_LINK}
 فيديو خطوة بخطوة:
 ${NEW_CLAIM_VIDEO_LINK}
 
-نوصي أيضاً بزيارة موقعنا الإلكتروني للتعرف على متطلبات المطالبة والمستندات الداعمة المطلوبة لضمان أن مطالبتك مؤهلة للمعالجة.
+نوصي أيضًا بزيارة موقعنا الإلكتروني للتعرف على متطلبات المطالبة والمستندات الداعمة المطلوبة لضمان أن مطالبتك مؤهلة للمعالجة.
 
 الموقع الإلكتروني:
 ${WEBSITE_LINK}`,
@@ -170,31 +176,35 @@ ${WEBSITE_LINK}`,
 البريد الإلكتروني:
 ${SUPPORT_EMAIL}`,
     feedbackIntro:
-      "ملاحظاتك مهمة بالنسبة لنا. نرحب بأي اقتراحات أو تعليقات قد تساعدنا على تحسين خدماتنا وتعزيز تجربتك العامة مع VRA. لا تتردد في مشاركة ملاحظاتك معنا في أي وقت.",
+      "ملاحظاتك مهمة لنا. نرحب بأي اقتراحات أو تعليقات قد تساعدنا على تحسين خدماتنا وتعزيز تجربتك العامة مع VRA. لا تتردد في مشاركة ملاحظاتك معنا في أي وقت.",
     feedbackPrompt: "يرجى كتابة ملاحظاتك أدناه.",
-    feedbackReceived: "شكراً لك. تم استلام ملاحظاتك.",
+    feedbackReceived: "شكرًا لك. تم استلام ملاحظاتك.",
     reviewTitle: "مراجعة العميل / التقييمات",
     reviewIntro:
-      "نقدّر رأيك ونرحب بتقييمك لخدماتنا. تساعدنا تقييماتك وتعليقاتك في الحفاظ على معايير خدمة عالية وتساعد العملاء الآخرين على اتخاذ قرارات مستنيرة.",
+      "نحن نقدر رأيك وسنكون ممتنين لتقييمك لخدماتنا. تساعدنا تقييماتك وتعليقاتك في الحفاظ على معايير خدمة عالية وتساعد العملاء الآخرين على اتخاذ قرارات مستنيرة.",
     reviewPrompt: "يرجى تقييم تجربتك مع VRA:",
     ratingLabels: {
-      "1": "سيئ جداً",
+      "1": "سيئ جدًا",
       "2": "سيئ",
       "3": "متوسط",
       "4": "جيد",
       "5": "ممتاز",
     },
     invalidRating: "يرجى اختيار تقييم من 1 إلى 5.",
-    reviewReceived: "شكراً على ردك. تم استلام تقييمك.",
-    invalidInput: "يرجى اختيار خيار صحيح من القائمة.",
-    noFaqAnswer: "لم أتمكن من العثور على إجابة لهذا السؤال.",
+    reviewReceived: "شكرًا لك على ردك. تم استلام مراجعتك.",
+    invalidInput: "يرجى اختيار خيار صالح من القائمة.",
+    noFaqAnswer: `لم أتمكن من العثور على إجابة لهذا السؤال. سيساعدك وكيل دعم VRA.
+
+البريد الإلكتروني:
+${SUPPORT_EMAIL}`,
     backInstruction: "أرسل B أو Back للعودة إلى القائمة الرئيسية.",
     doneInstruction: "أرسل D أو Done لتقييم خدمتنا.",
     changeInstruction: "أرسل 0 لتغيير اللغة.",
   },
-
   zh: {
     mainTitle: "VRA 主菜单：",
+    supportHours:
+      "请注意：我们的支持团队服务时间为周一至周日 07:00 至 21:00。支持机器人全天候 24/7 可用。",
     statusOption: "索赔状态",
     bankingOption: "更新银行资料",
     newClaimOption: "新申请人 / 提交新申请",
@@ -204,7 +214,7 @@ ${SUPPORT_EMAIL}`,
     changeLanguageOption: "更改语言",
     statusReply: "请使用下面的链接查询您的索赔状态。您需要您的 VRA 编号。",
     bankingReply: "请使用下面的链接更新您的银行资料。\n\n需要进行面部识别。",
-    financeNotice: `银行资料更新后，财务部门将收到通知：
+    financeNotice: `银行资料更新后，财务部将收到通知：
 ${FINANCE_EMAIL}`,
     newClaimReply: `如果您是新申请人，或想提交增值税退款申请，请登录我们的在线门户，并按照下面提供的分步视频指南操作：
 
@@ -247,26 +257,30 @@ ${SUPPORT_EMAIL}`,
     feedbackReceived: "谢谢。您的反馈已收到。",
     reviewTitle: "客户评价 / 评分",
     reviewIntro:
-      "我们重视您的意见，并希望您评价我们的服务。您的评分和评论有助于我们保持高服务标准，并帮助其他客户做出明智决定。",
-    reviewPrompt: "请评价您对 VRA 的体验：",
+      "我们重视您的意见，并希望您对我们的服务进行评价。您的评分和评论有助于我们保持高服务标准，并帮助其他客户做出明智决定。",
+    reviewPrompt: "请为您在 VRA 的体验评分：",
     ratingLabels: {
       "1": "非常差",
       "2": "差",
       "3": "一般",
       "4": "好",
-      "5": "非常好",
+      "5": "优秀",
     },
     invalidRating: "请选择 1 到 5 的评分。",
     reviewReceived: "感谢您的回复。您的评价已收到。",
     invalidInput: "请从菜单中选择有效选项。",
-    noFaqAnswer: "我找不到该问题的 FAQ 答案。",
+    noFaqAnswer: `我找不到该问题的 FAQ 答案。VRA 支持人员将协助您。
+
+电子邮件：
+${SUPPORT_EMAIL}`,
     backInstruction: "回复 B 或 Back 返回主菜单。",
     doneInstruction: "回复 D 或 Done 评价我们的服务。",
     changeInstruction: "回复 0 更改语言。",
   },
-
   nl: {
     mainTitle: "VRA Hoofdmenu:",
+    supportHours:
+      "Let op: Ons supportteam is beschikbaar van 07:00 tot 21:00, maandag tot en met zondag. De supportbot blijft 24/7 beschikbaar.",
     statusOption: "Status van claim",
     bankingOption: "Bankgegevens bijwerken",
     newClaimOption: "Nieuwe claimant / Nieuwe claim indienen",
@@ -321,7 +335,7 @@ ${SUPPORT_EMAIL}`,
     feedbackReceived: "Dank u. Uw feedback is ontvangen.",
     reviewTitle: "Klantbeoordeling / Ratings",
     reviewIntro:
-      "Wij waarderen uw mening en stellen uw beoordeling van onze diensten op prijs. Uw ratings en opmerkingen helpen ons hoge servicenormen te handhaven en andere klanten weloverwogen beslissingen te nemen.",
+      "Wij waarderen uw mening en zouden uw beoordeling van onze diensten op prijs stellen. Uw ratings en opmerkingen helpen ons hoge servicestandaarden te handhaven en helpen andere klanten weloverwogen beslissingen te nemen.",
     reviewPrompt: "Beoordeel uw ervaring met VRA:",
     ratingLabels: {
       "1": "Zeer slecht",
@@ -333,14 +347,18 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "Selecteer een rating van 1 tot 5.",
     reviewReceived: "Dank u voor uw reactie. Uw beoordeling is ontvangen.",
     invalidInput: "Selecteer een geldige optie uit het menu.",
-    noFaqAnswer: "Ik kon geen FAQ-antwoord daarvoor vinden.",
+    noFaqAnswer: `Ik kon geen FAQ-antwoord daarvoor vinden. Een VRA-supportagent zal u helpen.
+
+E-mail:
+${SUPPORT_EMAIL}`,
     backInstruction: "Antwoord B of Back om terug te keren naar het hoofdmenu.",
     doneInstruction: "Antwoord D of Done om onze service te beoordelen.",
     changeInstruction: "Antwoord 0 om de taal te wijzigen.",
   },
-
   fr: {
     mainTitle: "Menu principal VRA :",
+    supportHours:
+      "Veuillez noter : Notre équipe d'assistance est disponible de 07:00 à 21:00, du lundi au dimanche. Le bot d'assistance reste disponible 24/7.",
     statusOption: "Statut de la demande",
     bankingOption: "Mettre à jour les coordonnées bancaires",
     newClaimOption: "Nouveau demandeur / Soumettre une nouvelle demande",
@@ -390,13 +408,13 @@ ${WEBSITE_LINK}`,
 E-mail :
 ${SUPPORT_EMAIL}`,
     feedbackIntro:
-      "Vos commentaires sont importants pour nous. Nous accueillons toutes les suggestions ou remarques qui peuvent nous aider à améliorer nos services et à renforcer votre expérience globale avec VRA. N'hésitez pas à nous faire part de vos commentaires à tout moment.",
+      "Vos commentaires sont importants pour nous. Nous accueillons toutes suggestions ou remarques pouvant nous aider à améliorer nos services et votre expérience globale avec VRA. N'hésitez pas à partager vos commentaires avec nous à tout moment.",
     feedbackPrompt: "Veuillez saisir vos commentaires ci-dessous.",
     feedbackReceived: "Merci. Vos commentaires ont été reçus.",
-    reviewTitle: "Avis client / Notes",
+    reviewTitle: "Avis client / Évaluations",
     reviewIntro:
-      "Votre avis est important pour nous et nous apprécierions votre évaluation de nos services. Vos notes et commentaires nous aident à maintenir des normes de service élevées et aident d'autres clients à prendre des décisions éclairées.",
-    reviewPrompt: "Veuillez noter votre expérience avec VRA :",
+      "Nous apprécions votre opinion et serions reconnaissants de recevoir votre avis sur nos services. Vos évaluations et commentaires nous aident à maintenir des normes de service élevées et aident d'autres clients à prendre des décisions éclairées.",
+    reviewPrompt: "Veuillez évaluer votre expérience avec VRA :",
     ratingLabels: {
       "1": "Très mauvais",
       "2": "Mauvais",
@@ -407,14 +425,18 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "Veuillez sélectionner une note de 1 à 5.",
     reviewReceived: "Merci pour votre réponse. Votre avis a été reçu.",
     invalidInput: "Veuillez sélectionner une option valide dans le menu.",
-    noFaqAnswer: "Je n'ai pas trouvé de réponse FAQ pour cela.",
+    noFaqAnswer: `Je n'ai pas trouvé de réponse FAQ pour cela. Un agent du support VRA vous aidera.
+
+E-mail :
+${SUPPORT_EMAIL}`,
     backInstruction: "Répondez B ou Back pour revenir au menu principal.",
     doneInstruction: "Répondez D ou Done pour évaluer notre service.",
     changeInstruction: "Répondez 0 pour changer de langue.",
   },
-
   de: {
     mainTitle: "VRA Hauptmenü:",
+    supportHours:
+      "Bitte beachten Sie: Unser Support-Team ist von 07:00 bis 21:00 Uhr, Montag bis Sonntag, verfügbar. Der Support-Bot bleibt rund um die Uhr verfügbar.",
     statusOption: "Status des Anspruchs",
     bankingOption: "Bankdaten aktualisieren",
     newClaimOption: "Neuer Antragsteller / Neuen Antrag einreichen",
@@ -464,12 +486,12 @@ ${WEBSITE_LINK}`,
 E-Mail:
 ${SUPPORT_EMAIL}`,
     feedbackIntro:
-      "Ihr Feedback ist uns wichtig. Wir freuen uns über alle Vorschläge oder Kommentare, die uns helfen können, unsere Dienstleistungen zu verbessern und Ihre gesamte Erfahrung mit VRA zu optimieren. Sie können uns Ihr Feedback jederzeit mitteilen.",
+      "Ihr Feedback ist uns wichtig. Wir begrüßen alle Vorschläge oder Kommentare, die uns helfen können, unsere Dienstleistungen zu verbessern und Ihre allgemeine Erfahrung mit VRA zu stärken. Teilen Sie uns Ihr Feedback gerne jederzeit mit.",
     feedbackPrompt: "Bitte geben Sie unten Ihr Feedback ein.",
     feedbackReceived: "Vielen Dank. Ihr Feedback wurde erhalten.",
-    reviewTitle: "Kundenbewertung / Ratings",
+    reviewTitle: "Kundenbewertung / Bewertungen",
     reviewIntro:
-      "Ihre Meinung ist uns wichtig und wir würden uns über Ihre Bewertung unserer Dienstleistungen freuen. Ihre Bewertungen und Kommentare helfen uns, hohe Servicestandards einzuhalten und anderen Kunden fundierte Entscheidungen zu ermöglichen.",
+      "Wir schätzen Ihre Meinung und würden uns über Ihre Bewertung unserer Dienstleistungen freuen. Ihre Bewertungen und Kommentare helfen uns, hohe Servicestandards aufrechtzuerhalten und anderen Kunden fundierte Entscheidungen zu ermöglichen.",
     reviewPrompt: "Bitte bewerten Sie Ihre Erfahrung mit VRA:",
     ratingLabels: {
       "1": "Sehr schlecht",
@@ -481,14 +503,18 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "Bitte wählen Sie eine Bewertung von 1 bis 5.",
     reviewReceived: "Vielen Dank für Ihre Antwort. Ihre Bewertung wurde erhalten.",
     invalidInput: "Bitte wählen Sie eine gültige Option aus dem Menü.",
-    noFaqAnswer: "Ich konnte keine FAQ-Antwort dafür finden.",
+    noFaqAnswer: `Ich konnte keine FAQ-Antwort dafür finden. Ein VRA-Supportagent wird Ihnen helfen.
+
+E-Mail:
+${SUPPORT_EMAIL}`,
     backInstruction: "Antworten Sie mit B oder Back, um zum Hauptmenü zurückzukehren.",
     doneInstruction: "Antworten Sie mit D oder Done, um unseren Service zu bewerten.",
     changeInstruction: "Antworten Sie mit 0, um die Sprache zu ändern.",
   },
-
   it: {
     mainTitle: "Menu principale VRA:",
+    supportHours:
+      "Nota bene: Il nostro team di supporto è disponibile dalle 07:00 alle 21:00, dal lunedì alla domenica. Il bot di supporto rimane disponibile 24/7.",
     statusOption: "Stato della richiesta",
     bankingOption: "Aggiorna dettagli bancari",
     newClaimOption: "Nuovo richiedente / Invia una nuova richiesta",
@@ -499,7 +525,7 @@ ${SUPPORT_EMAIL}`,
     statusReply:
       "Utilizza il link qui sotto per controllare lo stato della tua richiesta. Avrai bisogno del tuo numero VRA.",
     bankingReply:
-      "Utilizza il link qui sotto per aggiornare i tuoi dettagli bancari.\n\nIl riconoscimento facciale è richiesto.",
+      "Utilizza il link qui sotto per aggiornare i tuoi dettagli bancari.\n\nÈ richiesto il riconoscimento facciale.",
     financeNotice: `Una volta aggiornati i dettagli bancari, il reparto Finance sarà informato a:
 ${FINANCE_EMAIL}`,
     newClaimReply: `Se sei un nuovo richiedente o desideri inviare una richiesta di rimborso IVA, accedi al nostro portale online e segui la guida video passo dopo passo fornita di seguito:
@@ -529,7 +555,7 @@ ${SUPPORT_EMAIL}
 o il nostro team finanziario a:
 ${FINANCE_EMAIL}
 
-Ti forniranno le informazioni necessarie sul tuo importo IVA.`,
+Forniranno le informazioni necessarie riguardo al tuo importo IVA.`,
     claimProcessAnswer: `Visita il nostro sito web per il processo completo di richiesta e la documentazione richiesta:
 
 ${WEBSITE_LINK}`,
@@ -538,7 +564,7 @@ ${WEBSITE_LINK}`,
 Email:
 ${SUPPORT_EMAIL}`,
     feedbackIntro:
-      "Il tuo feedback è importante per noi. Accogliamo con piacere qualsiasi suggerimento o commento che possa aiutarci a migliorare i nostri servizi e la tua esperienza complessiva con VRA. Sentiti libero di condividere il tuo feedback con noi in qualsiasi momento.",
+      "Il tuo feedback è importante per noi. Accogliamo qualsiasi suggerimento o commento che possa aiutarci a migliorare i nostri servizi e la tua esperienza complessiva con VRA. Sentiti libero di condividere il tuo feedback con noi in qualsiasi momento.",
     feedbackPrompt: "Digita il tuo feedback qui sotto.",
     feedbackReceived: "Grazie. Il tuo feedback è stato ricevuto.",
     reviewTitle: "Recensione cliente / Valutazioni",
@@ -555,28 +581,32 @@ ${SUPPORT_EMAIL}`,
     invalidRating: "Seleziona una valutazione da 1 a 5.",
     reviewReceived: "Grazie per la tua risposta. La tua recensione è stata ricevuta.",
     invalidInput: "Seleziona un'opzione valida dal menu.",
-    noFaqAnswer: "Non ho trovato una risposta FAQ per questo.",
+    noFaqAnswer: `Non ho trovato una risposta FAQ per questo. Un agente di supporto VRA ti assisterà.
+
+Email:
+${SUPPORT_EMAIL}`,
     backInstruction: "Rispondi B o Back per tornare al menu principale.",
     doneInstruction: "Rispondi D o Done per recensire il nostro servizio.",
     changeInstruction: "Rispondi 0 per cambiare lingua.",
   },
-
   pt: {
     mainTitle: "Menu principal VRA:",
+    supportHours:
+      "Nota: A nossa equipa de apoio está disponível das 07:00 às 21:00, de segunda-feira a domingo. O bot de apoio permanece disponível 24/7.",
     statusOption: "Estado da reclamação",
     bankingOption: "Atualizar dados bancários",
-    newClaimOption: "Novo reclamante / Submeter uma nova reclamação",
+    newClaimOption: "Novo requerente / Submeter uma nova reclamação",
     faqOption: "Perguntas frequentes",
-    agentOption: "Falar com um agente",
-    feedbackOption: "Sugestões / feedback do cliente",
+    agentOption: "Conversar com um agente",
+    feedbackOption: "Sugestões / feedback dos clientes",
     changeLanguageOption: "Alterar idioma",
     statusReply:
-      "Use o link abaixo para verificar o estado da sua reclamação. Irá precisar do seu número VRA.",
+      "Utilize o link abaixo para verificar o estado da sua reclamação. Irá precisar do seu número VRA.",
     bankingReply:
-      "Use o link abaixo para atualizar os seus dados bancários.\n\nO reconhecimento facial é obrigatório.",
-    financeNotice: `Assim que os dados bancários forem atualizados, o departamento financeiro será notificado em:
+      "Utilize o link abaixo para atualizar os seus dados bancários.\n\nÉ necessário reconhecimento facial.",
+    financeNotice: `Assim que os dados bancários forem atualizados, o Finance será notificado em:
 ${FINANCE_EMAIL}`,
-    newClaimReply: `Se é um novo reclamante ou pretende submeter uma reclamação de reembolso de IVA, inicie sessão no nosso portal online e siga o guia em vídeo passo a passo fornecido abaixo:
+    newClaimReply: `Se é um novo requerente ou pretende submeter uma reclamação de reembolso de IVA, inicie sessão no nosso portal online e siga o guia em vídeo passo a passo fornecido abaixo:
 
 Aplicação do portal online:
 ${NEW_CLAIM_PORTAL_LINK}
@@ -584,7 +614,7 @@ ${NEW_CLAIM_PORTAL_LINK}
 Vídeo passo a passo:
 ${NEW_CLAIM_VIDEO_LINK}
 
-Também recomendamos que visite o nosso website para se familiarizar com os requisitos da reclamação e os documentos de apoio necessários para garantir que a sua reclamação é elegível para processamento.
+Também recomendamos que visite o nosso website para se familiarizar com os requisitos da reclamação e os documentos de suporte necessários para garantir que a sua reclamação é elegível para processamento.
 
 Website:
 ${WEBSITE_LINK}`,
@@ -604,16 +634,16 @@ ou a nossa equipa financeira em:
 ${FINANCE_EMAIL}
 
 Eles fornecerão as informações necessárias sobre o seu valor de IVA.`,
-    claimProcessAnswer: `Visite o nosso website para ver o processo completo de reclamação e a documentação necessária:
+    claimProcessAnswer: `Visite o nosso website para o processo completo de reclamação e documentação necessária:
 
 ${WEBSITE_LINK}`,
-    agentReply: `Um agente de suporte VRA irá ajudá-lo.
+    agentReply: `Um agente de apoio VRA irá ajudá-lo.
 
 Email:
 ${SUPPORT_EMAIL}`,
     feedbackIntro:
-      "O seu feedback é importante para nós. Acolhemos quaisquer sugestões ou comentários que possam ajudar-nos a melhorar os nossos serviços e a melhorar a sua experiência geral com a VRA. Sinta-se à vontade para partilhar o seu feedback connosco a qualquer momento.",
-    feedbackPrompt: "Digite o seu feedback abaixo.",
+      "O seu feedback é importante para nós. Agradecemos quaisquer sugestões ou comentários que possam ajudar-nos a melhorar os nossos serviços e a sua experiência geral com a VRA. Sinta-se à vontade para partilhar o seu feedback connosco a qualquer momento.",
+    feedbackPrompt: "Por favor, escreva o seu feedback abaixo.",
     feedbackReceived: "Obrigado. O seu feedback foi recebido.",
     reviewTitle: "Avaliação do cliente / Classificações",
     reviewIntro:
@@ -628,15 +658,19 @@ ${SUPPORT_EMAIL}`,
     },
     invalidRating: "Selecione uma classificação de 1 a 5.",
     reviewReceived: "Obrigado pela sua resposta. A sua avaliação foi recebida.",
-    invalidInput: "Selecione uma opção válida no menu.",
-    noFaqAnswer: "Não encontrei uma resposta nas FAQ para isso.",
+    invalidInput: "Selecione uma opção válida do menu.",
+    noFaqAnswer: `Não consegui encontrar uma resposta FAQ para isso. Um agente de apoio VRA irá ajudá-lo.
+
+Email:
+${SUPPORT_EMAIL}`,
     backInstruction: "Responda B ou Back para voltar ao menu principal.",
     doneInstruction: "Responda D ou Done para avaliar o nosso serviço.",
     changeInstruction: "Responda 0 para alterar o idioma.",
   },
-
   ru: {
     mainTitle: "Главное меню VRA:",
+    supportHours:
+      "Обратите внимание: наша служба поддержки доступна с 07:00 до 21:00, с понедельника по воскресенье. Бот поддержки остается доступным 24/7.",
     statusOption: "Статус заявки",
     bankingOption: "Обновить банковские данные",
     newClaimOption: "Новый заявитель / Подать новую заявку",
@@ -647,8 +681,8 @@ ${SUPPORT_EMAIL}`,
     statusReply:
       "Пожалуйста, используйте ссылку ниже, чтобы проверить статус вашей заявки. Вам понадобится ваш номер VRA.",
     bankingReply:
-      "Пожалуйста, используйте ссылку ниже, чтобы обновить банковские данные.\n\nТребуется распознавание лица.",
-    financeNotice: `После обновления банковских данных финансовый отдел будет уведомлен по адресу:
+      "Пожалуйста, используйте ссылку ниже, чтобы обновить ваши банковские данные.\n\nТребуется распознавание лица.",
+    financeNotice: `После обновления банковских данных отдел Finance будет уведомлен по адресу:
 ${FINANCE_EMAIL}`,
     newClaimReply: `Если вы новый заявитель или хотите подать заявку на возврат НДС, пожалуйста, войдите в наш онлайн-портал и следуйте пошаговому видео-руководству ниже:
 
@@ -658,9 +692,9 @@ ${NEW_CLAIM_PORTAL_LINK}
 Пошаговое видео:
 ${NEW_CLAIM_VIDEO_LINK}
 
-Мы также рекомендуем посетить наш сайт, чтобы ознакомиться с требованиями к заявке и необходимыми подтверждающими документами, чтобы ваша заявка соответствовала условиям обработки.
+Мы также рекомендуем посетить наш веб-сайт, чтобы ознакомиться с требованиями к заявке и необходимыми подтверждающими документами, чтобы убедиться, что ваша заявка подходит для обработки.
 
-Сайт:
+Веб-сайт:
 ${WEBSITE_LINK}`,
     faqTitle: "Часто задаваемые вопросы:",
     faqOptions: [
@@ -678,15 +712,15 @@ ${SUPPORT_EMAIL}
 ${FINANCE_EMAIL}
 
 Они предоставят необходимую информацию о вашей сумме НДС.`,
-    claimProcessAnswer: `Пожалуйста, посетите наш сайт, чтобы узнать полный процесс подачи заявки и необходимые документы:
+    claimProcessAnswer: `Пожалуйста, посетите наш веб-сайт для полного процесса подачи заявки и необходимой документации:
 
 ${WEBSITE_LINK}`,
     agentReply: `Агент поддержки VRA поможет вам.
 
-Эл. почта:
+Email:
 ${SUPPORT_EMAIL}`,
     feedbackIntro:
-      "Ваш отзыв важен для нас. Мы приветствуем любые предложения или комментарии, которые помогут нам улучшить наши услуги и ваш общий опыт работы с VRA. Пожалуйста, делитесь своим отзывом с нами в любое время.",
+      "Ваш отзыв важен для нас. Мы приветствуем любые предложения или комментарии, которые помогут нам улучшить наши услуги и ваш общий опыт работы с VRA. Пожалуйста, делитесь своими отзывами в любое время.",
     feedbackPrompt: "Пожалуйста, введите ваш отзыв ниже.",
     feedbackReceived: "Спасибо. Ваш отзыв получен.",
     reviewTitle: "Отзыв клиента / Оценки",
@@ -702,15 +736,19 @@ ${SUPPORT_EMAIL}`,
     },
     invalidRating: "Пожалуйста, выберите оценку от 1 до 5.",
     reviewReceived: "Спасибо за ваш ответ. Ваш отзыв получен.",
-    invalidInput: "Пожалуйста, выберите правильный пункт меню.",
-    noFaqAnswer: "Я не смог найти ответ в FAQ на этот вопрос.",
+    invalidInput: "Пожалуйста, выберите действительный пункт меню.",
+    noFaqAnswer: `Я не смог найти ответ FAQ на этот вопрос. Агент поддержки VRA поможет вам.
+
+Email:
+${SUPPORT_EMAIL}`,
     backInstruction: "Ответьте B или Back, чтобы вернуться в главное меню.",
     doneInstruction: "Ответьте D или Done, чтобы оценить наш сервис.",
     changeInstruction: "Ответьте 0, чтобы изменить язык.",
   },
-
   es: {
     mainTitle: "Menú principal de VRA:",
+    supportHours:
+      "Tenga en cuenta: Nuestro equipo de soporte está disponible de 07:00 a 21:00, de lunes a domingo. El bot de soporte permanece disponible 24/7.",
     statusOption: "Estado de la reclamación",
     bankingOption: "Actualizar datos bancarios",
     newClaimOption: "Nuevo reclamante / Enviar una nueva reclamación",
@@ -719,12 +757,12 @@ ${SUPPORT_EMAIL}`,
     feedbackOption: "Sugerencias / comentarios del cliente",
     changeLanguageOption: "Cambiar idioma",
     statusReply:
-      "Utilice el enlace de abajo para verificar el estado de su reclamación. Necesitará su número VRA.",
+      "Utilice el siguiente enlace para verificar el estado de su reclamación. Necesitará su número VRA.",
     bankingReply:
-      "Utilice el enlace de abajo para actualizar sus datos bancarios.\n\nSe requiere reconocimiento facial.",
-    financeNotice: `Una vez actualizados los datos bancarios, Finanzas será notificado en:
+      "Utilice el siguiente enlace para actualizar sus datos bancarios.\n\nSe requiere reconocimiento facial.",
+    financeNotice: `Una vez actualizados los datos bancarios, Finance será notificado en:
 ${FINANCE_EMAIL}`,
-    newClaimReply: `Si es un nuevo reclamante o desea presentar una reclamación de reembolso del IVA, inicie sesión en nuestro portal en línea y siga la guía de video paso a paso que se proporciona a continuación:
+    newClaimReply: `Si es un nuevo reclamante o desea enviar una reclamación de devolución de IVA, inicie sesión en nuestro portal en línea y siga la guía de video paso a paso proporcionada a continuación:
 
 Aplicación del portal en línea:
 ${NEW_CLAIM_PORTAL_LINK}
@@ -740,28 +778,28 @@ ${WEBSITE_LINK}`,
     faqOptions: [
       "¿Cuándo recibiré el pago del IVA?",
       "¿Cuál es mi monto de IVA?",
-      "¿Cómo reclamo?",
+      "¿Cómo hago una reclamación?",
       "Volver al menú principal",
     ],
-    vatPaymentAnswer: `Por favor contacte a nuestro departamento financiero en:
+    vatPaymentAnswer: `Comuníquese con nuestro departamento de finanzas en:
 ${FINANCE_EMAIL}`,
-    vatAmountAnswer: `Por favor contacte a nuestro equipo de soporte en:
+    vatAmountAnswer: `Comuníquese con nuestro equipo de soporte en:
 ${SUPPORT_EMAIL}
 
-o a nuestro equipo financiero en:
+o con nuestro equipo de finanzas en:
 ${FINANCE_EMAIL}
 
 Ellos le proporcionarán la información necesaria sobre su monto de IVA.`,
     claimProcessAnswer: `Visite nuestro sitio web para ver el proceso completo de reclamación y la documentación requerida:
 
 ${WEBSITE_LINK}`,
-    agentReply: `Un agente de soporte de VRA le ayudará.
+    agentReply: `Un agente de soporte de VRA le asistirá.
 
-Correo electrónico:
+Email:
 ${SUPPORT_EMAIL}`,
     feedbackIntro:
-      "Sus comentarios son importantes para nosotros. Agradecemos cualquier sugerencia o comentario que pueda ayudarnos a mejorar nuestros servicios y su experiencia general con VRA. No dude en compartir sus comentarios con nosotros en cualquier momento.",
-    feedbackPrompt: "Por favor escriba sus comentarios abajo.",
+      "Sus comentarios son importantes para nosotros. Agradecemos cualquier sugerencia o comentario que pueda ayudarnos a mejorar nuestros servicios y mejorar su experiencia general con VRA. No dude en compartir sus comentarios con nosotros en cualquier momento.",
+    feedbackPrompt: "Por favor escriba sus comentarios a continuación.",
     feedbackReceived: "Gracias. Sus comentarios han sido recibidos.",
     reviewTitle: "Reseña del cliente / Calificaciones",
     reviewIntro:
@@ -776,8 +814,11 @@ ${SUPPORT_EMAIL}`,
     },
     invalidRating: "Por favor seleccione una calificación del 1 al 5.",
     reviewReceived: "Gracias por su respuesta. Su reseña ha sido recibida.",
-    invalidInput: "Por favor seleccione una opción válida del menú.",
-    noFaqAnswer: "No encontré una respuesta de FAQ para eso.",
+    invalidInput: "Seleccione una opción válida del menú.",
+    noFaqAnswer: `No pude encontrar una respuesta de FAQ para eso. Un agente de soporte de VRA le asistirá.
+
+Email:
+${SUPPORT_EMAIL}`,
     backInstruction: "Responda B o Back para volver al menú principal.",
     doneInstruction: "Responda D o Done para evaluar nuestro servicio.",
     changeInstruction: "Responda 0 para cambiar el idioma.",
@@ -798,9 +839,11 @@ const faqPatterns = [
       "quand vais-je recevoir le paiement de la tva",
       "wann erhalte ich die mehrwertsteuerzahlung",
       "quando ricevero il pagamento iva",
+      "quando riceverò il pagamento iva",
       "quando vou receber o pagamento do iva",
       "когда я получу выплату ндс",
       "cuando recibire el pago del iva",
+      "cuándo recibiré el pago del iva",
     ],
   },
   {
@@ -813,6 +856,7 @@ const faqPatterns = [
       "quel est mon montant de tva",
       "wie hoch ist mein mehrwertsteuerbetrag",
       "qual e il mio importo iva",
+      "qual è il mio importo iva",
       "qual e o meu valor de iva",
       "qual é o meu valor de iva",
       "какова моя сумма ндс",
@@ -836,6 +880,7 @@ const faqPatterns = [
       "wie ist der prozess",
       "come posso richiedere il rimborso",
       "qual e il processo",
+      "qual è il processo",
       "como faco a reclamacao",
       "como faço a reclamação",
       "qual e o processo",
@@ -864,7 +909,15 @@ function t(languageCode) {
 }
 
 function isGreeting(input) {
-  return ["hi", "hello", "start", "/start"].includes(normalizeText(input));
+  return ["hi", "hello", "start", "/start", "menu"].includes(normalizeText(input));
+}
+
+function isDoneRequest(input) {
+  return ["d", "done", "complete", "finished"].includes(normalizeText(input));
+}
+
+function isChangeLanguageRequest(input) {
+  return ["0", "change language"].includes(normalizeText(input));
 }
 
 function isBackToMain(input) {
@@ -875,6 +928,7 @@ function isBackToMain(input) {
     "back",
     "main menu",
     "back to main menu",
+    "العودة الى القائمة الرئيسية",
     "العودة إلى القائمة الرئيسية",
     "返回主菜单",
     "terug naar hoofdmenu",
@@ -888,10 +942,6 @@ function isBackToMain(input) {
   ].includes(value);
 }
 
-function isDoneRequest(input) {
-  return ["d", "done", "complete", "finished"].includes(normalizeText(input));
-}
-
 function isFaqRequest(input) {
   const value = normalizeText(input);
 
@@ -900,12 +950,13 @@ function isFaqRequest(input) {
     "faq",
     "frequently asked questions",
     "frequently asked questions menu",
+    "الاسئلة الشائعة",
     "الأسئلة الشائعة",
     "常见问题",
     "veelgestelde vragen",
     "questions frequemment posees",
-    "häufig gestellte fragen",
     "haufig gestellte fragen",
+    "häufig gestellte fragen",
     "domande frequenti",
     "perguntas frequentes",
     "часто задаваемые вопросы",
@@ -942,6 +993,8 @@ function mainMenu(languageCode) {
   const copy = t(languageCode);
 
   return `${copy.mainTitle}
+
+${copy.supportHours}
 
 1 ${copy.statusOption}
 2 ${copy.bankingOption}
@@ -988,9 +1041,7 @@ ${navigationText(languageCode)}`;
 }
 
 function newClaimMessage(languageCode) {
-  const copy = t(languageCode);
-
-  return `${copy.newClaimReply}
+  return `${t(languageCode).newClaimReply}
 
 ${navigationText(languageCode)}`;
 }
@@ -1012,9 +1063,7 @@ ${navigationText(languageCode)}`;
 }
 
 function feedbackReceivedMessage(languageCode) {
-  const copy = t(languageCode);
-
-  return `${copy.feedbackReceived}
+  return `${t(languageCode).feedbackReceived}
 
 ${navigationText(languageCode)}`;
 }
@@ -1043,20 +1092,6 @@ function invalidInputMessage(languageCode) {
   return `${t(languageCode).invalidInput}
 
 ${navigationText(languageCode)}`;
-}
-
-function invalidRatingMessage(languageCode) {
-  const copy = t(languageCode);
-
-  return `${copy.invalidRating}
-
-${copy.reviewPrompt}
-
-1 ${copy.ratingLabels["1"]}
-2 ${copy.ratingLabels["2"]}
-3 ${copy.ratingLabels["3"]}
-4 ${copy.ratingLabels["4"]}
-5 ${copy.ratingLabels["5"]}`;
 }
 
 function matchFaq(input) {
@@ -1098,6 +1133,12 @@ ${navigationText(languageCode)}`;
   return null;
 }
 
+function noFaqAnswerMessage(languageCode) {
+  return `${t(languageCode).noFaqAnswer}
+
+${navigationText(languageCode)}`;
+}
+
 function getWhatsAppSession(phoneNumber) {
   if (!whatsappSessions.has(phoneNumber)) {
     whatsappSessions.set(phoneNumber, {
@@ -1122,27 +1163,6 @@ function getTelegramSession(chatId) {
   return telegramSessions.get(chatId);
 }
 
-function logFeedback(platform, userId, session, feedbackMessage) {
-  console.log({
-    platform,
-    userId,
-    selectedLanguage: session.languageName || session.languageCode || "Unknown",
-    feedbackMessage,
-    timestamp: new Date().toISOString(),
-  });
-}
-
-function logReview(platform, userId, session, ratingNumber, ratingLabel) {
-  console.log({
-    platform,
-    userId,
-    selectedLanguage: session.languageName || session.languageCode || "Unknown",
-    ratingNumber,
-    ratingLabel,
-    timestamp: new Date().toISOString(),
-  });
-}
-
 function formatWhatsAppRecipient(number) {
   if (!number) {
     return "";
@@ -1161,6 +1181,27 @@ function formatWhatsAppRecipient(number) {
   }
 
   return formatted;
+}
+
+function logFeedback(platform, userId, session, feedbackText) {
+  console.log({
+    platform,
+    userId,
+    selectedLanguage: session.languageName || session.languageCode || "Unknown",
+    feedbackMessage: feedbackText,
+    timestamp: new Date().toISOString(),
+  });
+}
+
+function logReview(platform, userId, session, ratingNumber, ratingLabel) {
+  console.log({
+    platform,
+    userId,
+    selectedLanguage: session.languageName || session.languageCode || "Unknown",
+    ratingNumber,
+    ratingLabel,
+    timestamp: new Date().toISOString(),
+  });
 }
 
 async function sendWhatsAppMessage(to, body) {
@@ -1231,10 +1272,15 @@ async function showLanguageMenu(session, sendReply) {
   await sendReply(languageMenu());
 }
 
+async function startReview(session, sendReply) {
+  session.state = STATES.REVIEW;
+  await sendReply(reviewPromptMessage(session.languageCode));
+}
+
 async function handleSupportInput(input, session, sendReply, platform, userId) {
   const normalizedInput = normalizeText(input);
 
-  if (normalizedInput === "0" || normalizedInput === "change language") {
+  if (isChangeLanguageRequest(input)) {
     await showLanguageMenu(session, sendReply);
     return;
   }
@@ -1246,43 +1292,6 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
     } else {
       await showLanguageMenu(session, sendReply);
     }
-    return;
-  }
-
-  if (isBackToMain(input) && session.languageCode) {
-    session.state = STATES.MAIN;
-    await sendReply(mainMenu(session.languageCode));
-    return;
-  }
-
-  if (isDoneRequest(input) && session.languageCode && session.state !== STATES.COMPLETE) {
-    session.state = STATES.REVIEW;
-    await sendReply(reviewPromptMessage(session.languageCode));
-    return;
-  }
-
-  if (session.state === STATES.REVIEW) {
-    const copy = t(session.languageCode);
-
-    if (["1", "2", "3", "4", "5"].includes(normalizedInput)) {
-      logReview(
-        platform,
-        userId,
-        session,
-        normalizedInput,
-        copy.ratingLabels[normalizedInput]
-      );
-
-      session.state = STATES.COMPLETE;
-      await sendReply(reviewReceivedMessage(session.languageCode));
-      return;
-    }
-
-    await sendReply(invalidRatingMessage(session.languageCode));
-    return;
-  }
-
-  if (session.state === STATES.COMPLETE) {
     return;
   }
 
@@ -1302,6 +1311,35 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
   }
 
   const languageCode = session.languageCode;
+
+  if (isBackToMain(input)) {
+    session.state = STATES.MAIN;
+    await sendReply(mainMenu(languageCode));
+    return;
+  }
+
+  if (isDoneRequest(input) && session.state !== STATES.COMPLETE) {
+    await startReview(session, sendReply);
+    return;
+  }
+
+  if (session.state === STATES.REVIEW) {
+    const copy = t(languageCode);
+
+    if (["1", "2", "3", "4", "5"].includes(normalizedInput)) {
+      logReview(platform, userId, session, normalizedInput, copy.ratingLabels[normalizedInput]);
+      session.state = STATES.COMPLETE;
+      await sendReply(reviewReceivedMessage(languageCode));
+      return;
+    }
+
+    await sendReply(copy.invalidRating);
+    return;
+  }
+
+  if (session.state === STATES.COMPLETE) {
+    return;
+  }
 
   if (session.state === STATES.FEEDBACK) {
     logFeedback(platform, userId, session, input);
@@ -1324,9 +1362,7 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
       return;
     }
 
-    await sendReply(`${t(languageCode).noFaqAnswer}
-
-${navigationText(languageCode)}`);
+    await sendReply(noFaqAnswerMessage(languageCode));
     return;
   }
 
@@ -1337,21 +1373,25 @@ ${navigationText(languageCode)}`);
   }
 
   if (normalizedInput === "1") {
+    session.state = STATES.MAIN;
     await sendReply(statusMessage(languageCode));
     return;
   }
 
   if (normalizedInput === "2") {
+    session.state = STATES.MAIN;
     await sendReply(bankingMessage(languageCode));
     return;
   }
 
   if (normalizedInput === "3") {
+    session.state = STATES.MAIN;
     await sendReply(newClaimMessage(languageCode));
     return;
   }
 
   if (normalizedInput === "5") {
+    session.state = STATES.MAIN;
     await sendReply(agentMessage(languageCode));
     return;
   }
@@ -1409,7 +1449,6 @@ app.post("/webhook", async (req, res) => {
     }
 
     const session = getWhatsAppSession(from);
-
     await handleSupportInput(
       input,
       session,
@@ -1435,7 +1474,6 @@ app.post("/telegram-webhook", async (req, res) => {
     }
 
     const session = getTelegramSession(chatId);
-
     await handleSupportInput(
       input,
       session,
