@@ -112,13 +112,11 @@ ${SUPPORT_EMAIL}`,
     },
     invalidRating: "Please select a rating from 1 to 5.",
     reviewReceived: "Thank you for your response. Your review has been received.",
+    invalidInput: "Please select a valid option from the menu.",
     backInstruction: "Reply B or Back to return to the main menu.",
-    changeInstruction: "Reply 0 to change language.",
     doneInstruction: "Reply D or Done to review our service.",
-    noFaqAnswer: `I could not find an FAQ answer for that. A VRA support agent will assist you.
-
-Email:
-${SUPPORT_EMAIL}`,
+    changeInstruction: "Reply 0 to change language.",
+    noFaqAnswer: "I could not find an FAQ answer for that.",
   },
 
   ar: {
@@ -188,13 +186,11 @@ ${SUPPORT_EMAIL}`,
     },
     invalidRating: "يرجى اختيار تقييم من 1 إلى 5.",
     reviewReceived: "شكراً على ردك. تم استلام تقييمك.",
+    invalidInput: "يرجى اختيار خيار صحيح من القائمة.",
     backInstruction: "أرسل B أو Back للعودة إلى القائمة الرئيسية.",
-    changeInstruction: "أرسل 0 لتغيير اللغة.",
     doneInstruction: "أرسل D أو Done لتقييم خدمتنا.",
-    noFaqAnswer: `لم أتمكن من العثور على إجابة لهذا السؤال. سيساعدك وكيل دعم VRA.
-
-البريد الإلكتروني:
-${SUPPORT_EMAIL}`,
+    changeInstruction: "أرسل 0 لتغيير اللغة.",
+    noFaqAnswer: "لم أتمكن من العثور على إجابة لهذا السؤال.",
   },
 
   zh: {
@@ -262,13 +258,11 @@ ${SUPPORT_EMAIL}`,
     },
     invalidRating: "请选择 1 到 5 的评分。",
     reviewReceived: "感谢您的回复。您的评价已收到。",
+    invalidInput: "请从菜单中选择有效选项。",
     backInstruction: "回复 B 或 Back 返回主菜单。",
-    changeInstruction: "回复 0 更改语言。",
     doneInstruction: "回复 D 或 Done 评价我们的服务。",
-    noFaqAnswer: `我找不到该问题的 FAQ 答案。VRA 支持人员将协助您。
-
-电子邮件：
-${SUPPORT_EMAIL}`,
+    changeInstruction: "回复 0 更改语言。",
+    noFaqAnswer: "我找不到该问题的 FAQ 答案。",
   },
 
   nl: {
@@ -338,13 +332,11 @@ ${SUPPORT_EMAIL}`,
     },
     invalidRating: "Selecteer een rating van 1 tot 5.",
     reviewReceived: "Dank u voor uw reactie. Uw beoordeling is ontvangen.",
+    invalidInput: "Selecteer een geldige optie uit het menu.",
     backInstruction: "Antwoord B of Back om terug te keren naar het hoofdmenu.",
-    changeInstruction: "Antwoord 0 om de taal te wijzigen.",
     doneInstruction: "Antwoord D of Done om onze service te beoordelen.",
-    noFaqAnswer: `Ik kon geen FAQ-antwoord daarvoor vinden. Een VRA-supportagent zal u helpen.
-
-E-mail:
-${SUPPORT_EMAIL}`,
+    changeInstruction: "Antwoord 0 om de taal te wijzigen.",
+    noFaqAnswer: "Ik kon geen FAQ-antwoord daarvoor vinden.",
   },
 
   fr: {
@@ -414,13 +406,11 @@ ${SUPPORT_EMAIL}`,
     },
     invalidRating: "Veuillez sélectionner une note de 1 à 5.",
     reviewReceived: "Merci pour votre réponse. Votre avis a été reçu.",
+    invalidInput: "Veuillez sélectionner une option valide dans le menu.",
     backInstruction: "Répondez B ou Back pour revenir au menu principal.",
-    changeInstruction: "Répondez 0 pour changer de langue.",
     doneInstruction: "Répondez D ou Done pour évaluer notre service.",
-    noFaqAnswer: `Je n'ai pas trouvé de réponse FAQ pour cela. Un agent du support VRA vous aidera.
-
-E-mail :
-${SUPPORT_EMAIL}`,
+    changeInstruction: "Répondez 0 pour changer de langue.",
+    noFaqAnswer: "Je n'ai pas trouvé de réponse FAQ pour cela.",
   },
 
   de: {
@@ -490,13 +480,11 @@ ${SUPPORT_EMAIL}`,
     },
     invalidRating: "Bitte wählen Sie eine Bewertung von 1 bis 5.",
     reviewReceived: "Vielen Dank für Ihre Antwort. Ihre Bewertung wurde erhalten.",
+    invalidInput: "Bitte wählen Sie eine gültige Option aus dem Menü.",
     backInstruction: "Antworten Sie mit B oder Back, um zum Hauptmenü zurückzukehren.",
-    changeInstruction: "Antworten Sie mit 0, um die Sprache zu ändern.",
     doneInstruction: "Antworten Sie mit D oder Done, um unseren Service zu bewerten.",
-    noFaqAnswer: `Ich konnte keine FAQ-Antwort dafür finden. Ein VRA-Supportagent wird Ihnen helfen.
-
-E-Mail:
-${SUPPORT_EMAIL}`,
+    changeInstruction: "Antworten Sie mit 0, um die Sprache zu ändern.",
+    noFaqAnswer: "Ich konnte keine FAQ-Antwort dafür finden.",
   },
 
   it: {
@@ -566,13 +554,11 @@ ${SUPPORT_EMAIL}`,
     },
     invalidRating: "Seleziona una valutazione da 1 a 5.",
     reviewReceived: "Grazie per la tua risposta. La tua recensione è stata ricevuta.",
+    invalidInput: "Seleziona un'opzione valida dal menu.",
     backInstruction: "Rispondi B o Back per tornare al menu principale.",
-    changeInstruction: "Rispondi 0 per cambiare lingua.",
     doneInstruction: "Rispondi D o Done per recensire il nostro servizio.",
-    noFaqAnswer: `Non ho trovato una risposta FAQ per questo. Un agente di supporto VRA ti assisterà.
-
-Email:
-${SUPPORT_EMAIL}`,
+    changeInstruction: "Rispondi 0 per cambiare lingua.",
+    noFaqAnswer: "Non ho trovato una risposta FAQ per questo.",
   },
 
   pt: {
@@ -642,13 +628,11 @@ ${SUPPORT_EMAIL}`,
     },
     invalidRating: "Selecione uma classificação de 1 a 5.",
     reviewReceived: "Obrigado pela sua resposta. A sua avaliação foi recebida.",
+    invalidInput: "Selecione uma opção válida no menu.",
     backInstruction: "Responda B ou Back para voltar ao menu principal.",
-    changeInstruction: "Responda 0 para alterar o idioma.",
     doneInstruction: "Responda D ou Done para avaliar o nosso serviço.",
-    noFaqAnswer: `Não encontrei uma resposta nas FAQ para isso. Um agente de suporte VRA irá ajudá-lo.
-
-Email:
-${SUPPORT_EMAIL}`,
+    changeInstruction: "Responda 0 para alterar o idioma.",
+    noFaqAnswer: "Não encontrei uma resposta nas FAQ para isso.",
   },
 
   ru: {
@@ -718,13 +702,11 @@ ${SUPPORT_EMAIL}`,
     },
     invalidRating: "Пожалуйста, выберите оценку от 1 до 5.",
     reviewReceived: "Спасибо за ваш ответ. Ваш отзыв получен.",
+    invalidInput: "Пожалуйста, выберите правильный пункт меню.",
     backInstruction: "Ответьте B или Back, чтобы вернуться в главное меню.",
-    changeInstruction: "Ответьте 0, чтобы изменить язык.",
     doneInstruction: "Ответьте D или Done, чтобы оценить наш сервис.",
-    noFaqAnswer: `Я не смог найти ответ в FAQ на этот вопрос. Агент поддержки VRA поможет вам.
-
-Эл. почта:
-${SUPPORT_EMAIL}`,
+    changeInstruction: "Ответьте 0, чтобы изменить язык.",
+    noFaqAnswer: "Я не смог найти ответ в FAQ на этот вопрос.",
   },
 
   es: {
@@ -794,13 +776,11 @@ ${SUPPORT_EMAIL}`,
     },
     invalidRating: "Por favor seleccione una calificación del 1 al 5.",
     reviewReceived: "Gracias por su respuesta. Su reseña ha sido recibida.",
+    invalidInput: "Por favor seleccione una opción válida del menú.",
     backInstruction: "Responda B o Back para volver al menú principal.",
-    changeInstruction: "Responda 0 para cambiar el idioma.",
     doneInstruction: "Responda D o Done para evaluar nuestro servicio.",
-    noFaqAnswer: `No encontré una respuesta de FAQ para eso. Un agente de soporte de VRA le ayudará.
-
-Correo electrónico:
-${SUPPORT_EMAIL}`,
+    changeInstruction: "Responda 0 para cambiar el idioma.",
+    noFaqAnswer: "No encontré una respuesta de FAQ para eso.",
   },
 };
 
@@ -950,6 +930,14 @@ Please choose your language:
 10 Spanish`;
 }
 
+function navigationText(languageCode) {
+  const copy = t(languageCode);
+
+  return `${copy.backInstruction}
+${copy.doneInstruction}
+${copy.changeInstruction}`;
+}
+
 function mainMenu(languageCode) {
   const copy = t(languageCode);
 
@@ -961,15 +949,9 @@ function mainMenu(languageCode) {
 4 ${copy.faqOption}
 5 ${copy.agentOption}
 6 ${copy.feedbackOption}
-7 ${copy.changeLanguageOption}`;
-}
+7 ${copy.changeLanguageOption}
 
-function navigationText(languageCode) {
-  const copy = t(languageCode);
-
-  return `${copy.backInstruction}
-${copy.changeInstruction}
-${copy.doneInstruction}`;
+${navigationText(languageCode)}`;
 }
 
 function faqMenu(languageCode) {
@@ -980,13 +962,17 @@ function faqMenu(languageCode) {
 1 ${copy.faqOptions[0]}
 2 ${copy.faqOptions[1]}
 3 ${copy.faqOptions[2]}
-4 ${copy.faqOptions[3]}`;
+4 ${copy.faqOptions[3]}
+
+${navigationText(languageCode)}`;
 }
 
 function statusMessage(languageCode) {
   return `${t(languageCode).statusReply}
 
-${STATUS_LINK}`;
+${STATUS_LINK}
+
+${navigationText(languageCode)}`;
 }
 
 function bankingMessage(languageCode) {
@@ -996,7 +982,9 @@ function bankingMessage(languageCode) {
 
 ${BANKING_LINK}
 
-${copy.financeNotice}`;
+${copy.financeNotice}
+
+${navigationText(languageCode)}`;
 }
 
 function newClaimMessage(languageCode) {
@@ -1008,7 +996,9 @@ ${navigationText(languageCode)}`;
 }
 
 function agentMessage(languageCode) {
-  return t(languageCode).agentReply;
+  return `${t(languageCode).agentReply}
+
+${navigationText(languageCode)}`;
 }
 
 function feedbackPromptMessage(languageCode) {
@@ -1016,7 +1006,9 @@ function feedbackPromptMessage(languageCode) {
 
   return `${copy.feedbackIntro}
 
-${copy.feedbackPrompt}`;
+${copy.feedbackPrompt}
+
+${navigationText(languageCode)}`;
 }
 
 function feedbackReceivedMessage(languageCode) {
@@ -1045,6 +1037,26 @@ ${copy.reviewPrompt}
 
 function reviewReceivedMessage(languageCode) {
   return t(languageCode).reviewReceived;
+}
+
+function invalidInputMessage(languageCode) {
+  return `${t(languageCode).invalidInput}
+
+${navigationText(languageCode)}`;
+}
+
+function invalidRatingMessage(languageCode) {
+  const copy = t(languageCode);
+
+  return `${copy.invalidRating}
+
+${copy.reviewPrompt}
+
+1 ${copy.ratingLabels["1"]}
+2 ${copy.ratingLabels["2"]}
+3 ${copy.ratingLabels["3"]}
+4 ${copy.ratingLabels["4"]}
+5 ${copy.ratingLabels["5"]}`;
 }
 
 function matchFaq(input) {
@@ -1192,6 +1204,11 @@ async function showLanguageMenu(session, sendReply) {
   await sendReply(languageMenu());
 }
 
+async function startReview(session, sendReply) {
+  session.state = STATES.REVIEW;
+  await sendReply(reviewPromptMessage(session.languageCode || "en"));
+}
+
 async function handleSupportInput(input, session, sendReply, platform, userId) {
   const normalizedInput = normalizeText(input);
 
@@ -1200,13 +1217,28 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
     return;
   }
 
-  if (session.state === STATES.REVIEW) {
-    if (isBackToMain(input)) {
+  if (isGreeting(input)) {
+    if (session.languageCode) {
       session.state = STATES.MAIN;
       await sendReply(mainMenu(session.languageCode));
-      return;
+    } else {
+      await showLanguageMenu(session, sendReply);
     }
+    return;
+  }
 
+  if (isBackToMain(input) && session.languageCode) {
+    session.state = STATES.MAIN;
+    await sendReply(mainMenu(session.languageCode));
+    return;
+  }
+
+  if (isDoneRequest(input) && session.languageCode && session.state !== STATES.COMPLETE) {
+    await startReview(session, sendReply);
+    return;
+  }
+
+  if (session.state === STATES.REVIEW) {
     const copy = t(session.languageCode);
 
     if (["1", "2", "3", "4", "5"].includes(normalizedInput)) {
@@ -1223,36 +1255,11 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
       return;
     }
 
-    await sendReply(copy.invalidRating);
+    await sendReply(invalidRatingMessage(session.languageCode));
     return;
   }
 
-  if (session.state === STATES.FEEDBACK) {
-    if (isBackToMain(input)) {
-      session.state = STATES.MAIN;
-      await sendReply(mainMenu(session.languageCode));
-      return;
-    }
-
-    logFeedback(platform, userId, session, input);
-    session.state = STATES.MAIN;
-    await sendReply(feedbackReceivedMessage(session.languageCode));
-    return;
-  }
-
-  if (isDoneRequest(input) && session.languageCode && session.state !== STATES.COMPLETE) {
-    session.state = STATES.REVIEW;
-    await sendReply(reviewPromptMessage(session.languageCode));
-    return;
-  }
-
-  if (isGreeting(input)) {
-    if (session.languageCode) {
-      session.state = STATES.MAIN;
-      await sendReply(mainMenu(session.languageCode));
-    } else {
-      await showLanguageMenu(session, sendReply);
-    }
+  if (session.state === STATES.COMPLETE) {
     return;
   }
 
@@ -1273,17 +1280,15 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
 
   const languageCode = session.languageCode;
 
-  if (session.state === STATES.COMPLETE) {
-    if (isBackToMain(input)) {
-      session.state = STATES.MAIN;
-      await sendReply(mainMenu(languageCode));
-    }
-
+  if (session.state === STATES.FEEDBACK) {
+    logFeedback(platform, userId, session, input);
+    session.state = STATES.MAIN;
+    await sendReply(feedbackReceivedMessage(languageCode));
     return;
   }
 
   if (session.state === STATES.FAQ) {
-    if (normalizedInput === "4" || isBackToMain(input)) {
+    if (normalizedInput === "4") {
       session.state = STATES.MAIN;
       await sendReply(mainMenu(languageCode));
       return;
@@ -1296,13 +1301,9 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
       return;
     }
 
-    await sendReply(t(languageCode).noFaqAnswer);
-    return;
-  }
+    await sendReply(`${t(languageCode).noFaqAnswer}
 
-  if (isBackToMain(input)) {
-    session.state = STATES.MAIN;
-    await sendReply(mainMenu(languageCode));
+${navigationText(languageCode)}`);
     return;
   }
 
@@ -1350,7 +1351,7 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
     return;
   }
 
-  await sendReply(mainMenu(languageCode));
+  await sendReply(invalidInputMessage(languageCode));
 }
 
 app.get("/webhook", (req, res) => {
