@@ -28,6 +28,7 @@ const NEW_CLAIM_PORTAL_LINK =
   "https://vatrefundagency.co.za/forms/views/view.login.php";
 const NEW_CLAIM_VIDEO_LINK = "https://youtu.be/zatxMKDCNL4";
 const WEBSITE_LINK = "https://vatrefundagency.co.za/";
+const LIVE_CHAT_LINK = "https://vatrefundagency.co.za/agent-chat.php";
 const SUPPORT_EMAIL = "info@vatrefundagency.co.za";
 const FINANCE_EMAIL = "finance@vatrefundagency.co.za";
 
@@ -102,7 +103,12 @@ If you are still unsure which documents are required, please contact our support
     agentReply: `A VRA support agent will assist you.
 
 Email:
-${SUPPORT_EMAIL}`,
+${SUPPORT_EMAIL}
+
+Live chat:
+${LIVE_CHAT_LINK}
+
+Please note: Our support team is available from 07:00 to 21:00, Monday to Sunday. The support bot remains available 24/7.`,
     feedbackIntro:
       "Your feedback is important to us. We welcome any suggestions or comments that may help us improve our services and enhance your overall experience with VRA. Please feel free to share your feedback with us at any time.",
     feedbackPrompt: "Please type your feedback below.",
@@ -186,7 +192,12 @@ ${FINANCE_EMAIL}
     agentReply: `سيساعدك وكيل دعم VRA.
 
 البريد الإلكتروني:
-${SUPPORT_EMAIL}`,
+${SUPPORT_EMAIL}
+
+الدردشة المباشرة:
+${LIVE_CHAT_LINK}
+
+يرجى الملاحظة: فريق الدعم لدينا متاح من 07:00 إلى 21:00، من الاثنين إلى الأحد. يظل بوت الدعم متاحًا على مدار الساعة طوال أيام الأسبوع.`,
     feedbackIntro:
       "ملاحظاتك مهمة لنا. نرحب بأي اقتراحات أو تعليقات قد تساعدنا على تحسين خدماتنا وتعزيز تجربتك العامة مع VRA. لا تتردد في مشاركة ملاحظاتك معنا في أي وقت.",
     feedbackPrompt: "يرجى كتابة ملاحظاتك أدناه.",
@@ -268,7 +279,12 @@ ${FINANCE_EMAIL}
     agentReply: `VRA 支持人员将协助您。
 
 电子邮件：
-${SUPPORT_EMAIL}`,
+${SUPPORT_EMAIL}
+
+在线聊天：
+${LIVE_CHAT_LINK}
+
+请注意：我们的支持团队服务时间为周一至周日 07:00 至 21:00。支持机器人全天候 24/7 可用。`,
     feedbackIntro:
       "您的反馈对我们很重要。我们欢迎任何有助于改进服务并提升您在 VRA 整体体验的建议或意见。欢迎您随时与我们分享反馈。",
     feedbackPrompt: "请在下面输入您的反馈。",
@@ -352,7 +368,12 @@ Als u nog steeds niet zeker weet welke documenten vereist zijn, neem dan contact
     agentReply: `Een VRA-supportagent zal u helpen.
 
 E-mail:
-${SUPPORT_EMAIL}`,
+${SUPPORT_EMAIL}
+
+Live chat:
+${LIVE_CHAT_LINK}
+
+Let op: Ons supportteam is beschikbaar van 07:00 tot 21:00, maandag tot en met zondag. De supportbot blijft 24/7 beschikbaar.`,
     feedbackIntro:
       "Uw feedback is belangrijk voor ons. Wij verwelkomen alle suggesties of opmerkingen die ons kunnen helpen onze diensten te verbeteren en uw algemene ervaring met VRA te versterken. U kunt uw feedback op elk moment met ons delen.",
     feedbackPrompt: "Typ hieronder uw feedback.",
@@ -436,7 +457,12 @@ Si vous ne savez toujours pas quels documents sont requis, veuillez contacter no
     agentReply: `Un agent du support VRA vous aidera.
 
 E-mail :
-${SUPPORT_EMAIL}`,
+${SUPPORT_EMAIL}
+
+Chat en direct :
+${LIVE_CHAT_LINK}
+
+Veuillez noter : Notre équipe d'assistance est disponible de 07:00 à 21:00, du lundi au dimanche. Le bot d'assistance reste disponible 24/7.`,
     feedbackIntro:
       "Vos commentaires sont importants pour nous. Nous accueillons toutes suggestions ou remarques pouvant nous aider à améliorer nos services et votre expérience globale avec VRA. N'hésitez pas à partager vos commentaires avec nous à tout moment.",
     feedbackPrompt: "Veuillez saisir vos commentaires ci-dessous.",
@@ -520,7 +546,12 @@ Wenn Sie weiterhin unsicher sind, welche Dokumente erforderlich sind, kontaktier
     agentReply: `Ein VRA-Supportagent wird Ihnen helfen.
 
 E-Mail:
-${SUPPORT_EMAIL}`,
+${SUPPORT_EMAIL}
+
+Live-Chat:
+${LIVE_CHAT_LINK}
+
+Bitte beachten Sie: Unser Support-Team ist von 07:00 bis 21:00 Uhr, Montag bis Sonntag, verfügbar. Der Support-Bot bleibt rund um die Uhr verfügbar.`,
     feedbackIntro:
       "Ihr Feedback ist uns wichtig. Wir begrüßen alle Vorschläge oder Kommentare, die uns helfen können, unsere Dienstleistungen zu verbessern und Ihre allgemeine Erfahrung mit VRA zu stärken. Teilen Sie uns Ihr Feedback gerne jederzeit mit.",
     feedbackPrompt: "Bitte geben Sie unten Ihr Feedback ein.",
@@ -604,7 +635,12 @@ Se non sei ancora sicuro di quali documenti siano richiesti, contatta il nostro 
     agentReply: `Un agente di supporto VRA ti assisterà.
 
 Email:
-${SUPPORT_EMAIL}`,
+${SUPPORT_EMAIL}
+
+Chat dal vivo:
+${LIVE_CHAT_LINK}
+
+Nota bene: Il nostro team di supporto è disponibile dalle 07:00 alle 21:00, dal lunedì alla domenica. Il bot di supporto rimane disponibile 24/7.`,
     feedbackIntro:
       "Il tuo feedback è importante per noi. Accogliamo qualsiasi suggerimento o commento che possa aiutarci a migliorare i nostri servizi e la tua esperienza complessiva con VRA. Sentiti libero di condividere il tuo feedback con noi in qualsiasi momento.",
     feedbackPrompt: "Digita il tuo feedback qui sotto.",
@@ -688,7 +724,12 @@ Se ainda não tiver certeza sobre quais documentos são necessários, contacte a
     agentReply: `Um agente de apoio VRA irá ajudá-lo.
 
 Email:
-${SUPPORT_EMAIL}`,
+${SUPPORT_EMAIL}
+
+Chat ao vivo:
+${LIVE_CHAT_LINK}
+
+Nota: A nossa equipa de apoio está disponível das 07:00 às 21:00, de segunda-feira a domingo. O bot de apoio permanece disponível 24/7.`,
     feedbackIntro:
       "O seu feedback é importante para nós. Agradecemos quaisquer sugestões ou comentários que possam ajudar-nos a melhorar os nossos serviços e a sua experiência geral com a VRA. Sinta-se à vontade para partilhar o seu feedback connosco a qualquer momento.",
     feedbackPrompt: "Por favor, escreva o seu feedback abaixo.",
@@ -772,7 +813,12 @@ ${FINANCE_EMAIL}
     agentReply: `Агент поддержки VRA поможет вам.
 
 Email:
-${SUPPORT_EMAIL}`,
+${SUPPORT_EMAIL}
+
+Онлайн-чат:
+${LIVE_CHAT_LINK}
+
+Обратите внимание: наша служба поддержки доступна с 07:00 до 21:00, с понедельника по воскресенье. Бот поддержки остается доступным 24/7.`,
     feedbackIntro:
       "Ваш отзыв важен для нас. Мы приветствуем любые предложения или комментарии, которые помогут нам улучшить наши услуги и ваш общий опыт работы с VRA. Пожалуйста, делитесь своими отзывами в любое время.",
     feedbackPrompt: "Пожалуйста, введите ваш отзыв ниже.",
@@ -856,7 +902,12 @@ Si aún no está seguro de qué documentos se requieren, comuníquese con nuestr
     agentReply: `Un agente de soporte de VRA le asistirá.
 
 Email:
-${SUPPORT_EMAIL}`,
+${SUPPORT_EMAIL}
+
+Chat en vivo:
+${LIVE_CHAT_LINK}
+
+Tenga en cuenta: Nuestro equipo de soporte está disponible de 07:00 a 21:00, de lunes a domingo. El bot de soporte permanece disponible 24/7.`,
     feedbackIntro:
       "Sus comentarios son importantes para nosotros. Agradecemos cualquier sugerencia o comentario que pueda ayudarnos a mejorar nuestros servicios y mejorar su experiencia general con VRA. No dude en compartir sus comentarios con nosotros en cualquier momento.",
     feedbackPrompt: "Por favor escriba sus comentarios a continuación.",
