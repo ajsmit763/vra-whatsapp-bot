@@ -1855,6 +1855,255 @@ const faqMenuTranslations = {
   },
 };
 
+const faqEmailNoteTranslations = {
+  en: "Please also check your spam/junk mailbox if you have not received an email from us.",
+  ar: "يرجى أيضًا التحقق من مجلد البريد العشوائي / غير المرغوب فيه إذا لم تستلم بريدًا إلكترونيًا منا.",
+  zh: "如果您没有收到我们的电子邮件，也请检查您的垃圾邮件邮箱。",
+  nl: "Controleer ook uw spam-/junkmailmap als u geen e-mail van ons heeft ontvangen.",
+  fr: "Veuillez également vérifier votre dossier spam/courrier indésirable si vous n'avez pas reçu d'e-mail de notre part.",
+  de: "Bitte prüfen Sie auch Ihren Spam-/Junk-Mail-Ordner, falls Sie keine E-Mail von uns erhalten haben.",
+  it: "Controlla anche la cartella spam/posta indesiderata se non hai ricevuto una nostra email.",
+  pt: "Verifique também a sua pasta de spam/lixo eletrónico caso não tenha recebido um email nosso.",
+  ru: "Также проверьте папку спам/нежелательная почта, если вы не получили от нас письмо.",
+  es: "Revise también su carpeta de spam/correo no deseado si no ha recibido un correo electrónico nuestro.",
+};
+
+const vatAmountIntroTranslations = {
+  en: `The claim amount is reflected on the VAT255. If you are still unsure, please contact ${SUPPORT_EMAIL}.`,
+  ar: `يظهر مبلغ المطالبة في نموذج VAT255. إذا كنت لا تزال غير متأكد، يرجى التواصل مع ${SUPPORT_EMAIL}.`,
+  zh: `索赔金额显示在 VAT255 上。如果您仍不确定，请联系 ${SUPPORT_EMAIL}。`,
+  nl: `Het claimbedrag staat vermeld op de VAT255. Als u nog steeds onzeker bent, neem dan contact op met ${SUPPORT_EMAIL}.`,
+  fr: `Le montant de la demande est indiqué sur le VAT255. Si vous avez encore des doutes, veuillez contacter ${SUPPORT_EMAIL}.`,
+  de: `Der Anspruchsbetrag ist auf dem VAT255 angegeben. Wenn Sie weiterhin unsicher sind, kontaktieren Sie bitte ${SUPPORT_EMAIL}.`,
+  it: `L'importo della richiesta è indicato sul VAT255. Se non sei ancora sicuro, contatta ${SUPPORT_EMAIL}.`,
+  pt: `O valor da reclamação está refletido no VAT255. Se ainda tiver dúvidas, contacte ${SUPPORT_EMAIL}.`,
+  ru: `Сумма заявки указана в VAT255. Если вы все еще не уверены, свяжитесь с ${SUPPORT_EMAIL}.`,
+  es: `El monto de la reclamación aparece en el VAT255. Si aún no está seguro, comuníquese con ${SUPPORT_EMAIL}.`,
+};
+
+const extraFaqAnswerOverrides = {
+  en: {
+    "4": `Unfortunately, we are unable to provide a specific timeframe for when payment will be made following approval of a claim.
+
+Please note that SARS processes and finalizes payments in batches of approximately 150 claims. Once a claim has been approved, payment cannot be made until all claims within the relevant batch have been finalized and SARS has released the funds to VRA.
+
+Should you wish to enquire whether payment for your batch has been received, please contact us at ${SUPPORT_EMAIL} or ${FINANCE_EMAIL}, and we will gladly provide you with an update.`,
+    "7": `Please visit the online portal and enter your VRA reference number to view the rejection reason for your claim.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}
+
+If you are still unsure about the rejection reason, please contact ${SUPPORT_EMAIL} and provide your VRA reference number so that we can explain the rejection.`,
+    "10": `${BANKING_LINK}
+
+If you are having difficulty logging in or uploading documents, please try the following:
+1. Clear your browser cache and cookies or try using a different browser.
+2. Ensure that your login credentials are entered correctly.
+3. If you have already reset your password and it still is not working, please try resetting it again or use the "Forgot Password" option on the portal.`,
+    "12": "After funds are received from SARS, VRA has 30 working days to make payment to the claimant.",
+    "16": `The request for updated bank details must first be accepted or rejected. As soon as the request has been accepted or rejected, you will receive confirmation.
+
+You will receive confirmation from ${SUPPORT_EMAIL}.`,
+  },
+  ar: {
+    "4": `للأسف، لا يمكننا تقديم إطار زمني محدد لموعد الدفع بعد الموافقة على المطالبة.
+
+يرجى ملاحظة أن SARS تعالج وتُنهي المدفوعات على دفعات تضم حوالي 150 مطالبة. بعد الموافقة على المطالبة، لا يمكن إجراء الدفع حتى يتم الانتهاء من جميع المطالبات ضمن الدفعة المعنية وتقوم SARS بتحويل الأموال إلى VRA.
+
+إذا كنت ترغب في الاستفسار عما إذا تم استلام دفعة مجموعتك، يرجى التواصل معنا على ${SUPPORT_EMAIL} أو ${FINANCE_EMAIL} وسنقدم لك تحديثًا بكل سرور.`,
+    "7": `يرجى زيارة البوابة الإلكترونية وإدخال رقم مرجع VRA الخاص بك لعرض سبب رفض مطالبتك.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}
+
+إذا كنت لا تزال غير متأكد من سبب الرفض، يرجى التواصل مع ${SUPPORT_EMAIL} وتزويدنا برقم مرجع VRA الخاص بك حتى نتمكن من شرح الرفض.`,
+    "10": `${BANKING_LINK}
+
+إذا كنت تواجه صعوبة في تسجيل الدخول أو تحميل المستندات، يرجى تجربة ما يلي:
+1. امسح ذاكرة التخزين المؤقت وملفات تعريف الارتباط في المتصفح أو استخدم متصفحًا مختلفًا.
+2. تأكد من إدخال بيانات تسجيل الدخول بشكل صحيح.
+3. إذا كنت قد أعدت تعيين كلمة المرور وما زالت لا تعمل، يرجى إعادة تعيينها مرة أخرى أو استخدام خيار "نسيت كلمة المرور" في البوابة.`,
+    "12": "بعد استلام الأموال من SARS، لدى VRA مدة 30 يوم عمل للدفع إلى صاحب المطالبة.",
+    "16": `يجب أولاً قبول أو رفض طلب تحديث التفاصيل البنكية. بمجرد قبول الطلب أو رفضه، ستتلقى تأكيدًا.
+
+ستتلقى التأكيد من ${SUPPORT_EMAIL}.`,
+  },
+  zh: {
+    "4": `很遗憾，我们无法提供索赔获批后付款的具体时间。
+
+请注意，SARS 会按每批约 150 个索赔处理并最终确定付款。索赔获批后，必须等相关批次内所有索赔均完成并且 SARS 将资金释放给 VRA 后，才能付款。
+
+如果您想查询您所在批次的付款是否已收到，请通过 ${SUPPORT_EMAIL} 或 ${FINANCE_EMAIL} 联系我们，我们将很乐意为您提供更新。`,
+    "7": `请访问在线门户并输入您的 VRA 参考编号，以查看索赔被拒绝的原因。
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}
+
+如果您仍不确定拒绝原因，请联系 ${SUPPORT_EMAIL} 并提供您的 VRA 参考编号，以便我们解释拒绝原因。`,
+    "10": `${BANKING_LINK}
+
+如果您登录或上传文件遇到困难，请尝试以下操作：
+1. 清除浏览器缓存和 Cookie，或尝试使用其他浏览器。
+2. 确保您的登录凭据输入正确。
+3. 如果您已经重置密码但仍无法使用，请再次重置，或使用门户上的“忘记密码”选项。`,
+    "12": "从 SARS 收到资金后，VRA 有 30 个工作日向索赔人付款。",
+    "16": `更新银行资料的请求必须先被接受或拒绝。一旦请求被接受或拒绝，您将收到确认。
+
+您将收到来自 ${SUPPORT_EMAIL} 的确认。`,
+  },
+  nl: {
+    "4": `Helaas kunnen wij geen specifieke termijn geven voor wanneer betaling wordt gedaan na goedkeuring van een claim.
+
+SARS verwerkt en finaliseert betalingen in batches van ongeveer 150 claims. Zodra een claim is goedgekeurd, kan betaling pas plaatsvinden wanneer alle claims binnen de relevante batch zijn afgerond en SARS de fondsen aan VRA heeft vrijgegeven.
+
+Als u wilt navragen of betaling voor uw batch is ontvangen, neem dan contact met ons op via ${SUPPORT_EMAIL} of ${FINANCE_EMAIL}; wij geven u graag een update.`,
+    "7": `Bezoek het online portaal en voer uw VRA-referentienummer in om de reden van afwijzing van uw claim te bekijken.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}
+
+Als u nog steeds niet zeker bent van de reden van afwijzing, neem dan contact op met ${SUPPORT_EMAIL} en vermeld uw VRA-referentienummer zodat wij de afwijzing kunnen toelichten.`,
+    "10": `${BANKING_LINK}
+
+Als u problemen heeft met inloggen of documenten uploaden, probeer dan het volgende:
+1. Wis de cache en cookies van uw browser of gebruik een andere browser.
+2. Controleer of uw inloggegevens correct zijn ingevoerd.
+3. Als u uw wachtwoord al opnieuw heeft ingesteld en het nog steeds niet werkt, probeer het dan opnieuw in te stellen of gebruik de optie "Wachtwoord vergeten" op het portaal.`,
+    "12": "Nadat fondsen van SARS zijn ontvangen, heeft VRA 30 werkdagen om betaling aan de claimant te doen.",
+    "16": `Het verzoek om bijgewerkte bankgegevens moet eerst worden geaccepteerd of afgewezen. Zodra het verzoek is geaccepteerd of afgewezen, ontvangt u een bevestiging.
+
+U ontvangt bevestiging van ${SUPPORT_EMAIL}.`,
+  },
+  fr: {
+    "4": `Malheureusement, nous ne pouvons pas fournir de délai précis pour le paiement après l'approbation d'une demande.
+
+Veuillez noter que SARS traite et finalise les paiements par lots d'environ 150 demandes. Une fois qu'une demande est approuvée, le paiement ne peut pas être effectué tant que toutes les demandes du lot concerné n'ont pas été finalisées et que SARS n'a pas libéré les fonds à VRA.
+
+Si vous souhaitez savoir si le paiement de votre lot a été reçu, veuillez nous contacter à ${SUPPORT_EMAIL} ou ${FINANCE_EMAIL}, et nous vous fournirons volontiers une mise à jour.`,
+    "7": `Veuillez visiter le portail en ligne et saisir votre numéro de référence VRA pour consulter le motif du rejet de votre demande.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}
+
+Si vous avez encore des doutes sur le motif du rejet, veuillez contacter ${SUPPORT_EMAIL} et fournir votre numéro de référence VRA afin que nous puissions expliquer le rejet.`,
+    "10": `${BANKING_LINK}
+
+Si vous avez des difficultés à vous connecter ou à téléverser des documents, veuillez essayer ce qui suit :
+1. Effacez le cache et les cookies de votre navigateur ou utilisez un autre navigateur.
+2. Assurez-vous que vos identifiants de connexion sont saisis correctement.
+3. Si vous avez déjà réinitialisé votre mot de passe et que cela ne fonctionne toujours pas, essayez de le réinitialiser à nouveau ou utilisez l'option "Mot de passe oublié" sur le portail.`,
+    "12": "Après réception des fonds de SARS, VRA dispose de 30 jours ouvrables pour effectuer le paiement au demandeur.",
+    "16": `La demande de mise à jour des coordonnées bancaires doit d'abord être acceptée ou rejetée. Dès que la demande aura été acceptée ou rejetée, vous recevrez une confirmation.
+
+Vous recevrez une confirmation de ${SUPPORT_EMAIL}.`,
+  },
+  de: {
+    "4": `Leider können wir keinen bestimmten Zeitrahmen angeben, wann die Zahlung nach Genehmigung eines Anspruchs erfolgt.
+
+Bitte beachten Sie, dass SARS Zahlungen in Chargen von etwa 150 Ansprüchen verarbeitet und abschließt. Sobald ein Anspruch genehmigt wurde, kann keine Zahlung erfolgen, bis alle Ansprüche der betreffenden Charge abgeschlossen sind und SARS die Gelder an VRA freigegeben hat.
+
+Wenn Sie erfahren möchten, ob die Zahlung für Ihre Charge eingegangen ist, kontaktieren Sie uns bitte unter ${SUPPORT_EMAIL} oder ${FINANCE_EMAIL}; wir geben Ihnen gerne ein Update.`,
+    "7": `Bitte besuchen Sie das Online-Portal und geben Sie Ihre VRA-Referenznummer ein, um den Ablehnungsgrund für Ihren Anspruch einzusehen.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}
+
+Wenn Sie den Ablehnungsgrund weiterhin nicht verstehen, kontaktieren Sie bitte ${SUPPORT_EMAIL} und geben Sie Ihre VRA-Referenznummer an, damit wir die Ablehnung erklären können.`,
+    "10": `${BANKING_LINK}
+
+Wenn Sie Schwierigkeiten beim Einloggen oder Hochladen von Dokumenten haben, versuchen Sie bitte Folgendes:
+1. Leeren Sie den Cache und die Cookies Ihres Browsers oder verwenden Sie einen anderen Browser.
+2. Stellen Sie sicher, dass Ihre Zugangsdaten korrekt eingegeben wurden.
+3. Wenn Sie Ihr Passwort bereits zurückgesetzt haben und es immer noch nicht funktioniert, setzen Sie es bitte erneut zurück oder verwenden Sie die Option "Passwort vergessen" im Portal.`,
+    "12": "Nach Eingang der Gelder von SARS hat VRA 30 Arbeitstage Zeit, die Zahlung an den Antragsteller zu leisten.",
+    "16": `Der Antrag auf aktualisierte Bankdaten muss zuerst akzeptiert oder abgelehnt werden. Sobald der Antrag akzeptiert oder abgelehnt wurde, erhalten Sie eine Bestätigung.
+
+Sie erhalten eine Bestätigung von ${SUPPORT_EMAIL}.`,
+  },
+  it: {
+    "4": `Purtroppo non siamo in grado di fornire una tempistica specifica per il pagamento dopo l'approvazione di una richiesta.
+
+SARS elabora e finalizza i pagamenti in lotti di circa 150 richieste. Una volta approvata una richiesta, il pagamento non può essere effettuato finché tutte le richieste del lotto pertinente non sono state finalizzate e SARS non ha rilasciato i fondi a VRA.
+
+Se desideri sapere se il pagamento del tuo lotto è stato ricevuto, contattaci a ${SUPPORT_EMAIL} o ${FINANCE_EMAIL} e ti forniremo volentieri un aggiornamento.`,
+    "7": `Visita il portale online e inserisci il tuo numero di riferimento VRA per visualizzare il motivo del rifiuto della tua richiesta.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}
+
+Se non sei ancora sicuro del motivo del rifiuto, contatta ${SUPPORT_EMAIL} e fornisci il tuo numero di riferimento VRA in modo che possiamo spiegare il rifiuto.`,
+    "10": `${BANKING_LINK}
+
+Se hai difficoltà ad accedere o caricare documenti, prova quanto segue:
+1. Cancella la cache e i cookie del browser o prova a utilizzare un browser diverso.
+2. Assicurati che le credenziali di accesso siano inserite correttamente.
+3. Se hai già reimpostato la password e continua a non funzionare, prova a reimpostarla nuovamente o usa l'opzione "Password dimenticata" sul portale.`,
+    "12": "Dopo che i fondi sono stati ricevuti da SARS, VRA ha 30 giorni lavorativi per effettuare il pagamento al richiedente.",
+    "16": `La richiesta di aggiornamento dei dati bancari deve prima essere accettata o respinta. Non appena la richiesta sarà accettata o respinta, riceverai una conferma.
+
+Riceverai conferma da ${SUPPORT_EMAIL}.`,
+  },
+  pt: {
+    "4": `Infelizmente, não conseguimos fornecer um prazo específico para quando o pagamento será efetuado após a aprovação de uma reclamação.
+
+Tenha em atenção que a SARS processa e finaliza pagamentos em lotes de aproximadamente 150 reclamações. Depois de uma reclamação ser aprovada, o pagamento não pode ser efetuado até que todas as reclamações do lote relevante sejam finalizadas e a SARS liberte os fundos para a VRA.
+
+Se desejar saber se o pagamento do seu lote foi recebido, contacte-nos em ${SUPPORT_EMAIL} ou ${FINANCE_EMAIL}, e teremos todo o gosto em fornecer uma atualização.`,
+    "7": `Visite o portal online e introduza o seu número de referência VRA para ver o motivo da rejeição da sua reclamação.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}
+
+Se ainda tiver dúvidas sobre o motivo da rejeição, contacte ${SUPPORT_EMAIL} e forneça o seu número de referência VRA para que possamos explicar a rejeição.`,
+    "10": `${BANKING_LINK}
+
+Se tiver dificuldades em iniciar sessão ou carregar documentos, tente o seguinte:
+1. Limpe a cache e os cookies do navegador ou tente usar outro navegador.
+2. Certifique-se de que as suas credenciais de acesso foram introduzidas corretamente.
+3. Se já redefiniu a palavra-passe e ainda não funciona, tente redefini-la novamente ou use a opção "Esqueci a palavra-passe" no portal.`,
+    "12": "Depois de os fundos serem recebidos da SARS, a VRA tem 30 dias úteis para efetuar o pagamento ao requerente.",
+    "16": `O pedido de atualização dos dados bancários deve primeiro ser aceite ou rejeitado. Assim que o pedido for aceite ou rejeitado, receberá confirmação.
+
+Receberá confirmação de ${SUPPORT_EMAIL}.`,
+  },
+  ru: {
+    "4": `К сожалению, мы не можем предоставить конкретный срок, когда будет произведена выплата после одобрения заявки.
+
+Обратите внимание, что SARS обрабатывает и завершает платежи партиями примерно по 150 заявок. После одобрения заявки выплата не может быть произведена, пока все заявки в соответствующей партии не будут завершены и SARS не перечислит средства VRA.
+
+Если вы хотите узнать, получена ли оплата по вашей партии, свяжитесь с нами по ${SUPPORT_EMAIL} или ${FINANCE_EMAIL}, и мы с радостью предоставим обновление.`,
+    "7": `Пожалуйста, посетите онлайн-портал и введите ваш справочный номер VRA, чтобы посмотреть причину отклонения вашей заявки.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}
+
+Если вы все еще не уверены в причине отклонения, свяжитесь с ${SUPPORT_EMAIL} и укажите ваш справочный номер VRA, чтобы мы могли объяснить отклонение.`,
+    "10": `${BANKING_LINK}
+
+Если у вас возникли трудности со входом или загрузкой документов, попробуйте следующее:
+1. Очистите кэш и cookies браузера или попробуйте другой браузер.
+2. Убедитесь, что ваши учетные данные введены правильно.
+3. Если вы уже сбросили пароль, но он все еще не работает, попробуйте сбросить его снова или используйте опцию "Забыли пароль" на портале.`,
+    "12": "После получения средств от SARS у VRA есть 30 рабочих дней для выплаты заявителю.",
+    "16": `Запрос на обновление банковских данных должен сначала быть принят или отклонен. Как только запрос будет принят или отклонен, вы получите подтверждение.
+
+Вы получите подтверждение от ${SUPPORT_EMAIL}.`,
+  },
+  es: {
+    "4": `Lamentablemente, no podemos proporcionar un plazo específico para cuándo se realizará el pago tras la aprobación de una reclamación.
+
+Tenga en cuenta que SARS procesa y finaliza pagos en lotes de aproximadamente 150 reclamaciones. Una vez aprobada una reclamación, el pago no puede realizarse hasta que todas las reclamaciones del lote correspondiente hayan sido finalizadas y SARS haya liberado los fondos a VRA.
+
+Si desea consultar si se ha recibido el pago de su lote, comuníquese con nosotros en ${SUPPORT_EMAIL} o ${FINANCE_EMAIL}, y con gusto le proporcionaremos una actualización.`,
+    "7": `Visite el portal en línea e introduzca su número de referencia VRA para ver el motivo del rechazo de su reclamación.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}
+
+Si aún no está seguro sobre el motivo del rechazo, comuníquese con ${SUPPORT_EMAIL} y proporcione su número de referencia VRA para que podamos explicar el rechazo.`,
+    "10": `${BANKING_LINK}
+
+Si tiene dificultades para iniciar sesión o cargar documentos, intente lo siguiente:
+1. Borre la caché y las cookies de su navegador o intente usar un navegador diferente.
+2. Asegúrese de introducir correctamente sus credenciales de inicio de sesión.
+3. Si ya restableció su contraseña y todavía no funciona, intente restablecerla nuevamente o use la opción "Olvidé mi contraseña" en el portal.`,
+    "12": "Después de recibir los fondos de SARS, VRA tiene 30 días hábiles para realizar el pago al reclamante.",
+    "16": `La solicitud de actualización de datos bancarios primero debe ser aceptada o rechazada. Tan pronto como la solicitud haya sido aceptada o rechazada, recibirá confirmación.
+
+Recibirá confirmación de ${SUPPORT_EMAIL}.`,
+  },
+};
+
 const faqPatterns = [
   {
     id: "vatPayment",
@@ -1943,6 +2192,22 @@ function getExtraFaqItems(languageCode) {
 
 function getFaqMenuCopy(languageCode) {
   return faqMenuTranslations[languageCode] || faqMenuTranslations.en;
+}
+
+function getFaqEmailNote(languageCode) {
+  return faqEmailNoteTranslations[languageCode] || faqEmailNoteTranslations.en;
+}
+
+function getVatAmountAnswer(languageCode) {
+  return `${vatAmountIntroTranslations[languageCode] || vatAmountIntroTranslations.en}
+
+${t(languageCode).vatAmountAnswer}`;
+}
+
+function getExtraFaqAnswer(languageCode, itemNumber, defaultAnswer) {
+  const overrides = extraFaqAnswerOverrides[languageCode] || extraFaqAnswerOverrides.en;
+
+  return overrides[String(itemNumber)] || defaultAnswer;
 }
 
 function isGreeting(input) {
@@ -2056,6 +2321,8 @@ function faqMenu(languageCode) {
 
 ${numberedItems}
 
+${getFaqEmailNote(languageCode)}
+
 ${navigationText(languageCode)}`;
 }
 
@@ -2162,7 +2429,7 @@ ${navigationText(languageCode)}`;
   }
 
   if (faqId === "vatAmount") {
-    return `${copy.vatAmountAnswer}
+    return `${getVatAmountAnswer(languageCode)}
 
 ${navigationText(languageCode)}`;
   }
@@ -2184,7 +2451,7 @@ ${navigationText(languageCode)}`;
     const extraItem = getExtraFaqItems(languageCode)[itemNumber - 4];
 
     if (extraItem) {
-      return `${extraItem.answer}
+      return `${getExtraFaqAnswer(languageCode, itemNumber, extraItem.answer)}
 
 ${navigationText(languageCode)}`;
     }
