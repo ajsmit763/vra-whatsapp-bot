@@ -825,6 +825,803 @@ ${SUPPORT_EMAIL}`,
   },
 };
 
+const extraFaqTranslations = {
+  en: [
+    {
+      question:
+        "How long does clients need to wait for SARS to make payment to VRA since the claim has been approved by SARS?",
+      answer:
+        "We are unfortunately unable to provide a timeframe. We need to wait patiently for SARS to make payment for the claim/s.",
+    },
+    {
+      question: "How can we contact SARS directly?",
+      answer: `Please contact SARS directly using the following complaint email address:
+SARSVRACOMPLAINTS@SARS.GOV.ZA`,
+    },
+    {
+      question: "Documents have been couriered to post office AMAX",
+      answer: `Physical courier - Please provide proof of delivery as well as the waybill number to ${SUPPORT_EMAIL} so that we can confirm whether we received the documents at our head office.`,
+    },
+    {
+      question: "Claim has been rejected",
+      answer: `Please visit the online portal and enter your VRA reference number to view the rejection reason for your claim.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}`,
+    },
+    {
+      question: "Can a credit card be used for the refund?",
+      answer:
+        "A credit card is unfortunately not acceptable. The account for payment must be in the name of the claimant.",
+    },
+    {
+      question: "How long does the process take?",
+      answer:
+        "The process can take approximately 1-2 months at head office. If the claim is accepted at back office, it is submitted to SARS, which can take a further 3-6 months for processing and finalisation. Once the claim has been finalised by SARS, VRA must wait for SARS to make payment to us before payment can be made to the claimant's account.",
+    },
+    {
+      question:
+        "Cannot login to online portal or unable to upload bank confirmation letter",
+      answer: `As per our standard procedures, banking details are considered sensitive information. For security reasons, VRA cannot manually update these details on behalf of clients.
+
+Clients are required to update their banking information themselves through the online portal and upload any supporting documents as proof.
+
+${BANKING_LINK}
+
+If you are having difficulty logging in or uploading documents, please try the following:
+1. Clear your browser cache and cookies or try using a different browser.
+2. Ensure that your login credentials are entered correctly.
+3. If you have already reset your password and it still is not working, please try resetting it again or use the "Forgot Password" option on the portal.`,
+    },
+    {
+      question: "What is a bank confirmation letter?",
+      answer:
+        "A bank confirmation letter is a formal letter issued by your bank confirming that the bank account belongs to you.\n\nThis letter is required before any account details can be updated, as required by SARS regulations.",
+    },
+    {
+      question:
+        "How long does it take finance to make payment after funds were received from SARS?",
+      answer:
+        "We are unable to provide a timeframe. However, as soon as payment has been made, you will receive confirmation via email.",
+    },
+    {
+      question: "Claim rejected due to entry / exit stamp for crew members",
+      answer: `Please provide a copy of your crew member card via email to ${SUPPORT_EMAIL}.`,
+    },
+    {
+      question: "What is the correct address to send the postal to?",
+      answer: `262 Jack Hindon Street
+Pretoria North
+Gauteng
+South Africa
+0182`,
+    },
+    {
+      question: "Why is my claim rejected?",
+      answer: `Please visit the online portal and enter your VRA reference number to view the rejection reason. If you are still unsure, please email ${SUPPORT_EMAIL} for detailed information regarding your rejected claim.`,
+    },
+    {
+      question:
+        "I updated my bank details on the portal however the details have not been updated",
+      answer:
+        "The request for updated bank details must first be accepted or rejected. As soon as the request has been accepted or rejected, you will receive confirmation.",
+    },
+  ],
+  ar: [
+    {
+      question:
+        "كم من الوقت يحتاج العملاء للانتظار حتى تقوم SARS بالدفع إلى VRA بعد الموافقة على المطالبة من SARS؟",
+      answer:
+        "للأسف لا يمكننا تقديم إطار زمني. نحتاج إلى الانتظار بصبر حتى تقوم SARS بالدفع للمطالبة أو المطالبات.",
+    },
+    {
+      question: "كيف يمكننا التواصل مع SARS مباشرة؟",
+      answer: `يرجى التواصل مع SARS مباشرة باستخدام بريد الشكاوى التالي:
+SARSVRACOMPLAINTS@SARS.GOV.ZA`,
+    },
+    {
+      question: "تم إرسال المستندات بالبريد السريع إلى مكتب البريد AMAX",
+      answer: `البريد السريع الفعلي - يرجى تزويدنا بإثبات التسليم ورقم بوليصة الشحن على ${SUPPORT_EMAIL} حتى نتمكن من تأكيد ما إذا كنا قد استلمنا المستندات في مكتبنا الرئيسي.`,
+    },
+    {
+      question: "تم رفض المطالبة",
+      answer: `يرجى زيارة البوابة الإلكترونية وإدخال رقم مرجع VRA الخاص بك لعرض سبب رفض مطالبتك.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}`,
+    },
+    {
+      question: "هل يمكن استخدام بطاقة ائتمان لاسترداد المبلغ؟",
+      answer:
+        "للأسف لا يمكن قبول بطاقة الائتمان. يجب أن يكون حساب الدفع باسم صاحب المطالبة.",
+    },
+    {
+      question: "كم تستغرق العملية؟",
+      answer:
+        "قد تستغرق العملية حوالي شهر إلى شهرين في المكتب الرئيسي. إذا تم قبول المطالبة في المكتب الخلفي، يتم إرسالها إلى SARS، وقد يستغرق ذلك 3 إلى 6 أشهر إضافية للمعالجة والإنهاء. بعد أن تنتهي SARS من المطالبة، يجب على VRA انتظار دفع SARS لنا قبل أن يتم الدفع إلى حساب صاحب المطالبة.",
+    },
+    {
+      question:
+        "لا يمكنني تسجيل الدخول إلى البوابة الإلكترونية أو لا أستطيع تحميل خطاب تأكيد البنك",
+      answer: `وفقًا لإجراءاتنا القياسية، تعتبر التفاصيل البنكية معلومات حساسة. لأسباب أمنية، لا يمكن لـ VRA تحديث هذه التفاصيل يدويًا نيابة عن العملاء.
+
+يجب على العملاء تحديث معلوماتهم البنكية بأنفسهم من خلال البوابة الإلكترونية وتحميل أي مستندات داعمة كإثبات.
+
+${BANKING_LINK}
+
+إذا كنت تواجه صعوبة في تسجيل الدخول أو تحميل المستندات، يرجى تجربة ما يلي:
+1. امسح ذاكرة التخزين المؤقت وملفات تعريف الارتباط في المتصفح أو استخدم متصفحًا مختلفًا.
+2. تأكد من إدخال بيانات تسجيل الدخول بشكل صحيح.
+3. إذا كنت قد أعدت تعيين كلمة المرور وما زالت لا تعمل، يرجى إعادة تعيينها مرة أخرى أو استخدام خيار "نسيت كلمة المرور" في البوابة.`,
+    },
+    {
+      question: "ما هو خطاب تأكيد البنك؟",
+      answer:
+        "خطاب تأكيد البنك هو خطاب رسمي صادر عن البنك يؤكد أن الحساب البنكي يخصك.\n\nهذا الخطاب مطلوب قبل تحديث أي تفاصيل حساب، وفقًا للوائح SARS.",
+    },
+    {
+      question:
+        "كم يستغرق قسم المالية للدفع بعد استلام الأموال من SARS؟",
+      answer:
+        "لا يمكننا تقديم إطار زمني. ومع ذلك، بمجرد إجراء الدفع، ستتلقى تأكيدًا عبر البريد الإلكتروني.",
+    },
+    {
+      question: "تم رفض المطالبة بسبب ختم الدخول / الخروج لأفراد الطاقم",
+      answer: `يرجى إرسال نسخة من بطاقة عضو الطاقم عبر البريد الإلكتروني إلى ${SUPPORT_EMAIL}.`,
+    },
+    {
+      question: "ما هو العنوان الصحيح لإرسال البريد إليه؟",
+      answer: `262 Jack Hindon Street
+Pretoria North
+Gauteng
+South Africa
+0182`,
+    },
+    {
+      question: "لماذا تم رفض مطالبتي؟",
+      answer: `يرجى زيارة البوابة الإلكترونية وإدخال رقم مرجع VRA الخاص بك لعرض سبب الرفض. إذا كنت لا تزال غير متأكد، يرجى إرسال بريد إلكتروني إلى ${SUPPORT_EMAIL} للحصول على معلومات تفصيلية بشأن مطالبتك المرفوضة.`,
+    },
+    {
+      question:
+        "قمت بتحديث بياناتي البنكية على البوابة ولكن لم يتم تحديث التفاصيل",
+      answer:
+        "يجب أولاً قبول أو رفض طلب تحديث التفاصيل البنكية. بمجرد قبول الطلب أو رفضه، ستتلقى تأكيدًا.",
+    },
+  ],
+  zh: [
+    {
+      question: "在 SARS 批准索赔后，客户需要等待多久 SARS 才会向 VRA 付款？",
+      answer:
+        "很遗憾，我们无法提供具体时间。我们需要耐心等待 SARS 为相关索赔付款。",
+    },
+    {
+      question: "我们如何直接联系 SARS？",
+      answer: `请使用以下投诉邮箱直接联系 SARS：
+SARSVRACOMPLAINTS@SARS.GOV.ZA`,
+    },
+    {
+      question: "文件已通过 AMAX 快递到邮局",
+      answer: `实体快递 - 请将送达证明以及运单号发送至 ${SUPPORT_EMAIL}，以便我们确认总部是否已收到文件。`,
+    },
+    {
+      question: "索赔已被拒绝",
+      answer: `请访问在线门户并输入您的 VRA 参考编号，以查看索赔被拒绝的原因。
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}`,
+    },
+    {
+      question: "可以使用信用卡接收退款吗？",
+      answer: "很遗憾，信用卡不可接受。付款账户必须以索赔人本人名义开立。",
+    },
+    {
+      question: "流程需要多长时间？",
+      answer:
+        "该流程在总部大约需要 1-2 个月。如果索赔在后台办公室被接受，将提交给 SARS，SARS 处理和最终确定可能还需要 3-6 个月。SARS 最终确定索赔后，VRA 必须等待 SARS 向我们付款，然后才能向索赔人的账户付款。",
+    },
+    {
+      question: "无法登录在线门户或无法上传银行确认函",
+      answer: `根据我们的标准程序，银行信息被视为敏感信息。出于安全原因，VRA 不能代表客户手动更新这些信息。
+
+客户必须通过在线门户自行更新银行信息，并上传任何支持文件作为证明。
+
+${BANKING_LINK}
+
+如果您登录或上传文件遇到困难，请尝试以下操作：
+1. 清除浏览器缓存和 Cookie，或尝试使用其他浏览器。
+2. 确保您的登录凭据输入正确。
+3. 如果您已经重置密码但仍无法使用，请再次重置，或使用门户上的“忘记密码”选项。`,
+    },
+    {
+      question: "什么是银行确认函？",
+      answer:
+        "银行确认函是由您的银行出具的正式信函，用于确认该银行账户属于您。\n\n根据 SARS 规定，在更新任何账户详情之前需要提供此信函。",
+    },
+    {
+      question: "VRA 从 SARS 收到资金后，财务部需要多久付款？",
+      answer: "我们无法提供具体时间。但是，一旦付款完成，您将通过电子邮件收到确认。",
+    },
+    {
+      question: "由于机组人员入境 / 出境印章导致索赔被拒绝",
+      answer: `请通过电子邮件将您的机组人员证件副本发送至 ${SUPPORT_EMAIL}。`,
+    },
+    {
+      question: "邮寄的正确地址是什么？",
+      answer: `262 Jack Hindon Street
+Pretoria North
+Gauteng
+South Africa
+0182`,
+    },
+    {
+      question: "为什么我的索赔被拒绝？",
+      answer: `请访问在线门户并输入您的 VRA 参考编号以查看拒绝原因。如果您仍不确定，请发送电子邮件至 ${SUPPORT_EMAIL}，以获取有关您被拒绝索赔的详细信息。`,
+    },
+    {
+      question: "我已在门户上更新银行资料，但资料尚未更新",
+      answer: "更新银行资料的请求必须先被接受或拒绝。一旦请求被接受或拒绝，您将收到确认。",
+    },
+  ],
+  nl: [
+    {
+      question:
+        "Hoe lang moeten cliënten wachten voordat SARS aan VRA betaalt nadat de claim door SARS is goedgekeurd?",
+      answer:
+        "Helaas kunnen wij geen tijdsbestek geven. We moeten geduldig wachten tot SARS de claim(s) betaalt.",
+    },
+    {
+      question: "Hoe kunnen we SARS rechtstreeks contacteren?",
+      answer: `Neem rechtstreeks contact op met SARS via het volgende klachten-e-mailadres:
+SARSVRACOMPLAINTS@SARS.GOV.ZA`,
+    },
+    {
+      question: "Documenten zijn per koerier naar postkantoor AMAX gestuurd",
+      answer: `Fysieke koerier - Stuur het bewijs van levering en het waybillnummer naar ${SUPPORT_EMAIL}, zodat wij kunnen bevestigen of wij de documenten op ons hoofdkantoor hebben ontvangen.`,
+    },
+    {
+      question: "Claim is afgewezen",
+      answer: `Bezoek het online portaal en voer uw VRA-referentienummer in om de reden van afwijzing van uw claim te bekijken.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}`,
+    },
+    {
+      question: "Kan een creditcard worden gebruikt voor de terugbetaling?",
+      answer:
+        "Een creditcard wordt helaas niet geaccepteerd. De rekening voor betaling moet op naam van de claimant staan.",
+    },
+    {
+      question: "Hoe lang duurt het proces?",
+      answer:
+        "Het proces kan ongeveer 1-2 maanden duren op het hoofdkantoor. Als de claim bij back office wordt geaccepteerd, wordt deze ingediend bij SARS, wat nog eens 3-6 maanden kan duren voor verwerking en afronding. Zodra SARS de claim heeft afgerond, moet VRA wachten tot SARS aan ons betaalt voordat betaling aan de rekening van de claimant kan worden gedaan.",
+    },
+    {
+      question:
+        "Kan niet inloggen op het online portaal of kan de bankbevestigingsbrief niet uploaden",
+      answer: `Volgens onze standaardprocedures worden bankgegevens beschouwd als gevoelige informatie. Om veiligheidsredenen kan VRA deze gegevens niet handmatig namens cliënten bijwerken.
+
+Cliënten moeten hun bankgegevens zelf via het online portaal bijwerken en eventuele ondersteunende documenten als bewijs uploaden.
+
+${BANKING_LINK}
+
+Als u problemen heeft met inloggen of documenten uploaden, probeer dan het volgende:
+1. Wis de cache en cookies van uw browser of gebruik een andere browser.
+2. Controleer of uw inloggegevens correct zijn ingevoerd.
+3. Als u uw wachtwoord al opnieuw heeft ingesteld en het nog steeds niet werkt, probeer het dan opnieuw in te stellen of gebruik de optie "Wachtwoord vergeten" op het portaal.`,
+    },
+    {
+      question: "Wat is een bankbevestigingsbrief?",
+      answer:
+        "Een bankbevestigingsbrief is een formele brief van uw bank waarin wordt bevestigd dat de bankrekening van u is.\n\nDeze brief is vereist voordat rekeninggegevens kunnen worden bijgewerkt, zoals vereist door SARS-regels.",
+    },
+    {
+      question:
+        "Hoe lang duurt het voordat Finance betaalt nadat fondsen van SARS zijn ontvangen?",
+      answer:
+        "Wij kunnen geen tijdsbestek geven. Zodra de betaling is gedaan, ontvangt u echter een bevestiging per e-mail.",
+    },
+    {
+      question: "Claim afgewezen vanwege entry / exit-stempel voor crewleden",
+      answer: `Stuur een kopie van uw crew member card per e-mail naar ${SUPPORT_EMAIL}.`,
+    },
+    {
+      question: "Wat is het juiste adres om de post naartoe te sturen?",
+      answer: `262 Jack Hindon Street
+Pretoria North
+Gauteng
+South Africa
+0182`,
+    },
+    {
+      question: "Waarom is mijn claim afgewezen?",
+      answer: `Bezoek het online portaal en voer uw VRA-referentienummer in om de reden van afwijzing te bekijken. Als u nog steeds onzeker bent, stuur dan een e-mail naar ${SUPPORT_EMAIL} voor gedetailleerde informatie over uw afgewezen claim.`,
+    },
+    {
+      question:
+        "Ik heb mijn bankgegevens op het portaal bijgewerkt, maar de gegevens zijn nog niet bijgewerkt",
+      answer:
+        "Het verzoek om bijgewerkte bankgegevens moet eerst worden geaccepteerd of afgewezen. Zodra het verzoek is geaccepteerd of afgewezen, ontvangt u een bevestiging.",
+    },
+  ],
+  fr: [
+    {
+      question:
+        "Combien de temps les clients doivent-ils attendre que SARS effectue le paiement à VRA après l'approbation de la demande par SARS ?",
+      answer:
+        "Nous ne sommes malheureusement pas en mesure de fournir un délai. Nous devons attendre patiemment que SARS effectue le paiement de la ou des demandes.",
+    },
+    {
+      question: "Comment pouvons-nous contacter SARS directement ?",
+      answer: `Veuillez contacter SARS directement à l'adresse e-mail de réclamation suivante :
+SARSVRACOMPLAINTS@SARS.GOV.ZA`,
+    },
+    {
+      question: "Les documents ont été envoyés par courrier au bureau de poste AMAX",
+      answer: `Courrier physique - Veuillez fournir la preuve de livraison ainsi que le numéro de bordereau à ${SUPPORT_EMAIL} afin que nous puissions confirmer si nous avons reçu les documents à notre siège social.`,
+    },
+    {
+      question: "La demande a été rejetée",
+      answer: `Veuillez visiter le portail en ligne et saisir votre numéro de référence VRA pour consulter le motif du rejet de votre demande.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}`,
+    },
+    {
+      question: "Une carte de crédit peut-elle être utilisée pour le remboursement ?",
+      answer:
+        "Une carte de crédit n'est malheureusement pas acceptable. Le compte de paiement doit être au nom du demandeur.",
+    },
+    {
+      question: "Combien de temps prend le processus ?",
+      answer:
+        "Le processus peut prendre environ 1 à 2 mois au siège social. Si la demande est acceptée au back office, elle est soumise à SARS, ce qui peut prendre 3 à 6 mois supplémentaires pour le traitement et la finalisation. Une fois la demande finalisée par SARS, VRA doit attendre que SARS nous verse les fonds avant que le paiement puisse être effectué sur le compte du demandeur.",
+    },
+    {
+      question:
+        "Impossible de se connecter au portail en ligne ou de téléverser la lettre de confirmation bancaire",
+      answer: `Conformément à nos procédures standard, les coordonnées bancaires sont considérées comme des informations sensibles. Pour des raisons de sécurité, VRA ne peut pas mettre à jour manuellement ces informations au nom des clients.
+
+Les clients doivent mettre à jour eux-mêmes leurs informations bancaires via le portail en ligne et téléverser tout document justificatif comme preuve.
+
+${BANKING_LINK}
+
+Si vous avez des difficultés à vous connecter ou à téléverser des documents, veuillez essayer ce qui suit :
+1. Effacez le cache et les cookies de votre navigateur ou utilisez un autre navigateur.
+2. Assurez-vous que vos identifiants de connexion sont saisis correctement.
+3. Si vous avez déjà réinitialisé votre mot de passe et que cela ne fonctionne toujours pas, essayez de le réinitialiser à nouveau ou utilisez l'option "Mot de passe oublié" sur le portail.`,
+    },
+    {
+      question: "Qu'est-ce qu'une lettre de confirmation bancaire ?",
+      answer:
+        "Une lettre de confirmation bancaire est une lettre officielle émise par votre banque confirmant que le compte bancaire vous appartient.\n\nCette lettre est requise avant toute mise à jour des coordonnées de compte, conformément aux réglementations SARS.",
+    },
+    {
+      question:
+        "Combien de temps faut-il à Finance pour effectuer le paiement après réception des fonds de SARS ?",
+      answer:
+        "Nous ne pouvons pas fournir de délai. Cependant, dès que le paiement aura été effectué, vous recevrez une confirmation par e-mail.",
+    },
+    {
+      question:
+        "Demande rejetée en raison du cachet d'entrée / de sortie pour les membres d'équipage",
+      answer: `Veuillez envoyer une copie de votre carte de membre d'équipage par e-mail à ${SUPPORT_EMAIL}.`,
+    },
+    {
+      question: "Quelle est l'adresse correcte pour envoyer le courrier ?",
+      answer: `262 Jack Hindon Street
+Pretoria North
+Gauteng
+South Africa
+0182`,
+    },
+    {
+      question: "Pourquoi ma demande est-elle rejetée ?",
+      answer: `Veuillez visiter le portail en ligne et saisir votre numéro de référence VRA pour consulter le motif du rejet. Si vous avez encore des doutes, veuillez envoyer un e-mail à ${SUPPORT_EMAIL} pour obtenir des informations détaillées concernant votre demande rejetée.`,
+    },
+    {
+      question:
+        "J'ai mis à jour mes coordonnées bancaires sur le portail, mais elles n'ont pas encore été mises à jour",
+      answer:
+        "La demande de mise à jour des coordonnées bancaires doit d'abord être acceptée ou rejetée. Dès que la demande aura été acceptée ou rejetée, vous recevrez une confirmation.",
+    },
+  ],
+  de: [
+    {
+      question:
+        "Wie lange müssen Kunden warten, bis SARS an VRA zahlt, nachdem der Anspruch von SARS genehmigt wurde?",
+      answer:
+        "Leider können wir keinen Zeitrahmen angeben. Wir müssen geduldig warten, bis SARS die Zahlung für den/die Anspruch(e) leistet.",
+    },
+    {
+      question: "Wie können wir SARS direkt kontaktieren?",
+      answer: `Bitte kontaktieren Sie SARS direkt über die folgende Beschwerde-E-Mail-Adresse:
+SARSVRACOMPLAINTS@SARS.GOV.ZA`,
+    },
+    {
+      question: "Dokumente wurden per Kurier an das Postamt AMAX gesendet",
+      answer: `Physischer Kurier - Bitte senden Sie den Zustellnachweis sowie die Waybill-Nummer an ${SUPPORT_EMAIL}, damit wir bestätigen können, ob wir die Dokumente in unserer Zentrale erhalten haben.`,
+    },
+    {
+      question: "Anspruch wurde abgelehnt",
+      answer: `Bitte besuchen Sie das Online-Portal und geben Sie Ihre VRA-Referenznummer ein, um den Ablehnungsgrund für Ihren Anspruch einzusehen.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}`,
+    },
+    {
+      question: "Kann eine Kreditkarte für die Rückerstattung verwendet werden?",
+      answer:
+        "Eine Kreditkarte ist leider nicht akzeptabel. Das Zahlungskonto muss auf den Namen des Antragstellers lauten.",
+    },
+    {
+      question: "Wie lange dauert der Prozess?",
+      answer:
+        "Der Prozess kann in der Zentrale etwa 1-2 Monate dauern. Wenn der Anspruch im Back Office akzeptiert wird, wird er an SARS übermittelt, was weitere 3-6 Monate für Bearbeitung und Abschluss dauern kann. Sobald der Anspruch von SARS abgeschlossen wurde, muss VRA warten, bis SARS an uns zahlt, bevor eine Zahlung auf das Konto des Antragstellers erfolgen kann.",
+    },
+    {
+      question:
+        "Anmeldung im Online-Portal nicht möglich oder Bankbestätigungsschreiben kann nicht hochgeladen werden",
+      answer: `Gemäß unseren Standardverfahren gelten Bankdaten als sensible Informationen. Aus Sicherheitsgründen kann VRA diese Daten nicht manuell im Namen von Kunden aktualisieren.
+
+Kunden müssen ihre Bankinformationen selbst über das Online-Portal aktualisieren und alle unterstützenden Dokumente als Nachweis hochladen.
+
+${BANKING_LINK}
+
+Wenn Sie Schwierigkeiten beim Einloggen oder Hochladen von Dokumenten haben, versuchen Sie bitte Folgendes:
+1. Leeren Sie den Cache und die Cookies Ihres Browsers oder verwenden Sie einen anderen Browser.
+2. Stellen Sie sicher, dass Ihre Zugangsdaten korrekt eingegeben wurden.
+3. Wenn Sie Ihr Passwort bereits zurückgesetzt haben und es immer noch nicht funktioniert, setzen Sie es bitte erneut zurück oder verwenden Sie die Option "Passwort vergessen" im Portal.`,
+    },
+    {
+      question: "Was ist ein Bankbestätigungsschreiben?",
+      answer:
+        "Ein Bankbestätigungsschreiben ist ein formelles Schreiben Ihrer Bank, das bestätigt, dass das Bankkonto Ihnen gehört.\n\nDieses Schreiben ist erforderlich, bevor Kontodaten aktualisiert werden können, wie von SARS-Vorschriften verlangt.",
+    },
+    {
+      question:
+        "Wie lange dauert es, bis Finance nach Erhalt der Gelder von SARS zahlt?",
+      answer:
+        "Wir können keinen Zeitrahmen angeben. Sobald die Zahlung jedoch erfolgt ist, erhalten Sie eine Bestätigung per E-Mail.",
+    },
+    {
+      question: "Anspruch wegen Einreise-/Ausreisestempel für Crewmitglieder abgelehnt",
+      answer: `Bitte senden Sie eine Kopie Ihrer Crew Member Card per E-Mail an ${SUPPORT_EMAIL}.`,
+    },
+    {
+      question: "An welche Adresse soll die Post gesendet werden?",
+      answer: `262 Jack Hindon Street
+Pretoria North
+Gauteng
+South Africa
+0182`,
+    },
+    {
+      question: "Warum wurde mein Anspruch abgelehnt?",
+      answer: `Bitte besuchen Sie das Online-Portal und geben Sie Ihre VRA-Referenznummer ein, um den Ablehnungsgrund einzusehen. Wenn Sie weiterhin unsicher sind, senden Sie bitte eine E-Mail an ${SUPPORT_EMAIL}, um detaillierte Informationen zu Ihrem abgelehnten Anspruch zu erhalten.`,
+    },
+    {
+      question:
+        "Ich habe meine Bankdaten im Portal aktualisiert, aber die Daten wurden nicht aktualisiert",
+      answer:
+        "Der Antrag auf aktualisierte Bankdaten muss zuerst akzeptiert oder abgelehnt werden. Sobald der Antrag akzeptiert oder abgelehnt wurde, erhalten Sie eine Bestätigung.",
+    },
+  ],
+  it: [
+    {
+      question:
+        "Quanto tempo devono attendere i clienti affinché SARS effettui il pagamento a VRA dopo l'approvazione della richiesta da parte di SARS?",
+      answer:
+        "Purtroppo non siamo in grado di fornire una tempistica. Dobbiamo attendere pazientemente che SARS effettui il pagamento per la/e richiesta/e.",
+    },
+    {
+      question: "Come possiamo contattare direttamente SARS?",
+      answer: `Contatta direttamente SARS utilizzando il seguente indirizzo email per reclami:
+SARSVRACOMPLAINTS@SARS.GOV.ZA`,
+    },
+    {
+      question: "I documenti sono stati inviati tramite corriere all'ufficio postale AMAX",
+      answer: `Corriere fisico - Fornisci la prova di consegna e il numero di waybill a ${SUPPORT_EMAIL} in modo che possiamo confermare se abbiamo ricevuto i documenti presso la nostra sede centrale.`,
+    },
+    {
+      question: "La richiesta è stata respinta",
+      answer: `Visita il portale online e inserisci il tuo numero di riferimento VRA per visualizzare il motivo del rifiuto della tua richiesta.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}`,
+    },
+    {
+      question: "È possibile utilizzare una carta di credito per il rimborso?",
+      answer:
+        "Una carta di credito purtroppo non è accettabile. Il conto per il pagamento deve essere intestato al richiedente.",
+    },
+    {
+      question: "Quanto dura il processo?",
+      answer:
+        "Il processo può richiedere circa 1-2 mesi presso la sede centrale. Se la richiesta viene accettata dal back office, viene inviata a SARS, che può richiedere ulteriori 3-6 mesi per l'elaborazione e la finalizzazione. Una volta finalizzata la richiesta da SARS, VRA deve attendere che SARS effettui il pagamento a noi prima che il pagamento possa essere effettuato sul conto del richiedente.",
+    },
+    {
+      question:
+        "Impossibile accedere al portale online o caricare la lettera di conferma bancaria",
+      answer: `Secondo le nostre procedure standard, i dettagli bancari sono considerati informazioni sensibili. Per motivi di sicurezza, VRA non può aggiornare manualmente questi dettagli per conto dei clienti.
+
+I clienti devono aggiornare autonomamente le proprie informazioni bancarie tramite il portale online e caricare eventuali documenti di supporto come prova.
+
+${BANKING_LINK}
+
+Se hai difficoltà ad accedere o caricare documenti, prova quanto segue:
+1. Cancella la cache e i cookie del browser o prova a utilizzare un browser diverso.
+2. Assicurati che le credenziali di accesso siano inserite correttamente.
+3. Se hai già reimpostato la password e continua a non funzionare, prova a reimpostarla nuovamente o usa l'opzione "Password dimenticata" sul portale.`,
+    },
+    {
+      question: "Che cos'è una lettera di conferma bancaria?",
+      answer:
+        "Una lettera di conferma bancaria è una lettera formale emessa dalla tua banca che conferma che il conto bancario appartiene a te.\n\nQuesta lettera è richiesta prima che qualsiasi dettaglio del conto possa essere aggiornato, come richiesto dalle normative SARS.",
+    },
+    {
+      question:
+        "Quanto tempo impiega Finance a effettuare il pagamento dopo aver ricevuto i fondi da SARS?",
+      answer:
+        "Non siamo in grado di fornire una tempistica. Tuttavia, non appena il pagamento sarà stato effettuato, riceverai una conferma via email.",
+    },
+    {
+      question: "Richiesta respinta a causa del timbro di ingresso / uscita per i membri dell'equipaggio",
+      answer: `Fornisci una copia della tua tessera di membro dell'equipaggio via email a ${SUPPORT_EMAIL}.`,
+    },
+    {
+      question: "Qual è l'indirizzo corretto a cui inviare la posta?",
+      answer: `262 Jack Hindon Street
+Pretoria North
+Gauteng
+South Africa
+0182`,
+    },
+    {
+      question: "Perché la mia richiesta è stata respinta?",
+      answer: `Visita il portale online e inserisci il tuo numero di riferimento VRA per visualizzare il motivo del rifiuto. Se non sei ancora sicuro, invia un'email a ${SUPPORT_EMAIL} per informazioni dettagliate sulla tua richiesta respinta.`,
+    },
+    {
+      question:
+        "Ho aggiornato i miei dati bancari sul portale, ma i dettagli non sono stati aggiornati",
+      answer:
+        "La richiesta di aggiornamento dei dati bancari deve prima essere accettata o respinta. Non appena la richiesta sarà accettata o respinta, riceverai una conferma.",
+    },
+  ],
+  pt: [
+    {
+      question:
+        "Quanto tempo os clientes precisam esperar para que a SARS faça o pagamento à VRA depois de a reclamação ter sido aprovada pela SARS?",
+      answer:
+        "Infelizmente não conseguimos fornecer um prazo. Precisamos aguardar pacientemente que a SARS faça o pagamento da(s) reclamação(ões).",
+    },
+    {
+      question: "Como podemos contactar a SARS diretamente?",
+      answer: `Contacte a SARS diretamente através do seguinte endereço de email para reclamações:
+SARSVRACOMPLAINTS@SARS.GOV.ZA`,
+    },
+    {
+      question: "Os documentos foram enviados por courier para os correios AMAX",
+      answer: `Courier físico - Envie o comprovativo de entrega e o número da waybill para ${SUPPORT_EMAIL} para que possamos confirmar se recebemos os documentos na nossa sede.`,
+    },
+    {
+      question: "A reclamação foi rejeitada",
+      answer: `Visite o portal online e introduza o seu número de referência VRA para ver o motivo da rejeição da sua reclamação.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}`,
+    },
+    {
+      question: "Pode ser usado um cartão de crédito para o reembolso?",
+      answer:
+        "Infelizmente, um cartão de crédito não é aceitável. A conta para pagamento deve estar em nome do requerente.",
+    },
+    {
+      question: "Quanto tempo demora o processo?",
+      answer:
+        "O processo pode demorar aproximadamente 1-2 meses na sede. Se a reclamação for aceite no back office, é submetida à SARS, o que pode demorar mais 3-6 meses para processamento e finalização. Assim que a reclamação for finalizada pela SARS, a VRA deve aguardar que a SARS nos faça o pagamento antes que o pagamento possa ser feito para a conta do requerente.",
+    },
+    {
+      question:
+        "Não consigo iniciar sessão no portal online ou não consigo carregar a carta de confirmação bancária",
+      answer: `De acordo com os nossos procedimentos padrão, os dados bancários são considerados informação sensível. Por razões de segurança, a VRA não pode atualizar manualmente estes dados em nome dos clientes.
+
+Os clientes devem atualizar eles próprios as suas informações bancárias através do portal online e carregar quaisquer documentos de suporte como prova.
+
+${BANKING_LINK}
+
+Se tiver dificuldades em iniciar sessão ou carregar documentos, tente o seguinte:
+1. Limpe a cache e os cookies do navegador ou tente usar outro navegador.
+2. Certifique-se de que as suas credenciais de acesso foram introduzidas corretamente.
+3. Se já redefiniu a palavra-passe e ainda não funciona, tente redefini-la novamente ou use a opção "Esqueci a palavra-passe" no portal.`,
+    },
+    {
+      question: "O que é uma carta de confirmação bancária?",
+      answer:
+        "Uma carta de confirmação bancária é uma carta formal emitida pelo seu banco confirmando que a conta bancária lhe pertence.\n\nEsta carta é exigida antes de quaisquer dados da conta poderem ser atualizados, conforme exigido pelos regulamentos da SARS.",
+    },
+    {
+      question:
+        "Quanto tempo demora o Finance a fazer o pagamento depois de os fundos serem recebidos da SARS?",
+      answer:
+        "Não conseguimos fornecer um prazo. No entanto, assim que o pagamento for efetuado, receberá confirmação por email.",
+    },
+    {
+      question: "Reclamação rejeitada devido ao carimbo de entrada / saída para membros da tripulação",
+      answer: `Envie uma cópia do seu cartão de membro da tripulação por email para ${SUPPORT_EMAIL}.`,
+    },
+    {
+      question: "Qual é o endereço correto para enviar o correio?",
+      answer: `262 Jack Hindon Street
+Pretoria North
+Gauteng
+South Africa
+0182`,
+    },
+    {
+      question: "Porque foi a minha reclamação rejeitada?",
+      answer: `Visite o portal online e introduza o seu número de referência VRA para ver o motivo da rejeição. Se ainda tiver dúvidas, envie um email para ${SUPPORT_EMAIL} para obter informações detalhadas sobre a sua reclamação rejeitada.`,
+    },
+    {
+      question:
+        "Atualizei os meus dados bancários no portal, mas os dados ainda não foram atualizados",
+      answer:
+        "O pedido de atualização dos dados bancários deve primeiro ser aceite ou rejeitado. Assim que o pedido for aceite ou rejeitado, receberá confirmação.",
+    },
+  ],
+  ru: [
+    {
+      question:
+        "Сколько времени клиентам нужно ждать, пока SARS произведет платеж VRA после одобрения заявки SARS?",
+      answer:
+        "К сожалению, мы не можем предоставить сроки. Нам нужно терпеливо ждать, пока SARS произведет платеж по заявке/заявкам.",
+    },
+    {
+      question: "Как мы можем связаться с SARS напрямую?",
+      answer: `Пожалуйста, свяжитесь с SARS напрямую по следующему адресу электронной почты для жалоб:
+SARSVRACOMPLAINTS@SARS.GOV.ZA`,
+    },
+    {
+      question: "Документы были отправлены курьером в почтовое отделение AMAX",
+      answer: `Физический курьер - Пожалуйста, предоставьте подтверждение доставки, а также номер waybill на ${SUPPORT_EMAIL}, чтобы мы могли подтвердить, получили ли мы документы в нашем головном офисе.`,
+    },
+    {
+      question: "Заявка была отклонена",
+      answer: `Пожалуйста, посетите онлайн-портал и введите ваш справочный номер VRA, чтобы посмотреть причину отклонения вашей заявки.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}`,
+    },
+    {
+      question: "Можно ли использовать кредитную карту для возврата?",
+      answer:
+        "К сожалению, кредитная карта не принимается. Счет для выплаты должен быть на имя заявителя.",
+    },
+    {
+      question: "Сколько времени занимает процесс?",
+      answer:
+        "Процесс может занять примерно 1-2 месяца в головном офисе. Если заявка принята в back office, она передается в SARS, что может занять еще 3-6 месяцев для обработки и завершения. После завершения заявки SARS, VRA должна дождаться платежа от SARS, прежде чем выплата может быть произведена на счет заявителя.",
+    },
+    {
+      question:
+        "Не могу войти в онлайн-портал или загрузить письмо-подтверждение банка",
+      answer: `Согласно нашим стандартным процедурам, банковские данные считаются конфиденциальной информацией. По соображениям безопасности VRA не может вручную обновлять эти данные от имени клиентов.
+
+Клиенты должны самостоятельно обновлять свою банковскую информацию через онлайн-портал и загружать любые подтверждающие документы.
+
+${BANKING_LINK}
+
+Если у вас возникли трудности со входом или загрузкой документов, попробуйте следующее:
+1. Очистите кэш и cookies браузера или попробуйте другой браузер.
+2. Убедитесь, что ваши учетные данные введены правильно.
+3. Если вы уже сбросили пароль, но он все еще не работает, попробуйте сбросить его снова или используйте опцию "Забыли пароль" на портале.`,
+    },
+    {
+      question: "Что такое письмо-подтверждение банка?",
+      answer:
+        "Письмо-подтверждение банка - это официальное письмо, выданное вашим банком, подтверждающее, что банковский счет принадлежит вам.\n\nЭто письмо требуется до обновления любых данных счета в соответствии с правилами SARS.",
+    },
+    {
+      question:
+        "Сколько времени требуется Finance для выплаты после получения средств от SARS?",
+      answer:
+        "Мы не можем предоставить сроки. Однако, как только платеж будет произведен, вы получите подтверждение по электронной почте.",
+    },
+    {
+      question: "Заявка отклонена из-за штампа въезда / выезда для членов экипажа",
+      answer: `Пожалуйста, отправьте копию вашей карты члена экипажа по электронной почте на ${SUPPORT_EMAIL}.`,
+    },
+    {
+      question: "Какой правильный адрес для отправки почты?",
+      answer: `262 Jack Hindon Street
+Pretoria North
+Gauteng
+South Africa
+0182`,
+    },
+    {
+      question: "Почему моя заявка отклонена?",
+      answer: `Пожалуйста, посетите онлайн-портал и введите ваш справочный номер VRA, чтобы посмотреть причину отклонения. Если вы все еще не уверены, напишите на ${SUPPORT_EMAIL}, чтобы получить подробную информацию о вашей отклоненной заявке.`,
+    },
+    {
+      question:
+        "Я обновил банковские данные на портале, но данные не были обновлены",
+      answer:
+        "Запрос на обновление банковских данных должен сначала быть принят или отклонен. Как только запрос будет принят или отклонен, вы получите подтверждение.",
+    },
+  ],
+  es: [
+    {
+      question:
+        "¿Cuánto tiempo deben esperar los clientes para que SARS realice el pago a VRA después de que la reclamación haya sido aprobada por SARS?",
+      answer:
+        "Lamentablemente no podemos proporcionar un plazo. Debemos esperar pacientemente a que SARS realice el pago de la(s) reclamación(es).",
+    },
+    {
+      question: "¿Cómo podemos contactar directamente a SARS?",
+      answer: `Comuníquese directamente con SARS utilizando el siguiente correo electrónico de quejas:
+SARSVRACOMPLAINTS@SARS.GOV.ZA`,
+    },
+    {
+      question: "Los documentos han sido enviados por mensajería a la oficina postal AMAX",
+      answer: `Mensajería física - Proporcione el comprobante de entrega y el número de waybill a ${SUPPORT_EMAIL} para que podamos confirmar si recibimos los documentos en nuestra oficina principal.`,
+    },
+    {
+      question: "La reclamación ha sido rechazada",
+      answer: `Visite el portal en línea e introduzca su número de referencia VRA para ver el motivo del rechazo de su reclamación.
+Check Refund Progress - Vatrefundagency
+${STATUS_LINK}`,
+    },
+    {
+      question: "¿Se puede usar una tarjeta de crédito para el reembolso?",
+      answer:
+        "Lamentablemente, una tarjeta de crédito no es aceptable. La cuenta de pago debe estar a nombre del reclamante.",
+    },
+    {
+      question: "¿Cuánto tarda el proceso?",
+      answer:
+        "El proceso puede tardar aproximadamente 1-2 meses en la oficina principal. Si la reclamación es aceptada en back office, se envía a SARS, lo que puede tardar otros 3-6 meses para su procesamiento y finalización. Una vez que SARS finaliza la reclamación, VRA debe esperar a que SARS nos realice el pago antes de que se pueda pagar a la cuenta del reclamante.",
+    },
+    {
+      question:
+        "No puedo iniciar sesión en el portal en línea o no puedo cargar la carta de confirmación bancaria",
+      answer: `Según nuestros procedimientos estándar, los datos bancarios se consideran información sensible. Por razones de seguridad, VRA no puede actualizar manualmente estos datos en nombre de los clientes.
+
+Los clientes deben actualizar ellos mismos su información bancaria a través del portal en línea y cargar cualquier documento de respaldo como prueba.
+
+${BANKING_LINK}
+
+Si tiene dificultades para iniciar sesión o cargar documentos, intente lo siguiente:
+1. Borre la caché y las cookies de su navegador o intente usar un navegador diferente.
+2. Asegúrese de introducir correctamente sus credenciales de inicio de sesión.
+3. Si ya restableció su contraseña y todavía no funciona, intente restablecerla nuevamente o use la opción "Olvidé mi contraseña" en el portal.`,
+    },
+    {
+      question: "¿Qué es una carta de confirmación bancaria?",
+      answer:
+        "Una carta de confirmación bancaria es una carta formal emitida por su banco que confirma que la cuenta bancaria le pertenece.\n\nEsta carta es necesaria antes de que se puedan actualizar los datos de cualquier cuenta, según lo requerido por las regulaciones de SARS.",
+    },
+    {
+      question:
+        "¿Cuánto tarda Finance en realizar el pago después de recibir fondos de SARS?",
+      answer:
+        "No podemos proporcionar un plazo. Sin embargo, tan pronto como se haya realizado el pago, recibirá confirmación por correo electrónico.",
+    },
+    {
+      question: "Reclamación rechazada debido al sello de entrada / salida para miembros de tripulación",
+      answer: `Proporcione una copia de su tarjeta de miembro de tripulación por correo electrónico a ${SUPPORT_EMAIL}.`,
+    },
+    {
+      question: "¿Cuál es la dirección correcta para enviar el correo postal?",
+      answer: `262 Jack Hindon Street
+Pretoria North
+Gauteng
+South Africa
+0182`,
+    },
+    {
+      question: "¿Por qué fue rechazada mi reclamación?",
+      answer: `Visite el portal en línea e introduzca su número de referencia VRA para ver el motivo del rechazo. Si aún no está seguro, envíe un correo electrónico a ${SUPPORT_EMAIL} para obtener información detallada sobre su reclamación rechazada.`,
+    },
+    {
+      question:
+        "Actualicé mis datos bancarios en el portal, pero los datos no se han actualizado",
+      answer:
+        "La solicitud de actualización de datos bancarios primero debe ser aceptada o rechazada. Tan pronto como la solicitud haya sido aceptada o rechazada, recibirá confirmación.",
+    },
+  ],
+};
+
 const faqPatterns = [
   {
     id: "vatPayment",
@@ -905,6 +1702,10 @@ function normalizeText(value) {
 
 function t(languageCode) {
   return translations[languageCode] || translations.en;
+}
+
+function getExtraFaqItems(languageCode) {
+  return extraFaqTranslations[languageCode] || extraFaqTranslations.en;
 }
 
 function isGreeting(input) {
@@ -1008,13 +1809,22 @@ ${navigationText(languageCode)}`;
 
 function faqMenu(languageCode) {
   const copy = t(languageCode);
+  const extraItems = getExtraFaqItems(languageCode);
+  const menuItems = [
+    copy.faqOptions[0],
+    copy.faqOptions[1],
+    copy.faqOptions[2],
+    ...extraItems.map((item) => item.question),
+    copy.faqOptions[3],
+  ];
+
+  const numberedItems = menuItems
+    .map((item, index) => `${index + 1} ${item}`)
+    .join("\n");
 
   return `${copy.faqTitle}
 
-1 ${copy.faqOptions[0]}
-2 ${copy.faqOptions[1]}
-3 ${copy.faqOptions[2]}
-4 ${copy.faqOptions[3]}
+${numberedItems}
 
 ${navigationText(languageCode)}`;
 }
@@ -1099,6 +1909,9 @@ function matchFaq(input) {
   if (value === "1") return "vatPayment";
   if (value === "2") return "vatAmount";
   if (value === "3") return "claimProcess";
+  if (/^(4|5|6|7|8|9|10|11|12|13|14|15|16)$/.test(value)) {
+    return `extra${value}`;
+  }
 
   const match = faqPatterns.find((item) =>
     item.phrases.some((phrase) => value.includes(normalizeText(phrase)))
@@ -1127,6 +1940,17 @@ ${navigationText(languageCode)}`;
     return `${copy.claimProcessAnswer}
 
 ${navigationText(languageCode)}`;
+  }
+
+  if (faqId?.startsWith("extra")) {
+    const itemNumber = Number(faqId.replace("extra", ""));
+    const extraItem = getExtraFaqItems(languageCode)[itemNumber - 4];
+
+    if (extraItem) {
+      return `${extraItem.answer}
+
+${navigationText(languageCode)}`;
+    }
   }
 
   return null;
@@ -1348,7 +2172,7 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
   }
 
   if (session.state === STATES.FAQ) {
-    if (normalizedInput === "4") {
+    if (normalizedInput === "17") {
       session.state = STATES.MAIN;
       await sendReply(mainMenu(languageCode));
       return;
@@ -1406,7 +2230,9 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
     return;
   }
 
-  const directFaqAnswer = faqAnswer(input, languageCode);
+  const directFaqAnswer = /^\d+$/.test(normalizedInput)
+    ? null
+    : faqAnswer(input, languageCode);
 
   if (directFaqAnswer) {
     await sendReply(directFaqAnswer);
