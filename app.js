@@ -1622,6 +1622,239 @@ South Africa
   ],
 };
 
+const faqMenuTranslations = {
+  en: {
+    items: [
+      "VAT payment timing",
+      "VAT amount",
+      "Refund process",
+      "SARS payment timeline after approval",
+      "Contact SARS directly",
+      "Couriered documents / AMAX delivery",
+      "Rejected claim",
+      "Credit card refunds",
+      "Processing timeframe",
+      "Portal login or document upload issues",
+      "Bank confirmation letter",
+      "Payment after SARS funds are received",
+      "Crew member entry / exit stamp rejection",
+      "Postal address for documents",
+      "Reason for claim rejection",
+      "Bank details updated but not reflected",
+      "My question was not answered",
+      "Back to Main Menu",
+    ],
+    unansweredAnswer: `If your question was not answered, please contact our support team by email at ${SUPPORT_EMAIL}.`,
+  },
+  ar: {
+    items: [
+      "موعد دفع ضريبة القيمة المضافة",
+      "مبلغ ضريبة القيمة المضافة",
+      "طريقة الحصول على الاسترداد",
+      "موعد دفع SARS بعد الموافقة",
+      "التواصل مع SARS مباشرة",
+      "المستندات المرسلة عبر AMAX",
+      "المطالبة المرفوضة",
+      "استرداد المبلغ عبر بطاقة ائتمان",
+      "مدة المعالجة",
+      "مشاكل الدخول للبوابة أو رفع المستندات",
+      "خطاب تأكيد البنك",
+      "الدفع بعد استلام أموال SARS",
+      "رفض ختم الدخول / الخروج لأفراد الطاقم",
+      "العنوان البريدي للمستندات",
+      "سبب رفض المطالبة",
+      "تحديث البيانات البنكية غير ظاهر",
+      "لم تتم الإجابة على سؤالي",
+      "العودة إلى القائمة الرئيسية",
+    ],
+    unansweredAnswer: `إذا لم تتم الإجابة على سؤالك، يرجى التواصل مع فريق الدعم عبر البريد الإلكتروني على ${SUPPORT_EMAIL}.`,
+  },
+  zh: {
+    items: [
+      "增值税付款时间",
+      "增值税金额",
+      "退款流程",
+      "SARS 批准后的付款时间",
+      "直接联系 SARS",
+      "AMAX 快递文件",
+      "索赔被拒绝",
+      "信用卡退款",
+      "处理时间",
+      "门户登录或文件上传问题",
+      "银行确认函",
+      "收到 SARS 资金后的付款",
+      "机组人员入境 / 出境章被拒",
+      "文件邮寄地址",
+      "索赔被拒原因",
+      "银行资料已更新但未显示",
+      "我的问题未得到解答",
+      "返回主菜单",
+    ],
+    unansweredAnswer: `如果您的问题未得到解答，请通过电子邮件联系支持团队：${SUPPORT_EMAIL}。`,
+  },
+  nl: {
+    items: [
+      "Timing van btw-betaling",
+      "Btw-bedrag",
+      "Terugbetalingsproces",
+      "SARS-betalingstermijn na goedkeuring",
+      "Rechtstreeks contact met SARS",
+      "Gekoerierde documenten / AMAX",
+      "Afgewezen claim",
+      "Terugbetaling via creditcard",
+      "Verwerkingstijd",
+      "Portaalinlog of uploadproblemen",
+      "Bankbevestigingsbrief",
+      "Betaling na ontvangst van SARS-gelden",
+      "Afwijzing door entry / exit-stempel crew",
+      "Postadres voor documenten",
+      "Reden voor afwijzing",
+      "Bankgegevens bijgewerkt maar niet zichtbaar",
+      "Mijn vraag is niet beantwoord",
+      "Terug naar hoofdmenu",
+    ],
+    unansweredAnswer: `Als uw vraag niet is beantwoord, neem dan per e-mail contact op met ons ondersteuningsteam via ${SUPPORT_EMAIL}.`,
+  },
+  fr: {
+    items: [
+      "Délai de paiement de la TVA",
+      "Montant de TVA",
+      "Processus de remboursement",
+      "Délai de paiement SARS après approbation",
+      "Contacter SARS directement",
+      "Documents envoyés par AMAX",
+      "Demande rejetée",
+      "Remboursement par carte de crédit",
+      "Délai de traitement",
+      "Connexion au portail ou téléversement",
+      "Lettre de confirmation bancaire",
+      "Paiement après réception des fonds SARS",
+      "Rejet pour cachet entrée / sortie équipage",
+      "Adresse postale des documents",
+      "Motif du rejet",
+      "Coordonnées bancaires mises à jour non visibles",
+      "Ma question n'a pas été répondue",
+      "Retour au menu principal",
+    ],
+    unansweredAnswer: `Si votre question n'a pas été répondue, veuillez contacter notre équipe d'assistance par e-mail à ${SUPPORT_EMAIL}.`,
+  },
+  de: {
+    items: [
+      "Zeitpunkt der MwSt.-Zahlung",
+      "MwSt.-Betrag",
+      "Rückerstattungsprozess",
+      "SARS-Zahlungsdauer nach Genehmigung",
+      "SARS direkt kontaktieren",
+      "Kurierdokumente / AMAX",
+      "Abgelehnter Anspruch",
+      "Rückerstattung per Kreditkarte",
+      "Bearbeitungsdauer",
+      "Portal-Login oder Upload-Probleme",
+      "Bankbestätigungsschreiben",
+      "Zahlung nach Eingang der SARS-Gelder",
+      "Ablehnung wegen Crew-Ein-/Ausreisestempel",
+      "Postanschrift für Dokumente",
+      "Grund der Ablehnung",
+      "Bankdaten aktualisiert, aber nicht sichtbar",
+      "Meine Frage wurde nicht beantwortet",
+      "Zurück zum Hauptmenü",
+    ],
+    unansweredAnswer: `Wenn Ihre Frage nicht beantwortet wurde, kontaktieren Sie bitte unser Support-Team per E-Mail unter ${SUPPORT_EMAIL}.`,
+  },
+  it: {
+    items: [
+      "Tempistica del pagamento IVA",
+      "Importo IVA",
+      "Procedura di rimborso",
+      "Tempi di pagamento SARS dopo approvazione",
+      "Contattare direttamente SARS",
+      "Documenti inviati con AMAX",
+      "Richiesta respinta",
+      "Rimborso su carta di credito",
+      "Tempi di elaborazione",
+      "Accesso al portale o caricamento documenti",
+      "Lettera di conferma bancaria",
+      "Pagamento dopo ricezione fondi SARS",
+      "Rifiuto per timbro ingresso / uscita equipaggio",
+      "Indirizzo postale per documenti",
+      "Motivo del rifiuto",
+      "Dati bancari aggiornati ma non visibili",
+      "La mia domanda non ha ricevuto risposta",
+      "Torna al menu principale",
+    ],
+    unansweredAnswer: `Se la tua domanda non ha ricevuto risposta, contatta il nostro team di supporto via email all'indirizzo ${SUPPORT_EMAIL}.`,
+  },
+  pt: {
+    items: [
+      "Prazo do pagamento do IVA",
+      "Valor do IVA",
+      "Processo de reembolso",
+      "Prazo de pagamento da SARS após aprovação",
+      "Contactar diretamente a SARS",
+      "Documentos enviados por AMAX",
+      "Reclamação rejeitada",
+      "Reembolso por cartão de crédito",
+      "Tempo de processamento",
+      "Login no portal ou upload de documentos",
+      "Carta de confirmação bancária",
+      "Pagamento após fundos da SARS",
+      "Rejeição por carimbo entrada / saída tripulação",
+      "Endereço postal para documentos",
+      "Motivo da rejeição",
+      "Dados bancários atualizados mas não visíveis",
+      "A minha pergunta não foi respondida",
+      "Voltar ao menu principal",
+    ],
+    unansweredAnswer: `Se a sua pergunta não foi respondida, contacte a nossa equipa de apoio por email em ${SUPPORT_EMAIL}.`,
+  },
+  ru: {
+    items: [
+      "Срок выплаты НДС",
+      "Сумма НДС",
+      "Процесс возврата",
+      "Срок платежа SARS после одобрения",
+      "Связаться с SARS напрямую",
+      "Документы, отправленные через AMAX",
+      "Отклоненная заявка",
+      "Возврат на кредитную карту",
+      "Срок обработки",
+      "Вход в портал или загрузка документов",
+      "Письмо-подтверждение банка",
+      "Платеж после получения средств SARS",
+      "Отклонение из-за штампа въезда / выезда экипажа",
+      "Почтовый адрес для документов",
+      "Причина отклонения заявки",
+      "Банковские данные обновлены, но не отображаются",
+      "На мой вопрос не ответили",
+      "Вернуться в главное меню",
+    ],
+    unansweredAnswer: `Если на ваш вопрос не ответили, пожалуйста, свяжитесь с нашей службой поддержки по электронной почте ${SUPPORT_EMAIL}.`,
+  },
+  es: {
+    items: [
+      "Fecha de pago del IVA",
+      "Monto del IVA",
+      "Proceso de reembolso",
+      "Plazo de pago de SARS tras aprobación",
+      "Contactar directamente a SARS",
+      "Documentos enviados por AMAX",
+      "Reclamación rechazada",
+      "Reembolso con tarjeta de crédito",
+      "Tiempo de procesamiento",
+      "Acceso al portal o carga de documentos",
+      "Carta de confirmación bancaria",
+      "Pago tras recibir fondos de SARS",
+      "Rechazo por sello de entrada / salida de tripulación",
+      "Dirección postal para documentos",
+      "Motivo del rechazo",
+      "Datos bancarios actualizados pero no reflejados",
+      "Mi pregunta no fue respondida",
+      "Volver al menú principal",
+    ],
+    unansweredAnswer: `Si su pregunta no fue respondida, comuníquese con nuestro equipo de soporte por correo electrónico a ${SUPPORT_EMAIL}.`,
+  },
+};
+
 const faqPatterns = [
   {
     id: "vatPayment",
@@ -1706,6 +1939,10 @@ function t(languageCode) {
 
 function getExtraFaqItems(languageCode) {
   return extraFaqTranslations[languageCode] || extraFaqTranslations.en;
+}
+
+function getFaqMenuCopy(languageCode) {
+  return faqMenuTranslations[languageCode] || faqMenuTranslations.en;
 }
 
 function isGreeting(input) {
@@ -1809,14 +2046,7 @@ ${navigationText(languageCode)}`;
 
 function faqMenu(languageCode) {
   const copy = t(languageCode);
-  const extraItems = getExtraFaqItems(languageCode);
-  const menuItems = [
-    copy.faqOptions[0],
-    copy.faqOptions[1],
-    copy.faqOptions[2],
-    ...extraItems.map((item) => item.question),
-    copy.faqOptions[3],
-  ];
+  const menuItems = getFaqMenuCopy(languageCode).items;
 
   const numberedItems = menuItems
     .map((item, index) => `${index + 1} ${item}`)
@@ -1909,6 +2139,7 @@ function matchFaq(input) {
   if (value === "1") return "vatPayment";
   if (value === "2") return "vatAmount";
   if (value === "3") return "claimProcess";
+  if (value === "17") return "unanswered";
   if (/^(4|5|6|7|8|9|10|11|12|13|14|15|16)$/.test(value)) {
     return `extra${value}`;
   }
@@ -1938,6 +2169,12 @@ ${navigationText(languageCode)}`;
 
   if (faqId === "claimProcess") {
     return `${copy.claimProcessAnswer}
+
+${navigationText(languageCode)}`;
+  }
+
+  if (faqId === "unanswered") {
+    return `${getFaqMenuCopy(languageCode).unansweredAnswer}
 
 ${navigationText(languageCode)}`;
   }
@@ -2172,7 +2409,7 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
   }
 
   if (session.state === STATES.FAQ) {
-    if (normalizedInput === "17") {
+    if (normalizedInput === "18") {
       session.state = STATES.MAIN;
       await sendReply(mainMenu(languageCode));
       return;
