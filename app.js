@@ -90,9 +90,15 @@ or our finance team at:
 ${FINANCE_EMAIL}
 
 They will provide the necessary information regarding your VAT amount.`,
-    claimProcessAnswer: `Please visit our website for the full claiming process and required documentation:
+    claimProcessAnswer: `To view the documentation required for your specific type of VAT refund claim, please follow these steps:
 
-${WEBSITE_LINK}`,
+1. Visit our website: ${WEBSITE_LINK}
+2. Tap or click the menu icon (☰) in the top-right corner of the page.
+3. Select 'Documentation needed for different types of claims'.
+4. Choose the claim type that applies to you.
+5. Review the list of required supporting documents before submitting your claim.
+
+If you are still unsure which documents are required, please contact our support team at ${SUPPORT_EMAIL} and we will gladly assist you.`,
     agentReply: `A VRA support agent will assist you.
 
 Email:
@@ -168,9 +174,15 @@ ${SUPPORT_EMAIL}
 ${FINANCE_EMAIL}
 
 سيقدمون المعلومات اللازمة بخصوص مبلغ ضريبة القيمة المضافة الخاص بك.`,
-    claimProcessAnswer: `يرجى زيارة موقعنا الإلكتروني لمعرفة عملية المطالبة الكاملة والوثائق المطلوبة:
+    claimProcessAnswer: `لعرض المستندات المطلوبة لنوع مطالبة استرداد ضريبة القيمة المضافة الخاص بك، يرجى اتباع الخطوات التالية:
 
-${WEBSITE_LINK}`,
+1. قم بزيارة موقعنا الإلكتروني: ${WEBSITE_LINK}
+2. اضغط أو انقر على أيقونة القائمة (☰) في الزاوية العلوية اليمنى من الصفحة.
+3. اختر 'المستندات المطلوبة لأنواع المطالبات المختلفة'.
+4. اختر نوع المطالبة الذي ينطبق عليك.
+5. راجع قائمة المستندات الداعمة المطلوبة قبل تقديم مطالبتك.
+
+إذا كنت لا تزال غير متأكد من المستندات المطلوبة، يرجى التواصل مع فريق الدعم لدينا على ${SUPPORT_EMAIL} وسنكون سعداء بمساعدتك.`,
     agentReply: `سيساعدك وكيل دعم VRA.
 
 البريد الإلكتروني:
@@ -244,9 +256,15 @@ ${SUPPORT_EMAIL}
 ${FINANCE_EMAIL}
 
 他们会提供有关您增值税金额的必要信息。`,
-    claimProcessAnswer: `请访问我们的网站，查看完整的申请流程和所需文件：
+    claimProcessAnswer: `要查看您的特定增值税退款申请类型所需的文件，请按照以下步骤操作：
 
-${WEBSITE_LINK}`,
+1. 访问我们的网站：${WEBSITE_LINK}
+2. 点击页面右上角的菜单图标 (☰)。
+3. 选择“不同类型申请所需文件”。
+4. 选择适用于您的申请类型。
+5. 在提交申请前查看所需支持文件清单。
+
+如果您仍不确定需要哪些文件，请通过 ${SUPPORT_EMAIL} 联系我们的支持团队，我们将很乐意协助您。`,
     agentReply: `VRA 支持人员将协助您。
 
 电子邮件：
@@ -322,9 +340,15 @@ of met ons financiële team via:
 ${FINANCE_EMAIL}
 
 Zij zullen de nodige informatie over uw btw-bedrag verstrekken.`,
-    claimProcessAnswer: `Bezoek onze website voor het volledige claimproces en de vereiste documentatie:
+    claimProcessAnswer: `Volg deze stappen om te bekijken welke documentatie vereist is voor uw specifieke type btw-teruggaafclaim:
 
-${WEBSITE_LINK}`,
+1. Bezoek onze website: ${WEBSITE_LINK}
+2. Tik of klik op het menu-icoon (☰) rechtsboven op de pagina.
+3. Selecteer 'Documentation needed for different types of claims'.
+4. Kies het claimtype dat op u van toepassing is.
+5. Bekijk de lijst met vereiste ondersteunende documenten voordat u uw claim indient.
+
+Als u nog steeds niet zeker weet welke documenten vereist zijn, neem dan contact op met ons ondersteuningsteam via ${SUPPORT_EMAIL}; wij helpen u graag.`,
     agentReply: `Een VRA-supportagent zal u helpen.
 
 E-mail:
@@ -400,9 +424,15 @@ ou notre équipe financière à :
 ${FINANCE_EMAIL}
 
 Ils vous fourniront les informations nécessaires concernant votre montant de TVA.`,
-    claimProcessAnswer: `Veuillez visiter notre site Web pour connaître le processus complet de demande et les documents requis :
+    claimProcessAnswer: `Pour consulter les documents requis pour votre type spécifique de demande de remboursement de TVA, veuillez suivre ces étapes :
 
-${WEBSITE_LINK}`,
+1. Visitez notre site Web : ${WEBSITE_LINK}
+2. Appuyez ou cliquez sur l'icône du menu (☰) dans le coin supérieur droit de la page.
+3. Sélectionnez 'Documentation needed for different types of claims'.
+4. Choisissez le type de demande qui vous concerne.
+5. Consultez la liste des documents justificatifs requis avant de soumettre votre demande.
+
+Si vous ne savez toujours pas quels documents sont requis, veuillez contacter notre équipe d'assistance à ${SUPPORT_EMAIL} et nous vous aiderons volontiers.`,
     agentReply: `Un agent du support VRA vous aidera.
 
 E-mail :
@@ -478,9 +508,15 @@ oder unser Finanzteam unter:
 ${FINANCE_EMAIL}
 
 Sie erhalten dort die notwendigen Informationen zu Ihrem Mehrwertsteuerbetrag.`,
-    claimProcessAnswer: `Bitte besuchen Sie unsere Website für den vollständigen Antragsprozess und die erforderlichen Unterlagen:
+    claimProcessAnswer: `Um die für Ihre spezifische Art der Mehrwertsteuerrückerstattung erforderlichen Unterlagen einzusehen, folgen Sie bitte diesen Schritten:
 
-${WEBSITE_LINK}`,
+1. Besuchen Sie unsere Website: ${WEBSITE_LINK}
+2. Tippen oder klicken Sie auf das Menüsymbol (☰) oben rechts auf der Seite.
+3. Wählen Sie 'Documentation needed for different types of claims'.
+4. Wählen Sie die Anspruchsart aus, die auf Sie zutrifft.
+5. Prüfen Sie die Liste der erforderlichen Nachweisdokumente, bevor Sie Ihren Antrag einreichen.
+
+Wenn Sie weiterhin unsicher sind, welche Dokumente erforderlich sind, kontaktieren Sie bitte unser Support-Team unter ${SUPPORT_EMAIL}; wir helfen Ihnen gerne weiter.`,
     agentReply: `Ein VRA-Supportagent wird Ihnen helfen.
 
 E-Mail:
@@ -556,9 +592,15 @@ o il nostro team finanziario a:
 ${FINANCE_EMAIL}
 
 Forniranno le informazioni necessarie riguardo al tuo importo IVA.`,
-    claimProcessAnswer: `Visita il nostro sito web per il processo completo di richiesta e la documentazione richiesta:
+    claimProcessAnswer: `Per visualizzare la documentazione richiesta per il tuo specifico tipo di richiesta di rimborso IVA, segui questi passaggi:
 
-${WEBSITE_LINK}`,
+1. Visita il nostro sito web: ${WEBSITE_LINK}
+2. Tocca o clicca l'icona del menu (☰) nell'angolo in alto a destra della pagina.
+3. Seleziona 'Documentation needed for different types of claims'.
+4. Scegli il tipo di richiesta applicabile a te.
+5. Consulta l'elenco dei documenti di supporto richiesti prima di inviare la richiesta.
+
+Se non sei ancora sicuro di quali documenti siano richiesti, contatta il nostro team di supporto all'indirizzo ${SUPPORT_EMAIL} e saremo lieti di assisterti.`,
     agentReply: `Un agente di supporto VRA ti assisterà.
 
 Email:
@@ -634,9 +676,15 @@ ou a nossa equipa financeira em:
 ${FINANCE_EMAIL}
 
 Eles fornecerão as informações necessárias sobre o seu valor de IVA.`,
-    claimProcessAnswer: `Visite o nosso website para o processo completo de reclamação e documentação necessária:
+    claimProcessAnswer: `Para ver a documentação necessária para o seu tipo específico de reclamação de reembolso de IVA, siga estes passos:
 
-${WEBSITE_LINK}`,
+1. Visite o nosso website: ${WEBSITE_LINK}
+2. Toque ou clique no ícone do menu (☰) no canto superior direito da página.
+3. Selecione 'Documentation needed for different types of claims'.
+4. Escolha o tipo de reclamação que se aplica a si.
+5. Consulte a lista de documentos de suporte necessários antes de submeter a sua reclamação.
+
+Se ainda não tiver certeza sobre quais documentos são necessários, contacte a nossa equipa de apoio em ${SUPPORT_EMAIL} e teremos todo o gosto em ajudá-lo.`,
     agentReply: `Um agente de apoio VRA irá ajudá-lo.
 
 Email:
@@ -712,9 +760,15 @@ ${SUPPORT_EMAIL}
 ${FINANCE_EMAIL}
 
 Они предоставят необходимую информацию о вашей сумме НДС.`,
-    claimProcessAnswer: `Пожалуйста, посетите наш веб-сайт для полного процесса подачи заявки и необходимой документации:
+    claimProcessAnswer: `Чтобы посмотреть документы, необходимые для вашего конкретного типа заявки на возврат НДС, пожалуйста, выполните следующие шаги:
 
-${WEBSITE_LINK}`,
+1. Посетите наш веб-сайт: ${WEBSITE_LINK}
+2. Нажмите на значок меню (☰) в правом верхнем углу страницы.
+3. Выберите 'Documentation needed for different types of claims'.
+4. Выберите тип заявки, который относится к вам.
+5. Ознакомьтесь со списком необходимых подтверждающих документов перед подачей заявки.
+
+Если вы все еще не уверены, какие документы требуются, свяжитесь с нашей службой поддержки по адресу ${SUPPORT_EMAIL}, и мы с радостью поможем вам.`,
     agentReply: `Агент поддержки VRA поможет вам.
 
 Email:
@@ -790,9 +844,15 @@ o con nuestro equipo de finanzas en:
 ${FINANCE_EMAIL}
 
 Ellos le proporcionarán la información necesaria sobre su monto de IVA.`,
-    claimProcessAnswer: `Visite nuestro sitio web para ver el proceso completo de reclamación y la documentación requerida:
+    claimProcessAnswer: `Para ver la documentación requerida para su tipo específico de reclamación de reembolso de IVA, siga estos pasos:
 
-${WEBSITE_LINK}`,
+1. Visite nuestro sitio web: ${WEBSITE_LINK}
+2. Toque o haga clic en el ícono de menú (☰) en la esquina superior derecha de la página.
+3. Seleccione 'Documentation needed for different types of claims'.
+4. Elija el tipo de reclamación que corresponda a su caso.
+5. Revise la lista de documentos de respaldo requeridos antes de enviar su reclamación.
+
+Si aún no está seguro de qué documentos se requieren, comuníquese con nuestro equipo de soporte en ${SUPPORT_EMAIL} y con gusto le ayudaremos.`,
     agentReply: `Un agente de soporte de VRA le asistirá.
 
 Email:
