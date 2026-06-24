@@ -1,5 +1,4 @@
 const express = require("express");
-const nodemailer = require("nodemailer");
 
 const app = express();
 app.use(express.json());
@@ -9,10 +8,7 @@ const WHATSAPP_TOKEN = process.env.WHATSAPP_TOKEN;
 const PHONE_NUMBER_ID = process.env.PHONE_NUMBER_ID;
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const PORT = process.env.PORT || 3000;
-const SMTP_HOST = process.env.SMTP_HOST;
-const SMTP_PORT = Number(process.env.SMTP_PORT || 587);
-const SMTP_USER = process.env.SMTP_USER;
-const SMTP_PASS = process.env.SMTP_PASS;
+const BREVO_API_KEY = process.env.BREVO_API_KEY;
 const ALERT_TO = process.env.ALERT_TO || "VRASupportbot@amaxsa.co.za";
 
 const STATES = {
@@ -2665,36 +2661,39 @@ function formatDateTimeForEmail(date = new Date()) {
   return `${value("year")}-${value("month")}-${value("day")} ${value("hour")}:${value("minute")}:${value("second")}`;
 }
 
-async function sendSmtpMail({ to, subject, body }) {
-  if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS) {
-    throw new Error("Missing SMTP_HOST, SMTP_PORT, SMTP_USER, or SMTP_PASS");
+async function sendBrevoEmail({ to, subject, body }) {
+  if (!BREVO_API_KEY) {
+    throw new Error("Missing BREVO_API_KEY");
   }
 
-  console.log("SMTP sending to:", to);
-  console.log("SMTP using host:", SMTP_HOST, "port:", SMTP_PORT);
-
-  const transporter = nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: SMTP_PORT,
-    secure: false,
-    requireTLS: true,
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 15000,
-    auth: {
-      user: SMTP_USER,
-      pass: SMTP_PASS,
+  const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "api-key": BREVO_API_KEY,
+      "content-type": "application/json",
     },
+    body: JSON.stringify({
+      sender: {
+        name: "VRA Support Bot",
+        email: "aj@amaxsa.co.za",
+      },
+      to: [{ email: to }],
+      subject,
+      textContent: body,
+    }),
   });
 
-  const info = await transporter.sendMail({
-    from: `"VRA Support Bot" <${SMTP_USER}>`,
-    to,
-    subject,
-    text: body,
-  });
+  const responseBody = await response.text();
 
-  console.log("SMTP sendMail completed:", info.messageId);
+  if (!response.ok) {
+    const error = new Error(`Brevo email alert failed with status/body: ${response.status} ${responseBody}`);
+    error.status = response.status;
+    error.body = responseBody;
+    throw error;
+  }
+
+  return responseBody;
 }
 
 function buildClientMessageAlert({ platform, clientId, clientMessage, botResponse }) {
@@ -2714,15 +2713,19 @@ async function sendClientMessageAlert(details) {
   const body = buildClientMessageAlert(details);
 
   try {
-    console.log("SMTP alert sending started");
-    await sendSmtpMail({
+    console.log("Brevo email alert sending started");
+    await sendBrevoEmail({
       to: ALERT_TO,
       subject,
       body,
     });
-    console.log("SMTP alert sent successfully");
+    console.log("Brevo email alert sent successfully");
   } catch (error) {
-    console.error("SMTP alert failed with full error:", error);
+    console.error(
+      "Brevo email alert failed with status/body",
+      error.status || "",
+      error.body || error
+    );
   }
 }
 
