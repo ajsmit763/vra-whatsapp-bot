@@ -2592,6 +2592,7 @@ function getWhatsAppSession(phoneNumber) {
       languageCode: null,
       languageName: null,
       state: STATES.LANGUAGE,
+      conversationHistory: [],
     });
   }
 
@@ -2604,6 +2605,7 @@ function getTelegramSession(chatId) {
       languageCode: null,
       languageName: null,
       state: STATES.LANGUAGE,
+      conversationHistory: [],
     });
   }
 
@@ -2649,6 +2651,30 @@ function logReview(platform, userId, session, ratingNumber, ratingLabel) {
     ratingLabel,
     timestamp: new Date().toISOString(),
   });
+}
+
+function addConversationEntry(session, sender, message) {
+  if (!session.conversationHistory) {
+    session.conversationHistory = [];
+  }
+
+  session.conversationHistory.push({
+    sender,
+    message,
+    timestamp: formatDateTimeForEmail(),
+  });
+}
+
+function formatConversationTranscript(session) {
+  const history = session.conversationHistory || [];
+
+  if (!history.length) {
+    return "(No conversation history recorded)";
+  }
+
+  return history
+    .map((entry) => `[${entry.timestamp}] ${entry.sender}:\n${entry.message}`)
+    .join("\n\n");
 }
 
 function formatDateTimeForEmail(date = new Date()) {
@@ -2719,21 +2745,30 @@ async function sendBrevoEmail({ to, subject, body }) {
   return response;
 }
 
-function buildClientMessageAlert({ platform, clientId, clientMessage, botResponse }) {
+function buildCompletedConversationAlert({
+  platform,
+  clientId,
+  selectedLanguage,
+  transcript,
+  ratingNumber,
+  ratingLabel,
+}) {
   return `Platform: ${platform}
 Client Number / Telegram Username: ${clientId}
 Date & Time: ${formatDateTimeForEmail()}
+Selected Language: ${selectedLanguage}
 
-Client Message:
-${clientMessage}
+Full Conversation Transcript:
+${transcript}
 
-Bot Response:
-${botResponse || "(No bot response sent)"}`;
+Rating Number: ${ratingNumber}
+Rating Label: ${ratingLabel}
+Timestamp: ${formatDateTimeForEmail()}`;
 }
 
-async function sendClientMessageAlert(details) {
+async function sendCompletedConversationAlert(details) {
   const subject = `[${details.platform}] New Client Message`;
-  const body = buildClientMessageAlert(details);
+  const body = buildCompletedConversationAlert(details);
 
   try {
     console.log("Brevo email alert sending started");
@@ -2749,7 +2784,10 @@ async function sendClientMessageAlert(details) {
       error.status || "",
       error.body || error
     );
+    return false;
   }
+
+  return true;
 }
 
 async function sendWhatsAppMessage(to, body) {
@@ -2875,9 +2913,25 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
     const copy = t(languageCode);
 
     if (["1", "2", "3", "4", "5"].includes(normalizedInput)) {
-      logReview(platform, userId, session, normalizedInput, copy.ratingLabels[normalizedInput]);
+      const ratingLabel = copy.ratingLabels[normalizedInput];
+
+      logReview(platform, userId, session, normalizedInput, ratingLabel);
       session.state = STATES.COMPLETE;
       await sendReply(reviewReceivedMessage(languageCode));
+
+      const emailSent = await sendCompletedConversationAlert({
+        platform,
+        clientId: userId,
+        selectedLanguage: session.languageName || session.languageCode || "Unknown",
+        transcript: formatConversationTranscript(session),
+        ratingNumber: normalizedInput,
+        ratingLabel,
+      });
+
+      if (emailSent) {
+        session.conversationHistory = [];
+      }
+
       return;
     }
 
@@ -2999,27 +3053,18 @@ app.post("/webhook", async (req, res) => {
     }
 
     const session = getWhatsAppSession(from);
-    const botResponses = [];
+    addConversationEntry(session, "Client", input);
 
-    try {
-      await handleSupportInput(
-        input,
-        session,
-        async (reply) => {
-          botResponses.push(reply);
-          await sendWhatsAppMessage(from, reply);
-        },
-        "WhatsApp",
-        from
-      );
-    } finally {
-      await sendClientMessageAlert({
-        platform: "WhatsApp",
-        clientId: `+${from}`,
-        clientMessage: input,
-        botResponse: botResponses.join("\n\n---\n\n"),
-      });
-    }
+    await handleSupportInput(
+      input,
+      session,
+      async (reply) => {
+        addConversationEntry(session, "Bot", reply);
+        await sendWhatsAppMessage(from, reply);
+      },
+      "WhatsApp",
+      `+${from}`
+    );
   } catch (error) {
     console.error("WhatsApp webhook processing error:", error);
   }
@@ -3043,27 +3088,18 @@ app.post("/telegram-webhook", async (req, res) => {
         ? `@${message.from.username}`
         : [message.from?.first_name, message.from?.last_name].filter(Boolean).join(" ") ||
           String(chatId);
-    const botResponses = [];
+    addConversationEntry(session, "Client", input);
 
-    try {
-      await handleSupportInput(
-        input,
-        session,
-        async (reply) => {
-          botResponses.push(reply);
-          await sendTelegramMessage(chatId, reply);
-        },
-        "Telegram",
-        chatId
-      );
-    } finally {
-      await sendClientMessageAlert({
-        platform: "Telegram",
-        clientId: telegramUser,
-        clientMessage: input,
-        botResponse: botResponses.join("\n\n---\n\n"),
-      });
-    }
+    await handleSupportInput(
+      input,
+      session,
+      async (reply) => {
+        addConversationEntry(session, "Bot", reply);
+        await sendTelegramMessage(chatId, reply);
+      },
+      "Telegram",
+      telegramUser
+    );
   } catch (error) {
     console.error("Telegram webhook processing error:", error);
   }
