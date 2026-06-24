@@ -2670,23 +2670,31 @@ async function sendSmtpMail({ to, subject, body }) {
     throw new Error("Missing SMTP_HOST, SMTP_PORT, SMTP_USER, or SMTP_PASS");
   }
 
+  console.log("SMTP sending to:", to);
+  console.log("SMTP using host:", SMTP_HOST, "port:", SMTP_PORT);
+
   const transporter = nodemailer.createTransport({
     host: SMTP_HOST,
     port: SMTP_PORT,
     secure: false,
     requireTLS: true,
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 15000,
     auth: {
       user: SMTP_USER,
       pass: SMTP_PASS,
     },
   });
 
-  await transporter.sendMail({
-    from: SMTP_USER,
+  const info = await transporter.sendMail({
+    from: `"VRA Support Bot" <${SMTP_USER}>`,
     to,
     subject,
     text: body,
   });
+
+  console.log("SMTP sendMail completed:", info.messageId);
 }
 
 function buildClientMessageAlert({ platform, clientId, clientMessage, botResponse }) {
