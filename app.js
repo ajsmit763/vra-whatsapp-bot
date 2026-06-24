@@ -1,4 +1,11 @@
 const express = require("express");
+let axios = null;
+
+try {
+  axios = require("axios");
+} catch (error) {
+  console.warn("Axios is not installed. Falling back to fetch for Brevo email alerts.");
+}
 
 const app = express();
 app.use(express.json());
@@ -2666,34 +2673,50 @@ async function sendBrevoEmail({ to, subject, body }) {
     throw new Error("Missing BREVO_API_KEY");
   }
 
+  const payload = {
+    sender: {
+      name: "VRA Support Bot",
+      email: "aj@amaxsa.co.za",
+    },
+    to: [{ email: to }],
+    subject,
+    textContent: body,
+  };
+
+  const headers = {
+    accept: "application/json",
+    "api-key": BREVO_API_KEY,
+    "content-type": "application/json",
+  };
+
+  if (axios) {
+    try {
+      return await axios.post("https://api.brevo.com/v3/smtp/email", payload, {
+        headers,
+      });
+    } catch (error) {
+      const brevoError = new Error("Brevo email alert failed with status/body");
+      brevoError.status = error.response?.status || "";
+      brevoError.body = error.response?.data || error.message;
+      throw brevoError;
+    }
+  }
+
   const response = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
-    headers: {
-      accept: "application/json",
-      "api-key": BREVO_API_KEY,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      sender: {
-        name: "VRA Support Bot",
-        email: "aj@amaxsa.co.za",
-      },
-      to: [{ email: to }],
-      subject,
-      textContent: body,
-    }),
+    headers,
+    body: JSON.stringify(payload),
   });
 
-  const responseBody = await response.text();
-
   if (!response.ok) {
-    const error = new Error(`Brevo email alert failed with status/body: ${response.status} ${responseBody}`);
+    const responseBody = await response.text();
+    const error = new Error("Brevo email alert failed with status/body");
     error.status = response.status;
     error.body = responseBody;
     throw error;
   }
 
-  return responseBody;
+  return response;
 }
 
 function buildClientMessageAlert({ platform, clientId, clientMessage, botResponse }) {
