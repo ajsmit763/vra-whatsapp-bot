@@ -1,6 +1,5 @@
 const express = require("express");
-const net = require("net");
-const tls = require("tls");
+const nodemailer = require("nodemailer");
 
 const app = express();
 app.use(express.json());
@@ -2666,185 +2665,28 @@ function formatDateTimeForEmail(date = new Date()) {
   return `${value("year")}-${value("month")}-${value("day")} ${value("hour")}:${value("minute")}:${value("second")}`;
 }
 
-function encodeBase64(value) {
-  return Buffer.from(String(value), "utf8").toString("base64");
-}
-
-function escapeEmailHeader(value) {
-  return String(value || "").replace(/[\r\n]+/g, " ").trim();
-}
-
-function createSmtpClient(socket) {
-  let buffer = "";
-  const responseQueue = [];
-  const waiters = [];
-
-  function parseResponses() {
-    const lines = buffer.split(/\r?\n/);
-    buffer = lines.pop() || "";
-
-    for (const line of lines) {
-      if (!line) continue;
-
-      const code = line.slice(0, 3);
-      const separator = line.slice(3, 4);
-
-      if (!/^\d{3}$/.test(code)) {
-        continue;
-      }
-
-      if (!responseQueue.length || responseQueue[responseQueue.length - 1].done) {
-        responseQueue.push({ code: Number(code), lines: [], done: false });
-      }
-
-      const current = responseQueue[responseQueue.length - 1];
-      current.lines.push(line);
-
-      if (separator === " ") {
-        current.done = true;
-        const waiter = waiters.shift();
-        if (waiter) {
-          responseQueue.pop();
-          waiter(current);
-        }
-      }
-    }
-  }
-
-  socket.on("data", (data) => {
-    buffer += data.toString("utf8");
-    parseResponses();
-  });
-
-  function readResponse() {
-    const readyIndex = responseQueue.findIndex((response) => response.done);
-
-    if (readyIndex >= 0) {
-      const [ready] = responseQueue.splice(readyIndex, 1);
-      return Promise.resolve(ready);
-    }
-
-    return new Promise((resolve, reject) => {
-      const onError = (error) => {
-        cleanup();
-        reject(error);
-      };
-      const onClose = () => {
-        cleanup();
-        reject(new Error("SMTP connection closed"));
-      };
-      const cleanup = () => {
-        socket.off("error", onError);
-        socket.off("close", onClose);
-      };
-
-      socket.once("error", onError);
-      socket.once("close", onClose);
-      waiters.push((response) => {
-        cleanup();
-        resolve(response);
-      });
-    });
-  }
-
-  async function command(line, expectedCodes = []) {
-    socket.write(`${line}\r\n`);
-    const response = await readResponse();
-
-    if (expectedCodes.length && !expectedCodes.includes(response.code)) {
-      throw new Error(`SMTP command failed: ${line} -> ${response.lines.join(" | ")}`);
-    }
-
-    return response;
-  }
-
-  return {
-    socket,
-    readResponse,
-    command,
-  };
-}
-
-function connectSmtpSocket() {
-  return new Promise((resolve, reject) => {
-    const options = {
-      host: SMTP_HOST,
-      port: SMTP_PORT,
-      servername: SMTP_HOST,
-    };
-    const socket =
-      SMTP_PORT === 465 ? tls.connect(options, onConnect) : net.connect(options, onConnect);
-
-    function onConnect() {
-      resolve(socket);
-    }
-
-    socket.setTimeout(15000, () => {
-      socket.destroy(new Error("SMTP connection timed out"));
-    });
-    socket.once("error", reject);
-  });
-}
-
-function upgradeToTls(socket) {
-  return new Promise((resolve, reject) => {
-    const secureSocket = tls.connect(
-      {
-        socket,
-        servername: SMTP_HOST,
-      },
-      () => resolve(secureSocket)
-    );
-
-    secureSocket.once("error", reject);
-  });
-}
-
 async function sendSmtpMail({ to, subject, body }) {
   if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS) {
     throw new Error("Missing SMTP_HOST, SMTP_PORT, SMTP_USER, or SMTP_PASS");
   }
 
-  let client = createSmtpClient(await connectSmtpSocket());
+  const transporter = nodemailer.createTransport({
+    host: SMTP_HOST,
+    port: SMTP_PORT,
+    secure: false,
+    requireTLS: true,
+    auth: {
+      user: SMTP_USER,
+      pass: SMTP_PASS,
+    },
+  });
 
-  await client.readResponse();
-  let ehloResponse = await client.command("EHLO vra-support-bot", [250]);
-
-  if (SMTP_PORT !== 465 && ehloResponse.lines.join("\n").toUpperCase().includes("STARTTLS")) {
-    await client.command("STARTTLS", [220]);
-    client.socket.removeAllListeners("data");
-    client = createSmtpClient(await upgradeToTls(client.socket));
-    ehloResponse = await client.command("EHLO vra-support-bot", [250]);
-  }
-
-  await client.command("AUTH LOGIN", [334]);
-  await client.command(encodeBase64(SMTP_USER), [334]);
-  await client.command(encodeBase64(SMTP_PASS), [235]);
-
-  await client.command(`MAIL FROM:<${SMTP_USER}>`, [250]);
-  await client.command(`RCPT TO:<${to}>`, [250, 251]);
-  await client.command("DATA", [354]);
-
-  const message = [
-    `From: ${escapeEmailHeader(SMTP_USER)}`,
-    `To: ${escapeEmailHeader(to)}`,
-    `Subject: ${escapeEmailHeader(subject)}`,
-    "MIME-Version: 1.0",
-    'Content-Type: text/plain; charset="UTF-8"',
-    "Content-Transfer-Encoding: 8bit",
-    "",
-    body,
-  ].join("\r\n");
-
-  client.socket.write(`${message.replace(/\r?\n\./g, "\r\n..")}\r\n.\r\n`);
-  const dataResponse = await client.readResponse();
-
-  if (dataResponse.code !== 250) {
-    throw new Error(`SMTP DATA failed: ${dataResponse.lines.join(" | ")}`);
-  }
-
-  await client.command("QUIT", [221]).catch(() => {});
-  client.socket.end();
+  await transporter.sendMail({
+    from: SMTP_USER,
+    to,
+    subject,
+    text: body,
+  });
 }
 
 function buildClientMessageAlert({ platform, clientId, clientMessage, botResponse }) {
@@ -2864,13 +2706,15 @@ async function sendClientMessageAlert(details) {
   const body = buildClientMessageAlert(details);
 
   try {
+    console.log("SMTP alert sending started");
     await sendSmtpMail({
       to: ALERT_TO,
       subject,
       body,
     });
+    console.log("SMTP alert sent successfully");
   } catch (error) {
-    console.error("Client message email alert failed:", error);
+    console.error("SMTP alert failed with full error:", error);
   }
 }
 
