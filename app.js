@@ -3105,7 +3105,7 @@ app.post("/telegram-webhook", async (req, res) => {
   }
 });
 
-app.get("/", (req, res) => {
+app.get("/", req, (res) => {
   res.status(200).send("VRA WhatsApp Bot Running");
 });
 
