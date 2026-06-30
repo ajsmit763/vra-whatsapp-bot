@@ -21,6 +21,7 @@ const ALERT_TO = process.env.ALERT_TO || "VRASupportbot@amaxsa.co.za";
 const STATES = {
   LANGUAGE: "language",
   MAIN: "main",
+  DOCUMENTATION: "documentation",
   FAQ: "faq",
   FEEDBACK: "feedback",
   REVIEW: "review",
@@ -942,6 +943,181 @@ ${SUPPORT_EMAIL}`,
     backInstruction: "Responda B o Back para volver al menú principal.",
     doneInstruction: "Responda D o Done para evaluar nuestro servicio.",
     changeInstruction: "Responda 0 para cambiar el idioma.",
+  },
+};
+
+const DOCUMENTATION_LINKS = [
+  "https://vatrefundagency.co.za/or-tambo-checklist/",
+  "https://vatrefundagency.co.za/cape-town-checklist/",
+  "https://vatrefundagency.co.za/eswatini-checklist/",
+  "https://vatrefundagency.co.za/lesotho-checklist/",
+  "https://vatrefundagency.co.za/mozambique-checklist/",
+  "https://vatrefundagency.co.za/botswanna-namibia-checklist/",
+  "https://vatrefundagency.co.za/zimbabwe-checklist/",
+  "https://vatrefundagency.co.za/postal-claims-checklist/",
+  "https://vatrefundagency.co.za/wildlife-trophies/",
+];
+
+const documentationTranslations = {
+  en: {
+    menuOption: "Documentation required",
+    intro:
+      "Please follow the link to review the required documentation at your point of departure. Familiarise yourself with the required documents to prevent delays.",
+    options: [
+      "O.R. Tambo",
+      "Cape Town",
+      "Eswatini",
+      "Lesotho",
+      "Mozambique",
+      "Botswana & Namibia",
+      "Zimbabwe",
+      "Postal Claims",
+      "Wildlife Trophies",
+    ],
+  },
+  ar: {
+    menuOption: "المستندات المطلوبة",
+    intro:
+      "يرجى اتباع الرابط لمراجعة المستندات المطلوبة عند نقطة مغادرتك. يُرجى التعرف على المستندات المطلوبة لتجنب التأخير.",
+    options: [
+      "مطار O.R. Tambo",
+      "كيب تاون",
+      "إسواتيني",
+      "ليسوتو",
+      "موزمبيق",
+      "بوتسوانا وناميبيا",
+      "زيمبابوي",
+      "المطالبات البريدية",
+      "جوائز الحياة البرية",
+    ],
+  },
+  zh: {
+    menuOption: "所需文件",
+    intro:
+      "请点击相关链接，查看您离境地点所需的文件。请提前熟悉所需文件，以免延误。",
+    options: [
+      "O.R. Tambo",
+      "开普敦",
+      "斯威士兰",
+      "莱索托",
+      "莫桑比克",
+      "博茨瓦纳和纳米比亚",
+      "津巴布韦",
+      "邮寄申请",
+      "野生动物战利品",
+    ],
+  },
+  nl: {
+    menuOption: "Vereiste documentatie",
+    intro:
+      "Volg de link om de vereiste documentatie voor uw vertrekpunt te bekijken. Maak uzelf vertrouwd met de vereiste documenten om vertragingen te voorkomen.",
+    options: [
+      "O.R. Tambo",
+      "Kaapstad",
+      "Eswatini",
+      "Lesotho",
+      "Mozambique",
+      "Botswana & Namibië",
+      "Zimbabwe",
+      "Postclaims",
+      "Wildtrofeeën",
+    ],
+  },
+  fr: {
+    menuOption: "Documents requis",
+    intro:
+      "Veuillez suivre le lien pour consulter les documents requis à votre point de départ. Prenez connaissance des documents nécessaires afin d’éviter tout retard.",
+    options: [
+      "O.R. Tambo",
+      "Le Cap",
+      "Eswatini",
+      "Lesotho",
+      "Mozambique",
+      "Botswana et Namibie",
+      "Zimbabwe",
+      "Demandes postales",
+      "Trophées d’animaux sauvages",
+    ],
+  },
+  de: {
+    menuOption: "Erforderliche Unterlagen",
+    intro:
+      "Bitte folgen Sie dem Link, um die an Ihrem Abreiseort erforderlichen Unterlagen einzusehen. Machen Sie sich mit den erforderlichen Dokumenten vertraut, um Verzögerungen zu vermeiden.",
+    options: [
+      "O.R. Tambo",
+      "Kapstadt",
+      "Eswatini",
+      "Lesotho",
+      "Mosambik",
+      "Botswana & Namibia",
+      "Simbabwe",
+      "Postalische Anträge",
+      "Wildtrophäen",
+    ],
+  },
+  it: {
+    menuOption: "Documentazione richiesta",
+    intro:
+      "Segui il link per consultare la documentazione richiesta presso il tuo punto di partenza. Prendi visione dei documenti necessari per evitare ritardi.",
+    options: [
+      "O.R. Tambo",
+      "Città del Capo",
+      "Eswatini",
+      "Lesotho",
+      "Mozambico",
+      "Botswana e Namibia",
+      "Zimbabwe",
+      "Richieste postali",
+      "Trofei di fauna selvatica",
+    ],
+  },
+  pt: {
+    menuOption: "Documentação necessária",
+    intro:
+      "Siga o link para consultar a documentação exigida no seu ponto de partida. Familiarize-se com os documentos necessários para evitar atrasos.",
+    options: [
+      "O.R. Tambo",
+      "Cidade do Cabo",
+      "Essuatíni",
+      "Lesoto",
+      "Moçambique",
+      "Botsuana e Namíbia",
+      "Zimbábue",
+      "Pedidos postais",
+      "Troféus de vida selvagem",
+    ],
+  },
+  ru: {
+    menuOption: "Необходимые документы",
+    intro:
+      "Перейдите по ссылке, чтобы ознакомиться с документами, необходимыми в пункте вашего отправления. Заранее ознакомьтесь с требованиями, чтобы избежать задержек.",
+    options: [
+      "O.R. Tambo",
+      "Кейптаун",
+      "Эсватини",
+      "Лесото",
+      "Мозамбик",
+      "Ботсвана и Намибия",
+      "Зимбабве",
+      "Почтовые заявления",
+      "Охотничьи трофеи",
+    ],
+  },
+  es: {
+    menuOption: "Documentación requerida",
+    intro:
+      "Siga el enlace para consultar la documentación requerida en su punto de salida. Familiarícese con los documentos necesarios para evitar retrasos.",
+    options: [
+      "O.R. Tambo",
+      "Ciudad del Cabo",
+      "Esuatini",
+      "Lesoto",
+      "Mozambique",
+      "Botsuana y Namibia",
+      "Zimbabue",
+      "Reclamaciones postales",
+      "Trofeos de vida silvestre",
+    ],
   },
 };
 
@@ -2318,6 +2494,10 @@ function getFaqEmailNote(languageCode) {
   return faqEmailNoteTranslations[languageCode] || faqEmailNoteTranslations.en;
 }
 
+function getDocumentationCopy(languageCode) {
+  return documentationTranslations[languageCode] || documentationTranslations.en;
+}
+
 function getVatAmountAnswer(languageCode) {
   return `${vatAmountIntroTranslations[languageCode] || vatAmountIntroTranslations.en}
 
@@ -2368,7 +2548,7 @@ function isFaqRequest(input) {
   const value = normalizeText(input);
 
   return [
-    "4",
+    "5",
     "faq",
     "frequently asked questions",
     "frequently asked questions menu",
@@ -2413,18 +2593,51 @@ ${copy.changeInstruction}`;
 
 function mainMenu(languageCode) {
   const copy = t(languageCode);
+  const documentationCopy = getDocumentationCopy(languageCode);
 
   return `${copy.mainTitle}
 
 ${copy.supportHours}
 
-1 ${copy.statusOption}
-2 ${copy.bankingOption}
-3 ${copy.newClaimOption}
-4 ${copy.faqOption}
-5 ${copy.agentOption}
-6 ${copy.feedbackOption}
-7 ${copy.changeLanguageOption}
+1 ${documentationCopy.menuOption}
+2 ${copy.statusOption}
+3 ${copy.bankingOption}
+4 ${copy.newClaimOption}
+5 ${copy.faqOption}
+6 ${copy.agentOption}
+7 ${copy.feedbackOption}
+8 ${copy.changeLanguageOption}
+
+${navigationText(languageCode)}`;
+}
+
+function documentationMenu(languageCode) {
+  const copy = getDocumentationCopy(languageCode);
+  const numberedOptions = copy.options
+    .map((option, index) => `${index + 1} ${option}`)
+    .join("\n");
+
+  return `${copy.intro}
+
+${numberedOptions}
+
+${navigationText(languageCode)}`;
+}
+
+function documentationMessage(languageCode, optionNumber) {
+  const copy = getDocumentationCopy(languageCode);
+  const optionIndex = Number(optionNumber) - 1;
+
+  if (
+    !Number.isInteger(optionIndex) ||
+    optionIndex < 0 ||
+    optionIndex >= DOCUMENTATION_LINKS.length
+  ) {
+    return null;
+  }
+
+  return `${copy.options[optionIndex]}
+${DOCUMENTATION_LINKS[optionIndex]}
 
 ${navigationText(languageCode)}`;
 }
@@ -2950,6 +3163,18 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
     return;
   }
 
+  if (session.state === STATES.DOCUMENTATION) {
+    const documentationReply = documentationMessage(languageCode, normalizedInput);
+
+    if (documentationReply) {
+      await sendReply(documentationReply);
+      return;
+    }
+
+    await sendReply(invalidInputMessage(languageCode));
+    return;
+  }
+
   if (session.state === STATES.FAQ) {
     if (normalizedInput === "18") {
       session.state = STATES.MAIN;
@@ -2975,36 +3200,42 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
   }
 
   if (normalizedInput === "1") {
-    session.state = STATES.MAIN;
-    await sendReply(statusMessage(languageCode));
+    session.state = STATES.DOCUMENTATION;
+    await sendReply(documentationMenu(languageCode));
     return;
   }
 
   if (normalizedInput === "2") {
     session.state = STATES.MAIN;
-    await sendReply(bankingMessage(languageCode));
+    await sendReply(statusMessage(languageCode));
     return;
   }
 
   if (normalizedInput === "3") {
     session.state = STATES.MAIN;
+    await sendReply(bankingMessage(languageCode));
+    return;
+  }
+
+  if (normalizedInput === "4") {
+    session.state = STATES.MAIN;
     await sendReply(newClaimMessage(languageCode));
     return;
   }
 
-  if (normalizedInput === "5") {
+  if (normalizedInput === "6") {
     session.state = STATES.MAIN;
     await sendReply(agentMessage(languageCode));
     return;
   }
 
-  if (normalizedInput === "6") {
+  if (normalizedInput === "7") {
     session.state = STATES.FEEDBACK;
     await sendReply(feedbackPromptMessage(languageCode));
     return;
   }
 
-  if (normalizedInput === "7") {
+  if (normalizedInput === "8") {
     await showLanguageMenu(session, sendReply);
     return;
   }
@@ -3105,7 +3336,7 @@ app.post("/telegram-webhook", async (req, res) => {
   }
 });
 
-app.get("/", req, (res) => {
+app.get("/", (req, res) => {
   res.status(200).send("VRA WhatsApp Bot Running");
 });
 
