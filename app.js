@@ -39,6 +39,7 @@ const NEW_CLAIM_PORTAL_LINK =
 const NEW_CLAIM_VIDEO_LINK = "https://youtu.be/zatxMKDCNL4";
 const WEBSITE_LINK = "https://vatrefundagency.co.za/";
 const LIVE_CHAT_LINK = "https://vatrefundagency.co.za/agent-chat.php";
+const LOCATIONS_LINK = "https://vatrefundagency.co.za/locations/";
 const SUPPORT_EMAIL = "info@vatrefundagency.co.za";
 const FINANCE_EMAIL = "finance@vatrefundagency.co.za";
 
@@ -1118,6 +1119,129 @@ const documentationTranslations = {
       "Reclamaciones postales",
       "Trofeos de vida silvestre",
     ],
+  },
+};
+
+const whereToClaimTranslations = {
+  en: {
+    menuOption: "Where to claim",
+    mainChangeInstruction: "Reply 0 or 9 to change language.",
+    response: `Where to claim:
+
+All VRA services are available at our designated front-office locations, where our teams will be happy to assist you with any enquiries or support you may require.
+
+We encourage you to visit these official offices for all your service needs.
+
+Please view our official VRA locations here:
+${LOCATIONS_LINK}`,
+  },
+  ar: {
+    menuOption: "أين يمكن تقديم المطالبة",
+    mainChangeInstruction: "أرسل 0 أو 9 لتغيير اللغة.",
+    response: `أين يمكن تقديم المطالبة:
+
+تتوفر جميع خدمات VRA في مكاتب الاستقبال المخصصة لدينا، حيث يسعد فرقنا مساعدتك في أي استفسارات أو تقديم الدعم الذي قد تحتاج إليه.
+
+نشجعك على زيارة هذه المكاتب الرسمية لتلبية جميع احتياجاتك المتعلقة بالخدمة.
+
+يرجى الاطلاع على مواقع VRA الرسمية هنا:
+${LOCATIONS_LINK}`,
+  },
+  zh: {
+    menuOption: "在哪里申请退税",
+    mainChangeInstruction: "回复 0 或 9 更改语言。",
+    response: `在哪里申请退税：
+
+所有 VRA 服务均可在我们指定的前台服务地点获得，我们的团队将乐意协助您处理任何咨询或提供您可能需要的支持。
+
+我们建议您前往这些官方办事处办理所有服务事项。
+
+请在此查看 VRA 官方地点：
+${LOCATIONS_LINK}`,
+  },
+  nl: {
+    menuOption: "Waar u uw aanvraag kunt indienen",
+    mainChangeInstruction: "Antwoord 0 of 9 om de taal te wijzigen.",
+    response: `Waar u uw aanvraag kunt indienen:
+
+Alle VRA-diensten zijn beschikbaar op onze aangewezen frontofficelocaties, waar onze teams u graag helpen met vragen of ondersteuning die u nodig heeft.
+
+Wij raden u aan deze officiële kantoren te bezoeken voor al uw servicebehoeften.
+
+Bekijk hier onze officiële VRA-locaties:
+${LOCATIONS_LINK}`,
+  },
+  fr: {
+    menuOption: "Où faire votre demande",
+    mainChangeInstruction: "Répondez 0 ou 9 pour changer de langue.",
+    response: `Où faire votre demande :
+
+Tous les services de VRA sont disponibles dans nos bureaux d’accueil désignés, où nos équipes se feront un plaisir de répondre à vos questions et de vous apporter l’aide dont vous pourriez avoir besoin.
+
+Nous vous encourageons à vous rendre dans ces bureaux officiels pour tous vos besoins de service.
+
+Consultez ici les emplacements officiels de VRA :
+${LOCATIONS_LINK}`,
+  },
+  de: {
+    menuOption: "Wo Sie Ihren Antrag stellen können",
+    mainChangeInstruction: "Antworten Sie mit 0 oder 9, um die Sprache zu ändern.",
+    response: `Wo Sie Ihren Antrag stellen können:
+
+Alle VRA-Dienstleistungen sind an unseren ausgewiesenen Frontoffice-Standorten verfügbar. Unsere Teams helfen Ihnen dort gerne bei Fragen oder mit der Unterstützung, die Sie benötigen.
+
+Wir empfehlen Ihnen, für alle Ihre Serviceanliegen diese offiziellen Büros aufzusuchen.
+
+Unsere offiziellen VRA-Standorte finden Sie hier:
+${LOCATIONS_LINK}`,
+  },
+  it: {
+    menuOption: "Dove presentare la richiesta",
+    mainChangeInstruction: "Rispondi 0 o 9 per cambiare lingua.",
+    response: `Dove presentare la richiesta:
+
+Tutti i servizi VRA sono disponibili presso le nostre sedi di front office designate, dove i nostri team saranno lieti di assisterti per qualsiasi domanda o supporto di cui potresti aver bisogno.
+
+Ti invitiamo a visitare questi uffici ufficiali per tutte le tue esigenze di servizio.
+
+Consulta qui le sedi ufficiali VRA:
+${LOCATIONS_LINK}`,
+  },
+  pt: {
+    menuOption: "Onde apresentar o pedido",
+    mainChangeInstruction: "Responda 0 ou 9 para alterar o idioma.",
+    response: `Onde apresentar o pedido:
+
+Todos os serviços da VRA estão disponíveis nos nossos locais de atendimento designados, onde as nossas equipas terão todo o prazer em ajudar com quaisquer dúvidas ou com o apoio de que possa necessitar.
+
+Recomendamos que visite estes escritórios oficiais para todas as suas necessidades de serviço.
+
+Consulte aqui as localizações oficiais da VRA:
+${LOCATIONS_LINK}`,
+  },
+  ru: {
+    menuOption: "Где подать заявку",
+    mainChangeInstruction: "Ответьте 0 или 9, чтобы изменить язык.",
+    response: `Где подать заявку:
+
+Все услуги VRA доступны в наших официальных офисах обслуживания клиентов, где наши сотрудники с радостью ответят на ваши вопросы и окажут необходимую поддержку.
+
+Для получения всех необходимых услуг рекомендуем обращаться в эти официальные офисы.
+
+Официальные адреса VRA можно посмотреть здесь:
+${LOCATIONS_LINK}`,
+  },
+  es: {
+    menuOption: "Dónde presentar la solicitud",
+    mainChangeInstruction: "Responda 0 o 9 para cambiar el idioma.",
+    response: `Dónde presentar la solicitud:
+
+Todos los servicios de VRA están disponibles en nuestras oficinas de atención designadas, donde nuestros equipos estarán encantados de ayudarle con cualquier consulta o brindarle el apoyo que pueda necesitar.
+
+Le recomendamos visitar estas oficinas oficiales para todas sus necesidades de servicio.
+
+Consulte aquí nuestras ubicaciones oficiales de VRA:
+${LOCATIONS_LINK}`,
   },
 };
 
@@ -2498,6 +2622,10 @@ function getDocumentationCopy(languageCode) {
   return documentationTranslations[languageCode] || documentationTranslations.en;
 }
 
+function getWhereToClaimCopy(languageCode) {
+  return whereToClaimTranslations[languageCode] || whereToClaimTranslations.en;
+}
+
 function getVatAmountAnswer(languageCode) {
   return `${vatAmountIntroTranslations[languageCode] || vatAmountIntroTranslations.en}
 
@@ -2591,9 +2719,19 @@ ${copy.doneInstruction}
 ${copy.changeInstruction}`;
 }
 
+function mainNavigationText(languageCode) {
+  const copy = t(languageCode);
+  const whereToClaimCopy = getWhereToClaimCopy(languageCode);
+
+  return `${copy.backInstruction}
+${copy.doneInstruction}
+${whereToClaimCopy.mainChangeInstruction}`;
+}
+
 function mainMenu(languageCode) {
   const copy = t(languageCode);
   const documentationCopy = getDocumentationCopy(languageCode);
+  const whereToClaimCopy = getWhereToClaimCopy(languageCode);
 
   return `${copy.mainTitle}
 
@@ -2606,9 +2744,10 @@ ${copy.supportHours}
 5 ${copy.faqOption}
 6 ${copy.agentOption}
 7 ${copy.feedbackOption}
-8 ${copy.changeLanguageOption}
+8 ${whereToClaimCopy.menuOption}
+9 ${copy.changeLanguageOption}
 
-${navigationText(languageCode)}`;
+${mainNavigationText(languageCode)}`;
 }
 
 function documentationMenu(languageCode) {
@@ -2681,6 +2820,12 @@ ${navigationText(languageCode)}`;
 
 function newClaimMessage(languageCode) {
   return `${t(languageCode).newClaimReply}
+
+${navigationText(languageCode)}`;
+}
+
+function whereToClaimMessage(languageCode) {
+  return `${getWhereToClaimCopy(languageCode).response}
 
 ${navigationText(languageCode)}`;
 }
@@ -3236,6 +3381,12 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
   }
 
   if (normalizedInput === "8") {
+    session.state = STATES.MAIN;
+    await sendReply(whereToClaimMessage(languageCode));
+    return;
+  }
+
+  if (normalizedInput === "9") {
     await showLanguageMenu(session, sendReply);
     return;
   }
