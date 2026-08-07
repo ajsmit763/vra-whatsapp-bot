@@ -20,6 +20,9 @@ const ALERT_TO = process.env.ALERT_TO || "VRASupportbot@amaxsa.co.za";
 
 const STATES = {
   LANGUAGE: "language",
+  CLIENT_NAME: "client_name",
+  CLIENT_PASSPORT: "client_passport",
+  CLIENT_VRA_REFERENCE: "client_vra_reference",
   MAIN: "main",
   DOCUMENTATION: "documentation",
   FAQ: "faq",
@@ -54,6 +57,129 @@ const languageChoices = {
   "8": { code: "pt", name: "Portuguese" },
   "9": { code: "ru", name: "Russian" },
   "10": { code: "es", name: "Spanish" },
+};
+
+const clientInfoTranslations = {
+  en: {
+    askName: "Please enter your full name and surname.",
+    askPassport: "Please enter your passport number.",
+    askVraReference:
+      "Please enter your VRA reference number, if known. If you do not have or know your VRA reference number, reply Skip.",
+    requiredField: "This information is required. Please enter a valid response.",
+    invalidVraReference:
+      "Please enter a VRA reference number of up to 13 letters or numbers, or reply Skip.",
+    detailsRecorded: "Thank you. Your details have been recorded.",
+    notProvided: "Not provided",
+    skipWords: ["skip"],
+  },
+  ar: {
+    askName: "يرجى إدخال اسمك الكامل ولقبك.",
+    askPassport: "يرجى إدخال رقم جواز سفرك.",
+    askVraReference:
+      "يرجى إدخال رقم مرجع VRA الخاص بك، إذا كان معروفا. إذا لم يكن لديك رقم مرجع VRA أو لا تعرفه، يرجى الرد بكلمة تخطي.",
+    requiredField: "هذه المعلومة مطلوبة. يرجى إدخال رد صحيح.",
+    invalidVraReference:
+      "يرجى إدخال رقم مرجع VRA لا يزيد عن 13 حرفا أو رقما، أو الرد بكلمة تخطي.",
+    detailsRecorded: "شكرا لك. تم تسجيل بياناتك.",
+    notProvided: "غير متوفر",
+    skipWords: ["تخطي", "تجاوز"],
+  },
+  zh: {
+    askName: "请输入您的姓名和姓氏。",
+    askPassport: "请输入您的护照号码。",
+    askVraReference:
+      "请输入您的 VRA 参考编号（如已知）。如果您没有或不知道 VRA 参考编号，请回复“跳过”。",
+    requiredField: "此信息为必填项。请输入有效回复。",
+    invalidVraReference:
+      "请输入不超过 13 个字母或数字的 VRA 参考编号，或回复“跳过”。",
+    detailsRecorded: "谢谢。您的资料已记录。",
+    notProvided: "未提供",
+    skipWords: ["跳过", "略过"],
+  },
+  nl: {
+    askName: "Voer uw volledige naam en achternaam in.",
+    askPassport: "Voer uw paspoortnummer in.",
+    askVraReference:
+      "Voer uw VRA-referentienummer in, indien bekend. Als u geen VRA-referentienummer heeft of dit niet weet, antwoord dan met Overslaan.",
+    requiredField: "Deze informatie is verplicht. Voer een geldig antwoord in.",
+    invalidVraReference:
+      "Voer een VRA-referentienummer in van maximaal 13 letters of cijfers, of antwoord met Overslaan.",
+    detailsRecorded: "Dank u. Uw gegevens zijn geregistreerd.",
+    notProvided: "Niet verstrekt",
+    skipWords: ["overslaan"],
+  },
+  fr: {
+    askName: "Veuillez saisir votre nom complet et votre nom de famille.",
+    askPassport: "Veuillez saisir votre numéro de passeport.",
+    askVraReference:
+      "Veuillez saisir votre numéro de référence VRA, si vous le connaissez. Si vous ne l'avez pas ou ne le connaissez pas, répondez Ignorer.",
+    requiredField: "Cette information est obligatoire. Veuillez saisir une réponse valide.",
+    invalidVraReference:
+      "Veuillez saisir un numéro de référence VRA comportant jusqu'à 13 lettres ou chiffres, ou répondez Ignorer.",
+    detailsRecorded: "Merci. Vos informations ont été enregistrées.",
+    notProvided: "Non fourni",
+    skipWords: ["ignorer", "passer"],
+  },
+  de: {
+    askName: "Bitte geben Sie Ihren vollständigen Vor- und Nachnamen ein.",
+    askPassport: "Bitte geben Sie Ihre Reisepassnummer ein.",
+    askVraReference:
+      "Bitte geben Sie Ihre VRA-Referenznummer ein, falls bekannt. Wenn Sie keine VRA-Referenznummer haben oder diese nicht kennen, antworten Sie mit Überspringen.",
+    requiredField: "Diese Angabe ist erforderlich. Bitte geben Sie eine gültige Antwort ein.",
+    invalidVraReference:
+      "Bitte geben Sie eine VRA-Referenznummer mit bis zu 13 Buchstaben oder Zahlen ein oder antworten Sie mit Überspringen.",
+    detailsRecorded: "Vielen Dank. Ihre Angaben wurden erfasst.",
+    notProvided: "Nicht angegeben",
+    skipWords: ["überspringen", "uberspringen"],
+  },
+  it: {
+    askName: "Inserisci il tuo nome e cognome completi.",
+    askPassport: "Inserisci il numero del tuo passaporto.",
+    askVraReference:
+      "Inserisci il tuo numero di riferimento VRA, se lo conosci. Se non lo hai o non lo conosci, rispondi Salta.",
+    requiredField: "Questa informazione è obbligatoria. Inserisci una risposta valida.",
+    invalidVraReference:
+      "Inserisci un numero di riferimento VRA fino a 13 lettere o numeri, oppure rispondi Salta.",
+    detailsRecorded: "Grazie. I tuoi dati sono stati registrati.",
+    notProvided: "Non fornito",
+    skipWords: ["salta"],
+  },
+  pt: {
+    askName: "Introduza o seu nome completo e apelido.",
+    askPassport: "Introduza o número do seu passaporte.",
+    askVraReference:
+      "Introduza o seu número de referência VRA, se souber. Se não tiver ou não souber o número de referência VRA, responda Ignorar.",
+    requiredField: "Esta informação é obrigatória. Introduza uma resposta válida.",
+    invalidVraReference:
+      "Introduza um número de referência VRA com até 13 letras ou números, ou responda Ignorar.",
+    detailsRecorded: "Obrigado. Os seus dados foram registados.",
+    notProvided: "Não fornecido",
+    skipWords: ["ignorar", "pular", "saltar"],
+  },
+  ru: {
+    askName: "Пожалуйста, введите ваше полное имя и фамилию.",
+    askPassport: "Пожалуйста, введите номер вашего паспорта.",
+    askVraReference:
+      "Пожалуйста, введите ваш номер VRA, если он известен. Если у вас нет номера VRA или вы его не знаете, ответьте Пропустить.",
+    requiredField: "Эта информация обязательна. Пожалуйста, введите действительный ответ.",
+    invalidVraReference:
+      "Пожалуйста, введите номер VRA длиной до 13 букв или цифр либо ответьте Пропустить.",
+    detailsRecorded: "Спасибо. Ваши данные были записаны.",
+    notProvided: "Не предоставлено",
+    skipWords: ["пропустить"],
+  },
+  es: {
+    askName: "Introduzca su nombre completo y apellido.",
+    askPassport: "Introduzca su número de pasaporte.",
+    askVraReference:
+      "Introduzca su número de referencia VRA, si lo conoce. Si no tiene o no conoce su número de referencia VRA, responda Omitir.",
+    requiredField: "Esta información es obligatoria. Introduzca una respuesta válida.",
+    invalidVraReference:
+      "Introduzca un número de referencia VRA de hasta 13 letras o números, o responda Omitir.",
+    detailsRecorded: "Gracias. Sus datos han sido registrados.",
+    notProvided: "No proporcionado",
+    skipWords: ["omitir", "saltar"],
+  },
 };
 
 const translations = {
@@ -2626,6 +2752,10 @@ function getWhereToClaimCopy(languageCode) {
   return whereToClaimTranslations[languageCode] || whereToClaimTranslations.en;
 }
 
+function getClientInfoCopy(languageCode) {
+  return clientInfoTranslations[languageCode] || clientInfoTranslations.en;
+}
+
 function getVatAmountAnswer(languageCode) {
   return `${vatAmountIntroTranslations[languageCode] || vatAmountIntroTranslations.en}
 
@@ -2648,6 +2778,50 @@ function isDoneRequest(input) {
 
 function isChangeLanguageRequest(input) {
   return ["0", "change language"].includes(normalizeText(input));
+}
+
+function isClientInfoState(state) {
+  return [
+    STATES.CLIENT_NAME,
+    STATES.CLIENT_PASSPORT,
+    STATES.CLIENT_VRA_REFERENCE,
+  ].includes(state);
+}
+
+function hasCompletedClientInfo(session) {
+  return Boolean(
+    session.clientInfoComplete &&
+      session.clientInfo?.fullName &&
+      session.clientInfo?.passportNumber &&
+      session.clientInfo?.vraReferenceNumber
+  );
+}
+
+function isSkipRequest(input, languageCode) {
+  const value = normalizeText(input);
+  const localizedSkipWords = getClientInfoCopy(languageCode).skipWords || [];
+  const globalSkipWords = [
+    "skip",
+    "overslaan",
+    "ignorer",
+    "passer",
+    "uberspringen",
+    "überspringen",
+    "salta",
+    "ignorar",
+    "pular",
+    "saltar",
+    "omitir",
+    "تخطي",
+    "تجاوز",
+    "跳过",
+    "略过",
+    "пропустить",
+  ];
+
+  return [...localizedSkipWords, ...globalSkipWords]
+    .map((word) => normalizeText(word))
+    .includes(value);
 }
 
 function isBackToMain(input) {
@@ -2950,6 +3124,12 @@ function getWhatsAppSession(phoneNumber) {
       languageCode: null,
       languageName: null,
       state: STATES.LANGUAGE,
+      clientInfo: {
+        fullName: "",
+        passportNumber: "",
+        vraReferenceNumber: "",
+      },
+      clientInfoComplete: false,
       conversationHistory: [],
     });
   }
@@ -2963,11 +3143,34 @@ function getTelegramSession(chatId) {
       languageCode: null,
       languageName: null,
       state: STATES.LANGUAGE,
+      clientInfo: {
+        fullName: "",
+        passportNumber: "",
+        vraReferenceNumber: "",
+      },
+      clientInfoComplete: false,
       conversationHistory: [],
     });
   }
 
   return telegramSessions.get(chatId);
+}
+
+function resetSessionForNewConversation(session, openingMessage) {
+  session.languageCode = null;
+  session.languageName = null;
+  session.state = STATES.LANGUAGE;
+  session.clientInfo = {
+    fullName: "",
+    passportNumber: "",
+    vraReferenceNumber: "",
+  };
+  session.clientInfoComplete = false;
+  session.conversationHistory = [];
+
+  if (openingMessage) {
+    addConversationEntry(session, "Client", String(openingMessage).trim());
+  }
 }
 
 function formatWhatsAppRecipient(number) {
@@ -3107,6 +3310,7 @@ function buildCompletedConversationAlert({
   platform,
   clientId,
   selectedLanguage,
+  clientInfo,
   transcript,
   ratingNumber,
   ratingLabel,
@@ -3114,6 +3318,9 @@ function buildCompletedConversationAlert({
   return `Platform: ${platform}
 Client Number / Telegram Username: ${clientId}
 Date & Time: ${formatDateTimeForEmail()}
+Full name and surname: ${clientInfo?.fullName || "Not provided"}
+Passport number: ${clientInfo?.passportNumber || "Not provided"}
+VRA reference number: ${clientInfo?.vraReferenceNumber || "Not provided"}
 Selected Language: ${selectedLanguage}
 
 Full Conversation Transcript:
@@ -3216,9 +3423,72 @@ async function showLanguageMenu(session, sendReply) {
   await sendReply(languageMenu());
 }
 
+async function startClientInfoFlow(session, sendReply) {
+  session.clientInfo = session.clientInfo || {
+    fullName: "",
+    passportNumber: "",
+    vraReferenceNumber: "",
+  };
+  session.clientInfoComplete = false;
+  session.state = STATES.CLIENT_NAME;
+  await sendReply(getClientInfoCopy(session.languageCode).askName);
+}
+
 async function startReview(session, sendReply) {
   session.state = STATES.REVIEW;
   await sendReply(reviewPromptMessage(session.languageCode));
+}
+
+async function handleClientInfoInput(input, session, sendReply) {
+  const languageCode = session.languageCode;
+  const copy = getClientInfoCopy(languageCode);
+  const trimmedInput = String(input || "").trim().replace(/\s+/g, " ");
+
+  if (session.state === STATES.CLIENT_NAME) {
+    if (!trimmedInput || isBackToMain(input) || isDoneRequest(input)) {
+      await sendReply(`${copy.requiredField}\n\n${copy.askName}`);
+      return;
+    }
+
+    session.clientInfo.fullName = trimmedInput;
+    session.state = STATES.CLIENT_PASSPORT;
+    await sendReply(copy.askPassport);
+    return;
+  }
+
+  if (session.state === STATES.CLIENT_PASSPORT) {
+    if (!trimmedInput || isBackToMain(input) || isDoneRequest(input)) {
+      await sendReply(`${copy.requiredField}\n\n${copy.askPassport}`);
+      return;
+    }
+
+    session.clientInfo.passportNumber = trimmedInput;
+    session.state = STATES.CLIENT_VRA_REFERENCE;
+    await sendReply(copy.askVraReference);
+    return;
+  }
+
+  if (session.state === STATES.CLIENT_VRA_REFERENCE) {
+    if (isSkipRequest(input, languageCode)) {
+      session.clientInfo.vraReferenceNumber = copy.notProvided;
+      session.clientInfoComplete = true;
+      session.state = STATES.MAIN;
+      await sendReply(copy.detailsRecorded);
+      await sendReply(mainMenu(languageCode));
+      return;
+    }
+
+    if (!trimmedInput || !/^[a-z0-9]{1,13}$/i.test(trimmedInput)) {
+      await sendReply(`${copy.invalidVraReference}\n\n${copy.askVraReference}`);
+      return;
+    }
+
+    session.clientInfo.vraReferenceNumber = trimmedInput;
+    session.clientInfoComplete = true;
+    session.state = STATES.MAIN;
+    await sendReply(copy.detailsRecorded);
+    await sendReply(mainMenu(languageCode));
+  }
 }
 
 async function handleSupportInput(input, session, sendReply, platform, userId) {
@@ -3230,12 +3500,8 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
   }
 
   if (isGreeting(input)) {
-    if (session.languageCode) {
-      session.state = STATES.MAIN;
-      await sendReply(mainMenu(session.languageCode));
-    } else {
-      await showLanguageMenu(session, sendReply);
-    }
+    resetSessionForNewConversation(session, input);
+    await showLanguageMenu(session, sendReply);
     return;
   }
 
@@ -3245,8 +3511,12 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
     if (selectedLanguage) {
       session.languageCode = selectedLanguage.code;
       session.languageName = selectedLanguage.name;
-      session.state = STATES.MAIN;
-      await sendReply(mainMenu(session.languageCode));
+      if (hasCompletedClientInfo(session)) {
+        session.state = STATES.MAIN;
+        await sendReply(mainMenu(session.languageCode));
+      } else {
+        await startClientInfoFlow(session, sendReply);
+      }
       return;
     }
 
@@ -3255,6 +3525,11 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
   }
 
   const languageCode = session.languageCode;
+
+  if (isClientInfoState(session.state)) {
+    await handleClientInfoInput(input, session, sendReply);
+    return;
+  }
 
   if (isBackToMain(input)) {
     session.state = STATES.MAIN;
@@ -3281,6 +3556,7 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
         platform,
         clientId: userId,
         selectedLanguage: session.languageName || session.languageCode || "Unknown",
+        clientInfo: session.clientInfo,
         transcript: formatConversationTranscript(session),
         ratingNumber: normalizedInput,
         ratingLabel,
