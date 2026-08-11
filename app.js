@@ -25,6 +25,8 @@ const STATES = {
   CLIENT_VRA_REFERENCE: "client_vra_reference",
   MAIN: "main",
   DOCUMENTATION: "documentation",
+  VIDEOS: "videos",
+  VIDEO_ITEM: "video_item",
   FAQ: "faq",
   FEEDBACK: "feedback",
   REVIEW: "review",
@@ -43,8 +45,20 @@ const NEW_CLAIM_VIDEO_LINK = "https://youtu.be/zatxMKDCNL4";
 const WEBSITE_LINK = "https://vatrefundagency.co.za/";
 const LIVE_CHAT_LINK = "https://vatrefundagency.co.za/agent-chat.php";
 const LOCATIONS_LINK = "https://vatrefundagency.co.za/locations/";
+const FACEBOOK_PAGE_LINK = "https://www.facebook.com/profile.php?id=100091278582184";
 const SUPPORT_EMAIL = "info@vatrefundagency.co.za";
 const FINANCE_EMAIL = "finance@vatrefundagency.co.za";
+
+const VIDEO_INFO_LINKS = {
+  "1": "https://www.facebook.com/share/v/1PeqiDQY4H/",
+  "2": "https://www.facebook.com/share/p/14nipZCo2Ep/",
+  "3": "https://www.facebook.com/share/r/1K4Fars5c3/",
+  "4": "https://www.facebook.com/share/r/1cd9PtMzwq/",
+  "5": "https://www.facebook.com/share/p/1ErihKEhCf/",
+  "6": "https://www.facebook.com/share/v/14kAL4Gyaf6/",
+  "7": "https://www.facebook.com/share/v/1ErvJT6SjL/",
+  "8": FACEBOOK_PAGE_LINK,
+};
 
 const languageChoices = {
   "1": { code: "en", name: "English" },
@@ -1251,7 +1265,7 @@ const documentationTranslations = {
 const whereToClaimTranslations = {
   en: {
     menuOption: "Where to claim",
-    mainChangeInstruction: "Reply 0 or 9 to change language.",
+    mainChangeInstruction: "Reply 0 or 10 to change language.",
     response: `Where to claim:
 
 All VRA services are available at our designated front-office locations, where our teams will be happy to assist you with any enquiries or support you may require.
@@ -1263,7 +1277,7 @@ ${LOCATIONS_LINK}`,
   },
   ar: {
     menuOption: "أين يمكن تقديم المطالبة",
-    mainChangeInstruction: "أرسل 0 أو 9 لتغيير اللغة.",
+    mainChangeInstruction: "أرسل 0 أو 10 لتغيير اللغة.",
     response: `أين يمكن تقديم المطالبة:
 
 تتوفر جميع خدمات VRA في مكاتب الاستقبال المخصصة لدينا، حيث يسعد فرقنا مساعدتك في أي استفسارات أو تقديم الدعم الذي قد تحتاج إليه.
@@ -1275,7 +1289,7 @@ ${LOCATIONS_LINK}`,
   },
   zh: {
     menuOption: "在哪里申请退税",
-    mainChangeInstruction: "回复 0 或 9 更改语言。",
+    mainChangeInstruction: "回复 0 或 10 更改语言。",
     response: `在哪里申请退税：
 
 所有 VRA 服务均可在我们指定的前台服务地点获得，我们的团队将乐意协助您处理任何咨询或提供您可能需要的支持。
@@ -1287,7 +1301,7 @@ ${LOCATIONS_LINK}`,
   },
   nl: {
     menuOption: "Waar u uw aanvraag kunt indienen",
-    mainChangeInstruction: "Antwoord 0 of 9 om de taal te wijzigen.",
+    mainChangeInstruction: "Antwoord 0 of 10 om de taal te wijzigen.",
     response: `Waar u uw aanvraag kunt indienen:
 
 Alle VRA-diensten zijn beschikbaar op onze aangewezen frontofficelocaties, waar onze teams u graag helpen met vragen of ondersteuning die u nodig heeft.
@@ -1299,7 +1313,7 @@ ${LOCATIONS_LINK}`,
   },
   fr: {
     menuOption: "Où faire votre demande",
-    mainChangeInstruction: "Répondez 0 ou 9 pour changer de langue.",
+    mainChangeInstruction: "Répondez 0 ou 10 pour changer de langue.",
     response: `Où faire votre demande :
 
 Tous les services de VRA sont disponibles dans nos bureaux d’accueil désignés, où nos équipes se feront un plaisir de répondre à vos questions et de vous apporter l’aide dont vous pourriez avoir besoin.
@@ -1311,7 +1325,7 @@ ${LOCATIONS_LINK}`,
   },
   de: {
     menuOption: "Wo Sie Ihren Antrag stellen können",
-    mainChangeInstruction: "Antworten Sie mit 0 oder 9, um die Sprache zu ändern.",
+    mainChangeInstruction: "Antworten Sie mit 0 oder 10, um die Sprache zu ändern.",
     response: `Wo Sie Ihren Antrag stellen können:
 
 Alle VRA-Dienstleistungen sind an unseren ausgewiesenen Frontoffice-Standorten verfügbar. Unsere Teams helfen Ihnen dort gerne bei Fragen oder mit der Unterstützung, die Sie benötigen.
@@ -1323,7 +1337,7 @@ ${LOCATIONS_LINK}`,
   },
   it: {
     menuOption: "Dove presentare la richiesta",
-    mainChangeInstruction: "Rispondi 0 o 9 per cambiare lingua.",
+    mainChangeInstruction: "Rispondi 0 o 10 per cambiare lingua.",
     response: `Dove presentare la richiesta:
 
 Tutti i servizi VRA sono disponibili presso le nostre sedi di front office designate, dove i nostri team saranno lieti di assisterti per qualsiasi domanda o supporto di cui potresti aver bisogno.
@@ -1335,7 +1349,7 @@ ${LOCATIONS_LINK}`,
   },
   pt: {
     menuOption: "Onde apresentar o pedido",
-    mainChangeInstruction: "Responda 0 ou 9 para alterar o idioma.",
+    mainChangeInstruction: "Responda 0 ou 10 para alterar o idioma.",
     response: `Onde apresentar o pedido:
 
 Todos os serviços da VRA estão disponíveis nos nossos locais de atendimento designados, onde as nossas equipas terão todo o prazer em ajudar com quaisquer dúvidas ou com o apoio de que possa necessitar.
@@ -1347,7 +1361,7 @@ ${LOCATIONS_LINK}`,
   },
   ru: {
     menuOption: "Где подать заявку",
-    mainChangeInstruction: "Ответьте 0 или 9, чтобы изменить язык.",
+    mainChangeInstruction: "Ответьте 0 или 10, чтобы изменить язык.",
     response: `Где подать заявку:
 
 Все услуги VRA доступны в наших официальных офисах обслуживания клиентов, где наши сотрудники с радостью ответят на ваши вопросы и окажут необходимую поддержку.
@@ -1359,7 +1373,7 @@ ${LOCATIONS_LINK}`,
   },
   es: {
     menuOption: "Dónde presentar la solicitud",
-    mainChangeInstruction: "Responda 0 o 9 para cambiar el idioma.",
+    mainChangeInstruction: "Responda 0 o 10 para cambiar el idioma.",
     response: `Dónde presentar la solicitud:
 
 Todos los servicios de VRA están disponibles en nuestras oficinas de atención designadas, donde nuestros equipos estarán encantados de ayudarle con cualquier consulta o brindarle el apoyo que pueda necesitar.
@@ -1368,6 +1382,619 @@ Le recomendamos visitar estas oficinas oficiales para todas sus necesidades de s
 
 Consulte aquí nuestras ubicaciones oficiales de VRA:
 ${LOCATIONS_LINK}`,
+  },
+};
+
+const videoInfoTranslations = {
+  en: {
+    menuOption: "Videos and Important Info",
+    title: "VRA Videos and Important Info",
+    intro: "Please select the information you would like to view:",
+    backToVideosInstruction: "Reply B or Back to return to the Videos and Important Info menu.",
+    mainMenuInstruction: "Reply M or Menu to return to the VRA Main Menu.",
+    submenuBackInstruction: "Reply B or Back to return to the VRA Main Menu.",
+    items: [
+      {
+        title: "King Shaka International Airport - Office Location",
+        description:
+          "Watch this video for guidance on locating the VAT Refund Agency office at King Shaka International Airport.",
+      },
+      {
+        title: "Understanding VAT Refund Calculations on Second-Hand Goods",
+        description:
+          "Important information explaining how VAT refunds on second-hand goods may be calculated and what additional supporting documentation may be required.\n\nPlease note that the full VAT amount paid on second-hand goods is not always refundable. SARS may verify the applicable VAT amount with the vendor.",
+      },
+      {
+        title: "Important Notice for UK Residents",
+        description:
+          "Information for claimants travelling on South African passports who are permanently resident in the United Kingdom.\n\nSupporting documentation may be required to demonstrate permanent UK residency or the right to reside in the United Kingdom.",
+      },
+      {
+        title: "Border-Specific VAT Refund Requirements",
+        description:
+          "Please familiarise yourself with the additional supporting documentation that may be required when submitting a VAT refund claim through a South African border post.\n\nCorrect documentation can help prevent delays or possible rejection of a claim.",
+      },
+      {
+        title: "SARS Online Traveller Declaration",
+        description:
+          "Important travel information regarding the SARS Online Traveller Declaration.\n\nTravellers should familiarise themselves with the declaration requirements before entering or leaving South Africa and ensure that the required declaration is completed when applicable.",
+      },
+      {
+        title: "VAT Refund Process at the Airport",
+        description:
+          "Please familiarise yourself with the VAT refund process at the airport to help avoid unnecessary delays with your refund claim.\n\nThis video provides guidance on the correct procedures and documentation required when claiming a VAT refund at the airport.",
+      },
+      {
+        title: "How to Submit Your VAT Refund Claim Online",
+        description: `Our step-by-step online portal allows qualifying claimants to submit their VAT refund application online.
+
+This video provides guidance on:
+
+- Creating your account
+- Uploading your documents
+- Capturing your invoices
+- Submitting your claim online
+
+Claimants must remember to submit/hand in their original invoices as required by the existing VRA process.
+
+For assistance, contact:
+${SUPPORT_EMAIL}`,
+      },
+      {
+        title: "VRA Facebook Page",
+        description:
+          "Follow the VAT Refund Agency Facebook page for important VAT refund information, travel updates, educational videos and claimant notices.",
+      },
+    ],
+  },
+  ar: {
+    menuOption: "مقاطع فيديو ومعلومات مهمة",
+    title: "مقاطع فيديو ومعلومات مهمة من VRA",
+    intro: "يرجى اختيار المعلومات التي ترغب في الاطلاع عليها:",
+    backToVideosInstruction: "أرسل B أو Back للعودة إلى قائمة مقاطع الفيديو والمعلومات المهمة.",
+    mainMenuInstruction: "أرسل M أو Menu للعودة إلى القائمة الرئيسية لـ VRA.",
+    submenuBackInstruction: "أرسل B أو Back للعودة إلى القائمة الرئيسية لـ VRA.",
+    items: [
+      {
+        title: "مطار الملك شاكا الدولي - موقع المكتب",
+        description:
+          "شاهد هذا الفيديو للحصول على إرشادات حول موقع مكتب وكالة استرداد ضريبة القيمة المضافة في مطار الملك شاكا الدولي.",
+      },
+      {
+        title: "فهم حسابات استرداد ضريبة القيمة المضافة على السلع المستعملة",
+        description:
+          "معلومات مهمة توضح كيفية احتساب استرداد ضريبة القيمة المضافة على السلع المستعملة وما قد يلزم من مستندات داعمة إضافية.\n\nيرجى ملاحظة أن كامل مبلغ ضريبة القيمة المضافة المدفوع على السلع المستعملة قد لا يكون قابلا للاسترداد دائما. قد تتحقق SARS من مبلغ الضريبة المطبق مع البائع.",
+      },
+      {
+        title: "إشعار مهم للمقيمين في المملكة المتحدة",
+        description:
+          "معلومات للمطالبين المسافرين بجوازات سفر جنوب أفريقية والمقيمين إقامة دائمة في المملكة المتحدة.\n\nقد تكون هناك حاجة إلى مستندات داعمة لإثبات الإقامة الدائمة في المملكة المتحدة أو الحق في الإقامة فيها.",
+      },
+      {
+        title: "متطلبات استرداد ضريبة القيمة المضافة حسب المنفذ الحدودي",
+        description:
+          "يرجى التعرف على المستندات الداعمة الإضافية التي قد تكون مطلوبة عند تقديم مطالبة استرداد ضريبة القيمة المضافة عبر منفذ حدودي في جنوب أفريقيا.\n\nيمكن أن تساعد المستندات الصحيحة في منع التأخير أو احتمال رفض المطالبة.",
+      },
+      {
+        title: "إقرار المسافر الإلكتروني من SARS",
+        description:
+          "معلومات سفر مهمة بخصوص إقرار المسافر الإلكتروني من SARS.\n\nينبغي للمسافرين التعرف على متطلبات الإقرار قبل دخول جنوب أفريقيا أو مغادرتها والتأكد من إكمال الإقرار المطلوب عند الاقتضاء.",
+      },
+      {
+        title: "عملية استرداد ضريبة القيمة المضافة في المطار",
+        description:
+          "يرجى التعرف على عملية استرداد ضريبة القيمة المضافة في المطار للمساعدة في تجنب أي تأخير غير ضروري في مطالبتك.\n\nيوفر هذا الفيديو إرشادات حول الإجراءات الصحيحة والمستندات المطلوبة عند المطالبة باسترداد الضريبة في المطار.",
+      },
+      {
+        title: "كيفية تقديم مطالبة استرداد ضريبة القيمة المضافة عبر الإنترنت",
+        description: `تتيح بوابتنا الإلكترونية خطوة بخطوة للمطالبين المؤهلين تقديم طلب استرداد ضريبة القيمة المضافة عبر الإنترنت.
+
+يوفر هذا الفيديو إرشادات حول:
+
+- إنشاء حسابك
+- تحميل مستنداتك
+- إدخال فواتيرك
+- تقديم مطالبتك عبر الإنترنت
+
+يجب على المطالبين تذكر تقديم أو تسليم الفواتير الأصلية كما هو مطلوب في عملية VRA الحالية.
+
+للحصول على المساعدة، يرجى التواصل على:
+${SUPPORT_EMAIL}`,
+      },
+      {
+        title: "صفحة VRA على فيسبوك",
+        description:
+          "تابع صفحة وكالة استرداد ضريبة القيمة المضافة على فيسبوك للحصول على معلومات مهمة حول الاسترداد وتحديثات السفر ومقاطع الفيديو التعليمية وإشعارات المطالبين.",
+      },
+    ],
+  },
+  zh: {
+    menuOption: "视频和重要信息",
+    title: "VRA 视频和重要信息",
+    intro: "请选择您想查看的信息：",
+    backToVideosInstruction: "回复 B 或 Back 返回视频和重要信息菜单。",
+    mainMenuInstruction: "回复 M 或 Menu 返回 VRA 主菜单。",
+    submenuBackInstruction: "回复 B 或 Back 返回 VRA 主菜单。",
+    items: [
+      {
+        title: "沙卡国王国际机场 - 办公室位置",
+        description:
+          "观看此视频，了解如何找到沙卡国王国际机场的 VAT Refund Agency 办公室。",
+      },
+      {
+        title: "了解二手商品的增值税退税计算",
+        description:
+          "重要信息，说明二手商品的增值税退税可能如何计算，以及可能需要哪些额外证明文件。\n\n请注意，二手商品支付的全部增值税金额并不总是可以退还。SARS 可能会向供应商核实适用的增值税金额。",
+      },
+      {
+        title: "英国居民重要通知",
+        description:
+          "适用于持南非护照旅行且永久居住在英国的申请人的信息。\n\n可能需要证明文件来证明英国永久居留身份或在英国居住的权利。",
+      },
+      {
+        title: "特定边境口岸的增值税退税要求",
+        description:
+          "请熟悉通过南非边境口岸提交增值税退税申请时可能需要的额外证明文件。\n\n正确的文件有助于避免延误或申请被拒。",
+      },
+      {
+        title: "SARS 在线旅客申报",
+        description:
+          "关于 SARS 在线旅客申报的重要旅行信息。\n\n旅客应在进入或离开南非之前熟悉申报要求，并在适用时确保完成所需申报。",
+      },
+      {
+        title: "机场增值税退税流程",
+        description:
+          "请熟悉机场增值税退税流程，以帮助避免退税申请出现不必要的延误。\n\n此视频说明在机场申请增值税退税时的正确程序和所需文件。",
+      },
+      {
+        title: "如何在线提交您的增值税退税申请",
+        description: `我们的分步在线门户允许符合条件的申请人在线提交增值税退税申请。
+
+此视频提供以下指导：
+
+- 创建账户
+- 上传文件
+- 录入发票
+- 在线提交申请
+
+申请人必须记得按照现有 VRA 流程提交或交付原始发票。
+
+如需帮助，请联系：
+${SUPPORT_EMAIL}`,
+      },
+      {
+        title: "VRA Facebook 页面",
+        description:
+          "关注 VAT Refund Agency 的 Facebook 页面，获取重要的增值税退税信息、旅行更新、教育视频和申请人通知。",
+      },
+    ],
+  },
+  nl: {
+    menuOption: "Video's en belangrijke informatie",
+    title: "VRA-video's en belangrijke informatie",
+    intro: "Selecteer de informatie die u wilt bekijken:",
+    backToVideosInstruction: "Antwoord B of Back om terug te keren naar het menu Video's en belangrijke informatie.",
+    mainMenuInstruction: "Antwoord M of Menu om terug te keren naar het VRA-hoofdmenu.",
+    submenuBackInstruction: "Antwoord B of Back om terug te keren naar het VRA-hoofdmenu.",
+    items: [
+      {
+        title: "King Shaka International Airport - kantoorlocatie",
+        description:
+          "Bekijk deze video voor begeleiding bij het vinden van het kantoor van de VAT Refund Agency op King Shaka International Airport.",
+      },
+      {
+        title: "Inzicht in btw-teruggaafberekeningen op tweedehands goederen",
+        description:
+          "Belangrijke informatie over hoe btw-teruggaven op tweedehands goederen kunnen worden berekend en welke aanvullende bewijsstukken mogelijk vereist zijn.\n\nLet op: het volledige btw-bedrag dat op tweedehands goederen is betaald, is niet altijd terugbetaalbaar. SARS kan het toepasselijke btw-bedrag bij de verkoper verifiëren.",
+      },
+      {
+        title: "Belangrijke kennisgeving voor inwoners van het VK",
+        description:
+          "Informatie voor aanvragers die met Zuid-Afrikaanse paspoorten reizen en permanent in het Verenigd Koninkrijk wonen.\n\nOndersteunende documentatie kan vereist zijn om permanente verblijfplaats in het VK of het recht om daar te verblijven aan te tonen.",
+      },
+      {
+        title: "Btw-teruggaafvereisten per grenspost",
+        description:
+          "Maak uzelf vertrouwd met de aanvullende bewijsstukken die mogelijk vereist zijn wanneer u een btw-teruggaafclaim via een Zuid-Afrikaanse grenspost indient.\n\nCorrecte documentatie kan vertragingen of mogelijke afwijzing van een claim helpen voorkomen.",
+      },
+      {
+        title: "SARS Online Traveller Declaration",
+        description:
+          "Belangrijke reisinformatie over de SARS Online Traveller Declaration.\n\nReizigers moeten zich vóór binnenkomst in of vertrek uit Zuid-Afrika vertrouwd maken met de aangiftevereisten en ervoor zorgen dat de vereiste aangifte wordt voltooid wanneer dit van toepassing is.",
+      },
+      {
+        title: "Btw-teruggaafproces op de luchthaven",
+        description:
+          "Maak uzelf vertrouwd met het btw-teruggaafproces op de luchthaven om onnodige vertragingen met uw teruggaafclaim te voorkomen.\n\nDeze video biedt begeleiding over de juiste procedures en vereiste documentatie bij het claimen van btw-teruggaaf op de luchthaven.",
+      },
+      {
+        title: "Hoe u uw btw-teruggaafclaim online indient",
+        description: `Ons stapsgewijze online portaal stelt in aanmerking komende aanvragers in staat hun btw-teruggaafaanvraag online in te dienen.
+
+Deze video biedt begeleiding bij:
+
+- Het aanmaken van uw account
+- Het uploaden van uw documenten
+- Het vastleggen van uw facturen
+- Het online indienen van uw claim
+
+Aanvragers moeten eraan denken hun originele facturen in te dienen of af te geven zoals vereist door het bestaande VRA-proces.
+
+Voor hulp kunt u contact opnemen met:
+${SUPPORT_EMAIL}`,
+      },
+      {
+        title: "VRA Facebook-pagina",
+        description:
+          "Volg de Facebook-pagina van de VAT Refund Agency voor belangrijke btw-teruggaafinformatie, reisupdates, educatieve video's en kennisgevingen voor aanvragers.",
+      },
+    ],
+  },
+  fr: {
+    menuOption: "Vidéos et informations importantes",
+    title: "Vidéos et informations importantes de VRA",
+    intro: "Veuillez sélectionner les informations que vous souhaitez consulter :",
+    backToVideosInstruction: "Répondez B ou Back pour revenir au menu Vidéos et informations importantes.",
+    mainMenuInstruction: "Répondez M ou Menu pour revenir au menu principal de VRA.",
+    submenuBackInstruction: "Répondez B ou Back pour revenir au menu principal de VRA.",
+    items: [
+      {
+        title: "Aéroport international King Shaka - emplacement du bureau",
+        description:
+          "Regardez cette vidéo pour savoir où se trouve le bureau de la VAT Refund Agency à l'aéroport international King Shaka.",
+      },
+      {
+        title: "Comprendre les calculs de remboursement de TVA sur les biens d'occasion",
+        description:
+          "Informations importantes expliquant comment les remboursements de TVA sur les biens d'occasion peuvent être calculés et quels documents justificatifs supplémentaires peuvent être requis.\n\nVeuillez noter que le montant total de TVA payé sur les biens d'occasion n'est pas toujours remboursable. SARS peut vérifier le montant de TVA applicable auprès du vendeur.",
+      },
+      {
+        title: "Avis important pour les résidents du Royaume-Uni",
+        description:
+          "Informations destinées aux demandeurs voyageant avec un passeport sud-africain et résidant de manière permanente au Royaume-Uni.\n\nDes pièces justificatives peuvent être exigées pour démontrer la résidence permanente au Royaume-Uni ou le droit d'y résider.",
+      },
+      {
+        title: "Exigences de remboursement de TVA propres aux postes-frontières",
+        description:
+          "Veuillez prendre connaissance des documents justificatifs supplémentaires qui peuvent être exigés lors du dépôt d'une demande de remboursement de TVA à un poste-frontière sud-africain.\n\nUne documentation correcte peut aider à éviter les retards ou un éventuel rejet de la demande.",
+      },
+      {
+        title: "Déclaration en ligne des voyageurs de SARS",
+        description:
+          "Informations de voyage importantes concernant la déclaration en ligne des voyageurs de SARS.\n\nLes voyageurs doivent se familiariser avec les exigences de déclaration avant d'entrer en Afrique du Sud ou d'en sortir et veiller à remplir la déclaration requise lorsque cela s'applique.",
+      },
+      {
+        title: "Processus de remboursement de TVA à l'aéroport",
+        description:
+          "Veuillez vous familiariser avec le processus de remboursement de TVA à l'aéroport afin d'éviter des retards inutiles dans votre demande de remboursement.\n\nCette vidéo fournit des indications sur les procédures correctes et les documents requis lors d'une demande de remboursement de TVA à l'aéroport.",
+      },
+      {
+        title: "Comment soumettre votre demande de remboursement de TVA en ligne",
+        description: `Notre portail en ligne étape par étape permet aux demandeurs admissibles de soumettre leur demande de remboursement de TVA en ligne.
+
+Cette vidéo fournit des indications sur :
+
+- La création de votre compte
+- Le téléchargement de vos documents
+- La saisie de vos factures
+- La soumission de votre demande en ligne
+
+Les demandeurs doivent se rappeler de soumettre ou de remettre leurs factures originales conformément au processus VRA existant.
+
+Pour obtenir de l'aide, contactez :
+${SUPPORT_EMAIL}`,
+      },
+      {
+        title: "Page Facebook de VRA",
+        description:
+          "Suivez la page Facebook de la VAT Refund Agency pour obtenir des informations importantes sur les remboursements de TVA, des mises à jour de voyage, des vidéos éducatives et des avis aux demandeurs.",
+      },
+    ],
+  },
+  de: {
+    menuOption: "Videos und wichtige Informationen",
+    title: "VRA-Videos und wichtige Informationen",
+    intro: "Bitte wählen Sie die Informationen aus, die Sie ansehen möchten:",
+    backToVideosInstruction: "Antworten Sie mit B oder Back, um zum Menü Videos und wichtige Informationen zurückzukehren.",
+    mainMenuInstruction: "Antworten Sie mit M oder Menu, um zum VRA-Hauptmenü zurückzukehren.",
+    submenuBackInstruction: "Antworten Sie mit B oder Back, um zum VRA-Hauptmenü zurückzukehren.",
+    items: [
+      {
+        title: "King Shaka International Airport - Bürostandort",
+        description:
+          "Sehen Sie sich dieses Video an, um Hinweise zum Auffinden des Büros der VAT Refund Agency am King Shaka International Airport zu erhalten.",
+      },
+      {
+        title: "Berechnung der Mehrwertsteuererstattung bei gebrauchten Waren verstehen",
+        description:
+          "Wichtige Informationen darüber, wie Mehrwertsteuererstattungen für gebrauchte Waren berechnet werden können und welche zusätzlichen Nachweise möglicherweise erforderlich sind.\n\nBitte beachten Sie, dass der volle auf gebrauchte Waren gezahlte Mehrwertsteuerbetrag nicht immer erstattungsfähig ist. SARS kann den anwendbaren Mehrwertsteuerbetrag beim Verkäufer überprüfen.",
+      },
+      {
+        title: "Wichtiger Hinweis für Einwohner des Vereinigten Königreichs",
+        description:
+          "Informationen für Antragsteller, die mit südafrikanischen Pässen reisen und dauerhaft im Vereinigten Königreich ansässig sind.\n\nEs können Nachweise erforderlich sein, um den dauerhaften Wohnsitz im Vereinigten Königreich oder das Aufenthaltsrecht dort zu belegen.",
+      },
+      {
+        title: "Grenzspezifische Anforderungen für die Mehrwertsteuererstattung",
+        description:
+          "Bitte machen Sie sich mit den zusätzlichen Nachweisen vertraut, die bei Einreichung eines Mehrwertsteuererstattungsantrags über einen südafrikanischen Grenzposten erforderlich sein können.\n\nKorrekte Unterlagen können helfen, Verzögerungen oder eine mögliche Ablehnung des Antrags zu vermeiden.",
+      },
+      {
+        title: "SARS Online Traveller Declaration",
+        description:
+          "Wichtige Reiseinformationen zur SARS Online Traveller Declaration.\n\nReisende sollten sich vor der Ein- oder Ausreise aus Südafrika mit den Erklärungspflichten vertraut machen und sicherstellen, dass die erforderliche Erklärung gegebenenfalls ausgefüllt wird.",
+      },
+      {
+        title: "Mehrwertsteuererstattungsprozess am Flughafen",
+        description:
+          "Bitte machen Sie sich mit dem Mehrwertsteuererstattungsprozess am Flughafen vertraut, um unnötige Verzögerungen bei Ihrem Erstattungsantrag zu vermeiden.\n\nDieses Video bietet Hinweise zu den korrekten Verfahren und den erforderlichen Unterlagen bei der Beantragung einer Mehrwertsteuererstattung am Flughafen.",
+      },
+      {
+        title: "So reichen Sie Ihren Mehrwertsteuererstattungsantrag online ein",
+        description: `Unser schrittweises Online-Portal ermöglicht berechtigten Antragstellern, ihren Mehrwertsteuererstattungsantrag online einzureichen.
+
+Dieses Video bietet Hinweise zu:
+
+- Erstellung Ihres Kontos
+- Hochladen Ihrer Dokumente
+- Erfassung Ihrer Rechnungen
+- Online-Einreichung Ihres Antrags
+
+Antragsteller müssen daran denken, ihre Originalrechnungen gemäß dem bestehenden VRA-Verfahren einzureichen oder abzugeben.
+
+Für Unterstützung kontaktieren Sie:
+${SUPPORT_EMAIL}`,
+      },
+      {
+        title: "VRA-Facebook-Seite",
+        description:
+          "Folgen Sie der Facebook-Seite der VAT Refund Agency für wichtige Informationen zur Mehrwertsteuererstattung, Reiseupdates, Lehrvideos und Hinweise für Antragsteller.",
+      },
+    ],
+  },
+  it: {
+    menuOption: "Video e informazioni importanti",
+    title: "Video e informazioni importanti VRA",
+    intro: "Seleziona le informazioni che desideri visualizzare:",
+    backToVideosInstruction: "Rispondi B o Back per tornare al menu Video e informazioni importanti.",
+    mainMenuInstruction: "Rispondi M o Menu per tornare al menu principale VRA.",
+    submenuBackInstruction: "Rispondi B o Back per tornare al menu principale VRA.",
+    items: [
+      {
+        title: "Aeroporto internazionale King Shaka - ubicazione dell'ufficio",
+        description:
+          "Guarda questo video per indicazioni su come trovare l'ufficio della VAT Refund Agency presso l'aeroporto internazionale King Shaka.",
+      },
+      {
+        title: "Comprendere i calcoli del rimborso IVA sui beni usati",
+        description:
+          "Informazioni importanti che spiegano come possono essere calcolati i rimborsi IVA sui beni usati e quale documentazione di supporto aggiuntiva può essere richiesta.\n\nSi prega di notare che l'intero importo IVA pagato sui beni usati non è sempre rimborsabile. SARS può verificare l'importo IVA applicabile con il venditore.",
+      },
+      {
+        title: "Avviso importante per i residenti nel Regno Unito",
+        description:
+          "Informazioni per i richiedenti che viaggiano con passaporti sudafricani e sono residenti permanenti nel Regno Unito.\n\nPotrebbe essere richiesta documentazione di supporto per dimostrare la residenza permanente nel Regno Unito o il diritto di risiedervi.",
+      },
+      {
+        title: "Requisiti IVA specifici per i posti di frontiera",
+        description:
+          "Si prega di familiarizzare con la documentazione di supporto aggiuntiva che può essere richiesta quando si presenta una richiesta di rimborso IVA attraverso un posto di frontiera sudafricano.\n\nUna documentazione corretta può aiutare a evitare ritardi o il possibile rifiuto della richiesta.",
+      },
+      {
+        title: "Dichiarazione online del viaggiatore SARS",
+        description:
+          "Informazioni di viaggio importanti relative alla dichiarazione online del viaggiatore SARS.\n\nI viaggiatori devono familiarizzare con i requisiti della dichiarazione prima di entrare o uscire dal Sudafrica e assicurarsi che la dichiarazione richiesta sia completata quando applicabile.",
+      },
+      {
+        title: "Processo di rimborso IVA in aeroporto",
+        description:
+          "Si prega di familiarizzare con il processo di rimborso IVA in aeroporto per evitare ritardi inutili nella propria richiesta.\n\nQuesto video fornisce indicazioni sulle procedure corrette e sulla documentazione richiesta per richiedere un rimborso IVA in aeroporto.",
+      },
+      {
+        title: "Come inviare online la richiesta di rimborso IVA",
+        description: `Il nostro portale online passo dopo passo consente ai richiedenti idonei di inviare online la domanda di rimborso IVA.
+
+Questo video fornisce indicazioni su:
+
+- Creazione dell'account
+- Caricamento dei documenti
+- Inserimento delle fatture
+- Invio online della richiesta
+
+I richiedenti devono ricordarsi di presentare o consegnare le fatture originali come richiesto dal processo VRA esistente.
+
+Per assistenza, contattare:
+${SUPPORT_EMAIL}`,
+      },
+      {
+        title: "Pagina Facebook VRA",
+        description:
+          "Segui la pagina Facebook della VAT Refund Agency per informazioni importanti sui rimborsi IVA, aggiornamenti di viaggio, video educativi e avvisi per i richiedenti.",
+      },
+    ],
+  },
+  pt: {
+    menuOption: "Vídeos e informações importantes",
+    title: "Vídeos e informações importantes da VRA",
+    intro: "Selecione a informação que gostaria de consultar:",
+    backToVideosInstruction: "Responda B ou Back para voltar ao menu Vídeos e informações importantes.",
+    mainMenuInstruction: "Responda M ou Menu para voltar ao menu principal da VRA.",
+    submenuBackInstruction: "Responda B ou Back para voltar ao menu principal da VRA.",
+    items: [
+      {
+        title: "Aeroporto Internacional King Shaka - localização do escritório",
+        description:
+          "Veja este vídeo para obter orientação sobre como localizar o escritório da VAT Refund Agency no Aeroporto Internacional King Shaka.",
+      },
+      {
+        title: "Compreender os cálculos de reembolso do IVA em bens usados",
+        description:
+          "Informação importante que explica como os reembolsos do IVA sobre bens usados podem ser calculados e que documentação de apoio adicional pode ser necessária.\n\nTenha em atenção que o valor total do IVA pago em bens usados nem sempre é reembolsável. A SARS pode verificar o valor de IVA aplicável junto do fornecedor.",
+      },
+      {
+        title: "Aviso importante para residentes no Reino Unido",
+        description:
+          "Informação para requerentes que viajam com passaportes sul-africanos e são residentes permanentes no Reino Unido.\n\nPode ser necessária documentação de apoio para demonstrar residência permanente no Reino Unido ou o direito de residir no Reino Unido.",
+      },
+      {
+        title: "Requisitos de reembolso do IVA específicos por fronteira",
+        description:
+          "Familiarize-se com a documentação de apoio adicional que pode ser necessária ao apresentar um pedido de reembolso do IVA através de um posto fronteiriço sul-africano.\n\nA documentação correta pode ajudar a evitar atrasos ou uma possível rejeição do pedido.",
+      },
+      {
+        title: "Declaração online do viajante da SARS",
+        description:
+          "Informação de viagem importante sobre a Declaração Online do Viajante da SARS.\n\nOs viajantes devem familiarizar-se com os requisitos da declaração antes de entrar ou sair da África do Sul e garantir que a declaração necessária é preenchida quando aplicável.",
+      },
+      {
+        title: "Processo de reembolso do IVA no aeroporto",
+        description:
+          "Familiarize-se com o processo de reembolso do IVA no aeroporto para ajudar a evitar atrasos desnecessários no seu pedido.\n\nEste vídeo fornece orientação sobre os procedimentos corretos e a documentação necessária ao solicitar um reembolso do IVA no aeroporto.",
+      },
+      {
+        title: "Como submeter online o seu pedido de reembolso do IVA",
+        description: `O nosso portal online passo a passo permite que requerentes qualificados submetam online o seu pedido de reembolso do IVA.
+
+Este vídeo fornece orientação sobre:
+
+- Criar a sua conta
+- Carregar os seus documentos
+- Registar as suas faturas
+- Submeter o seu pedido online
+
+Os requerentes devem lembrar-se de submeter ou entregar as faturas originais conforme exigido pelo processo VRA existente.
+
+Para assistência, contacte:
+${SUPPORT_EMAIL}`,
+      },
+      {
+        title: "Página de Facebook da VRA",
+        description:
+          "Siga a página de Facebook da VAT Refund Agency para informações importantes sobre reembolsos do IVA, atualizações de viagem, vídeos educativos e avisos aos requerentes.",
+      },
+    ],
+  },
+  ru: {
+    menuOption: "Видео и важная информация",
+    title: "Видео и важная информация VRA",
+    intro: "Пожалуйста, выберите информацию, которую вы хотите посмотреть:",
+    backToVideosInstruction: "Ответьте B или Back, чтобы вернуться в меню Видео и важная информация.",
+    mainMenuInstruction: "Ответьте M или Menu, чтобы вернуться в главное меню VRA.",
+    submenuBackInstruction: "Ответьте B или Back, чтобы вернуться в главное меню VRA.",
+    items: [
+      {
+        title: "Международный аэропорт King Shaka - местонахождение офиса",
+        description:
+          "Посмотрите это видео, чтобы узнать, как найти офис VAT Refund Agency в Международном аэропорту King Shaka.",
+      },
+      {
+        title: "Расчет возврата НДС по подержанным товарам",
+        description:
+          "Важная информация о том, как может рассчитываться возврат НДС по подержанным товарам и какие дополнительные подтверждающие документы могут потребоваться.\n\nОбратите внимание, что полная сумма НДС, уплаченная по подержанным товарам, не всегда подлежит возврату. SARS может проверить применимую сумму НДС у продавца.",
+      },
+      {
+        title: "Важное уведомление для резидентов Великобритании",
+        description:
+          "Информация для заявителей, путешествующих по южноафриканским паспортам и постоянно проживающих в Великобритании.\n\nМогут потребоваться подтверждающие документы, чтобы доказать постоянное проживание в Великобритании или право на проживание в Великобритании.",
+      },
+      {
+        title: "Требования к возврату НДС для конкретных пограничных пунктов",
+        description:
+          "Пожалуйста, ознакомьтесь с дополнительными подтверждающими документами, которые могут потребоваться при подаче заявления на возврат НДС через южноафриканский пограничный пункт.\n\nПравильные документы могут помочь избежать задержек или возможного отклонения заявления.",
+      },
+      {
+        title: "Онлайн-декларация путешественника SARS",
+        description:
+          "Важная туристическая информация об онлайн-декларации путешественника SARS.\n\nПутешественникам следует ознакомиться с требованиями к декларации до въезда в Южную Африку или выезда из нее и убедиться, что необходимая декларация заполнена, если это применимо.",
+      },
+      {
+        title: "Процесс возврата НДС в аэропорту",
+        description:
+          "Пожалуйста, ознакомьтесь с процессом возврата НДС в аэропорту, чтобы избежать ненужных задержек с вашим заявлением.\n\nЭто видео содержит инструкции по правильным процедурам и документам, необходимым при подаче заявления на возврат НДС в аэропорту.",
+      },
+      {
+        title: "Как подать заявление на возврат НДС онлайн",
+        description: `Наш пошаговый онлайн-портал позволяет соответствующим требованиям заявителям подавать заявление на возврат НДС онлайн.
+
+Это видео содержит инструкции по:
+
+- Созданию учетной записи
+- Загрузке документов
+- Вводу счетов-фактур
+- Подаче заявления онлайн
+
+Заявители должны помнить о необходимости предоставить или передать оригиналы счетов-фактур в соответствии с существующим процессом VRA.
+
+Для получения помощи обращайтесь:
+${SUPPORT_EMAIL}`,
+      },
+      {
+        title: "Страница VRA в Facebook",
+        description:
+          "Следите за страницей VAT Refund Agency в Facebook, чтобы получать важную информацию о возврате НДС, туристические обновления, обучающие видео и уведомления для заявителей.",
+      },
+    ],
+  },
+  es: {
+    menuOption: "Videos e información importante",
+    title: "Videos e información importante de VRA",
+    intro: "Seleccione la información que desea ver:",
+    backToVideosInstruction: "Responda B o Back para volver al menú Videos e información importante.",
+    mainMenuInstruction: "Responda M o Menu para volver al menú principal de VRA.",
+    submenuBackInstruction: "Responda B o Back para volver al menú principal de VRA.",
+    items: [
+      {
+        title: "Aeropuerto Internacional King Shaka - ubicación de la oficina",
+        description:
+          "Vea este video para obtener orientación sobre cómo localizar la oficina de VAT Refund Agency en el Aeropuerto Internacional King Shaka.",
+      },
+      {
+        title: "Comprender los cálculos de reembolso de IVA en bienes de segunda mano",
+        description:
+          "Información importante que explica cómo pueden calcularse los reembolsos de IVA en bienes de segunda mano y qué documentación de respaldo adicional puede ser necesaria.\n\nTenga en cuenta que el importe total del IVA pagado en bienes de segunda mano no siempre es reembolsable. SARS puede verificar el importe de IVA aplicable con el proveedor.",
+      },
+      {
+        title: "Aviso importante para residentes del Reino Unido",
+        description:
+          "Información para solicitantes que viajan con pasaportes sudafricanos y residen permanentemente en el Reino Unido.\n\nPuede requerirse documentación de respaldo para demostrar la residencia permanente en el Reino Unido o el derecho a residir en el Reino Unido.",
+      },
+      {
+        title: "Requisitos de reembolso de IVA específicos por frontera",
+        description:
+          "Familiarícese con la documentación de respaldo adicional que puede requerirse al presentar una solicitud de reembolso de IVA a través de un puesto fronterizo sudafricano.\n\nLa documentación correcta puede ayudar a evitar demoras o el posible rechazo de una solicitud.",
+      },
+      {
+        title: "Declaración en línea del viajero de SARS",
+        description:
+          "Información de viaje importante sobre la Declaración en línea del viajero de SARS.\n\nLos viajeros deben familiarizarse con los requisitos de declaración antes de entrar o salir de Sudáfrica y asegurarse de completar la declaración requerida cuando corresponda.",
+      },
+      {
+        title: "Proceso de reembolso de IVA en el aeropuerto",
+        description:
+          "Familiarícese con el proceso de reembolso de IVA en el aeropuerto para ayudar a evitar demoras innecesarias en su solicitud.\n\nEste video proporciona orientación sobre los procedimientos correctos y la documentación requerida al solicitar un reembolso de IVA en el aeropuerto.",
+      },
+      {
+        title: "Cómo enviar su solicitud de reembolso de IVA en línea",
+        description: `Nuestro portal en línea paso a paso permite a los solicitantes que califican presentar su solicitud de reembolso de IVA en línea.
+
+Este video proporciona orientación sobre:
+
+- Crear su cuenta
+- Subir sus documentos
+- Capturar sus facturas
+- Enviar su solicitud en línea
+
+Los solicitantes deben recordar presentar o entregar sus facturas originales según lo exige el proceso VRA existente.
+
+Para asistencia, contacte:
+${SUPPORT_EMAIL}`,
+      },
+      {
+        title: "Página de Facebook de VRA",
+        description:
+          "Siga la página de Facebook de VAT Refund Agency para obtener información importante sobre reembolsos de IVA, actualizaciones de viaje, videos educativos y avisos para solicitantes.",
+      },
+    ],
   },
 };
 
@@ -2752,6 +3379,10 @@ function getWhereToClaimCopy(languageCode) {
   return whereToClaimTranslations[languageCode] || whereToClaimTranslations.en;
 }
 
+function getVideoInfoCopy(languageCode) {
+  return videoInfoTranslations[languageCode] || videoInfoTranslations.en;
+}
+
 function getClientInfoCopy(languageCode) {
   return clientInfoTranslations[languageCode] || clientInfoTranslations.en;
 }
@@ -2778,6 +3409,10 @@ function isDoneRequest(input) {
 
 function isChangeLanguageRequest(input) {
   return ["0", "change language"].includes(normalizeText(input));
+}
+
+function isMainMenuRequest(input) {
+  return ["m", "menu", "main menu"].includes(normalizeText(input));
 }
 
 function isClientInfoState(state) {
@@ -2906,6 +3541,7 @@ function mainMenu(languageCode) {
   const copy = t(languageCode);
   const documentationCopy = getDocumentationCopy(languageCode);
   const whereToClaimCopy = getWhereToClaimCopy(languageCode);
+  const videoInfoCopy = getVideoInfoCopy(languageCode);
 
   return `${copy.mainTitle}
 
@@ -2919,7 +3555,8 @@ ${copy.supportHours}
 6 ${copy.agentOption}
 7 ${copy.feedbackOption}
 8 ${whereToClaimCopy.menuOption}
-9 ${copy.changeLanguageOption}
+9 ${videoInfoCopy.menuOption}
+10 ${copy.changeLanguageOption}
 
 ${mainNavigationText(languageCode)}`;
 }
@@ -3002,6 +3639,43 @@ function whereToClaimMessage(languageCode) {
   return `${getWhereToClaimCopy(languageCode).response}
 
 ${navigationText(languageCode)}`;
+}
+
+function videoInfoMenu(languageCode) {
+  const copy = getVideoInfoCopy(languageCode);
+  const numberedItems = copy.items
+    .map((item, index) => `${index + 1}. ${item.title}`)
+    .join("\n");
+
+  return `${copy.title}
+
+${copy.intro}
+
+${numberedItems}
+
+${copy.submenuBackInstruction}
+${t(languageCode).doneInstruction}
+${t(languageCode).changeInstruction}`;
+}
+
+function videoInfoMessage(languageCode, optionNumber) {
+  const copy = getVideoInfoCopy(languageCode);
+  const item = copy.items[Number(optionNumber) - 1];
+  const link = VIDEO_INFO_LINKS[String(optionNumber)];
+
+  if (!item || !link) {
+    return null;
+  }
+
+  return `${item.title}
+
+${item.description}
+
+${link}
+
+${copy.backToVideosInstruction}
+${copy.mainMenuInstruction}
+${t(languageCode).doneInstruction}`;
 }
 
 function agentMessage(languageCode) {
@@ -3499,6 +4173,18 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
     return;
   }
 
+  if (
+    session.languageCode &&
+    session.state !== STATES.LANGUAGE &&
+    session.state !== STATES.COMPLETE &&
+    !isClientInfoState(session.state) &&
+    isMainMenuRequest(input)
+  ) {
+    session.state = STATES.MAIN;
+    await sendReply(mainMenu(session.languageCode));
+    return;
+  }
+
   if (isGreeting(input)) {
     resetSessionForNewConversation(session, input);
     await showLanguageMenu(session, sendReply);
@@ -3532,6 +4218,12 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
   }
 
   if (isBackToMain(input)) {
+    if (session.state === STATES.VIDEO_ITEM) {
+      session.state = STATES.VIDEOS;
+      await sendReply(videoInfoMenu(languageCode));
+      return;
+    }
+
     session.state = STATES.MAIN;
     await sendReply(mainMenu(languageCode));
     return;
@@ -3593,6 +4285,24 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
     }
 
     await sendReply(invalidInputMessage(languageCode));
+    return;
+  }
+
+  if (session.state === STATES.VIDEOS) {
+    const videoReply = videoInfoMessage(languageCode, normalizedInput);
+
+    if (videoReply) {
+      session.state = STATES.VIDEO_ITEM;
+      await sendReply(videoReply);
+      return;
+    }
+
+    await sendReply(videoInfoMenu(languageCode));
+    return;
+  }
+
+  if (session.state === STATES.VIDEO_ITEM) {
+    await sendReply(videoInfoMessage(languageCode, normalizedInput) || invalidInputMessage(languageCode));
     return;
   }
 
@@ -3663,6 +4373,12 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
   }
 
   if (normalizedInput === "9") {
+    session.state = STATES.VIDEOS;
+    await sendReply(videoInfoMenu(languageCode));
+    return;
+  }
+
+  if (normalizedInput === "10") {
     await showLanguageMenu(session, sendReply);
     return;
   }
