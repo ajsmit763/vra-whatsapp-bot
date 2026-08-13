@@ -46,6 +46,7 @@ const WEBSITE_LINK = "https://vatrefundagency.co.za/";
 const LIVE_CHAT_LINK = "https://vatrefundagency.co.za/agent-chat.php";
 const LOCATIONS_LINK = "https://vatrefundagency.co.za/locations/";
 const FACEBOOK_PAGE_LINK = "https://www.facebook.com/profile.php?id=100091278582184";
+const TAX_INVOICE_INFO_LINK = "https://www.facebook.com/share/p/1EAr6sD3tM/";
 const SUPPORT_EMAIL = "info@vatrefundagency.co.za";
 const FINANCE_EMAIL = "finance@vatrefundagency.co.za";
 
@@ -57,7 +58,8 @@ const VIDEO_INFO_LINKS = {
   "5": "https://www.facebook.com/share/p/1ErihKEhCf/",
   "6": "https://www.facebook.com/share/v/14kAL4Gyaf6/",
   "7": "https://www.facebook.com/share/v/1ErvJT6SjL/",
-  "8": FACEBOOK_PAGE_LINK,
+  "8": TAX_INVOICE_INFO_LINK,
+  "9": FACEBOOK_PAGE_LINK,
 };
 
 const languageChoices = {
@@ -1998,6 +2000,219 @@ ${SUPPORT_EMAIL}`,
   },
 };
 
+const taxInvoiceVideoTranslations = {
+  en: {
+    title: "Smart Travellers - Check Your Tax Invoice",
+    description: `Before leaving the store, make sure your Tax Invoice contains the required information to qualify for a VAT refund.
+
+Please check that:
+
+- The document is clearly marked "Tax Invoice".
+- VAT charged is shown.
+- The vendor's name and VAT number are shown.
+- The claimant's name and address are included where required.
+- Screenshots, card slips and pro forma invoices are not accepted as valid Tax Invoices.
+
+Missing or incorrect information may result in the VAT refund claim being delayed or rejected.
+
+Please view the important VRA information here:
+
+${TAX_INVOICE_INFO_LINK}
+
+For assistance, contact:
+${SUPPORT_EMAIL}`,
+  },
+  ar: {
+    title: "المسافرون الأذكياء - تحقق من فاتورتك الضريبية",
+    description: `قبل مغادرة المتجر، تأكد من أن فاتورتك الضريبية تحتوي على المعلومات المطلوبة للتأهل لاسترداد ضريبة القيمة المضافة.
+
+يرجى التحقق من أن:
+
+- المستند موضح عليه بوضوح "فاتورة ضريبية".
+- ضريبة القيمة المضافة المفروضة ظاهرة.
+- اسم البائع ورقم ضريبة القيمة المضافة ظاهران.
+- اسم المطالب وعنوانه مذكوران حيثما يكون ذلك مطلوبا.
+- لا تقبل لقطات الشاشة أو إيصالات البطاقات أو الفواتير الأولية كفواتير ضريبية صالحة.
+
+قد يؤدي نقص المعلومات أو عدم صحتها إلى تأخير مطالبة استرداد ضريبة القيمة المضافة أو رفضها.
+
+يرجى الاطلاع على معلومات VRA المهمة هنا:
+
+${TAX_INVOICE_INFO_LINK}
+
+للمساعدة، يرجى التواصل على:
+${SUPPORT_EMAIL}`,
+  },
+  zh: {
+    title: "精明旅客 - 检查您的税务发票",
+    description: `离开商店前，请确保您的税务发票包含符合增值税退税资格所需的信息。
+
+请检查：
+
+- 文件清楚标明为“Tax Invoice”。
+- 已显示收取的增值税。
+- 已显示供应商名称和增值税号码。
+- 在需要时包含申请人的姓名和地址。
+- 截图、刷卡单和形式发票不被接受为有效税务发票。
+
+信息缺失或不正确可能导致增值税退税申请延迟或被拒。
+
+请在此查看 VRA 的重要信息：
+
+${TAX_INVOICE_INFO_LINK}
+
+如需帮助，请联系：
+${SUPPORT_EMAIL}`,
+  },
+  nl: {
+    title: "Slimme reizigers - controleer uw tax invoice",
+    description: `Controleer voordat u de winkel verlaat of uw tax invoice de vereiste informatie bevat om in aanmerking te komen voor btw-teruggaaf.
+
+Controleer het volgende:
+
+- Het document is duidelijk gemarkeerd als "Tax Invoice".
+- De in rekening gebrachte btw wordt vermeld.
+- De naam en het btw-nummer van de verkoper worden vermeld.
+- De naam en het adres van de aanvrager zijn opgenomen waar dit vereist is.
+- Screenshots, kaartbonnen en pro forma facturen worden niet geaccepteerd als geldige tax invoices.
+
+Ontbrekende of onjuiste informatie kan ertoe leiden dat de btw-teruggaafclaim wordt vertraagd of afgewezen.
+
+Bekijk hier de belangrijke VRA-informatie:
+
+${TAX_INVOICE_INFO_LINK}
+
+Voor hulp kunt u contact opnemen met:
+${SUPPORT_EMAIL}`,
+  },
+  fr: {
+    title: "Voyageurs avertis - vérifiez votre facture fiscale",
+    description: `Avant de quitter le magasin, assurez-vous que votre facture fiscale contient les informations requises pour être admissible à un remboursement de TVA.
+
+Veuillez vérifier que :
+
+- Le document porte clairement la mention "Tax Invoice".
+- La TVA facturée est indiquée.
+- Le nom du vendeur et son numéro de TVA sont indiqués.
+- Le nom et l'adresse du demandeur sont inclus lorsque cela est requis.
+- Les captures d'écran, reçus de carte et factures pro forma ne sont pas acceptés comme factures fiscales valides.
+
+Des informations manquantes ou incorrectes peuvent entraîner le retard ou le rejet de la demande de remboursement de TVA.
+
+Veuillez consulter les informations importantes de VRA ici :
+
+${TAX_INVOICE_INFO_LINK}
+
+Pour obtenir de l'aide, contactez :
+${SUPPORT_EMAIL}`,
+  },
+  de: {
+    title: "Clevere Reisende - prüfen Sie Ihre Steuerrechnung",
+    description: `Bevor Sie das Geschäft verlassen, stellen Sie bitte sicher, dass Ihre Steuerrechnung die erforderlichen Informationen enthält, um für eine Mehrwertsteuererstattung in Frage zu kommen.
+
+Bitte prüfen Sie, dass:
+
+- Das Dokument deutlich als "Tax Invoice" gekennzeichnet ist.
+- Die berechnete Mehrwertsteuer ausgewiesen ist.
+- Der Name des Verkäufers und die Mehrwertsteuernummer angegeben sind.
+- Name und Adresse des Antragstellers angegeben sind, sofern erforderlich.
+- Screenshots, Kartenbelege und Pro-forma-Rechnungen nicht als gültige Steuerrechnungen akzeptiert werden.
+
+Fehlende oder falsche Informationen können dazu führen, dass der Mehrwertsteuererstattungsantrag verzögert oder abgelehnt wird.
+
+Bitte lesen Sie die wichtigen VRA-Informationen hier:
+
+${TAX_INVOICE_INFO_LINK}
+
+Für Unterstützung kontaktieren Sie:
+${SUPPORT_EMAIL}`,
+  },
+  it: {
+    title: "Viaggiatori attenti - controlla la tua fattura fiscale",
+    description: `Prima di lasciare il negozio, assicurati che la tua fattura fiscale contenga le informazioni richieste per qualificarti per un rimborso IVA.
+
+Controlla che:
+
+- Il documento sia chiaramente contrassegnato come "Tax Invoice".
+- L'IVA addebitata sia indicata.
+- Il nome del venditore e il numero IVA siano indicati.
+- Il nome e l'indirizzo del richiedente siano inclusi dove richiesto.
+- Screenshot, ricevute delle carte e fatture pro forma non sono accettati come fatture fiscali valide.
+
+Informazioni mancanti o errate possono causare il ritardo o il rifiuto della richiesta di rimborso IVA.
+
+Consulta qui le importanti informazioni VRA:
+
+${TAX_INVOICE_INFO_LINK}
+
+Per assistenza, contattare:
+${SUPPORT_EMAIL}`,
+  },
+  pt: {
+    title: "Viajantes atentos - verifique a sua fatura fiscal",
+    description: `Antes de sair da loja, certifique-se de que a sua fatura fiscal contém as informações necessárias para se qualificar para um reembolso do IVA.
+
+Verifique se:
+
+- O documento está claramente marcado como "Tax Invoice".
+- O IVA cobrado está indicado.
+- O nome do fornecedor e o número de IVA estão indicados.
+- O nome e o endereço do requerente estão incluídos quando necessário.
+- Capturas de ecrã, talões de cartão e faturas pro forma não são aceites como faturas fiscais válidas.
+
+Informações em falta ou incorretas podem resultar no atraso ou rejeição do pedido de reembolso do IVA.
+
+Consulte aqui as informações importantes da VRA:
+
+${TAX_INVOICE_INFO_LINK}
+
+Para assistência, contacte:
+${SUPPORT_EMAIL}`,
+  },
+  ru: {
+    title: "Внимательные путешественники - проверьте свой налоговый счет",
+    description: `Перед тем как покинуть магазин, убедитесь, что ваш налоговый счет содержит информацию, необходимую для получения возврата НДС.
+
+Пожалуйста, проверьте, что:
+
+- Документ четко обозначен как "Tax Invoice".
+- Указана начисленная сумма НДС.
+- Указаны название продавца и номер НДС.
+- Имя и адрес заявителя включены там, где это требуется.
+- Скриншоты, карточные чеки и счета-проформы не принимаются в качестве действительных налоговых счетов.
+
+Отсутствующая или неверная информация может привести к задержке или отклонению заявления на возврат НДС.
+
+Пожалуйста, ознакомьтесь с важной информацией VRA здесь:
+
+${TAX_INVOICE_INFO_LINK}
+
+Для получения помощи обращайтесь:
+${SUPPORT_EMAIL}`,
+  },
+  es: {
+    title: "Viajeros inteligentes - revise su factura fiscal",
+    description: `Antes de salir de la tienda, asegúrese de que su factura fiscal contenga la información requerida para calificar para un reembolso de IVA.
+
+Verifique que:
+
+- El documento esté claramente marcado como "Tax Invoice".
+- Se muestre el IVA cobrado.
+- Se indiquen el nombre del proveedor y el número de IVA.
+- Se incluyan el nombre y la dirección del solicitante cuando sea necesario.
+- Las capturas de pantalla, recibos de tarjeta y facturas pro forma no se aceptan como facturas fiscales válidas.
+
+La información faltante o incorrecta puede provocar que la solicitud de reembolso de IVA se retrase o sea rechazada.
+
+Consulte aquí la información importante de VRA:
+
+${TAX_INVOICE_INFO_LINK}
+
+Para asistencia, contacte:
+${SUPPORT_EMAIL}`,
+  },
+};
+
 const extraFaqTranslations = {
   en: [
     {
@@ -3380,7 +3595,18 @@ function getWhereToClaimCopy(languageCode) {
 }
 
 function getVideoInfoCopy(languageCode) {
-  return videoInfoTranslations[languageCode] || videoInfoTranslations.en;
+  const baseCopy = videoInfoTranslations[languageCode] || videoInfoTranslations.en;
+  const taxInvoiceItem =
+    taxInvoiceVideoTranslations[languageCode] || taxInvoiceVideoTranslations.en;
+
+  return {
+    ...baseCopy,
+    items: [
+      ...baseCopy.items.slice(0, 7),
+      taxInvoiceItem,
+      ...baseCopy.items.slice(7),
+    ],
+  };
 }
 
 function getClientInfoCopy(languageCode) {
