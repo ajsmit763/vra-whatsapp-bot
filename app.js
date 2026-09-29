@@ -3867,41 +3867,34 @@ function whereToClaimMessage(languageCode) {
 ${navigationText(languageCode)}`;
 }
 
+const videoInfoMaintenanceTranslations = {
+  en: "This section is being updated. Please check back soon.",
+  ar: "يجري تحديث هذا القسم. يرجى العودة قريبًا.",
+  zh: "此栏目正在更新中，请稍后再来查看。",
+  nl: "Dit onderdeel wordt bijgewerkt. Kom binnenkort terug.",
+  fr: "Cette rubrique est en cours de mise à jour. Veuillez revenir prochainement.",
+  de: "Dieser Bereich wird aktualisiert. Bitte schauen Sie bald wieder vorbei.",
+  it: "Questa sezione è in fase di aggiornamento. Torna a visitarci presto.",
+  pt: "Esta secção está a ser atualizada. Por favor, volte em breve.",
+  ru: "Этот раздел обновляется. Пожалуйста, загляните сюда позже.",
+  es: "Esta sección se está actualizando. Vuelva a consultarla pronto.",
+};
+
 function videoInfoMenu(languageCode) {
   const copy = getVideoInfoCopy(languageCode);
-  const numberedItems = copy.items
-    .map((item, index) => `${index + 1}. ${item.title}`)
-    .join("\n");
 
   return `${copy.title}
 
-${copy.intro}
-
-${numberedItems}
+${videoInfoMaintenanceTranslations[languageCode] || videoInfoMaintenanceTranslations.en}
 
 ${copy.submenuBackInstruction}
 ${t(languageCode).doneInstruction}
 ${t(languageCode).changeInstruction}`;
 }
 
-function videoInfoMessage(languageCode, optionNumber) {
-  const copy = getVideoInfoCopy(languageCode);
-  const item = copy.items[Number(optionNumber) - 1];
-  const link = VIDEO_INFO_LINKS[String(optionNumber)];
-
-  if (!item || !link) {
-    return null;
-  }
-
-  return `${item.title}
-
-${item.description}
-
-${link}
-
-${copy.backToVideosInstruction}
-${copy.mainMenuInstruction}
-${t(languageCode).doneInstruction}`;
+function videoInfoMessage(languageCode) {
+  // Keep the previous content unavailable while this section is being updated.
+  return videoInfoMenu(languageCode);
 }
 
 function agentMessage(languageCode) {
@@ -4514,21 +4507,9 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
     return;
   }
 
-  if (session.state === STATES.VIDEOS) {
-    const videoReply = videoInfoMessage(languageCode, normalizedInput);
-
-    if (videoReply) {
-      session.state = STATES.VIDEO_ITEM;
-      await sendReply(videoReply);
-      return;
-    }
-
+  if (session.state === STATES.VIDEOS || session.state === STATES.VIDEO_ITEM) {
+    session.state = STATES.VIDEOS;
     await sendReply(videoInfoMenu(languageCode));
-    return;
-  }
-
-  if (session.state === STATES.VIDEO_ITEM) {
-    await sendReply(videoInfoMessage(languageCode, normalizedInput) || invalidInputMessage(languageCode));
     return;
   }
 
