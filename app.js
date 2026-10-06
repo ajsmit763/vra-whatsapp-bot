@@ -51,15 +51,8 @@ const SUPPORT_EMAIL = "info@vatrefundagency.co.za";
 const FINANCE_EMAIL = "finance@vatrefundagency.co.za";
 
 const VIDEO_INFO_LINKS = {
-  "1": "https://www.facebook.com/share/v/1PeqiDQY4H/",
-  "2": "https://www.facebook.com/share/p/14nipZCo2Ep/",
-  "3": "https://www.facebook.com/share/r/1K4Fars5c3/",
-  "4": "https://www.facebook.com/share/r/1cd9PtMzwq/",
-  "5": "https://www.facebook.com/share/p/1ErihKEhCf/",
-  "6": "https://www.facebook.com/share/v/14kAL4Gyaf6/",
-  "7": "https://www.facebook.com/share/v/1ErvJT6SjL/",
-  "8": TAX_INVOICE_INFO_LINK,
-  "9": FACEBOOK_PAGE_LINK,
+  "1": "https://www.facebook.com/story.php?story_fbid=122116243977473510&id=61594205312831",
+  "2": "https://www.facebook.com/story.php?story_fbid=122116708809473510&id=61594205312831",
 };
 
 const languageChoices = {
@@ -3596,16 +3589,9 @@ function getWhereToClaimCopy(languageCode) {
 
 function getVideoInfoCopy(languageCode) {
   const baseCopy = videoInfoTranslations[languageCode] || videoInfoTranslations.en;
-  const taxInvoiceItem =
-    taxInvoiceVideoTranslations[languageCode] || taxInvoiceVideoTranslations.en;
-
   return {
     ...baseCopy,
-    items: [
-      ...baseCopy.items.slice(0, 7),
-      taxInvoiceItem,
-      ...baseCopy.items.slice(7),
-    ],
+    items: airportVideoInfoTranslations[languageCode] || airportVideoInfoTranslations.en,
   };
 }
 
@@ -3867,34 +3853,79 @@ function whereToClaimMessage(languageCode) {
 ${navigationText(languageCode)}`;
 }
 
-const videoInfoMaintenanceTranslations = {
-  en: "This section is being updated. Please check back soon.",
-  ar: "يجري تحديث هذا القسم. يرجى العودة قريبًا.",
-  zh: "此栏目正在更新中，请稍后再来查看。",
-  nl: "Dit onderdeel wordt bijgewerkt. Kom binnenkort terug.",
-  fr: "Cette rubrique est en cours de mise à jour. Veuillez revenir prochainement.",
-  de: "Dieser Bereich wird aktualisiert. Bitte schauen Sie bald wieder vorbei.",
-  it: "Questa sezione è in fase di aggiornamento. Torna a visitarci presto.",
-  pt: "Esta secção está a ser atualizada. Por favor, volte em breve.",
-  ru: "Этот раздел обновляется. Пожалуйста, загляните сюда позже.",
-  es: "Esta sección se está actualizando. Vuelva a consultarla pronto.",
+const airportVideoInfoTranslations = {
+  en: [
+    { title: "O.R. Tambo International Airport - VAT Refund Document Checklist", description: "Preparing a VAT refund claim at O.R. Tambo? Read the full checklist below for general documents, additional documents for your claim type, certification requirements and fee considerations before departure." },
+    { title: "Cape Town International Airport - VAT Refund Document Checklist", description: "Preparing a VAT refund claim at Cape Town? Read the full checklist below for general documents, additional documents for your claim type, certification requirements and fee considerations. The post also includes important guidance on entering and departing through the same airport. Check your travel route before departure." },
+  ],
+  ar: [
+    { title: "مطار أو. آر. تامبو الدولي - قائمة مستندات استرداد ضريبة القيمة المضافة", description: "هل تستعد لتقديم طلب استرداد ضريبة القيمة المضافة في مطار أو. آر. تامبو؟ اقرأ القائمة الكاملة أدناه للاطلاع على المستندات العامة والمستندات الإضافية حسب نوع طلبك ومتطلبات التصديق والرسوم قبل المغادرة." },
+    { title: "مطار كيب تاون الدولي - قائمة مستندات استرداد ضريبة القيمة المضافة", description: "هل تستعد لتقديم طلب استرداد ضريبة القيمة المضافة في مطار كيب تاون؟ اقرأ القائمة الكاملة أدناه للاطلاع على المستندات العامة والمستندات الإضافية حسب نوع طلبك ومتطلبات التصديق والرسوم. يتضمن المنشور أيضًا إرشادات مهمة حول الدخول والمغادرة عبر المطار نفسه. تحقق من مسار رحلتك قبل المغادرة." },
+  ],
+  zh: [
+    { title: "奥利弗·坦博国际机场 - 增值税退税文件清单", description: "准备在奥利弗·坦博国际机场申请增值税退税？请在出发前阅读下方完整清单，了解基本文件、按申请类型所需的补充文件、认证要求及费用注意事项。" },
+    { title: "开普敦国际机场 - 增值税退税文件清单", description: "准备在开普敦国际机场申请增值税退税？请阅读下方完整清单，了解基本文件、按申请类型所需的补充文件、认证要求及费用注意事项。该帖子还包含通过同一机场入境和出境的重要指引。请在出发前核对您的旅行路线。" },
+  ],
+  nl: [
+    { title: "O.R. Tambo International Airport - Documentenchecklist voor btw-teruggave", description: "Bereidt u een aanvraag voor btw-teruggave voor bij O.R. Tambo? Lees vóór vertrek de volledige checklist hieronder voor algemene documenten, aanvullende documenten voor uw type aanvraag, vereisten voor gewaarmerkte kopieën en informatie over kosten." },
+    { title: "Cape Town International Airport - Documentenchecklist voor btw-teruggave", description: "Bereidt u een aanvraag voor btw-teruggave voor bij Cape Town? Lees de volledige checklist hieronder voor algemene documenten, aanvullende documenten voor uw type aanvraag, vereisten voor gewaarmerkte kopieën en informatie over kosten. Het bericht bevat ook belangrijke informatie over aankomst en vertrek via dezelfde luchthaven. Controleer uw reisroute vóór vertrek." },
+  ],
+  fr: [
+    { title: "Aéroport international O.R. Tambo - Liste des documents pour le remboursement de la TVA", description: "Vous préparez une demande de remboursement de TVA à O.R. Tambo ? Consultez la liste complète ci-dessous avant votre départ pour connaître les documents généraux, les pièces supplémentaires selon votre type de demande, les exigences de certification et les frais à prendre en compte." },
+    { title: "Aéroport international du Cap - Liste des documents pour le remboursement de la TVA", description: "Vous préparez une demande de remboursement de TVA au Cap ? Consultez la liste complète ci-dessous pour connaître les documents généraux, les pièces supplémentaires selon votre type de demande, les exigences de certification et les frais à prendre en compte. La publication contient aussi des indications importantes sur l’entrée et la sortie par le même aéroport. Vérifiez votre itinéraire avant le départ." },
+  ],
+  de: [
+    { title: "O.R. Tambo International Airport - Dokumentencheckliste zur Mehrwertsteuererstattung", description: "Bereiten Sie einen Antrag auf Mehrwertsteuererstattung am Flughafen O.R. Tambo vor? Lesen Sie vor der Abreise die vollständige Checkliste unten zu allgemeinen Unterlagen, zusätzlichen Dokumenten für Ihre Antragsart, Beglaubigungsanforderungen und zu berücksichtigenden Gebühren." },
+    { title: "Cape Town International Airport - Dokumentencheckliste zur Mehrwertsteuererstattung", description: "Bereiten Sie einen Antrag auf Mehrwertsteuererstattung am Flughafen Kapstadt vor? Lesen Sie die vollständige Checkliste unten zu allgemeinen Unterlagen, zusätzlichen Dokumenten für Ihre Antragsart, Beglaubigungsanforderungen und zu berücksichtigenden Gebühren. Der Beitrag enthält auch wichtige Hinweise zur Ein- und Ausreise über denselben Flughafen. Prüfen Sie Ihre Reiseroute vor der Abreise." },
+  ],
+  it: [
+    { title: "Aeroporto internazionale O.R. Tambo - Elenco dei documenti per il rimborso IVA", description: "Stai preparando una richiesta di rimborso IVA a O.R. Tambo? Prima della partenza, leggi l’elenco completo qui sotto per conoscere i documenti generali, i documenti aggiuntivi per il tuo tipo di richiesta, i requisiti di certificazione e le informazioni sulle commissioni." },
+    { title: "Aeroporto internazionale di Città del Capo - Elenco dei documenti per il rimborso IVA", description: "Stai preparando una richiesta di rimborso IVA a Città del Capo? Leggi l’elenco completo qui sotto per conoscere i documenti generali, i documenti aggiuntivi per il tuo tipo di richiesta, i requisiti di certificazione e le informazioni sulle commissioni. Il post contiene anche indicazioni importanti sull’ingresso e sull’uscita dallo stesso aeroporto. Controlla il tuo itinerario prima della partenza." },
+  ],
+  pt: [
+    { title: "Aeroporto Internacional O.R. Tambo - Lista de documentos para reembolso do IVA", description: "Está a preparar um pedido de reembolso do IVA no O.R. Tambo? Leia a lista completa abaixo antes da partida para consultar os documentos gerais, os documentos adicionais para o seu tipo de pedido, os requisitos de certificação e as informações sobre taxas." },
+    { title: "Aeroporto Internacional da Cidade do Cabo - Lista de documentos para reembolso do IVA", description: "Está a preparar um pedido de reembolso do IVA na Cidade do Cabo? Leia a lista completa abaixo para consultar os documentos gerais, os documentos adicionais para o seu tipo de pedido, os requisitos de certificação e as informações sobre taxas. A publicação também inclui orientações importantes sobre a entrada e a saída pelo mesmo aeroporto. Verifique o seu itinerário antes da partida." },
+  ],
+  ru: [
+    { title: "Международный аэропорт О. Р. Тамбо - Список документов для возврата НДС", description: "Готовите заявление на возврат НДС в аэропорту О. Р. Тамбо? Перед вылетом ознакомьтесь с полным списком ниже: общие документы, дополнительные документы для вашего типа заявления, требования к заверению и информация о комиссиях." },
+    { title: "Международный аэропорт Кейптауна - Список документов для возврата НДС", description: "Готовите заявление на возврат НДС в аэропорту Кейптауна? Ознакомьтесь с полным списком ниже: общие документы, дополнительные документы для вашего типа заявления, требования к заверению и информация о комиссиях. Публикация также содержит важные рекомендации о въезде и выезде через один и тот же аэропорт. Проверьте маршрут перед вылетом." },
+  ],
+  es: [
+    { title: "Aeropuerto Internacional O.R. Tambo - Lista de documentos para la devolución del IVA", description: "¿Está preparando una solicitud de devolución del IVA en O.R. Tambo? Antes de salir, consulte la lista completa a continuación para conocer los documentos generales, los documentos adicionales según su tipo de solicitud, los requisitos de certificación y las comisiones que debe tener en cuenta." },
+    { title: "Aeropuerto Internacional de Ciudad del Cabo - Lista de documentos para la devolución del IVA", description: "¿Está preparando una solicitud de devolución del IVA en Ciudad del Cabo? Consulte la lista completa a continuación para conocer los documentos generales, los documentos adicionales según su tipo de solicitud, los requisitos de certificación y las comisiones que debe tener en cuenta. La publicación también incluye indicaciones importantes sobre la entrada y salida por el mismo aeropuerto. Compruebe su itinerario antes de salir." },
+  ],
 };
 
 function videoInfoMenu(languageCode) {
   const copy = getVideoInfoCopy(languageCode);
+  const numberedItems = copy.items
+    .map((item, index) => `${index + 1}. ${item.title}`)
+    .join("\n");
 
   return `${copy.title}
 
-${videoInfoMaintenanceTranslations[languageCode] || videoInfoMaintenanceTranslations.en}
+${copy.intro}
+
+${numberedItems}
 
 ${copy.submenuBackInstruction}
 ${t(languageCode).doneInstruction}
 ${t(languageCode).changeInstruction}`;
 }
 
-function videoInfoMessage(languageCode) {
-  // Keep the previous content unavailable while this section is being updated.
-  return videoInfoMenu(languageCode);
+function videoInfoMessage(languageCode, optionNumber) {
+  if (!["1", "2"].includes(String(optionNumber))) return null;
+  const copy = getVideoInfoCopy(languageCode);
+  const item = copy.items[Number(optionNumber) - 1];
+  return `${item.title}
+
+${item.description}
+
+${VIDEO_INFO_LINKS[String(optionNumber)]}
+
+${copy.backToVideosInstruction}
+${copy.mainMenuInstruction}
+${t(languageCode).doneInstruction}`;
 }
 
 function agentMessage(languageCode) {
@@ -4508,8 +4539,9 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
   }
 
   if (session.state === STATES.VIDEOS || session.state === STATES.VIDEO_ITEM) {
-    session.state = STATES.VIDEOS;
-    await sendReply(videoInfoMenu(languageCode));
+    const videoReply = videoInfoMessage(languageCode, normalizedInput);
+    session.state = videoReply ? STATES.VIDEO_ITEM : STATES.VIDEOS;
+    await sendReply(videoReply || videoInfoMenu(languageCode));
     return;
   }
 
