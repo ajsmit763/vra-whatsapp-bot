@@ -1,11 +1,9 @@
 const express = require("express");
-let axios = null;
-
-try {
-  axios = require("axios");
-} catch (error) {
-  console.warn("Axios is not installed. Falling back to fetch for Brevo email alerts.");
-}
+const { createPool } = require("./storage");
+const { Tracker } = require("./tracking");
+const { sendBrevo } = require("./summaries");
+const { whatsAppEvents, telegramEvents } = require("./webhooks");
+const { countryChecklistItems } = require("./country-checklists");
 
 const app = express();
 app.use(express.json());
@@ -15,8 +13,6 @@ const WHATSAPP_TOKEN = process.env.WHATSAPP_TOKEN;
 const PHONE_NUMBER_ID = process.env.PHONE_NUMBER_ID;
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const PORT = process.env.PORT || 3000;
-const BREVO_API_KEY = process.env.BREVO_API_KEY;
-const ALERT_TO = process.env.ALERT_TO || "VRASupportbot@amaxsa.co.za";
 
 const STATES = {
   LANGUAGE: "language",
@@ -53,6 +49,11 @@ const FINANCE_EMAIL = "finance@vatrefundagency.co.za";
 const VIDEO_INFO_LINKS = {
   "1": "https://www.facebook.com/story.php?story_fbid=122116243977473510&id=61594205312831",
   "2": "https://www.facebook.com/story.php?story_fbid=122116708809473510&id=61594205312831",
+  "3": "https://www.facebook.com/share/p/1Bw46GWfrC/?mibextid=wwXIfr",
+  "4": "https://www.facebook.com/share/p/1DKS2HagRE/?mibextid=wwXIfr",
+  "5": "https://www.facebook.com/share/p/1B3tP4zgM4/?mibextid=wwXIfr",
+  "6": "https://www.facebook.com/share/p/1DoAioFLpM/?mibextid=wwXIfr",
+  "7": "https://www.facebook.com/share/p/1KHUXMMTLt/?mibextid=wwXIfr",
 };
 
 const languageChoices = {
@@ -3591,7 +3592,10 @@ function getVideoInfoCopy(languageCode) {
   const baseCopy = videoInfoTranslations[languageCode] || videoInfoTranslations.en;
   return {
     ...baseCopy,
-    items: airportVideoInfoTranslations[languageCode] || airportVideoInfoTranslations.en,
+    items: [
+      ...(airportVideoInfoTranslations[languageCode] || airportVideoInfoTranslations.en),
+      ...countryChecklistItems(languageCode),
+    ],
   };
 }
 
@@ -3914,7 +3918,7 @@ ${t(languageCode).changeInstruction}`;
 }
 
 function videoInfoMessage(languageCode, optionNumber) {
-  if (!["1", "2"].includes(String(optionNumber))) return null;
+  if (!Object.hasOwn(VIDEO_INFO_LINKS, String(optionNumber))) return null;
   const copy = getVideoInfoCopy(languageCode);
   const item = copy.items[Number(optionNumber) - 1];
   return `${item.title}
@@ -4179,165 +4183,42 @@ function formatDateTimeForEmail(date = new Date()) {
   return `${value("year")}-${value("month")}-${value("day")} ${value("hour")}:${value("minute")}:${value("second")}`;
 }
 
-async function sendBrevoEmail({ to, subject, body }) {
-  if (!BREVO_API_KEY) {
-    throw new Error("Missing BREVO_API_KEY");
-  }
-
-  const payload = {
-    sender: {
-      name: "VRA Support Bot",
-      email: "aj@amaxsa.co.za",
-    },
-    to: [{ email: to }],
-    subject,
-    textContent: body,
-  };
-
-  const headers = {
-    accept: "application/json",
-    "api-key": BREVO_API_KEY,
-    "content-type": "application/json",
-  };
-
-  if (axios) {
-    try {
-      return await axios.post("https://api.brevo.com/v3/smtp/email", payload, {
-        headers,
-      });
-    } catch (error) {
-      const brevoError = new Error("Brevo email alert failed with status/body");
-      brevoError.status = error.response?.status || "";
-      brevoError.body = error.response?.data || error.message;
-      throw brevoError;
-    }
-  }
-
-  const response = await fetch("https://api.brevo.com/v3/smtp/email", {
-    method: "POST",
-    headers,
-    body: JSON.stringify(payload),
-  });
-
-  if (!response.ok) {
-    const responseBody = await response.text();
-    const error = new Error("Brevo email alert failed with status/body");
-    error.status = response.status;
-    error.body = responseBody;
+async function postMessage(platform, url, headers, body) {
+  let response;
+  try {
+    response = await fetch(url, { method: "POST", headers, body: JSON.stringify(body), signal: AbortSignal.timeout(20000) });
+  } catch {
+    const error = new Error("Message request outcome unknown");
+    error.safeMessage = platform + " request outcome unknown";
+    error.uncertain = true;
     throw error;
   }
-
-  return response;
-}
-
-function buildCompletedConversationAlert({
-  platform,
-  clientId,
-  selectedLanguage,
-  clientInfo,
-  transcript,
-  ratingNumber,
-  ratingLabel,
-}) {
-  return `Platform: ${platform}
-Client Number / Telegram Username: ${clientId}
-Date & Time: ${formatDateTimeForEmail()}
-Full name and surname: ${clientInfo?.fullName || "Not provided"}
-Passport number: ${clientInfo?.passportNumber || "Not provided"}
-VRA reference number: ${clientInfo?.vraReferenceNumber || "Not provided"}
-Selected Language: ${selectedLanguage}
-
-Full Conversation Transcript:
-${transcript}
-
-Rating Number: ${ratingNumber}
-Rating Label: ${ratingLabel}
-Timestamp: ${formatDateTimeForEmail()}`;
-}
-
-async function sendCompletedConversationAlert(details) {
-  const subject = `[${details.platform}] New Client Message`;
-  const body = buildCompletedConversationAlert(details);
-
-  try {
-    console.log("Brevo email alert sending started");
-    await sendBrevoEmail({
-      to: ALERT_TO,
-      subject,
-      body,
-    });
-    console.log("Brevo email alert sent successfully");
-  } catch (error) {
-    console.error(
-      "Brevo email alert failed with status/body",
-      error.status || "",
-      error.body || error
-    );
-    return false;
+  let data = {};
+  try { data = await response.json(); } catch { /* empty provider response */ }
+  if (!response.ok || data.ok === false) {
+    const error = new Error("Message provider rejected request");
+    error.safeMessage = platform + " HTTP " + response.status + " code " + (data.error?.code || data.error_code || "unknown");
+    error.uncertain = response.status >= 500 || response.status === 408;
+    throw error;
   }
-
-  return true;
+  return { providerId: platform === "WhatsApp" ? data.messages?.[0]?.id : String(data.result?.message_id || "") };
 }
 
 async function sendWhatsAppMessage(to, body) {
   if (!WHATSAPP_TOKEN || !PHONE_NUMBER_ID) {
-    console.error("Missing WHATSAPP_TOKEN or PHONE_NUMBER_ID");
-    return;
+    const error = new Error("WhatsApp configuration missing"); error.uncertain = false; throw error;
   }
-
-  const recipient = formatWhatsAppRecipient(to);
-
-  if (!recipient) {
-    console.error("Missing WhatsApp recipient");
-    return;
-  }
-
-  const response = await fetch(
-    `https://graph.facebook.com/v19.0/${PHONE_NUMBER_ID}/messages`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${WHATSAPP_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        messaging_product: "whatsapp",
-        to: recipient,
-        type: "text",
-        text: { body },
-      }),
-    }
-  );
-
-  if (!response.ok) {
-    console.error("WhatsApp API error:", response.status, await response.text());
-  }
+  return postMessage("WhatsApp", "https://graph.facebook.com/v19.0/" + PHONE_NUMBER_ID + "/messages",
+    { Authorization: "Bearer " + WHATSAPP_TOKEN, "Content-Type": "application/json" },
+    { messaging_product: "whatsapp", to: formatWhatsAppRecipient(to), type: "text", text: { body } });
 }
 
 async function sendTelegramMessage(chatId, message) {
   if (!TELEGRAM_BOT_TOKEN) {
-    console.error("Missing TELEGRAM_BOT_TOKEN");
-    return;
+    const error = new Error("Telegram configuration missing"); error.uncertain = false; throw error;
   }
-
-  const response = await fetch(
-    `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-        disable_web_page_preview: false,
-      }),
-    }
-  );
-
-  if (!response.ok) {
-    console.error("Telegram API error:", response.status, await response.text());
-  }
+  return postMessage("Telegram", "https://api.telegram.org/bot" + TELEGRAM_BOT_TOKEN + "/sendMessage",
+    { "Content-Type": "application/json" }, { chat_id: chatId, text: message, disable_web_page_preview: false });
 }
 
 async function showLanguageMenu(session, sendReply) {
@@ -4494,19 +4375,8 @@ async function handleSupportInput(input, session, sendReply, platform, userId) {
       session.state = STATES.COMPLETE;
       await sendReply(reviewReceivedMessage(languageCode));
 
-      const emailSent = await sendCompletedConversationAlert({
-        platform,
-        clientId: userId,
-        selectedLanguage: session.languageName || session.languageCode || "Unknown",
-        clientInfo: session.clientInfo,
-        transcript: formatConversationTranscript(session),
-        ratingNumber: normalizedInput,
-        ratingLabel,
-      });
-
-      if (emailSent) {
-        session.conversationHistory = [];
-      }
+      // Persisted by Tracker in the same transaction as this reply and the summary job.
+      session.rating = { number: normalizedInput, label: ratingLabel };
 
       return;
     }
@@ -4646,82 +4516,49 @@ app.get("/webhook", (req, res) => {
   return res.sendStatus(403);
 });
 
-app.post("/webhook", async (req, res) => {
-  res.sendStatus(200);
+function createRuntime(options = {}) {
+  const pool = options.pool || createPool();
+  const tracker = new Tracker({ pool, handleInput: handleSupportInput,
+    sendReply: options.sendReply || (message => message.platform === "WhatsApp"
+      ? sendWhatsAppMessage(message.address, message.body) : sendTelegramMessage(message.address, message.body)),
+    sendEmail: options.sendEmail || sendBrevo });
+  return { pool, tracker };
+}
 
+async function receiveMessages(events, res) {
   try {
-    const value = req.body.entry?.[0]?.changes?.[0]?.value;
-    const message = value?.messages?.[0];
-
-    if (!message || message.type !== "text") {
-      return;
-    }
-
-    const rawFrom = value?.contacts?.[0]?.wa_id || message.from;
-    const from = formatWhatsAppRecipient(rawFrom);
-    const input = message.text?.body?.trim();
-
-    if (!from || !input) {
-      return;
-    }
-
-    const session = getWhatsAppSession(from);
-    addConversationEntry(session, "Client", input);
-
-    await handleSupportInput(
-      input,
-      session,
-      async (reply) => {
-        addConversationEntry(session, "Bot", reply);
-        await sendWhatsAppMessage(from, reply);
-      },
-      "WhatsApp",
-      `+${from}`
-    );
-  } catch (error) {
-    console.error("WhatsApp webhook processing error:", error);
+    // Acknowledge only after the inbox has committed. Providers can retry a 503 safely.
+    const clientIds = await app.locals.tracker.ingest(events);
+    res.sendStatus(200);
+    for (const clientId of clientIds) await app.locals.tracker.processClient(clientId);
+    await app.locals.tracker.deliver();
+  } catch {
+    console.error("Message storage/processing failed; unprocessed database inbox entries will be retried by the scheduler.");
+    if (!res.headersSent) res.sendStatus(503);
   }
+}
+app.post("/webhook", (req, res) => {
+  try { return receiveMessages(whatsAppEvents(req.body, PHONE_NUMBER_ID), res); }
+  catch { return res.sendStatus(400); }
 });
-
-app.post("/telegram-webhook", async (req, res) => {
-  res.sendStatus(200);
-
-  try {
-    const message = req.body.message;
-    const chatId = message?.chat?.id;
-    const input = message?.text?.trim();
-
-    if (!chatId || !input) {
-      return;
-    }
-
-    const session = getTelegramSession(chatId);
-    const telegramUser =
-      message.from?.username
-        ? `@${message.from.username}`
-        : [message.from?.first_name, message.from?.last_name].filter(Boolean).join(" ") ||
-          String(chatId);
-    addConversationEntry(session, "Client", input);
-
-    await handleSupportInput(
-      input,
-      session,
-      async (reply) => {
-        addConversationEntry(session, "Bot", reply);
-        await sendTelegramMessage(chatId, reply);
-      },
-      "Telegram",
-      telegramUser
-    );
-  } catch (error) {
-    console.error("Telegram webhook processing error:", error);
-  }
+app.post("/telegram-webhook", (req, res) => {
+  try { return receiveMessages(telegramEvents(req.body), res); }
+  catch { return res.sendStatus(400); }
 });
+app.get("/", (req, res) => res.status(200).send("VRA WhatsApp Bot Running"));
 
-app.get("/", (req, res) => {
-  res.status(200).send("VRA WhatsApp Bot Running");
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+async function start() {
+  const runtime = createRuntime();
+  await runtime.pool.query("SELECT 1 FROM vra_clients LIMIT 1");
+  app.locals.tracker = runtime.tracker;
+  app.listen(PORT, () => console.log("Server is running on port " + PORT));
+}
+module.exports = { app, createRuntime, handleSupportInput,
+  mainMenu, documentationMenu, documentationMessage, faqMenu, faqAnswer, statusMessage,
+  bankingMessage, newClaimMessage, whereToClaimMessage, agentMessage, reviewPromptMessage,
+  feedbackPromptMessage, feedbackReceivedMessage, reviewReceivedMessage, languageMenu,
+  videoInfoMenu, videoInfoMessage, languageChoices };
+if (require.main === module) start().catch(() => {
+  console.error("Startup failed. Configure DATABASE_URL and run npm run db:migrate before starting.");
+  process.exitCode = 1;
 });
